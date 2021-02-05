@@ -1,7 +1,9 @@
 package net.toujoustudios.kazunya.command;
 
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import net.toujoustudios.kazunya.command.list.fun.ShipCommand;
 import net.toujoustudios.kazunya.command.list.general.HelpCommand;
+import net.toujoustudios.kazunya.command.list.unlisted.ExecuteCommand;
 import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.log.LogLevel;
 import net.toujoustudios.kazunya.log.Logger;
@@ -24,7 +26,10 @@ public class CommandManager {
 
     public CommandManager() {
 
+        addCommand(new ExecuteCommand());
+
         addCommand(new HelpCommand(this));
+        addCommand(new ShipCommand());
 
         Logger.log(LogLevel.INFORMATION, "Successfully registered " + commands.size() + " commands.");
 

@@ -7,8 +7,6 @@ import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.command.CommandManager;
 import net.toujoustudios.kazunya.command.ICommand;
 import net.toujoustudios.kazunya.config.Config;
-import net.toujoustudios.kazunya.log.LogLevel;
-import net.toujoustudios.kazunya.log.Logger;
 
 import java.util.List;
 
@@ -38,8 +36,6 @@ public class HelpCommand implements ICommand {
         embedBuilder.setColor(Config.DEFAULT_EMBED_COLOR);
         embedBuilder.setTitle("**__HELP__**");
 
-        Logger.log(LogLevel.DEBUG, "Handling command");
-
         if(args.isEmpty()) {
 
             StringBuilder builderGeneral = new StringBuilder();
@@ -49,7 +45,15 @@ public class HelpCommand implements ICommand {
                 }
             }
 
+            StringBuilder builderFun = new StringBuilder();
+            for(ICommand command : manager.getCommands()) {
+                if(command.getCategory() == CommandCategory.FUN) {
+                    builderFun.append("**" + Config.DEFAULT_PREFIX + command.getName() + "** - " + command.getHelp() + "\n");
+                }
+            }
+
             embedBuilder.addField(":satellite_orbital: General:", builderGeneral.toString(), false);
+            embedBuilder.addField(":tada: Fun:", builderFun.toString(), false);
 
             embedBuilder.addField(":bookmark_tabs: Credits:", "IanToujou", false);
 

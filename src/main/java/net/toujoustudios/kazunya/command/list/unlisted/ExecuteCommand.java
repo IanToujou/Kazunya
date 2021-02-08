@@ -28,7 +28,15 @@ public class ExecuteCommand implements ICommand {
 
             //Executable Code
             embedBuilder.setTitle("**__NOTIFICATION SETTINGS__**");
-            embedBuilder.setDescription("*Note: Please react with the roles listed below.*\n\n:youtube: `YouTube Uploads`");
+
+            StringBuilder builder = new StringBuilder();
+
+            builder.append("*Note: Please react with the roles listed below.*\n\n");
+            builder.append("<:youtube:807396141988970506> `YouTube Uploads`\n");
+            builder.append("<:twitch:807663994138525726> `Twitch Streams`\n");
+            builder.append("<:twitter:807667305785065543> `Twitter Posts`\n");
+
+            embedBuilder.setDescription(builder.toString());
             embedBuilder.setColor(Config.DEFAULT_EMBED_COLOR);
 
             context.getChannel().sendMessage(embedBuilder.build()).queue();
@@ -46,9 +54,9 @@ public class ExecuteCommand implements ICommand {
     public String getHelp() { return "Execute a code."; }
 
     @Override
-    public String getUsage() { return "ship [user] [user]"; }
+    public String getUsage() { return "execute"; }
 
     @Override
-    public CommandCategory getCategory() { return CommandCategory.GENERAL; }
+    public CommandCategory getCategory() { return CommandCategory.UNLISTED; }
 
 }

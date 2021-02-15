@@ -2,9 +2,7 @@ package net.toujoustudios.kazunya.listener;
 
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
-import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import net.toujoustudios.kazunya.config.Config;
 
 import javax.annotation.Nonnull;
 

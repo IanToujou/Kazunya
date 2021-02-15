@@ -27,14 +27,16 @@ public class ExecuteCommand implements ICommand {
         if(context.getMember().getId().equals("369381378703228928")) {
 
             //Executable Code
-            embedBuilder.setTitle("**__NOTIFICATION SETTINGS__**");
+            embedBuilder.setTitle("**__NOTIFICATIONS: SOCIAL__**");
 
-            StringBuilder builder = new StringBuilder();
+            StringBuilder builder;
+            builder = new StringBuilder();
 
-            builder.append("*Note: Please react with the roles listed below.*\n\n");
+            builder.append("Select for what platform you want to get pinged, if IanToujou posts something new.\n\n");
             builder.append("<:youtube:807396141988970506> `YouTube Uploads`\n");
             builder.append("<:twitch:807663994138525726> `Twitch Streams`\n");
-            builder.append("<:twitter:807667305785065543> `Twitter Posts`\n");
+            builder.append("<:twitter:807667305785065543> `Twitter Posts`\n\n");
+            builder.append("*Note: Please react with the roles listed here.*");
 
             embedBuilder.setDescription(builder.toString());
             embedBuilder.setColor(Config.DEFAULT_EMBED_COLOR);

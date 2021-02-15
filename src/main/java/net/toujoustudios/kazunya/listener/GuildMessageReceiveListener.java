@@ -28,7 +28,7 @@ public class GuildMessageReceiveListener extends ListenerAdapter {
         String prefix = Config.DEFAULT_PREFIX;
         String raw = event.getMessage().getContentRaw();
 
-        if(raw.startsWith(prefix)) {
+        if(raw.toLowerCase().startsWith(prefix)) {
 
             manager.handle(event);
 

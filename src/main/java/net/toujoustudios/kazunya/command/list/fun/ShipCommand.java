@@ -7,8 +7,6 @@ import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.command.ICommand;
 import net.toujoustudios.kazunya.config.Config;
-import net.toujoustudios.kazunya.log.LogLevel;
-import net.toujoustudios.kazunya.log.Logger;
 
 import java.awt.*;
 import java.util.List;
@@ -23,6 +21,7 @@ import java.util.Random;
 public class ShipCommand implements ICommand {
 
     @Override
+    @SuppressWarnings("all")
     public void handle(CommandContext context) {
 
         List<String> args = context.getArgs();
@@ -90,6 +89,11 @@ public class ShipCommand implements ICommand {
 
             commentary = "It is fine.";
             embedBuilder.setColor(Color.YELLOW);
+
+        } else if(rating == 69) {
+
+            commentary = "69? Nice.";
+            embedBuilder.setColor(Color.GREEN);
 
         } else if(rating < 70) {
 

@@ -11,7 +11,7 @@ import java.sql.SQLException;
  * Time: 08:36
  * Project: Kazunya
  */
-public class DataManager {
+public class UserDataManager {
 
     public static void setMoney(String userId, int amount) {
 

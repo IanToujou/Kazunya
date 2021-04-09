@@ -1,5 +1,6 @@
 package net.toujoustudios.kazunya.database;
 
+import net.toujoustudios.kazunya.guild.GuildManager;
 import net.toujoustudios.kazunya.log.LogLevel;
 import net.toujoustudios.kazunya.log.Logger;
 import net.toujoustudios.kazunya.user.UserManager;
@@ -18,6 +19,7 @@ public class DatabaseTimer extends TimerTask {
     public void run() {
 
         UserManager.unloadAll();
+        GuildManager.unloadAll();
         Logger.log(LogLevel.INFORMATION, "Reconnecting the database...");
         DatabaseManager.disconnect();
 

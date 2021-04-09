@@ -7,6 +7,7 @@ import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.command.ICommand;
 import net.toujoustudios.kazunya.config.Config;
+import net.toujoustudios.kazunya.main.Kazunya;
 
 import java.awt.*;
 import java.util.List;

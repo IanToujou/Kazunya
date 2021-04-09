@@ -27,19 +27,18 @@ public class ExecuteCommand implements ICommand {
         if(context.getMember().getId().equals("369381378703228928")) {
 
             //Executable Code
-            embedBuilder.setTitle("**__NOTIFICATIONS: SOCIAL__**");
+            embedBuilder.setTitle("**__NOTIFICATIONS: GAMES__**");
 
             StringBuilder builder;
             builder = new StringBuilder();
 
-            builder.append("Select for what platform you want to get pinged, if IanToujou posts something new.\n\n");
-            builder.append("<:youtube:807396141988970506> `YouTube Uploads`\n");
-            builder.append("<:twitch:807663994138525726> `Twitch Streams`\n");
-            builder.append("<:twitter:807667305785065543> `Twitter Posts`\n\n");
+            builder.append("Choose what game newsletter you want to subscribe.\n\n");
+            builder.append("<:genshin_icon:821658069460844562> `Genshin Impact Newsletter`\n\n");
             builder.append("*Note: Please react with the roles listed here.*");
 
             embedBuilder.setDescription(builder.toString());
             embedBuilder.setColor(Config.DEFAULT_EMBED_COLOR);
+            embedBuilder.setThumbnail("https://user-images.githubusercontent.com/44029196/111436198-fcbe9e80-8701-11eb-9c84-6b4647366dab.png");
 
             context.getChannel().sendMessage(embedBuilder.build()).queue();
 

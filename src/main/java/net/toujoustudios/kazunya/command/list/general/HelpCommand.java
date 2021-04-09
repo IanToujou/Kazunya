@@ -39,22 +39,29 @@ public class HelpCommand implements ICommand {
         if(args.isEmpty()) {
 
             StringBuilder builderGeneral = new StringBuilder();
+            StringBuilder builderEmote = new StringBuilder();
+            StringBuilder builderFun = new StringBuilder();
+            StringBuilder builderModeration = new StringBuilder();
+
             for(ICommand command : manager.getCommands()) {
                 if(command.getCategory() == CommandCategory.GENERAL) {
                     builderGeneral.append("**" + Config.DEFAULT_PREFIX + command.getName() + "** - " + command.getHelp() + "\n");
                 }
-            }
-
-            StringBuilder builderFun = new StringBuilder();
-            for(ICommand command : manager.getCommands()) {
+                if(command.getCategory() == CommandCategory.EMOTE) {
+                    builderEmote.append("**" + Config.DEFAULT_PREFIX + command.getName() + "** - " + command.getHelp() + "\n");
+                }
                 if(command.getCategory() == CommandCategory.FUN) {
                     builderFun.append("**" + Config.DEFAULT_PREFIX + command.getName() + "** - " + command.getHelp() + "\n");
+                }
+                if(command.getCategory() == CommandCategory.MODERATION) {
+                    builderModeration.append("**" + Config.DEFAULT_PREFIX + command.getName() + "** - " + command.getHelp() + "\n");
                 }
             }
 
             embedBuilder.addField(":satellite_orbital: General:", builderGeneral.toString(), false);
+            embedBuilder.addField(":smile: Emote:", builderEmote.toString(), false);
             embedBuilder.addField(":tada: Fun:", builderFun.toString(), false);
-
+            embedBuilder.addField(":shield: Moderation:", builderModeration.toString(), false);
             embedBuilder.addField(":bookmark_tabs: Credits:", "IanToujou", false);
 
             channel.sendMessage(embedBuilder.build()).queue();

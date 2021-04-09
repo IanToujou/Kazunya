@@ -3,6 +3,7 @@ package net.toujoustudios.kazunya.listener;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.toujoustudios.kazunya.guild.GuildManager;
 
 import javax.annotation.Nonnull;
 
@@ -18,6 +19,13 @@ public class GuildMemberJoinListener extends ListenerAdapter {
     public void onGuildMemberJoin(@Nonnull GuildMemberJoinEvent event) {
 
         User user = event.getMember().getUser();
+        GuildManager guildManager = GuildManager.getGuild(event.getGuild().getId());
+
+        if(guildManager.isRestoreRoles()) {
+
+
+
+        }
 
     }
 

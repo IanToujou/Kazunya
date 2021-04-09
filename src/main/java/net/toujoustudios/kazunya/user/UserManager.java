@@ -1,6 +1,6 @@
 package net.toujoustudios.kazunya.user;
 
-import net.toujoustudios.kazunya.data.DataManager;
+import net.toujoustudios.kazunya.data.UserDataManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,8 +21,8 @@ public class UserManager {
     public UserManager(String userId) {
 
         this.userId = userId;
-        this.money = DataManager.getMoney(userId);
-        this.partner = DataManager.getPartner(userId);
+        this.money = UserDataManager.getMoney(userId);
+        this.partner = UserDataManager.getPartner(userId);
 
     }
 
@@ -54,11 +54,11 @@ public class UserManager {
 
     public void save() {
 
-        DataManager.setMoney(userId, money);
+        UserDataManager.setMoney(userId, money);
         if(hasPartner()) {
-            DataManager.setPartner(userId, partner);
+            UserDataManager.setPartner(userId, partner);
         } else {
-            DataManager.removePartner(userId);
+            UserDataManager.removePartner(userId);
         }
 
     }

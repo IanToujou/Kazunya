@@ -4,6 +4,7 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.toujoustudios.kazunya.command.list.emote.CryCommand;
 import net.toujoustudios.kazunya.command.list.fun.ShipCommand;
 import net.toujoustudios.kazunya.command.list.general.HelpCommand;
+import net.toujoustudios.kazunya.command.list.moderation.GuildSettingsCommand;
 import net.toujoustudios.kazunya.command.list.unlisted.ExecuteCommand;
 import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.log.LogLevel;
@@ -32,6 +33,7 @@ public class CommandManager {
         addCommand(new HelpCommand(this));
         addCommand(new ShipCommand());
         addCommand(new CryCommand());
+        addCommand(new GuildSettingsCommand());
 
         Logger.log(LogLevel.INFORMATION, "Successfully registered " + commands.size() + " commands.");
 

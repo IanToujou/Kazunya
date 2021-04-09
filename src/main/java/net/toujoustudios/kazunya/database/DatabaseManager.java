@@ -102,4 +102,10 @@ public class DatabaseManager {
 
     }
 
+    public static void setup() {
+
+        executeUpdate("CREATE TABLE IF NOT EXISTS guild_settings (guild_id varchar(256), restore_roles boolean DEFAULT false, excluded_restore_roles varchar(256));");
+
+    }
+
 }

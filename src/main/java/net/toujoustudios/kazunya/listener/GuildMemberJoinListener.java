@@ -24,7 +24,6 @@ public class GuildMemberJoinListener extends ListenerAdapter {
         if(guildManager.isRestoreRoles()) {
 
 
-
         }
 
     }

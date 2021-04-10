@@ -76,64 +76,64 @@ public class Kazunya {
 
             } else if(input.startsWith("/msg")) {
 
-                    String[] args = input.split(" ");
-                    String channel = args[1];
-                    StringBuilder message = new StringBuilder();
+                String[] args = input.split(" ");
+                String channel = args[1];
+                StringBuilder message = new StringBuilder();
 
-                    for(int i = 2; i < args.length; i++) {
+                for(int i = 2; i < args.length; i++) {
 
-                        if(i != 2) {
-                            message.append(" ").append(args[i]);
-                        } else {
-                            message.append(args[i]);
-                        }
-
+                    if(i != 2) {
+                        message.append(" ").append(args[i]);
+                    } else {
+                        message.append(args[i]);
                     }
 
-                    try {
+                }
 
-                        Objects.requireNonNull(jda.getTextChannelById(channel)).sendMessage(message).queue();
-                        Logger.log(LogLevel.INFORMATION, "The message has been sent.");
+                try {
 
-                    } catch(Exception exception) {
+                    Objects.requireNonNull(jda.getTextChannelById(channel)).sendMessage(message).queue();
+                    Logger.log(LogLevel.INFORMATION, "The message has been sent.");
 
-                        Logger.log(LogLevel.ERROR, "Could not send message to channel.");
+                } catch(Exception exception) {
 
+                    Logger.log(LogLevel.ERROR, "Could not send message to channel.");
+
+                }
+
+            } else if(input.startsWith("/pmsg")) {
+
+                String[] args = input.split(" ");
+                String user = args[1];
+                StringBuilder message = new StringBuilder();
+
+                for(int i = 2; i < args.length; i++) {
+
+                    if(i != 2) {
+                        message.append(" ").append(args[i]);
+                    } else {
+                        message.append(args[i]);
                     }
 
-                } else if(input.startsWith("/pmsg")) {
+                }
 
-                    String[] args = input.split(" ");
-                    String user = args[1];
-                    StringBuilder message = new StringBuilder();
+                try {
 
-                    for(int i = 2; i < args.length; i++) {
+                    Objects.requireNonNull(jda.getUserById(user)).openPrivateChannel().queue((channel) -> channel.sendMessage(message.toString()).queue());
 
-                        if(i != 2) {
-                            message.append(" ").append(args[i]);
-                        } else {
-                            message.append(args[i]);
-                        }
+                    Logger.log(LogLevel.INFORMATION, "The message has been sent.");
 
-                    }
+                } catch(Exception exception) {
 
-                    try {
-
-                        Objects.requireNonNull(jda.getUserById(user)).openPrivateChannel().queue((channel) -> channel.sendMessage(message.toString()).queue());
-
-                        Logger.log(LogLevel.INFORMATION, "The message has been sent.");
-
-                    } catch(Exception exception) {
-
-                        Logger.log(LogLevel.ERROR, "Could not send message to user.");
-
-                    }
+                    Logger.log(LogLevel.ERROR, "Could not send message to user.");
 
                 }
 
             }
 
         }
+
+    }
 
     @SuppressWarnings("all")
     public static void main(String[] args) {

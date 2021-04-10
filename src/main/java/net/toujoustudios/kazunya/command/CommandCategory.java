@@ -8,6 +8,6 @@ package net.toujoustudios.kazunya.command;
  */
 public enum CommandCategory {
 
-    UNLISTED, GENERAL, FUN, EMOTE, MODERATION
+    UNLISTED, GENERAL, FUN, ROLEPLAY, MODERATION
 
 }

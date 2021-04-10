@@ -33,7 +33,7 @@ public class GuildMessageReceiveListener extends ListenerAdapter {
             manager.handle(event);
 
         }
-        
+
         if(event.getChannel().getId().equals("811314931731398666")) {
 
             if(raw.toLowerCase().contains("kanna") && raw.toLowerCase().contains("l.r34")) {

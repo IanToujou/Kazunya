@@ -1,9 +1,7 @@
 package net.toujoustudios.kazunya.guild;
 
-import net.dv8tion.jda.api.entities.Guild;
 import net.toujoustudios.kazunya.data.GuildDataManager;
 import net.toujoustudios.kazunya.database.DatabaseManager;
-import net.toujoustudios.kazunya.user.UserManager;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

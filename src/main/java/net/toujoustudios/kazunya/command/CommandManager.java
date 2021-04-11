@@ -38,6 +38,7 @@ public class CommandManager {
         addCommand(new KissCommand());
         addCommand(new PurrCommand());
         addCommand(new KillCommand());
+        addCommand(new CuddleCommand());
         addCommand(new GuildSettingsCommand());
 
         Logger.log(LogLevel.INFORMATION, "Successfully registered " + commands.size() + " commands.");

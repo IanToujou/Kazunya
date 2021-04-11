@@ -5,6 +5,8 @@ import net.toujoustudios.kazunya.command.list.roleplay.CryCommand;
 import net.toujoustudios.kazunya.command.list.fun.ShipCommand;
 import net.toujoustudios.kazunya.command.list.general.HelpCommand;
 import net.toujoustudios.kazunya.command.list.moderation.GuildSettingsCommand;
+import net.toujoustudios.kazunya.command.list.roleplay.HugCommand;
+import net.toujoustudios.kazunya.command.list.roleplay.KissCommand;
 import net.toujoustudios.kazunya.command.list.roleplay.PatCommand;
 import net.toujoustudios.kazunya.command.list.unlisted.ExecuteCommand;
 import net.toujoustudios.kazunya.config.Config;
@@ -35,6 +37,8 @@ public class CommandManager {
         addCommand(new ShipCommand());
         addCommand(new CryCommand());
         addCommand(new PatCommand());
+        addCommand(new HugCommand());
+        addCommand(new KissCommand());
         addCommand(new GuildSettingsCommand());
 
         Logger.log(LogLevel.INFORMATION, "Successfully registered " + commands.size() + " commands.");

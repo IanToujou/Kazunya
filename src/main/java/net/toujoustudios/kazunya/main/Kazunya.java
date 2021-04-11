@@ -36,7 +36,7 @@ public class Kazunya {
         try {
 
             JDABuilder builder = JDABuilder.createDefault(Config.TOKEN);
-            builder.setActivity(Activity.playing(Config.DEFAULT_PREFIX + "help - Running Version " + Config.CURRENT_VERSION));
+            builder.setActivity(Activity.streaming("\u2728 " + Config.DEFAULT_PREFIX + "help - Running Version " + Config.CURRENT_VERSION, "https://twitch.tv/iantoujou"));
             builder.enableIntents(GatewayIntent.GUILD_MEMBERS);
             builder.enableIntents(GatewayIntent.GUILD_PRESENCES);
             builder.addEventListeners(new ReadyListener());

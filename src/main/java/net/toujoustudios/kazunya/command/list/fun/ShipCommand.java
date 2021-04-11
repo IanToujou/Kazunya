@@ -134,6 +134,9 @@ public class ShipCommand implements ICommand {
     public String getUsage() { return "ship [user] [user]"; }
 
     @Override
+    public boolean isNSFW() { return false; }
+
+    @Override
     public CommandCategory getCategory() { return CommandCategory.FUN; }
 
 }

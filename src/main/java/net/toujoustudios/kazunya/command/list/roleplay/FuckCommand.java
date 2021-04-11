@@ -15,10 +15,10 @@ import java.util.Random;
 /**
  * This file was created by IanToujou.
  * Date: 11/04/2021
- * Time: 17:01
+ * Time: 22:51
  * Project: Kazunya
  */
-public class KillCommand implements ICommand {
+public class FuckCommand implements ICommand {
 
     @Override
     public void handle(CommandContext context) {
@@ -53,45 +53,31 @@ public class KillCommand implements ICommand {
         Member target = context.getMessage().getMentionedMembers().get(0);
 
         ArrayList<String> images = new ArrayList<>();
-        images.add("https://media1.tenor.com/images/fbcd2c524059569f19e7a192f04893b5/tenor.gif?itemid=18284505");
-        images.add("https://media1.tenor.com/images/d1adbb82cb428da4c2de5f158ef2caba/tenor.gif?itemid=17870588");
-        images.add("https://media1.tenor.com/images/cbb1642c9aeb06b4055a9ce5bbdc908a/tenor.gif?itemid=5749160");
-        images.add("https://media1.tenor.com/images/2487a7679b3d7d23cadcd51381635467/tenor.gif?itemid=11451829");
+        images.add("");
 
-        String killer = "**" + context.getMember().getEffectiveName() + "**";
-        String victim = "**" + target.getEffectiveName() + "**";
-
-        ArrayList<String> deathMessages = new ArrayList<>();
-        deathMessages.add("{Killer} used the death note on {Victim}.");
-        deathMessages.add("{Victim} starved to death.");
-        deathMessages.add("{Killer} detonated an ICBM on {Victim}'s head.");
-        deathMessages.add("{Killer} punched {Victim} to death.");
-        deathMessages.add("{Victim} died due to overdosed cuddling.");
-
-        embedBuilder.setDescription(deathMessages.get(new Random().nextInt(deathMessages.size())).replace("{Killer}", killer).replace("{Victim}", victim) + " :skull:");
+        embedBuilder.setDescription("**" + member.getEffectiveName() + "** is fucking **" + target.getEffectiveName() + "**! :sweat_drops:");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
-
         channel.sendMessage(embedBuilder.build()).queue();
 
     }
 
     @Override
     public String getName() {
-        return "kill";
+        return "fuck";
     }
 
     @Override
     public String getHelp() {
-        return "Kill another user.";
+        return "Fuck another user.";
     }
 
     @Override
     public String getUsage() {
-        return "kill [user]";
+        return "fuck [user]";
     }
 
     @Override
-    public boolean isNSFW() { return false; }
+    public boolean isNSFW() { return true; }
 
     @Override
     public CommandCategory getCategory() {

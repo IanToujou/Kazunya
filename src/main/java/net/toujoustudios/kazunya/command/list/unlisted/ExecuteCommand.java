@@ -58,6 +58,9 @@ public class ExecuteCommand implements ICommand {
     public String getUsage() { return "execute"; }
 
     @Override
+    public boolean isNSFW() { return false; }
+
+    @Override
     public CommandCategory getCategory() { return CommandCategory.UNLISTED; }
 
 }

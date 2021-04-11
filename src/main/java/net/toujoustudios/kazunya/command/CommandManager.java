@@ -28,10 +28,13 @@ public class CommandManager {
 
     public CommandManager() {
 
+        //Unlisted
         addCommand(new ExecuteCommand());
 
+        //General
         addCommand(new HelpCommand(this));
-        addCommand(new ShipCommand());
+
+        //Roleplay
         addCommand(new CryCommand());
         addCommand(new PatCommand());
         addCommand(new HugCommand());
@@ -39,6 +42,12 @@ public class CommandManager {
         addCommand(new PurrCommand());
         addCommand(new KillCommand());
         addCommand(new CuddleCommand());
+        addCommand(new FuckCommand());
+
+        //Fun
+        addCommand(new ShipCommand());
+
+        //Moderation
         addCommand(new GuildSettingsCommand());
 
         Logger.log(LogLevel.INFORMATION, "Successfully registered " + commands.size() + " commands.");

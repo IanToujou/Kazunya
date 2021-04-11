@@ -1,13 +1,10 @@
 package net.toujoustudios.kazunya.command;
 
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
-import net.toujoustudios.kazunya.command.list.roleplay.CryCommand;
+import net.toujoustudios.kazunya.command.list.roleplay.*;
 import net.toujoustudios.kazunya.command.list.fun.ShipCommand;
 import net.toujoustudios.kazunya.command.list.general.HelpCommand;
 import net.toujoustudios.kazunya.command.list.moderation.GuildSettingsCommand;
-import net.toujoustudios.kazunya.command.list.roleplay.HugCommand;
-import net.toujoustudios.kazunya.command.list.roleplay.KissCommand;
-import net.toujoustudios.kazunya.command.list.roleplay.PatCommand;
 import net.toujoustudios.kazunya.command.list.unlisted.ExecuteCommand;
 import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.log.LogLevel;
@@ -39,6 +36,7 @@ public class CommandManager {
         addCommand(new PatCommand());
         addCommand(new HugCommand());
         addCommand(new KissCommand());
+        addCommand(new PurrCommand());
         addCommand(new GuildSettingsCommand());
 
         Logger.log(LogLevel.INFORMATION, "Successfully registered " + commands.size() + " commands.");

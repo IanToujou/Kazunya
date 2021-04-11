@@ -26,6 +26,7 @@ public class HugCommand implements ICommand {
         List<String> args = context.getArgs();
         TextChannel channel = context.getChannel();
         EmbedBuilder embedBuilder = new EmbedBuilder();
+        Member member = context.getMember();
 
         embedBuilder.setColor(Config.DEFAULT_EMBED_COLOR);
 
@@ -91,9 +92,17 @@ public class HugCommand implements ICommand {
         images.add("https://media1.tenor.com/images/edea458dd2cbc76b17b7973a0c23685c/tenor.gif?itemid=13041472");
         images.add("https://media1.tenor.com/images/94c44a9898927f22dff399c2c248f433/tenor.gif?itemid=11247364");
 
-        embedBuilder.setDescription("**" + context.getMember().getEffectiveName() + "** is hugging **" + target.getEffectiveName() + "**! :purple_heart: Nya~");
-        embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
+        if(member == target) {
 
+            embedBuilder.setDescription("Nya... Here, I will give you a hug! :purple_heart:");
+
+        } else {
+
+            embedBuilder.setDescription("**" + member.getEffectiveName() + "** is hugging **" + target.getEffectiveName() + "**! :purple_heart: Nya~");
+
+        }
+
+        embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
         channel.sendMessage(embedBuilder.build()).queue();
 
     }

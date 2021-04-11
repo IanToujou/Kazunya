@@ -19,7 +19,7 @@ public class GuildManager {
 
     private static final HashMap<String, GuildManager> guilds = new HashMap<String, GuildManager>();
 
-    private String guildId;
+    private final String guildId;
     private boolean restoreRoles;
     private ArrayList<String> excludedRestoreRoles;
 

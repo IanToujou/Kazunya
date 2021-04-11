@@ -27,6 +27,7 @@ public class PatCommand implements ICommand {
         List<String> args = context.getArgs();
         TextChannel channel = context.getChannel();
         EmbedBuilder embedBuilder = new EmbedBuilder();
+        Member member = context.getMember();
 
         embedBuilder.setColor(Config.DEFAULT_EMBED_COLOR);
 
@@ -94,9 +95,18 @@ public class PatCommand implements ICommand {
         images.add("https://media1.tenor.com/images/8c1f6874db27c8227755a08b2b07740b/tenor.gif?itemid=10789367");
         images.add("https://media1.tenor.com/images/37b0ba8252f8698d23c83d889768540b/tenor.gif?itemid=19580650");
 
-        embedBuilder.setDescription("**" + context.getMember().getEffectiveName() + "** is patting **" + target.getEffectiveName() + "**! :purple_heart: Nya~");
-        embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
 
+        if(member == target) {
+
+            embedBuilder.setDescription("I'll give you headpats! Nya Nya~ :purple_heart:");
+
+        } else {
+
+            embedBuilder.setDescription("**" + member.getEffectiveName() + "** is patting **" + target.getEffectiveName() + "**! :purple_heart: Nya~");
+
+        }
+
+        embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
         channel.sendMessage(embedBuilder.build()).queue();
 
     }

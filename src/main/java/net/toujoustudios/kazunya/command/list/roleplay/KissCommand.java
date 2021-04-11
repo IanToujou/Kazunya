@@ -91,16 +91,7 @@ public class KissCommand implements ICommand {
         images.add("https://media1.tenor.com/images/ad514e809adc14f0b7722a324c2eb36e/tenor.gif?itemid=14375355");
         images.add("https://media1.tenor.com/images/d93c9a9c201ec1fe3c8011718b18a83c/tenor.gif?itemid=16317577");
 
-        if(member == target) {
-
-            embedBuilder.setDescription("Nuuu, I will kiss you! :purple_heart: Nya~");
-
-        } else {
-
-            embedBuilder.setDescription("**" + member.getEffectiveName() + "** is kissing **" + target.getEffectiveName() + "**! :purple_heart: Nya~");
-
-        }
-
+        embedBuilder.setDescription("**" + member.getEffectiveName() + "** is kissing **" + target.getEffectiveName() + "**! :purple_heart: Nya~");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
         channel.sendMessage(embedBuilder.build()).queue();
 
@@ -118,7 +109,7 @@ public class KissCommand implements ICommand {
 
     @Override
     public String getUsage() {
-        return "kiss";
+        return "kiss [user]";
     }
 
     @Override

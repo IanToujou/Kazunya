@@ -52,15 +52,6 @@ public class KillCommand implements ICommand {
 
         Member target = context.getMessage().getMentionedMembers().get(0);
 
-        if(member == target) {
-
-            embedBuilder.setDescription("No! Don't do that... Nya... That would make me sad...");
-            embedBuilder.setColor(Config.DEFAULT_EMBED_COLOR);
-            channel.sendMessage(embedBuilder.build()).queue();
-            return;
-
-        }
-
         ArrayList<String> images = new ArrayList<>();
         images.add("https://media1.tenor.com/images/fbcd2c524059569f19e7a192f04893b5/tenor.gif?itemid=18284505");
         images.add("https://media1.tenor.com/images/d1adbb82cb428da4c2de5f158ef2caba/tenor.gif?itemid=17870588");
@@ -96,7 +87,7 @@ public class KillCommand implements ICommand {
 
     @Override
     public String getUsage() {
-        return "kill";
+        return "kill [user]";
     }
 
     @Override

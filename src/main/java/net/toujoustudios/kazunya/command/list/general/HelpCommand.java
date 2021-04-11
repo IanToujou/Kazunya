@@ -1,12 +1,14 @@
 package net.toujoustudios.kazunya.command.list.general;
 
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.command.CommandManager;
 import net.toujoustudios.kazunya.command.ICommand;
 import net.toujoustudios.kazunya.config.Config;
+import net.toujoustudios.kazunya.main.Kazunya;
 
 import java.util.List;
 
@@ -27,6 +29,7 @@ public class HelpCommand implements ICommand {
     }
 
     @Override
+    @SuppressWarnings("all")
     public void handle(CommandContext context) {
 
         List<String> args = context.getArgs();
@@ -62,7 +65,28 @@ public class HelpCommand implements ICommand {
             embedBuilder.addField(":smile: Roleplay:", builderRoleplay.toString(), false);
             embedBuilder.addField(":tada: Fun:", builderFun.toString(), false);
             embedBuilder.addField(":shield: Moderation:", builderModeration.toString(), false);
-            embedBuilder.addField(":bookmark_tabs: Credits:", "IanToujou", false);
+
+            boolean isOwnerOnServer = false;
+            for(Member member : context.getGuild().getMembers()) {
+
+                String id = member.getId();
+
+                if(id.equals(Config.DEFAULT_ADMIN_USER)) {
+
+                    isOwnerOnServer = true;
+                    break;
+
+                }
+
+            }
+
+            if(isOwnerOnServer) {
+                embedBuilder.addField(":bookmark_tabs: Credits:", context.getGuild().getMemberById(Config.DEFAULT_ADMIN_USER).getAsMention() + " - Toujou Studios", false);
+            } else {
+                embedBuilder.addField(":bookmark_tabs: Credits:", "IanToujou - Toujou Studios", false);
+            }
+
+            embedBuilder.setDescription("*Note: NSFW commands will only show up in NSFW channels.*");
 
             channel.sendMessage(embedBuilder.build()).queue();
 

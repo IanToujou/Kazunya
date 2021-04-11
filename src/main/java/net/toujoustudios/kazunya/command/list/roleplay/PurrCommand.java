@@ -41,7 +41,6 @@ public class PurrCommand implements ICommand {
         ArrayList<String> images = new ArrayList<>();
         images.add("https://media1.tenor.com/images/64d45ee51ea8d55760c81a93353ffdb3/tenor.gif?itemid=11179299");
         images.add("https://media1.tenor.com/images/0d84880342a1ac0c40f1f67caaceeee7/tenor.gif?itemid=15594779");
-        images.add("https://media1.tenor.com/images/3ccdd015297263b32736a37c9f8f79b4/tenor.gif?itemid=15402658");
         images.add("https://media1.tenor.com/images/34d6e388391099e69c7967374b9b5706/tenor.gif?itemid=8774325");
         images.add("https://media1.tenor.com/images/b5397d5803883e7d4a4b355d068a7375/tenor.gif?itemid=14223397");
         images.add("https://media1.tenor.com/images/37a585471f5e895489a03ae705430218/tenor.gif?itemid=12142150");

@@ -43,6 +43,7 @@ public class HelpCommand implements ICommand {
             StringBuilder builderGeneral = new StringBuilder();
             StringBuilder builderRoleplay = new StringBuilder();
             StringBuilder builderFun = new StringBuilder();
+            StringBuilder builderMusic = new StringBuilder();
             StringBuilder builderModeration = new StringBuilder();
 
             int totalNSFW = 0;
@@ -64,6 +65,9 @@ public class HelpCommand implements ICommand {
                     if(command.getCategory() == CommandCategory.FUN) {
                         builderFun.append("**" + Config.DEFAULT_PREFIX + command.getName() + "** - " + command.getHelp() + "\n");
                     }
+                    if(command.getCategory() == CommandCategory.MUSIC) {
+                        builderMusic.append("**" + Config.DEFAULT_PREFIX + command.getName() + "** - " + command.getHelp() + "\n");
+                    }
                     if(command.getCategory() == CommandCategory.MODERATION) {
                         builderModeration.append("**" + Config.DEFAULT_PREFIX + command.getName() + "** - " + command.getHelp() + "\n");
                     }
@@ -75,6 +79,7 @@ public class HelpCommand implements ICommand {
             embedBuilder.addField(":satellite_orbital: General:", builderGeneral.toString(), false);
             embedBuilder.addField(":smile: Roleplay:", builderRoleplay.toString(), false);
             embedBuilder.addField(":tada: Fun:", builderFun.toString(), false);
+            embedBuilder.addField(":musical_note: Music:", builderMusic.toString(), false);
             embedBuilder.addField(":shield: Moderation:", builderModeration.toString(), false);
 
             boolean isOwnerOnServer = false;

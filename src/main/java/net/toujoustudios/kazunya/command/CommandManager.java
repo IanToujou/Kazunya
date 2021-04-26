@@ -44,7 +44,8 @@ public class CommandManager {
         addCommand(new KillCommand());
         addCommand(new CuddleCommand());
         addCommand(new BlushCommand());
-        addCommand(new SlapCommand()); //WIP
+        addCommand(new SlapCommand());
+        addCommand(new SmileCommand());
         addCommand(new FuckCommand());
 
         //Fun

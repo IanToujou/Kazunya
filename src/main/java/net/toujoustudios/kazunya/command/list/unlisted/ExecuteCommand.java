@@ -33,6 +33,7 @@ public class ExecuteCommand implements ICommand {
             builder = new StringBuilder();
 
             builder.append("Choose what game newsletter you want to subscribe.\n\n");
+            builder.append(":gift: `Free Games Newsletter`\n");
             builder.append("<:genshin_icon:821658069460844562> `Genshin Impact Newsletter`\n\n");
             builder.append("*Note: Please react with the roles listed here.*");
 

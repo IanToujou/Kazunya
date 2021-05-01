@@ -15,7 +15,7 @@ public class UserDataManager {
 
     public static void setMoney(String userId, int amount) {
 
-        DatabaseManager.executeUpdate("INSERT INTO user_information (user_id, money) VALUES ('" + userId + "', '" + amount + "') ON DUPLICATE KEY UPDATE money='" + amount + "';");
+        DatabaseManager.executeUpdate("INSERT INTO user_data (user_id, money) VALUES ('" + userId + "', '" + amount + "') ON DUPLICATE KEY UPDATE money='" + amount + "';");
 
     }
 
@@ -23,7 +23,7 @@ public class UserDataManager {
 
         try {
 
-            ResultSet resultSet = DatabaseManager.executeQuery("SELECT * FROM user_information WHERE user_id='" + userId + "';");
+            ResultSet resultSet = DatabaseManager.executeQuery("SELECT * FROM user_data WHERE user_id='" + userId + "';");
 
             while(resultSet.next()) {
 
@@ -43,7 +43,7 @@ public class UserDataManager {
 
     public static void setPartner(String userId, String partnerId) {
 
-        DatabaseManager.executeUpdate("INSERT INTO user_information (user_id, partner_id) VALUES ('" + userId + "', '" + partnerId + "') ON DUPLICATE KEY UPDATE partner_id='" + partnerId + "';");
+        DatabaseManager.executeUpdate("UPDATE user_data SET partner_id='" + partnerId + "' WHERE user_id='" + userId + "';");
 
     }
 
@@ -51,7 +51,7 @@ public class UserDataManager {
 
         try {
 
-            ResultSet resultSet = DatabaseManager.executeQuery("SELECT * FROM user_information WHERE user_id='" + userId + "';");
+            ResultSet resultSet = DatabaseManager.executeQuery("SELECT * FROM user_data WHERE user_id='" + userId + "';");
 
             while(resultSet.next()) {
 
@@ -71,7 +71,7 @@ public class UserDataManager {
 
     public static void removePartner(String userId) {
 
-        DatabaseManager.executeUpdate("UPDATE user_information SET partner_id=NULL WHERE user_id='" + userId + "';");
+        DatabaseManager.executeUpdate("UPDATE user_data SET partner_id=NULL WHERE user_id='" + userId + "';");
 
     }
 

@@ -3,7 +3,6 @@ package net.toujoustudios.kazunya.command;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.toujoustudios.kazunya.command.list.fun.ShipCommand;
 import net.toujoustudios.kazunya.command.list.general.HelpCommand;
-import net.toujoustudios.kazunya.command.list.moderation.GuildSettingsCommand;
 import net.toujoustudios.kazunya.command.list.music.*;
 import net.toujoustudios.kazunya.command.list.roleplay.*;
 import net.toujoustudios.kazunya.command.list.unlisted.ExecuteCommand;
@@ -47,9 +46,12 @@ public class CommandManager {
         addCommand(new SlapCommand());
         addCommand(new SmileCommand());
         addCommand(new FuckCommand());
+        addCommand(new MarryCommand());
+        addCommand(new DivorceCommand());
 
         //Fun
         addCommand(new ShipCommand());
+        //addCommand(new ScoreboardCommand());
 
         //Music
         addCommand(new PlayCommand());
@@ -57,9 +59,6 @@ public class CommandManager {
         addCommand(new NowPlayingCommand());
         addCommand(new SkipCommand());
         addCommand(new QueueCommand());
-
-        //Moderation
-        addCommand(new GuildSettingsCommand()); //WIP
 
         Logger.log(LogLevel.INFORMATION, "Successfully registered " + commands.size() + " commands.");
 

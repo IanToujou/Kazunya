@@ -131,7 +131,7 @@ public class ShipCommand implements ICommand {
     public String getHelp() { return "Ship two users and get a compatibility score."; }
 
     @Override
-    public String getUsage() { return "ship [user] [user]"; }
+    public String getUsage() { return "ship [@user] [@user]"; }
 
     @Override
     public boolean isNSFW() { return false; }

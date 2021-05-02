@@ -21,11 +21,6 @@ public class GuildMemberJoinListener extends ListenerAdapter {
         User user = event.getMember().getUser();
         GuildManager guildManager = GuildManager.getGuild(event.getGuild().getId());
 
-        if(guildManager.isRestoreRoles()) {
-
-
-        }
-
     }
 
 }

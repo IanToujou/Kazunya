@@ -51,7 +51,6 @@ public class CommandManager {
 
         //Fun
         addCommand(new ShipCommand());
-        //addCommand(new ScoreboardCommand());
 
         //Music
         addCommand(new PlayCommand());

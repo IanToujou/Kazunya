@@ -68,9 +68,6 @@ public class HelpCommand implements ICommand {
                     if(command.getCategory() == CommandCategory.MUSIC) {
                         builderMusic.append("**" + Config.DEFAULT_PREFIX + command.getName() + "** - " + command.getHelp() + "\n");
                     }
-                    if(command.getCategory() == CommandCategory.MODERATION) {
-                        builderModeration.append("**" + Config.DEFAULT_PREFIX + command.getName() + "** - " + command.getHelp() + "\n");
-                    }
 
                 }
 

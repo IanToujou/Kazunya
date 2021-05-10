@@ -5,6 +5,7 @@ import net.toujoustudios.kazunya.command.list.fun.ShipCommand;
 import net.toujoustudios.kazunya.command.list.general.HelpCommand;
 import net.toujoustudios.kazunya.command.list.music.*;
 import net.toujoustudios.kazunya.command.list.roleplay.*;
+import net.toujoustudios.kazunya.command.list.stats.UserinfoCommand;
 import net.toujoustudios.kazunya.command.list.unlisted.ExecuteCommand;
 import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.log.LogLevel;
@@ -58,6 +59,9 @@ public class CommandManager {
         addCommand(new NowPlayingCommand());
         addCommand(new SkipCommand());
         addCommand(new QueueCommand());
+
+        //Stats
+        addCommand(new UserinfoCommand());
 
         Logger.log(LogLevel.INFORMATION, "Successfully registered " + commands.size() + " commands.");
 

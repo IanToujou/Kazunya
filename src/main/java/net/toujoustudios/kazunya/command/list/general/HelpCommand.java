@@ -77,7 +77,6 @@ public class HelpCommand implements ICommand {
             embedBuilder.addField(":smile: Roleplay:", builderRoleplay.toString(), false);
             embedBuilder.addField(":tada: Fun:", builderFun.toString(), false);
             embedBuilder.addField(":musical_note: Music:", builderMusic.toString(), false);
-            embedBuilder.addField(":shield: Moderation:", builderModeration.toString(), false);
 
             boolean isOwnerOnServer = false;
             for(Member member : context.getGuild().getMembers()) {

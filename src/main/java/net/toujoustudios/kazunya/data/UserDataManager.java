@@ -1,6 +1,8 @@
 package net.toujoustudios.kazunya.data;
 
 import net.toujoustudios.kazunya.database.DatabaseManager;
+import net.toujoustudios.kazunya.log.LogLevel;
+import net.toujoustudios.kazunya.log.Logger;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -55,7 +57,9 @@ public class UserDataManager {
 
             while(resultSet.next()) {
 
-                return resultSet.getString("partner_id");
+                String out = resultSet.getString("partner_id");
+                Logger.log(LogLevel.DEBUG, out);
+                return out;
 
             }
 

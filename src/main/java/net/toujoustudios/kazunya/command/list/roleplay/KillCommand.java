@@ -67,6 +67,21 @@ public class KillCommand implements ICommand {
         deathMessages.add("{Killer} detonated an ICBM on {Victim}'s head.");
         deathMessages.add("{Killer} punched {Victim} to death.");
         deathMessages.add("{Victim} died due to overdosed cuddling.");
+        deathMessages.add("{Killer} stabbed {Victim} to death.");
+        deathMessages.add("{Victim} watched too much anime and forgot to stay hydrated.");
+        deathMessages.add("{Killer} rammed a katana through {Victim}'s body.");
+        deathMessages.add("{Victim} died because of kinetic taco bombardment.");
+        deathMessages.add("{Killer} has thrown {Victim} into an abandoned russian missile silo.");
+        deathMessages.add("{Victim} fell from a high place.");
+        deathMessages.add("{Victim} ran over a landmine and died.");
+        deathMessages.add("{Victim} touched 30 kilovolts and died.");
+        deathMessages.add("{Killer} hugged {Victim} to death.");
+        deathMessages.add("{Victim} plays the violin so bad that {Killer} shot him in the head.");
+        deathMessages.add("{Killer} has thrown {Victim} into molten iron.");
+        deathMessages.add("{Victim} is too sexy for this world.");
+        deathMessages.add("{Victim} is too ugly for this world.");
+        deathMessages.add("{Victim} laughed to death.");
+        deathMessages.add("{Victim} and {Killer} were cuddling so much that they forgot to drink water.");
 
         embedBuilder.setDescription(deathMessages.get(new Random().nextInt(deathMessages.size())).replace("{Killer}", killer).replace("{Victim}", victim) + " :skull:");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));

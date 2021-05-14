@@ -1,6 +1,5 @@
 package net.toujoustudios.kazunya.command.list.stats;
 
-import com.jagrosh.jdautilities.commons.utils.FinderUtil;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
@@ -13,7 +12,6 @@ import net.toujoustudios.kazunya.user.UserManager;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * This file was created by IanToujou.
@@ -44,45 +42,24 @@ public class UserinfoCommand implements ICommand {
 
         }
 
-        String joined = String.join("", args);
-        List<User> foundUsers = FinderUtil.findUsers(joined, context.getJDA());
-
-        if(foundUsers.isEmpty()) {
-
-            List<Member> foundMembers = FinderUtil.findMembers(joined, context.getGuild());
-
-            if(foundMembers.isEmpty()) {
-
-                embedBuilder.setTitle("**__ERROR__**");
-                embedBuilder.setColor(Config.ERROR_EMBED_COLOR);
-                embedBuilder.setDescription(":x: The given user is invalid.");
-                channel.sendMessage(embedBuilder.build()).queue();
-                return;
-
-            }
-
-            foundUsers = foundMembers.stream().map(Member::getUser).collect(Collectors.toList());
-
-        }
-
-        User user = foundUsers.get(0);
-        Member target = context.getGuild().getMember(user);
-
-        if(target == null) {
+        if(context.getMessage().getMentionedMembers().size() != 1) {
 
             embedBuilder.setTitle("**__ERROR__**");
             embedBuilder.setColor(Config.ERROR_EMBED_COLOR);
-            embedBuilder.setDescription(":x: The given user is invalid.");
+            embedBuilder.setDescription(":x: The command syntax is not correct.\nPlease use **" + Config.DEFAULT_PREFIX + getUsage() + "**");
             channel.sendMessage(embedBuilder.build()).queue();
             return;
 
         }
 
-        embedBuilder.setThumbnail(user.getEffectiveAvatarUrl().replaceFirst("gif", "png"));
-        embedBuilder.addField(":information_source: General Information:", "**Username:** " + user.getAsTag() + "\n**Display Name:** " + target.getEffectiveName() + "\n**User ID:** " + user.getId() + "\n**Bot Account:** " + (user.isBot() ? "Yes" : "No"), false);
-        embedBuilder.addField(":calendar: Dates:", "**Account Created:** " + user.getTimeCreated().format(DateTimeFormatter.RFC_1123_DATE_TIME) + "\n**Server Joined:** " + target.getTimeJoined().format(DateTimeFormatter.RFC_1123_DATE_TIME), false);
+        Member target = context.getMessage().getMentionedMembers().get(0);
+        User targetUser = target.getUser();
 
-        UserManager userManager = UserManager.getUser(user.getId());
+        embedBuilder.setThumbnail(targetUser.getEffectiveAvatarUrl());
+        embedBuilder.addField(":information_source: General Information:", "**Username:** " + targetUser.getAsTag() + "\n**Display Name:** " + target.getEffectiveName() + "\n**User ID:** " + targetUser.getId() + "\n**Bot Account:** " + (targetUser.isBot() ? "Yes" : "No"), false);
+        embedBuilder.addField(":calendar: Dates:", "**Account Created:** " + targetUser.getTimeCreated().format(DateTimeFormatter.RFC_1123_DATE_TIME) + "\n**Server Joined:** " + target.getTimeJoined().format(DateTimeFormatter.RFC_1123_DATE_TIME), false);
+
+        UserManager userManager = UserManager.getUser(targetUser.getId());
 
         String partner = "None";
         if(userManager.hasPartner()) {

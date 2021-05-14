@@ -44,7 +44,7 @@ public class HelpCommand implements ICommand {
             StringBuilder builderRoleplay = new StringBuilder();
             StringBuilder builderFun = new StringBuilder();
             StringBuilder builderMusic = new StringBuilder();
-            StringBuilder builderModeration = new StringBuilder();
+            StringBuilder builderStats = new StringBuilder();
 
             int totalNSFW = 0;
 
@@ -68,6 +68,9 @@ public class HelpCommand implements ICommand {
                     if(command.getCategory() == CommandCategory.MUSIC) {
                         builderMusic.append("**" + Config.DEFAULT_PREFIX + command.getName() + "** - " + command.getHelp() + "\n");
                     }
+                    if(command.getCategory() == CommandCategory.STATS) {
+                        builderStats.append("**" + Config.DEFAULT_PREFIX + command.getName() + "** - " + command.getHelp() + "\n");
+                    }
 
                 }
 
@@ -77,6 +80,7 @@ public class HelpCommand implements ICommand {
             embedBuilder.addField(":smile: Roleplay:", builderRoleplay.toString(), false);
             embedBuilder.addField(":tada: Fun:", builderFun.toString(), false);
             embedBuilder.addField(":musical_note: Music:", builderMusic.toString(), false);
+            embedBuilder.addField(":chart_with_upwards_trend: Stats:", builderStats.toString(), false);
 
             boolean isOwnerOnServer = false;
             for(Member member : context.getGuild().getMembers()) {
@@ -100,7 +104,12 @@ public class HelpCommand implements ICommand {
 
             if(!channel.isNSFW()) {
 
-                embedBuilder.setDescription("*Note: " + totalNSFW + " NSFW commands will only show up in NSFW channels.*");
+                if(totalNSFW == 1) {
+                    embedBuilder.setDescription("*Note: " + totalNSFW + " NSFW command will only show up in NSFW channels.*");
+                } else {
+                    embedBuilder.setDescription("*Note: " + totalNSFW + " NSFW commands will only show up in NSFW channels.*");
+                }
+
 
             }
 

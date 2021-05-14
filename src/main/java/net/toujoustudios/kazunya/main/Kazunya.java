@@ -53,7 +53,10 @@ public class Kazunya {
 
         DatabaseTimer databaseTimer = new DatabaseTimer();
         Timer timer = new Timer();
+
         DatabaseManager.setup();
+
+        timer.schedule(databaseTimer, 3600000, 3600000);
 
         Scanner scanner = new Scanner(System.in);
 

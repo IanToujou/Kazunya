@@ -76,17 +76,17 @@ public class LickCommand implements ICommand {
 
     @Override
     public String getName() {
-        return "kiss";
+        return "lick";
     }
 
     @Override
     public String getHelp() {
-        return "Kiss another user.";
+        return "Lick another user.";
     }
 
     @Override
     public String getUsage() {
-        return "kiss [user]";
+        return "lick [user]";
     }
 
     @Override

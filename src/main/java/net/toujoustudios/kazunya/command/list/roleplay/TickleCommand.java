@@ -69,17 +69,17 @@ public class TickleCommand implements ICommand {
 
     @Override
     public String getName() {
-        return "kiss";
+        return "tickle";
     }
 
     @Override
     public String getHelp() {
-        return "Kiss another user.";
+        return "Tickle another user.";
     }
 
     @Override
     public String getUsage() {
-        return "kiss [user]";
+        return "ticke [user]";
     }
 
     @Override

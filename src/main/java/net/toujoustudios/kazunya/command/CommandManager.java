@@ -49,6 +49,8 @@ public class CommandManager {
         addCommand(new FuckCommand());
         addCommand(new MarryCommand());
         addCommand(new DivorceCommand());
+        addCommand(new LickCommand());
+        addCommand(new TickleCommand());
 
         //Fun
         addCommand(new ShipCommand());
@@ -62,6 +64,8 @@ public class CommandManager {
 
         //Stats
         addCommand(new UserinfoCommand());
+
+        //Economy
 
         Logger.log(LogLevel.INFORMATION, "Successfully registered " + commands.size() + " commands.");
 

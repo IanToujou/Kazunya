@@ -58,7 +58,6 @@ public class LickCommand implements ICommand {
         images.add("https://media1.tenor.com/images/c4e7f19ec6bc342c2e7d69caec637783/tenor.gif?itemid=16854581");
         images.add("https://media1.tenor.com/images/6b701503b0e5ea725b0b3fdf6824d390/tenor.gif?itemid=12141727");
         images.add("https://media1.tenor.com/images/9643577662a9946de17bd8c3fd124c72/tenor.gif?itemid=16422435");
-        images.add("https://media1.tenor.com/images/62bb855ef9b5b01aacdc9c69e2101afb/tenor.gif?itemid=16088514");
         images.add("https://media1.tenor.com/images/21c8ff8307eb88bf8bf8438e4c78382b/tenor.gif?itemid=16943447");
         images.add("https://media1.tenor.com/images/dbc120cf518319ffe2aedf635ad2df93/tenor.gif?itemid=16600144");
         images.add("https://media1.tenor.com/images/b08b6d61bcf16bee7d56408f61855f35/tenor.gif?itemid=17549074");

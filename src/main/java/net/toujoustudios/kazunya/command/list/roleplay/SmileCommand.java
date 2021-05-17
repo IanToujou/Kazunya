@@ -27,6 +27,7 @@ public class SmileCommand implements ICommand {
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
         embedBuilder.setColor(Config.DEFAULT_EMBED_COLOR);
+        embedBuilder.setTitle("**__ROLEPLAY__**");
 
         if(args.size() > 0) {
 

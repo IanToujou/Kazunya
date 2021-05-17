@@ -30,6 +30,7 @@ public class PatCommand implements ICommand {
         Member member = context.getMember();
 
         embedBuilder.setColor(Config.DEFAULT_EMBED_COLOR);
+        embedBuilder.setTitle("**__ROLEPLAY__**");
 
         if(args.size() == 0) {
 

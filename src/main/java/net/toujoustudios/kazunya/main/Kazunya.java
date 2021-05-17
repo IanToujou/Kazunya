@@ -8,6 +8,7 @@ import net.toujoustudios.kazunya.command.CommandManager;
 import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.database.DatabaseManager;
 import net.toujoustudios.kazunya.database.DatabaseTimer;
+import net.toujoustudios.kazunya.economy.stock.StockMarket;
 import net.toujoustudios.kazunya.guild.GuildManager;
 import net.toujoustudios.kazunya.listener.GuildMessageReceiveListener;
 import net.toujoustudios.kazunya.listener.ReadyListener;
@@ -49,17 +50,18 @@ public class Kazunya {
 
         }
 
+        //Database Management
         DatabaseManager.connect();
-
         DatabaseTimer databaseTimer = new DatabaseTimer();
         Timer timer = new Timer();
-
         DatabaseManager.setup();
-
         timer.schedule(databaseTimer, 3600000, 3600000);
 
-        Scanner scanner = new Scanner(System.in);
+        //Initialization
+        StockMarket.initialize();
 
+        //Start command line
+        Scanner scanner = new Scanner(System.in);
         while(true) {
 
             String input = scanner.nextLine();

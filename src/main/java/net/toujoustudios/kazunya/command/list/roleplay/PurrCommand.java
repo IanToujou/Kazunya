@@ -27,6 +27,7 @@ public class PurrCommand implements ICommand {
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
         embedBuilder.setColor(Config.DEFAULT_EMBED_COLOR);
+        embedBuilder.setTitle("**__ROLEPLAY__**");
 
         if(args.size() > 0) {
 
@@ -79,6 +80,13 @@ public class PurrCommand implements ICommand {
     @Override
     public CommandCategory getCategory() {
         return CommandCategory.ROLEPLAY;
+    }
+
+    @Override
+    public List<String> getAliases() {
+        List<String> aliases = new ArrayList<>();
+        for(int i = 0; i <= 20; i++) aliases.add("purr" + new String(new char[i]).replace("\0", "r"));
+        return aliases;
     }
 
 }

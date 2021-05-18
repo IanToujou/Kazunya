@@ -46,6 +46,7 @@ public class HelpCommand implements ICommand {
             StringBuilder builderMusic = new StringBuilder();
             StringBuilder builderStats = new StringBuilder();
             StringBuilder builderEconomy = new StringBuilder();
+            StringBuilder builderSpace = new StringBuilder();
 
             int totalNSFW = 0;
 
@@ -75,6 +76,9 @@ public class HelpCommand implements ICommand {
                     if(command.getCategory() == CommandCategory.ECONOMY) {
                         builderEconomy.append("**" + Config.DEFAULT_PREFIX + command.getName() + "** - " + command.getHelp() + "\n");
                     }
+                    if(command.getCategory() == CommandCategory.SPACE) {
+                        builderSpace.append("**" + Config.DEFAULT_PREFIX + command.getName() + "** - " + command.getHelp() + "\n");
+                    }
 
                 }
 
@@ -86,6 +90,7 @@ public class HelpCommand implements ICommand {
             embedBuilder.addField(":musical_note: Music:", builderMusic.toString(), false);
             embedBuilder.addField(":chart_with_upwards_trend: Stats:", builderStats.toString(), false);
             embedBuilder.addField(":coin: Economy:", builderEconomy.toString(), false);
+            embedBuilder.addField(":rocket: Space", builderSpace.toString(), false);
 
             boolean isOwnerOnServer = false;
             for(Member member : context.getGuild().getMembers()) {

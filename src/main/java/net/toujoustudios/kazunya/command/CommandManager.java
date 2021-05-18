@@ -6,6 +6,7 @@ import net.toujoustudios.kazunya.command.list.fun.ShipCommand;
 import net.toujoustudios.kazunya.command.list.general.HelpCommand;
 import net.toujoustudios.kazunya.command.list.music.*;
 import net.toujoustudios.kazunya.command.list.roleplay.*;
+import net.toujoustudios.kazunya.command.list.space.SatelliteCommand;
 import net.toujoustudios.kazunya.command.list.stats.UserinfoCommand;
 import net.toujoustudios.kazunya.command.list.unlisted.ExecuteCommand;
 import net.toujoustudios.kazunya.config.Config;
@@ -68,6 +69,9 @@ public class CommandManager {
 
         //Economy
         addCommand(new MarketinfoCommand());
+
+        //Space
+        addCommand(new SatelliteCommand());
 
         Logger.log(LogLevel.INFORMATION, "Successfully registered " + commands.size() + " commands.");
 

@@ -133,7 +133,7 @@ public class MarryCommand implements ICommand {
     public String getHelp() { return "Marry someone on the server."; }
 
     @Override
-    public String getUsage() { return "marry [user]"; }
+    public String getUsage() { return "marry [@user]"; }
 
     @Override
     public boolean isNSFW() { return false; }

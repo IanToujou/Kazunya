@@ -53,6 +53,7 @@ public class CommandManager {
         addCommand(new DivorceCommand());
         addCommand(new LickCommand());
         addCommand(new TickleCommand());
+        addCommand(new LaughCommand());
 
         //Fun
         addCommand(new ShipCommand());

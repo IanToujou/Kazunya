@@ -111,7 +111,7 @@ public class HugCommand implements ICommand {
 
     @Override
     public String getUsage() {
-        return "hug [user]";
+        return "hug [@user]";
     }
 
     @Override

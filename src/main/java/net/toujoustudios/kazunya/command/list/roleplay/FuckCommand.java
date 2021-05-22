@@ -99,7 +99,7 @@ public class FuckCommand implements ICommand {
 
     @Override
     public String getUsage() {
-        return "fuck [user]";
+        return "fuck [@user]";
     }
 
     @Override

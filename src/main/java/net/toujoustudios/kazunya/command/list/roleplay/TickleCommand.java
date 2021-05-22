@@ -80,7 +80,7 @@ public class TickleCommand implements ICommand {
 
     @Override
     public String getUsage() {
-        return "ticke [user]";
+        return "ticke [@user]";
     }
 
     @Override

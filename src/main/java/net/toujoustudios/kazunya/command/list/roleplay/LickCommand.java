@@ -86,7 +86,7 @@ public class LickCommand implements ICommand {
 
     @Override
     public String getUsage() {
-        return "lick [user]";
+        return "lick [@user]";
     }
 
     @Override

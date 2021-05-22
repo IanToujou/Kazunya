@@ -101,7 +101,7 @@ public class SlapCommand implements ICommand {
 
     @Override
     public String getUsage() {
-        return "slap [user]";
+        return "slap [@user]";
     }
 
     @Override

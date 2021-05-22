@@ -91,7 +91,7 @@ public class CuddleCommand implements ICommand {
 
     @Override
     public String getUsage() {
-        return "cuddle [user]";
+        return "cuddle [@user]";
     }
 
     @Override

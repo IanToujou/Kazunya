@@ -114,7 +114,7 @@ public class PatCommand implements ICommand {
 
     @Override
     public String getUsage() {
-        return "pat [user]";
+        return "pat [@user]";
     }
 
     @Override

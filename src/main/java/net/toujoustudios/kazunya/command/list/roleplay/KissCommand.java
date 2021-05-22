@@ -110,7 +110,7 @@ public class KissCommand implements ICommand {
 
     @Override
     public String getUsage() {
-        return "kiss [user]";
+        return "kiss [@user]";
     }
 
     @Override

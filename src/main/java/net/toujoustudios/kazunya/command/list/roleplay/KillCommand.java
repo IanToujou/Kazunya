@@ -103,7 +103,7 @@ public class KillCommand implements ICommand {
 
     @Override
     public String getUsage() {
-        return "kill [user]";
+        return "kill [@user]";
     }
 
     @Override

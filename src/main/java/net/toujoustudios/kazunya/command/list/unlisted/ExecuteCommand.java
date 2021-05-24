@@ -20,30 +20,32 @@ public class ExecuteCommand implements ICommand {
     @Override
     public void handle(CommandContext context) {
 
+        if(!context.getMember().getId().equals(Config.DEFAULT_ADMIN_USER)) {
+
+            return;
+
+        }
+
         List<String> args = context.getArgs();
         TextChannel channel = context.getChannel();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
-        if(context.getMember().getId().equals("369381378703228928")) {
+        //Executable Code
+        embedBuilder.setTitle("**__NOTIFICATIONS: GAMES__**");
 
-            //Executable Code
-            embedBuilder.setTitle("**__NOTIFICATIONS: GAMES__**");
+        StringBuilder builder;
+        builder = new StringBuilder();
 
-            StringBuilder builder;
-            builder = new StringBuilder();
+        builder.append("Choose what game newsletter you want to subscribe.\n\n");
+        builder.append(":gift: `Free Games Newsletter`\n");
+        builder.append("<:genshin_icon:821658069460844562> `Genshin Impact Newsletter`\n\n");
+        builder.append("*Note: Please react with the roles listed here.*");
 
-            builder.append("Choose what game newsletter you want to subscribe.\n\n");
-            builder.append(":gift: `Free Games Newsletter`\n");
-            builder.append("<:genshin_icon:821658069460844562> `Genshin Impact Newsletter`\n\n");
-            builder.append("*Note: Please react with the roles listed here.*");
+        embedBuilder.setDescription(builder.toString());
+        embedBuilder.setColor(Config.DEFAULT_EMBED_COLOR);
+        embedBuilder.setThumbnail("https://user-images.githubusercontent.com/44029196/111436198-fcbe9e80-8701-11eb-9c84-6b4647366dab.png");
 
-            embedBuilder.setDescription(builder.toString());
-            embedBuilder.setColor(Config.DEFAULT_EMBED_COLOR);
-            embedBuilder.setThumbnail("https://user-images.githubusercontent.com/44029196/111436198-fcbe9e80-8701-11eb-9c84-6b4647366dab.png");
-
-            context.getChannel().sendMessage(embedBuilder.build()).queue();
-
-        }
+        context.getChannel().sendMessage(embedBuilder.build()).queue();
 
     }
 

@@ -22,6 +22,12 @@ public class MoneyCommand implements ICommand {
     @Override
     public void handle(CommandContext context) {
 
+        if(!context.getMember().getId().equals(Config.DEFAULT_ADMIN_USER)) {
+
+            return;
+
+        }
+
         List<String> args = context.getArgs();
         TextChannel channel = context.getChannel();
         EmbedBuilder embedBuilder = new EmbedBuilder();

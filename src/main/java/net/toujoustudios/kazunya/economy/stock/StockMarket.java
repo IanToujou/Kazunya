@@ -11,7 +11,7 @@ import java.util.HashMap;
  */
 public class StockMarket {
 
-    private static HashMap<String, StockMarket> stockMarkets = new HashMap<>();
+    private static final HashMap<String, StockMarket> stockMarkets = new HashMap<>();
     private ArrayList<Stock> stocks = new ArrayList<>();
     private String id;
     private boolean legal;

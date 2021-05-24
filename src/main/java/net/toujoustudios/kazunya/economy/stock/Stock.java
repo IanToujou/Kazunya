@@ -10,7 +10,7 @@ import java.util.HashMap;
  */
 public class Stock {
 
-    private static HashMap<String, Stock> stocks = new HashMap<>();
+    private static final HashMap<String, Stock> stocks = new HashMap<>();
     private String id;
     private String name;
     private String discriminator;

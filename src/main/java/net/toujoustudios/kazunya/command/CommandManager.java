@@ -2,6 +2,7 @@ package net.toujoustudios.kazunya.command;
 
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.toujoustudios.kazunya.command.list.economy.MarketinfoCommand;
+import net.toujoustudios.kazunya.command.list.economy.MoneyCommand;
 import net.toujoustudios.kazunya.command.list.fun.ShipCommand;
 import net.toujoustudios.kazunya.command.list.general.HelpCommand;
 import net.toujoustudios.kazunya.command.list.music.*;
@@ -70,6 +71,7 @@ public class CommandManager {
 
         //Economy
         addCommand(new MarketinfoCommand());
+        addCommand(new MoneyCommand());
 
         //Space
         addCommand(new SatelliteCommand());

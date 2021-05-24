@@ -18,11 +18,11 @@ public class Stock {
     private double variability;
 
     /**
-     * @param id The id for the stock. This is used to create a new stock and will be used whenever you need to refer to the given stock.
-     * @param name The full name of the stock.
+     * @param id            The id for the stock. This is used to create a new stock and will be used whenever you need to refer to the given stock.
+     * @param name          The full name of the stock.
      * @param discriminator A short series of letters to define your stock. For instance, BTC, ETH, GOLD, etc.
-     * @param basePrice The base price for the stock. This will be taken into account when calculating the price of a stock.
-     * @param variability A variability value in percent, this can range from 0 to 100. 0 is no variability at all, so the price stays always the same. A variability of 100 means that every price between 0 and the double of the base price can be reached.
+     * @param basePrice     The base price for the stock. This will be taken into account when calculating the price of a stock.
+     * @param variability   A variability value in percent, this can range from 0 to 100. 0 is no variability at all, so the price stays always the same. A variability of 100 means that every price between 0 and the double of the base price can be reached.
      */
     public Stock(String id, String name, String discriminator, int basePrice, double variability) {
 

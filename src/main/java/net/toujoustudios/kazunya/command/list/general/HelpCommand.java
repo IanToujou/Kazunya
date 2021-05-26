@@ -90,7 +90,7 @@ public class HelpCommand implements ICommand {
             embedBuilder.addField(":musical_note: Music:", builderMusic.toString(), false);
             embedBuilder.addField(":chart_with_upwards_trend: Stats:", builderStats.toString(), false);
             embedBuilder.addField(":coin: Economy:", builderEconomy.toString(), false);
-            embedBuilder.addField(":rocket: Space", builderSpace.toString(), false);
+            embedBuilder.addField(":rocket: Space:", builderSpace.toString(), false);
 
             boolean isOwnerOnServer = false;
             for(Member member : context.getGuild().getMembers()) {

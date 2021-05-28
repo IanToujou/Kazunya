@@ -76,6 +76,52 @@ public class ExecuteCommand implements ICommand {
             embedBuilder.setColor(Config.DEFAULT_EMBED_COLOR);
             embedBuilder.setThumbnail("https://user-images.githubusercontent.com/44029196/119967726-f758bc80-bfac-11eb-8812-5784022ffa54.png");
 
+        } else if(args.get(0).equals("aboutme_age")) {
+
+            //Executable Code
+            embedBuilder.setTitle("**__ABOUT ME: AGE__**");
+
+            StringBuilder builder;
+            builder = new StringBuilder();
+
+            builder.append("Choose your age.\n\n");
+            builder.append(":yellow_circle: `13-15`\n");
+            builder.append(":orange_circle: `16-18`\n");
+            builder.append(":green_circle: `19-21`\n");
+            builder.append(":blue_circle: `22+`\n\n");
+            builder.append("*Note: Please react with the roles listed here.*");
+
+            embedBuilder.setDescription(builder.toString());
+            embedBuilder.setColor(Config.DEFAULT_EMBED_COLOR);
+            embedBuilder.setThumbnail("https://user-images.githubusercontent.com/44029196/119991890-3fd2a300-bfca-11eb-8970-14f511630871.png");
+
+        }else if(args.get(0).equals("aboutme_hobbies")) {
+
+            //Executable Code
+            embedBuilder.setTitle("**__ABOUT ME: HOBBIES__**");
+
+            StringBuilder builder;
+            builder = new StringBuilder();
+
+            builder.append("Choose some hobbies you're interested in.\n\n");
+            builder.append(":flag_jp: `Anime & Manga`\n");
+            builder.append(":blue_book: `Books`\n");
+            builder.append(":musical_note: `Music`\n");
+            builder.append(":camera: `Photography`\n");
+            builder.append(":computer: `Programming`\n");
+            builder.append(":floppy_disk: `Technology`\n");
+            builder.append(":video_game: `Gaming`\n");
+            builder.append(":art: `Drawing`\n");
+            builder.append(":clapper: `Video Editing (VFX)`\n");
+            builder.append(":sparkles: `Graphic Design (GFX)`\n");
+            builder.append(":soccer: `Sports`\n");
+            builder.append(":shallow_pan_of_food: `Cooking`\n\n");
+            builder.append("*Note: Please react with the roles listed here.*");
+
+            embedBuilder.setDescription(builder.toString());
+            embedBuilder.setColor(Config.DEFAULT_EMBED_COLOR);
+            embedBuilder.setThumbnail("https://user-images.githubusercontent.com/44029196/119993938-6a256000-bfcc-11eb-8372-a5dd17878b3b.png");
+
         }
 
         context.getChannel().sendMessage(embedBuilder.build()).queue();

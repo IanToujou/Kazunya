@@ -93,7 +93,6 @@ public class StockMarket {
 
     public void initializeMarket() {
 
-        Logger.log(LogLevel.DEBUG, stocks.toString());
         for(Stock currentStock : stocks) stockPrices.put(currentStock, currentStock.getBasePrice());
 
         timer.schedule(new TimerTask() {
@@ -127,8 +126,6 @@ public class StockMarket {
 
                     stockPrices.remove(currentStock);
                     stockPrices.put(currentStock, (double) Math.round(newPrice * 100.0) / 100.0);
-
-                    System.out.println(stockPrices.get(currentStock));
 
                 }
 

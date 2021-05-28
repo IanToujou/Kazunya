@@ -15,7 +15,7 @@ public class UserManager {
 
     private static final HashMap<String, UserManager> users = new HashMap<>();
     private String userId;
-    private int money;
+    private double money;
     private String partner;
 
     public UserManager(String userId) {
@@ -77,19 +77,19 @@ public class UserManager {
         this.userId = userId;
     }
 
-    public int getMoney() {
+    public double getMoney() {
         return money;
     }
 
-    public void setMoney(int money) {
+    public void setMoney(double money) {
         this.money = money;
     }
 
-    public void addMoney(int amount) {
+    public void addMoney(double amount) {
         setMoney(getMoney() + amount);
     }
 
-    public void removeMoney(int amount) {
+    public void removeMoney(double amount) {
         setMoney(getMoney() - amount);
     }
 

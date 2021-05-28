@@ -8,6 +8,8 @@ import net.toujoustudios.kazunya.command.ICommand;
 import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.economy.stock.Stock;
 import net.toujoustudios.kazunya.economy.stock.StockMarket;
+import net.toujoustudios.kazunya.log.LogLevel;
+import net.toujoustudios.kazunya.log.Logger;
 
 import java.util.List;
 
@@ -41,19 +43,35 @@ public class MarketinfoCommand implements ICommand {
         if(args.size() == 0) {
 
             embedBuilder.setTitle("**__STOCK MARKET__**");
-            StringBuilder stockBuilder = new StringBuilder();
+            StringBuilder stringBuilder = new StringBuilder();
 
             for(Stock stock : StockMarket.getStockMarket("default_market").getStocks()) {
 
-                stockBuilder.append("`" + stock.getDiscriminator() + "` | :chart: Price: " + stock.getBasePrice() + Config.CURRENCY_CHAR);
+                Logger.log(LogLevel.DEBUG, stock.getId());
+                stringBuilder.append("`" + stock.getId() + "` | :chart: Price: " + StockMarket.getStockMarket("default_market").getStockPrice(stock.getId()) + Config.CURRENCY_CHAR);
 
             }
 
-            embedBuilder.setDescription(stockBuilder.toString());
+            embedBuilder.setDescription(stringBuilder.toString());
 
         } else {
 
             String discriminator = args.get(0).toUpperCase();
+            StringBuilder stringBuilder = new StringBuilder();
+
+            embedBuilder.setTitle("**__STOCK MARKET: " + discriminator + "__**");
+
+            for(Stock stock : StockMarket.getStockMarket("default_market").getStocks()) {
+
+                if(stock.getId().equalsIgnoreCase(discriminator)) {
+
+                    stringBuilder.append("**Name:** " + stock.getName());
+                    stringBuilder.append("**ID:** " + stock.getId());
+                    stringBuilder.append("**Current Price:** " + stock.getBasePrice());
+
+                }
+
+            }
 
         }
 

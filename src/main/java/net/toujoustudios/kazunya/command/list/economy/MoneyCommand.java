@@ -45,11 +45,11 @@ public class MoneyCommand implements ICommand {
         }
 
         String action = args.get(0).toLowerCase();
-        int value = 0;
+        double value = 0;
 
         try {
 
-            value = Integer.parseInt(args.get(1));
+            value = Double.parseDouble(args.get(1));
 
         } catch(Exception exception) {
 

@@ -30,20 +30,53 @@ public class ExecuteCommand implements ICommand {
         TextChannel channel = context.getChannel();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
-        //Executable Code
-        embedBuilder.setTitle("**__NOTIFICATIONS: GAMES__**");
+        if(args.size() != 1) {
 
-        StringBuilder builder;
-        builder = new StringBuilder();
+            embedBuilder.setTitle("**__ERROR__**");
+            embedBuilder.setColor(Config.ERROR_EMBED_COLOR);
+            embedBuilder.setDescription(":x: The command syntax is not correct.\nPlease use **" + Config.DEFAULT_PREFIX + getUsage() + "**");
+            channel.sendMessage(embedBuilder.build()).queue();
+            return;
 
-        builder.append("Choose what game newsletter you want to subscribe.\n\n");
-        builder.append(":gift: `Free Games Newsletter`\n");
-        builder.append("<:genshin_icon:821658069460844562> `Genshin Impact Newsletter`\n\n");
-        builder.append("*Note: Please react with the roles listed here.*");
+        }
 
-        embedBuilder.setDescription(builder.toString());
-        embedBuilder.setColor(Config.DEFAULT_EMBED_COLOR);
-        embedBuilder.setThumbnail("https://user-images.githubusercontent.com/44029196/111436198-fcbe9e80-8701-11eb-9c84-6b4647366dab.png");
+        if(args.get(0).equals("notifications_games")) {
+
+            //Executable Code
+            embedBuilder.setTitle("**__NOTIFICATIONS: GAMES__**");
+
+            StringBuilder builder;
+            builder = new StringBuilder();
+
+            builder.append("Choose what game newsletter you want to subscribe.\n\n");
+            builder.append(":gift: `Free Games Newsletter`\n");
+            builder.append("<:genshin_icon:821658069460844562> `Genshin Impact Newsletter`\n\n");
+            builder.append("*Note: Please react with the roles listed here.*");
+
+            embedBuilder.setDescription(builder.toString());
+            embedBuilder.setColor(Config.DEFAULT_EMBED_COLOR);
+            embedBuilder.setThumbnail("https://user-images.githubusercontent.com/44029196/111436198-fcbe9e80-8701-11eb-9c84-6b4647366dab.png");
+
+        } else if(args.get(0).equals("aboutme_gender")) {
+
+            //Executable Code
+            embedBuilder.setTitle("**__ABOUT ME: GENDER__**");
+
+            StringBuilder builder;
+            builder = new StringBuilder();
+
+            builder.append("Choose your gender.\n\n");
+            builder.append(":male_sign: `Male`\n");
+            builder.append(":female_sign: `Female`\n");
+            builder.append(":transgender_symbol: `Transgender`\n");
+            builder.append(":twisted_rightwards_arrows: `Other`\n\n");
+            builder.append("*Note: Please react with the roles listed here.*");
+
+            embedBuilder.setDescription(builder.toString());
+            embedBuilder.setColor(Config.DEFAULT_EMBED_COLOR);
+            embedBuilder.setThumbnail("https://user-images.githubusercontent.com/44029196/119967726-f758bc80-bfac-11eb-8812-5784022ffa54.png");
+
+        }
 
         context.getChannel().sendMessage(embedBuilder.build()).queue();
 

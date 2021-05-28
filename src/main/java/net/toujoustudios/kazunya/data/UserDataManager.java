@@ -15,13 +15,13 @@ import java.sql.SQLException;
  */
 public class UserDataManager {
 
-    public static void setMoney(String userId, int amount) {
+    public static void setMoney(String userId, double amount) {
 
         DatabaseManager.executeUpdate("INSERT INTO user_data (user_id, money) VALUES ('" + userId + "', '" + amount + "') ON DUPLICATE KEY UPDATE money='" + amount + "';");
 
     }
 
-    public static int getMoney(String userId) {
+    public static double getMoney(String userId) {
 
         try {
 

@@ -1,5 +1,6 @@
 package net.toujoustudios.kazunya.economy.stock;
 
+import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.log.LogLevel;
 import net.toujoustudios.kazunya.log.Logger;
 
@@ -38,6 +39,7 @@ public class StockMarket {
         StockMarket blackMarket = new StockMarket("black_market", false);
 
         defaultMarket.addStock(Stock.getStock("NEKO"));
+        defaultMarket.addStock(Stock.getStock("BUTT"));
         blackMarket.addStock(Stock.getStock("NEKO"));
 
         defaultMarket.initializeMarket();
@@ -165,13 +167,11 @@ public class StockMarket {
                     stockPrices.remove(currentStock);
                     stockPrices.put(currentStock, (double) Math.round(finalPrice * 100.0) / 100.0);
 
-                    Logger.log(LogLevel.DEBUG, "" + (double) Math.round(finalPrice * 100.0) / 100.0);
-
                 }
 
             }
 
-        }, 0, 1000 * 3);
+        }, 0, 1000 * Config.STOCK_CALCULATION_INTERVAL);
 
     }
 

@@ -49,6 +49,7 @@ public class Stock {
     public static void initialize() {
 
         stocks.put("NEKO", new Stock("NEKO", "Neko Inc.", 420, 2.5, 1000, 200, 600, 400, 30));
+        stocks.put("BUTT", new Stock("BUTT", "Buttcoin", 1000, 100, 2000, 200, 1500, 500, 75));
 
     }
 

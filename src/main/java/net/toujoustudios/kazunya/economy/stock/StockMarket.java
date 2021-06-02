@@ -4,6 +4,7 @@ import net.toujoustudios.kazunya.log.LogLevel;
 import net.toujoustudios.kazunya.log.Logger;
 
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * This file was created by IanToujou.
@@ -110,22 +111,61 @@ public class StockMarket {
                     double lowerProbableBound = currentStock.getLowerProbableBound();
                     double passBoundProbability = currentStock.getPassBoundProbability();
 
-                    //Calculate randoms
+                    //Variables
+                    double oldPrice = stockPrices.get(currentStock);
+                    double maxOperator = oldPrice / 100 * variability;
                     boolean passProbableBound = false;
-
-                    double finalOperator = stockPrices.get(currentStock) / variability;
-
-                    //Execute operation
-                    double newPrice = 0;
+                    double operator = ThreadLocalRandom.current().nextDouble(maxOperator);
                     int operation = new Random().nextInt(2);
-                    if(operation == 0) {
-                        newPrice = stockPrices.get(currentStock) + finalOperator;
+                    double predictedPrice = 0;
+                    int passProbableBoundRandom = new Random().nextInt(101);
+                    double finalPrice;
+
+                    switch(operation) {
+                        case 0: predictedPrice = oldPrice + operator;
+                        case 1: predictedPrice = oldPrice - operator;
+                    }
+
+                    if(passProbableBoundRandom <= passBoundProbability) passProbableBound = true;
+
+                    if(predictedPrice > upperBound || predictedPrice < lowerBound) {
+
+                        if(predictedPrice > upperBound) {
+                            finalPrice = oldPrice - operator;
+                        } else {
+                            finalPrice = oldPrice + operator;
+                        }
+
                     } else {
-                        newPrice = stockPrices.get(currentStock) - finalOperator;
+
+                        if(predictedPrice > upperProbableBound || predictedPrice < lowerProbableBound) {
+
+                            if(passProbableBound) {
+
+                                finalPrice = predictedPrice;
+
+                            } else {
+
+                                if(predictedPrice > upperBound) {
+                                    finalPrice = oldPrice - operator;
+                                } else {
+                                    finalPrice = oldPrice + operator;
+                                }
+
+                            }
+
+                        } else {
+
+                            finalPrice = predictedPrice;
+
+                        }
+
                     }
 
                     stockPrices.remove(currentStock);
-                    stockPrices.put(currentStock, (double) Math.round(newPrice * 100.0) / 100.0);
+                    stockPrices.put(currentStock, (double) Math.round(finalPrice * 100.0) / 100.0);
+
+                    Logger.log(LogLevel.DEBUG, "" + (double) Math.round(finalPrice * 100.0) / 100.0);
 
                 }
 

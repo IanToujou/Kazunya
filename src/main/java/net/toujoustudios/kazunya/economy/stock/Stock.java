@@ -26,8 +26,8 @@ public class Stock {
      * @param name                 The full name of the stock.
      * @param basePrice            The base price for the stock. This will be taken into account when calculating the price of a stock.
      * @param variability          A variability value in percent, this can range from 0 to 100. 0 is no variability at all, so the price stays always the same. A variability of 100 means that every price between 0 and the double of the base price can be reached.
-     * @param upperBound           The absolute upper bound for the stock. The price will never reach this point and it will always be below (not equals!) the given value.
-     * @param lowerBound           The absolute lower bound for the stock. The price will never reach this point and it will always be above (not equals!) the given value.
+     * @param upperBound           The absolute upper bound for the stock. The price will never reach this point and it will always be below the given value.
+     * @param lowerBound           The absolute lower bound for the stock. The price will never reach this point and it will always be above the given value.
      * @param upperProbableBound   The price will likely stay below this value. However, it may pass this value with a given probability.
      * @param lowerProbableBound   The price will likely stay above this value. However, it may pass this value with a given probability.
      * @param passBoundProbability The probability (%), which will be used to calculate if the price exceeds the upper or lower probable bounds.
@@ -48,8 +48,10 @@ public class Stock {
 
     public static void initialize() {
 
-        stocks.put("NEKO", new Stock("NEKO", "Neko Inc.", 420, 2.5, 1000, 200, 600, 400, 30));
-        stocks.put("BUTT", new Stock("BUTT", "Buttcoin", 1000, 100, 2000, 200, 1500, 500, 75));
+        stocks.put("NEKO", new Stock("NEKO", "Neko Inc.", 420, 2.5, 1000, 200, 600, 400, 60));
+        stocks.put("BUTT", new Stock("BUTT", "Buttcoin", 1000, 5, 2000, 200, 1500, 500, 20));
+        stocks.put("SUS", new Stock("SUS", "Amogus", 80, 1.5, 200, 10, 160, 30, 75));
+        stocks.put("CAT", new Stock("CAT", "Catgirl Research", 800, 3.7, 1200, 500, 1000, 650, 65));
 
     }
 

@@ -27,6 +27,7 @@ public class MarketinfoCommand implements ICommand {
         List<String> args = context.getArgs();
         TextChannel channel = context.getChannel();
         EmbedBuilder embedBuilder = new EmbedBuilder();
+        StockMarket stockMarket = StockMarket.getStockMarket("default_market");
 
         embedBuilder.setColor(Config.DEFAULT_EMBED_COLOR);
 
@@ -44,12 +45,12 @@ public class MarketinfoCommand implements ICommand {
 
             embedBuilder.setTitle("**__STOCK MARKET__**");
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("*Here is a full list of the available stocks or currencies. Please type `nya marketinfo [id]` to get more information on a stock.*\n");
+            stringBuilder.append("*Here is a full list of the available stocks or currencies.\nPlease type `nya marketinfo [id]` to get more information on a stock.*\n");
 
             for(Stock stock : StockMarket.getStockMarket("default_market").getStocks()) {
 
                 Logger.log(LogLevel.DEBUG, stock.getId());
-                stringBuilder.append("\n`" + stock.getId() + "` | :chart: Price: " + StockMarket.getStockMarket("default_market").getStockPrice(stock.getId()) + Config.CURRENCY_CHAR);
+                stringBuilder.append("\n`" + stock.getId() + "` | :chart: Price: " + stockMarket.getStockPrice(stock.getId()) + Config.CURRENCY_CHAR);
 
             }
 
@@ -66,13 +67,15 @@ public class MarketinfoCommand implements ICommand {
 
                 if(stock.getId().equalsIgnoreCase(discriminator)) {
 
-                    stringBuilder.append("**Name:** " + stock.getName());
-                    stringBuilder.append("**ID:** " + stock.getId());
-                    stringBuilder.append("**Current Price:** " + stock.getBasePrice());
+                    stringBuilder.append("**Name:** " + stock.getName() + "\n");
+                    stringBuilder.append("**ID:** " + stock.getId() + "\n");
+                    stringBuilder.append("**Current Price:** " + stockMarket.getStockPrice(stock.getId()) + Config.CURRENCY_CHAR + "\n");
 
                 }
 
             }
+
+            embedBuilder.setDescription(stringBuilder.toString());
 
         }
 
@@ -92,7 +95,7 @@ public class MarketinfoCommand implements ICommand {
 
     @Override
     public String getUsage() {
-        return "marketlist [(discriminator)]";
+        return "marketlist [(id)]";
     }
 
     @Override

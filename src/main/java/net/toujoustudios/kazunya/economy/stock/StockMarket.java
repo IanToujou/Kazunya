@@ -1,8 +1,6 @@
 package net.toujoustudios.kazunya.economy.stock;
 
 import net.toujoustudios.kazunya.config.Config;
-import net.toujoustudios.kazunya.log.LogLevel;
-import net.toujoustudios.kazunya.log.Logger;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
@@ -40,6 +38,8 @@ public class StockMarket {
 
         defaultMarket.addStock(Stock.getStock("NEKO"));
         defaultMarket.addStock(Stock.getStock("BUTT"));
+        defaultMarket.addStock(Stock.getStock("SUS"));
+        defaultMarket.addStock(Stock.getStock("CAT"));
         blackMarket.addStock(Stock.getStock("NEKO"));
 
         defaultMarket.initializeMarket();
@@ -86,9 +86,6 @@ public class StockMarket {
     }
 
     public double getStockPrice(String id)  {
-
-        Logger.log(LogLevel.DEBUG, getStockPrices().toString());
-        Logger.log(LogLevel.DEBUG, Stock.getStock(id).getId());
 
         return getStockPrices().get(Stock.getStock(id));
 

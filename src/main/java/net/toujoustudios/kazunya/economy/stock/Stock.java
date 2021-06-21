@@ -46,6 +46,9 @@ public class Stock {
 
     }
 
+    /**
+     * Initializes all the stocks by creating and adding new stocks.
+     */
     public static void initialize() {
 
         stocks.put("NEKO", new Stock("NEKO", "Neko Inc.", 420, 2.5, 1000, 200, 600, 400, 60));

@@ -15,7 +15,7 @@ public class StockMarket {
 
     private static final HashMap<String, StockMarket> stockMarkets = new HashMap<>();
     private ArrayList<Stock> stocks = new ArrayList<>();
-    private HashMap<Stock, Double> stockPrices = new HashMap<Stock, Double>();
+    private HashMap<Stock, Double> stockPrices = new HashMap<>();
     private String id;
     private boolean legal;
     private Timer timer = new Timer();
@@ -34,18 +34,15 @@ public class StockMarket {
         Stock.initialize();
 
         StockMarket defaultMarket = new StockMarket("default_market", true);
-        StockMarket blackMarket = new StockMarket("black_market", false);
 
         defaultMarket.addStock(Stock.getStock("NEKO"));
         defaultMarket.addStock(Stock.getStock("BUTT"));
         defaultMarket.addStock(Stock.getStock("SUS"));
         defaultMarket.addStock(Stock.getStock("CAT"));
-        blackMarket.addStock(Stock.getStock("NEKO"));
 
         defaultMarket.initializeMarket();
 
         stockMarkets.put("default_market", defaultMarket);
-        stockMarkets.put("black_market", blackMarket);
 
     }
 
@@ -102,7 +99,6 @@ public class StockMarket {
 
                 for(Stock currentStock : stocks) {
 
-                    //Get stock stats
                     double variability = currentStock.getVariability();
                     double upperBound = currentStock.getUpperBound();
                     double lowerBound = currentStock.getLowerBound();
@@ -110,7 +106,6 @@ public class StockMarket {
                     double lowerProbableBound = currentStock.getLowerProbableBound();
                     double passBoundProbability = currentStock.getPassBoundProbability();
 
-                    //Variables
                     double oldPrice = stockPrices.get(currentStock);
                     double maxOperator = oldPrice / 100 * variability;
                     boolean passProbableBound = false;
@@ -128,41 +123,31 @@ public class StockMarket {
                     if(passProbableBoundRandom <= passBoundProbability) passProbableBound = true;
 
                     if(predictedPrice > upperBound || predictedPrice < lowerBound) {
-
                         if(predictedPrice > upperBound) {
                             finalPrice = oldPrice - operator;
                         } else {
                             finalPrice = oldPrice + operator;
                         }
-
                     } else {
-
                         if(predictedPrice > upperProbableBound || predictedPrice < lowerProbableBound) {
-
                             if(passProbableBound) {
-
                                 finalPrice = predictedPrice;
-
                             } else {
-
                                 if(predictedPrice > upperBound) {
                                     finalPrice = oldPrice - operator;
                                 } else {
                                     finalPrice = oldPrice + operator;
                                 }
-
                             }
-
                         } else {
-
                             finalPrice = predictedPrice;
-
                         }
-
                     }
 
+                    double roundedPrice = (double) Math.round(finalPrice * 100.0) / 100.0;
+
                     stockPrices.remove(currentStock);
-                    stockPrices.put(currentStock, (double) Math.round(finalPrice * 100.0) / 100.0);
+                    stockPrices.put(currentStock, roundedPrice);
 
                 }
 

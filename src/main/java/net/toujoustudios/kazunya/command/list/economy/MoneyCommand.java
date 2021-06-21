@@ -82,12 +82,17 @@ public class MoneyCommand implements ICommand {
         } else if(action.equals("add")) {
 
             targetManager.addMoney(value);
-            embedBuilder.setDescription(":credit_card: You added  **" + value + "$** to the account of " + target.getAsMention() + ". New balance: **" + targetManager.getMoney() + "$**.");
+            embedBuilder.setDescription(":credit_card: You added  **" + value + "$** to the account of " + target.getAsMention() + ". New balance: `" + targetManager.getMoney() + "$`.");
 
         } else if(action.equals("remove")) {
 
             targetManager.removeMoney(value);
-            embedBuilder.setDescription(":credit_card: You removed  **" + value + "$** from the account of " + target.getAsMention() + ". New balance: **" + targetManager.getMoney() + "$**.");
+            embedBuilder.setDescription(":credit_card: You removed  **" + value + "$** from the account of " + target.getAsMention() + ". New balance: `" + targetManager.getMoney() + "$`.");
+
+        } else if(action.equals("show")) {
+
+            double money = targetManager.getMoney();
+            embedBuilder.setDescription(":credit_card: " + target.getAsMention() + "'s account balance is currently: `" + targetManager.getMoney() + "$`.");
 
         } else {
 

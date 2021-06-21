@@ -8,8 +8,6 @@ import net.toujoustudios.kazunya.command.ICommand;
 import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.economy.stock.Stock;
 import net.toujoustudios.kazunya.economy.stock.StockMarket;
-import net.toujoustudios.kazunya.log.LogLevel;
-import net.toujoustudios.kazunya.log.Logger;
 
 import java.util.List;
 
@@ -49,12 +47,14 @@ public class MarketinfoCommand implements ICommand {
 
             for(Stock stock : StockMarket.getStockMarket("default_market").getStocks()) {
 
-                Logger.log(LogLevel.DEBUG, stock.getId());
                 stringBuilder.append("\n`" + stock.getId() + "` | :chart: Price: " + stockMarket.getStockPrice(stock.getId()) + Config.CURRENCY_CHAR);
 
             }
 
             embedBuilder.setDescription(stringBuilder.toString());
+            embedBuilder.setThumbnail("https://github.com/IanToujou/Kazunya/blob/master/src/main/resources/chart_icon.png?raw=true");
+            channel.sendMessage(embedBuilder.build()).queue();
+            return;
 
         } else {
 
@@ -67,18 +67,23 @@ public class MarketinfoCommand implements ICommand {
 
                 if(stock.getId().equalsIgnoreCase(discriminator)) {
 
-                    stringBuilder.append("**Name:** " + stock.getName() + "\n");
-                    stringBuilder.append("**ID:** " + stock.getId() + "\n");
-                    stringBuilder.append("**Current Price:** " + stockMarket.getStockPrice(stock.getId()) + Config.CURRENCY_CHAR + "\n");
+                    stringBuilder.append(":regional_indicator_a: **Name:** " + stock.getName() + "\n");
+                    stringBuilder.append(":hash: **ID:** " + stock.getId() + "\n");
+                    stringBuilder.append(":chart: **Current Price:** " + stockMarket.getStockPrice(stock.getId()) + Config.CURRENCY_CHAR + "\n");
+                    embedBuilder.setDescription(stringBuilder.toString());
+                    embedBuilder.setThumbnail("https://github.com/IanToujou/Kazunya/blob/master/src/main/resources/chart_icon.png?raw=true");
+                    channel.sendMessage(embedBuilder.build()).queue();
+                    return;
 
                 }
 
             }
 
-            embedBuilder.setDescription(stringBuilder.toString());
-
         }
 
+        embedBuilder.setTitle("**__ERROR__**");
+        embedBuilder.setColor(Config.ERROR_EMBED_COLOR);
+        embedBuilder.setDescription(":x: The given stock could not be found.\nPlease type **nya marketinfo** to get a list of the stocks.");
         channel.sendMessage(embedBuilder.build()).queue();
 
     }

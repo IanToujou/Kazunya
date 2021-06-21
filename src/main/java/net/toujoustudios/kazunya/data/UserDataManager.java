@@ -17,6 +17,7 @@ public class UserDataManager {
 
     public static void setMoney(String userId, double amount) {
 
+        amount = (double) Math.round(amount * 100) / 100;
         DatabaseManager.executeUpdate("INSERT INTO user_data (user_id, money) VALUES ('" + userId + "', '" + amount + "') ON DUPLICATE KEY UPDATE money='" + amount + "';");
 
     }
@@ -29,7 +30,8 @@ public class UserDataManager {
 
             while(resultSet.next()) {
 
-                return resultSet.getInt("money");
+                double money = resultSet.getDouble("money");
+                return (double) Math.round(money * 100) / 100;
 
             }
 

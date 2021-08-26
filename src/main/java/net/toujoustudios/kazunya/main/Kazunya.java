@@ -25,9 +25,10 @@ public class Kazunya {
     public void build() {
 
         Config config = Config.getDefault();
+        Config keysConfig = Config.getFile("keys.yml");
         commandManager = new CommandManager();
 
-        builder = JDABuilder.createDefault(config.getString("keys.token"));
+        builder = JDABuilder.createDefault(keysConfig.getString("keys.token"));
 
         builder.setBulkDeleteSplittingEnabled(false);
         builder.setActivity(Activity.streaming("/help - Running " + config.getString("general.name") + " " + config.getString("general.version"), "https://twitch.tv/iantoujou"));

@@ -23,6 +23,9 @@ public class Loader {
 
     private static void preInitialize() {
         new Config("config.yml");
+        new Config("keys.yml");
+        new Config("database.yml");
+        Main.getBot().initializeDatabase();
     }
 
     private static void initialize() {

@@ -45,7 +45,8 @@ public class GuildManager {
         destroy();
     }
 
-    public void save() {}
+    public void save() {
+    }
 
     public void destroy() {
         guilds.remove(guildId);

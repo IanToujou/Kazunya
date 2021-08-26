@@ -42,7 +42,7 @@ public class HelpCommand implements ICommand {
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
         embedBuilder.setColor(ColorTools.getFromRGBString(config.getString("format.color.default")));
-        embedBuilder.setTitle(":ringed_planet: **DSpace Help**");
+        embedBuilder.setTitle(":sparkles: **Kazunya Help**");
         embedBuilder.setDescription("Here is a full list of all bot commands and features.\nYou can also type `/help [<command>]` to look up a specific command and its usage.");
         embedBuilder.setThumbnail(config.getString("assets.icon.search"));
 

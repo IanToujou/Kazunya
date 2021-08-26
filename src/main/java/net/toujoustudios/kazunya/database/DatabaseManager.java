@@ -84,8 +84,7 @@ public class DatabaseManager {
     }
 
     public static void setup() {
-        executeUpdate("CREATE TABLE IF NOT EXISTS guild_settings (guild_id varchar(256), restore_roles boolean DEFAULT false, excluded_restore_roles varchar(256));");
-        executeUpdate("CREATE TABLE IF NOT EXISTS user_data (user_id VARCHAR(256) NULL DEFAULT NULL , `usage_banned` BOOLEAN NULL DEFAULT FALSE, `money` DOUBLE NOT NULL DEFAULT '0' , `partner_id` VARCHAR(256) NULL DEFAULT NULL , PRIMARY KEY (`user_id`)) ENGINE = InnoDB;");
+        executeUpdate("CREATE TABLE user_data ( `user_id` VARCHAR(256) NOT NULL , `usage_banned` BOOLEAN NOT NULL DEFAULT FALSE , `money` INT NOT NULL DEFAULT '0' , `partner_id` VARCHAR(256) NULL DEFAULT NULL , PRIMARY KEY (`user_id`)) ENGINE = InnoDB;");
     }
 
 }

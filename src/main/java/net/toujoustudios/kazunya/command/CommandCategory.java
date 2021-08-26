@@ -1,0 +1,7 @@
+package net.toujoustudios.kazunya.command;
+
+public enum CommandCategory {
+
+    GENERAL
+
+}

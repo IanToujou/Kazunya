@@ -1,0 +1,126 @@
+package net.toujoustudios.kazunya.command.list.roleplay;
+
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.interactions.commands.OptionMapping;
+import net.dv8tion.jda.api.interactions.commands.OptionType;
+import net.dv8tion.jda.api.interactions.commands.build.OptionData;
+import net.dv8tion.jda.api.interactions.components.Button;
+import net.toujoustudios.kazunya.color.ColorTools;
+import net.toujoustudios.kazunya.command.CommandCategory;
+import net.toujoustudios.kazunya.command.CommandContext;
+import net.toujoustudios.kazunya.command.CommandManager;
+import net.toujoustudios.kazunya.command.ICommand;
+import net.toujoustudios.kazunya.config.Config;
+import net.toujoustudios.kazunya.error.ErrorEmbed;
+import net.toujoustudios.kazunya.error.ErrorType;
+import net.toujoustudios.kazunya.user.UserManager;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+/**
+ * This file has been created by Ian Toujou.
+ * Project: Kazunya
+ * Date: 29/08/2021
+ * Time: 13:19
+ */
+public class MarryCommand implements ICommand {
+
+    private final CommandManager manager;
+    private final Config config;
+    private final HashMap<Member, Member> requests = new HashMap<>();
+
+    public MarryCommand(CommandManager manager) {
+        this.manager = manager;
+        config = Config.getDefault();
+    }
+
+    @Override
+    public void handle(CommandContext context) {
+
+        List<OptionMapping> args = context.getArgs();
+        Member member = context.getMember();
+        EmbedBuilder embedBuilder = new EmbedBuilder();
+
+        if (args.size() > 1) {
+            context.getEvent().replyEmbeds(ErrorEmbed.buildError(ErrorType.COMMAND_INVALID_SYNTAX)).addActionRow(Button.link(config.getString("link.help"), "Help")).queue();
+            return;
+        }
+
+        Member target = args.get(0).getAsMember();
+        assert target != null;
+
+        if(target.getUser().isBot()) {
+            context.getEvent().replyEmbeds(ErrorEmbed.buildError(ErrorType.COMMAND_INVALID_USER_BOT)).addActionRow(Button.link(config.getString("link.help"), "Help")).queue();
+            return;
+        }
+
+        if(target == member) {
+            context.getEvent().replyEmbeds(ErrorEmbed.buildError(ErrorType.COMMAND_INVALID_USER_EQUAL)).addActionRow(Button.link(config.getString("link.help"), "Help")).queue();
+            return;
+        }
+
+        UserManager memberManager = UserManager.getUser(member.getId());
+        UserManager targetManager = UserManager.getUser(target.getId());
+
+        if(memberManager.hasPartner()) {
+            context.getEvent().replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_MARRIAGE_ALREADY_MARRIED_SELF)).addActionRow(Button.link(config.getString("link.help"), "Help")).queue();
+            return;
+        }
+
+        if(targetManager.hasPartner()) {
+            context.getEvent().replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_MARRIAGE_ALREADY_MARRIED_TARGET)).addActionRow(Button.link(config.getString("link.help"), "Help")).queue();
+            return;
+        }
+
+        requests.putIfAbsent(member, target);
+
+        if(requests.containsKey(target)) {
+
+            if(requests.get(target) == member) {
+
+                embedBuilder.setColor(ColorTools.getFromRGBString(config.getString("format.color.default")));
+                embedBuilder.setTitle(":ring: **Proposal**");
+                embedBuilder.setDescription(":heart: " + member.getAsMention() + " wants to marry");
+
+            } else {
+
+                embedBuilder.setColor(ColorTools.getFromRGBString(config.getString("format.color.default")));
+                embedBuilder.setTitle(":ring: **Proposal**");
+                embedBuilder.setDescription(":heart: " + member.getAsMention() + " wants to marry you, " + target.getAsMention() + "!");
+                embedBuilder.addField(":white_check_mark: Accept:", "To accept the proposal, please type `/marry " + member.getAsMention() + "`", false);
+                embedBuilder.addField(":octagonal_sign: Decline:", "To decline the proposal, simply ignore it. But that would be sad.", false);
+                context.getEvent().replyEmbeds(embedBuilder.build()).queue();
+
+            }
+
+        }
+
+    }
+
+    @Override
+    public String getName() {
+        return "marry";
+    }
+
+    @Override
+    public String getDescription() {
+        return "Ask someone to be your wife or husband.";
+    }
+
+    @Override
+    public List<OptionData> getOptions() {
+        List<OptionData> optionData = new ArrayList<>();
+        optionData.add(new OptionData(OptionType.USER, "user", "The person you want to marry.", true));
+        optionData.add(new OptionData(OptionType.STRING, "message", "The proposal message."));
+        return optionData;
+    }
+
+    @Override
+    public CommandCategory getCategory() {
+        return CommandCategory.ROLEPLAY;
+    }
+
+}

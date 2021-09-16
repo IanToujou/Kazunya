@@ -52,12 +52,12 @@ public class MarryCommand implements ICommand {
         Member target = args.get(0).getAsMember();
         assert target != null;
 
-        if(target.getUser().isBot()) {
+        if (target.getUser().isBot()) {
             context.getEvent().replyEmbeds(ErrorEmbed.buildError(ErrorType.COMMAND_INVALID_USER_BOT)).addActionRow(Button.link(config.getString("link.help"), "Help")).queue();
             return;
         }
 
-        if(target == member) {
+        if (target == member) {
             context.getEvent().replyEmbeds(ErrorEmbed.buildError(ErrorType.COMMAND_INVALID_USER_EQUAL)).addActionRow(Button.link(config.getString("link.help"), "Help")).queue();
             return;
         }
@@ -65,21 +65,21 @@ public class MarryCommand implements ICommand {
         UserManager memberManager = UserManager.getUser(member.getId());
         UserManager targetManager = UserManager.getUser(target.getId());
 
-        if(memberManager.hasPartner()) {
+        if (memberManager.hasPartner()) {
             context.getEvent().replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_MARRIAGE_ALREADY_MARRIED_SELF)).addActionRow(Button.link(config.getString("link.help"), "Help")).queue();
             return;
         }
 
-        if(targetManager.hasPartner()) {
+        if (targetManager.hasPartner()) {
             context.getEvent().replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_MARRIAGE_ALREADY_MARRIED_TARGET)).addActionRow(Button.link(config.getString("link.help"), "Help")).queue();
             return;
         }
 
         requests.putIfAbsent(member, target);
 
-        if(requests.containsKey(target)) {
+        if (requests.containsKey(target)) {
 
-            if(requests.get(target) == member) {
+            if (requests.get(target) == member) {
 
                 embedBuilder.setColor(ColorTools.getFromRGBString(config.getString("format.color.default")));
                 embedBuilder.setTitle(":ring: **Proposal**");

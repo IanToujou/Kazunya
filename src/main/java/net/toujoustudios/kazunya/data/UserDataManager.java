@@ -1,8 +1,6 @@
 package net.toujoustudios.kazunya.data;
 
 import net.toujoustudios.kazunya.database.DatabaseManager;
-import net.toujoustudios.kazunya.log.LogLevel;
-import net.toujoustudios.kazunya.log.Logger;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,11 +26,9 @@ public class UserDataManager {
 
             ResultSet resultSet = DatabaseManager.executeQuery("SELECT * FROM user_data WHERE user_id='" + userId + "';");
 
-            while (resultSet.next()) {
-
+            if(resultSet != null) {
                 double money = resultSet.getDouble("money");
                 return (double) Math.round(money * 100) / 100;
-
             }
 
         } catch (SQLException exception) {
@@ -53,11 +49,8 @@ public class UserDataManager {
 
             ResultSet resultSet = DatabaseManager.executeQuery("SELECT * FROM user_data WHERE user_id='" + userId + "';");
 
-            while (resultSet.next()) {
-
-                String out = resultSet.getString("partner_id");
-                return out;
-
+            if (resultSet != null) {
+                return resultSet.getString("partner_id");
             }
 
         } catch (SQLException exception) {
@@ -76,6 +69,7 @@ public class UserDataManager {
         return getPartner(userId) != null;
     }
 
+    @SuppressWarnings("all")
     public static boolean isPartnerWith(String userId, String partnerId) {
         return getPartner(userId).equals(partnerId);
     }

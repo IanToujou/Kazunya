@@ -14,8 +14,6 @@ import net.toujoustudios.kazunya.command.ICommand;
 import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
-import net.toujoustudios.kazunya.log.LogLevel;
-import net.toujoustudios.kazunya.log.Logger;
 import net.toujoustudios.kazunya.user.UserManager;
 
 import java.util.ArrayList;
@@ -98,7 +96,7 @@ public class MarryCommand implements ICommand {
         } else {
 
             String message = "Do you want to marry me?";
-            if(args.size() > 1) {
+            if (args.size() > 1) {
                 message = args.get(1).getAsString();
             }
 

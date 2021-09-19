@@ -24,7 +24,7 @@ public class Logger {
 
         SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss", new Locale("de", "DE"));
         SimpleDateFormat fileDate = new SimpleDateFormat("dd-MM-yyyy");
-        System.out.println("[" + Config.getDefault().getString("bot.name") + " - " + level + "] " + level.getColor() + message + ANSI_RESET);
+        System.out.println("[" + Config.getDefault().getString("general.name") + " - " + level + "] " + level.getColor() + message + ANSI_RESET);
 
     }
 

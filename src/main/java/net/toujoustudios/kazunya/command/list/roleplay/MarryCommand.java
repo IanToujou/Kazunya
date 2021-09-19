@@ -14,6 +14,8 @@ import net.toujoustudios.kazunya.command.ICommand;
 import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
+import net.toujoustudios.kazunya.log.LogLevel;
+import net.toujoustudios.kazunya.log.Logger;
 import net.toujoustudios.kazunya.user.UserManager;
 
 import java.util.ArrayList;
@@ -44,7 +46,7 @@ public class MarryCommand implements ICommand {
         Member member = context.getMember();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
-        if (args.size() > 1) {
+        if (args.size() < 1) {
             context.getEvent().replyEmbeds(ErrorEmbed.buildError(ErrorType.COMMAND_INVALID_SYNTAX)).addActionRow(Button.link(config.getString("link.help"), "Help")).queue();
             return;
         }
@@ -81,20 +83,31 @@ public class MarryCommand implements ICommand {
 
             if (requests.get(target) == member) {
 
-                embedBuilder.setColor(ColorTools.getFromRGBString(config.getString("format.color.default")));
-                embedBuilder.setTitle(":ring: **Proposal**");
-                embedBuilder.setDescription(":heart: " + member.getAsMention() + " wants to marry");
+                requests.remove(target);
+                requests.remove(member);
 
-            } else {
-
+                memberManager.setPartner(target.getId());
+                targetManager.setPartner(member.getId());
                 embedBuilder.setColor(ColorTools.getFromRGBString(config.getString("format.color.default")));
-                embedBuilder.setTitle(":ring: **Proposal**");
-                embedBuilder.setDescription(":heart: " + member.getAsMention() + " wants to marry you, " + target.getAsMention() + "!");
-                embedBuilder.addField(":white_check_mark: Accept:", "To accept the proposal, please type `/marry " + member.getAsMention() + "`", false);
-                embedBuilder.addField(":octagonal_sign: Decline:", "To decline the proposal, simply ignore it. But that would be sad.", false);
+                embedBuilder.setTitle(":ring: **Marriage**");
+                embedBuilder.setDescription(member.getAsMention() + " and " + target.getAsMention() + " are now happily married!");
                 context.getEvent().replyEmbeds(embedBuilder.build()).queue();
 
             }
+
+        } else {
+
+            String message = "Do you want to marry me?";
+            if(args.size() > 1) {
+                message = args.get(1).getAsString();
+            }
+
+            embedBuilder.setColor(ColorTools.getFromRGBString(config.getString("format.color.default")));
+            embedBuilder.setTitle(":ring: **Proposal**");
+            embedBuilder.setDescription(member.getAsMention() + " wants to marry you, " + target.getAsMention() + "!\n" + member.getEffectiveName() + ": `" + message + "`");
+            embedBuilder.addField(":white_check_mark: Accept:", "To accept the proposal, please type `/marry @" + member.getEffectiveName() + "`", false);
+            embedBuilder.addField(":octagonal_sign: Decline:", "To decline the proposal, simply ignore it. But that would be sad.", false);
+            context.getEvent().replyEmbeds(embedBuilder.build()).queue();
 
         }
 

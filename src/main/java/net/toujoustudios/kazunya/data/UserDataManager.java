@@ -56,7 +56,6 @@ public class UserDataManager {
             while (resultSet.next()) {
 
                 String out = resultSet.getString("partner_id");
-                Logger.log(LogLevel.DEBUG, out);
                 return out;
 
             }

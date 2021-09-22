@@ -4,6 +4,7 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
+import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.dv8tion.jda.api.interactions.components.Button;
 import net.toujoustudios.kazunya.color.ColorTools;
@@ -18,6 +19,7 @@ import net.toujoustudios.kazunya.main.Main;
 import net.toujoustudios.kazunya.user.UserManager;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -85,7 +87,9 @@ public class DivorceCommand implements ICommand {
 
     @Override
     public List<OptionData> getOptions() {
-        return null;
+        List<OptionData> optionData = new ArrayList<>();
+        optionData.add(new OptionData(OptionType.STRING, "test", "Test option", false));
+        return optionData;
     }
 
     @Override

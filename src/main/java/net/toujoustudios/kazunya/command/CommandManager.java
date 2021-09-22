@@ -15,6 +15,7 @@ import net.toujoustudios.kazunya.main.Main;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -46,11 +47,21 @@ public class CommandManager {
         CommandListUpdateAction updateAction = Main.getBot().getJDA().updateCommands();
 
         for (ICommand command : this.commands) {
+
             CommandData commandData = new CommandData(command.getName(), command.getDescription());
-            for (OptionData data : command.getOptions()) {
-                commandData.addOptions(data);
+            Logger.log(LogLevel.DEBUG, "Command: " + command.getName());
+            Logger.log(LogLevel.DEBUG, "Options Size: " + command.getOptions().size());
+
+            if(command.getOptions().size() > 0) {
+                for (OptionData data : command.getOptions()) {
+                    commandData.addOptions(data);
+                }
+            } else {
+                commandData.addOptions(Collections.emptyList());
             }
+
             updateAction.addCommands(commandData);
+
         }
 
         updateAction.queue();

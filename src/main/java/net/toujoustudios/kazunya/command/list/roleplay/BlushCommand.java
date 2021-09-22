@@ -15,10 +15,7 @@ import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * This file has been created by Ian Toujou.
@@ -68,7 +65,7 @@ public class BlushCommand implements ICommand {
 
     @Override
     public List<OptionData> getOptions() {
-        return null;
+        return Collections.emptyList();
     }
 
     @Override

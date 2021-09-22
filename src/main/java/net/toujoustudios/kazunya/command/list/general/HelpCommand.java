@@ -49,14 +49,19 @@ public class HelpCommand implements ICommand {
         if (args.isEmpty()) {
 
             StringBuilder builderGeneral = new StringBuilder();
+            StringBuilder builderRoleplay = new StringBuilder();
 
             for (ICommand command : manager.getCommands()) {
                 if (command.getCategory() == CommandCategory.GENERAL) {
                     builderGeneral.append("`/" + command.getName() + "` - " + command.getDescription() + "\n");
                 }
+                if (command.getCategory() == CommandCategory.ROLEPLAY) {
+                    builderRoleplay.append("`/" + command.getName() + "` - " + command.getDescription() + "\n");
+                }
             }
 
             embedBuilder.addField(":satellite_orbital: General:", builderGeneral.toString(), false);
+            embedBuilder.addField(":heart: Roleplay:", builderRoleplay.toString(), false);
 
             boolean isOwnerOnServer = false;
             for (Member member : context.getGuild().getMembers()) {

@@ -11,10 +11,11 @@ public enum ErrorType {
     COMMAND_INVALID_SEARCH("1002", "The given search has no results."),
     COMMAND_INVALID_USER_NOT_FOUND("1003", "The given user is invalid."),
     COMMAND_INVALID_USER_BOT("1004", "The given user is a bot. I know we're superior, but please refer to another human."),
-    COMMAND_INVALID_USER_EQUAL("1005", "You cannot do that to yourself. Please specify another user."),
+    COMMAND_INVALID_USER_SELF("1005", "You cannot do that to yourself. Please specify another user."),
 
-    ACTION_MARRIAGE_ALREADY_MARRIED_SELF("2001", "You are already married."),
-    ACTION_MARRIAGE_ALREADY_MARRIED_TARGET("2002", "The specified person is already married. Sorry about that.");
+    ACTION_ALREADY_MARRIED_SELF("2001", "You are already married."),
+    ACTION_ALREADY_MARRIED_TARGET("2002", "The specified person is already married. Sorry about that."),
+    ACTION_NO_PARTNER("2003", "You don't have any partner.");
 
     private final String code;
     private final String description;

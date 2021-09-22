@@ -2,7 +2,9 @@ package net.toujoustudios.kazunya.error;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.MessageEmbed;
+import net.dv8tion.jda.api.interactions.components.Button;
 import net.toujoustudios.kazunya.color.ColorTools;
+import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.config.Config;
 
 /**
@@ -22,6 +24,10 @@ public class ErrorEmbed {
         embedBuilder.setThumbnail(config.getString("assets.icon.error"));
         embedBuilder.setDescription("Oops! An error occurred while attempting to perform this action. Please review the details below.\n\n**Error Code:** `" + type.getCode() + "`\n**Description:** " + type.getDescription());
         return embedBuilder.build();
+    }
+
+    public static void sendError(CommandContext context, ErrorType type) {
+        context.getEvent().replyEmbeds(buildError(type)).addActionRow(Button.link(config.getString("link.help"), "Help")).setEphemeral(true).queue();
     }
 
 }

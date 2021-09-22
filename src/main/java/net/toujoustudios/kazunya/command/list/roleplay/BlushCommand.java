@@ -28,12 +28,9 @@ import java.util.Random;
  */
 public class BlushCommand implements ICommand {
 
-    private final CommandManager manager;
     private final Config config;
-    private final HashMap<Member, Member> requests = new HashMap<>();
 
-    public BlushCommand(CommandManager manager) {
-        this.manager = manager;
+    public BlushCommand() {
         config = Config.getDefault();
     }
 
@@ -45,15 +42,15 @@ public class BlushCommand implements ICommand {
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
         if (args.size() != 0) {
-            context.getEvent().replyEmbeds(ErrorEmbed.buildError(ErrorType.COMMAND_INVALID_SYNTAX)).addActionRow(Button.link(config.getString("link.help"), "Help")).queue();
+            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_SYNTAX);
             return;
         }
         
-        ArrayList<String> images = new ArrayList<>();
-        images.add("");
+        //ArrayList<String> images = new ArrayList<>();
+        //images.add("");
 
         embedBuilder.setTitle("**" + member.getEffectiveName() + "is blushing! :3");
-        embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
+        //embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
         embedBuilder.setColor(ColorTools.getFromRGBString(config.getString("format.color.default")));
         context.getEvent().replyEmbeds(embedBuilder.build()).queue();
 
@@ -61,17 +58,17 @@ public class BlushCommand implements ICommand {
 
     @Override
     public String getName() {
-        return null;
+        return "blush";
     }
 
     @Override
     public String getDescription() {
-        return null;
+        return "Make yourself blush.";
     }
 
     @Override
     public List<OptionData> getOptions() {
-        return new ArrayList<>();
+        return null;
     }
 
     @Override

@@ -28,12 +28,10 @@ import java.util.List;
  */
 public class MarryCommand implements ICommand {
 
-    private final CommandManager manager;
     private final Config config;
     private final HashMap<Member, Member> requests = new HashMap<>();
 
-    public MarryCommand(CommandManager manager) {
-        this.manager = manager;
+    public MarryCommand() {
         config = Config.getDefault();
     }
 
@@ -45,7 +43,7 @@ public class MarryCommand implements ICommand {
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
         if (args.size() < 1) {
-            context.getEvent().replyEmbeds(ErrorEmbed.buildError(ErrorType.COMMAND_INVALID_SYNTAX)).addActionRow(Button.link(config.getString("link.help"), "Help")).queue();
+            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_SYNTAX);
             return;
         }
 
@@ -53,12 +51,12 @@ public class MarryCommand implements ICommand {
         assert target != null;
 
         if (target.getUser().isBot()) {
-            context.getEvent().replyEmbeds(ErrorEmbed.buildError(ErrorType.COMMAND_INVALID_USER_BOT)).addActionRow(Button.link(config.getString("link.help"), "Help")).queue();
+            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_BOT);
             return;
         }
 
         if (target == member) {
-            context.getEvent().replyEmbeds(ErrorEmbed.buildError(ErrorType.COMMAND_INVALID_USER_EQUAL)).addActionRow(Button.link(config.getString("link.help"), "Help")).queue();
+            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_SELF);
             return;
         }
 
@@ -66,12 +64,12 @@ public class MarryCommand implements ICommand {
         UserManager targetManager = UserManager.getUser(target.getId());
 
         if (memberManager.hasPartner()) {
-            context.getEvent().replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_MARRIAGE_ALREADY_MARRIED_SELF)).addActionRow(Button.link(config.getString("link.help"), "Help")).queue();
+            ErrorEmbed.sendError(context, ErrorType.ACTION_ALREADY_MARRIED_SELF);
             return;
         }
 
         if (targetManager.hasPartner()) {
-            context.getEvent().replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_MARRIAGE_ALREADY_MARRIED_TARGET)).addActionRow(Button.link(config.getString("link.help"), "Help")).queue();
+            ErrorEmbed.sendError(context, ErrorType.ACTION_ALREADY_MARRIED_TARGET);
             return;
         }
 

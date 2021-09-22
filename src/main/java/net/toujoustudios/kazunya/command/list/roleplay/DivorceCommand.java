@@ -4,7 +4,6 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
-import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.dv8tion.jda.api.interactions.components.Button;
 import net.toujoustudios.kazunya.color.ColorTools;
@@ -24,14 +23,11 @@ import java.util.List;
 
 public class DivorceCommand implements ICommand {
 
-    private ArrayList<String> list = new ArrayList<>();
+    private final ArrayList<String> list = new ArrayList<>();
 
-    private final CommandManager manager;
     private final Config config;
-    private final HashMap<Member, Member> requests = new HashMap<>();
 
-    public DivorceCommand(CommandManager manager) {
-        this.manager = manager;
+    public DivorceCommand() {
         config = Config.getDefault();
     }
 
@@ -43,11 +39,16 @@ public class DivorceCommand implements ICommand {
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
         if (args.size() > 1) {
-            context.getEvent().replyEmbeds(ErrorEmbed.buildError(ErrorType.COMMAND_INVALID_SYNTAX)).addActionRow(Button.link(config.getString("link.help"), "Help")).queue();
+            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_SYNTAX);
             return;
         }
 
         UserManager memberManager = UserManager.getUser(member.getId());
+
+        if(!memberManager.hasPartner()) {
+            ErrorEmbed.sendError(context, ErrorType.ACTION_NO_PARTNER);
+            return;
+        }
 
         embedBuilder.setColor(ColorTools.getFromRGBString(config.getString("format.color.default")));
 
@@ -68,7 +69,7 @@ public class DivorceCommand implements ICommand {
         embedBuilder.setTitle("**:broken_heart: Divorce: Confirm**");
         embedBuilder.setDescription("Do you really want to divorce?\nPlease type `/divorce` again to confirm this action.");
         list.add(member.getId());
-        context.getEvent().replyEmbeds(embedBuilder.build()).queue();
+        context.getEvent().replyEmbeds(embedBuilder.build()).setEphemeral(true).queue();
 
     }
 
@@ -79,12 +80,12 @@ public class DivorceCommand implements ICommand {
 
     @Override
     public String getDescription() {
-        return "Ask someone to be your wife or husband.";
+        return "Divorce yourself from your partner.";
     }
 
     @Override
     public List<OptionData> getOptions() {
-        return new ArrayList<>();
+        return null;
     }
 
     @Override

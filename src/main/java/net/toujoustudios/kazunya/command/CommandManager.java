@@ -29,9 +29,9 @@ public class CommandManager {
 
     public CommandManager() {
         this.addCommand(new HelpCommand(this));
-        this.addCommand(new MarryCommand(this));
-        this.addCommand(new DivorceCommand(this));
-        this.addCommand(new BlushCommand(this));
+        this.addCommand(new MarryCommand());
+        this.addCommand(new DivorceCommand());
+        this.addCommand(new BlushCommand());
     }
 
     private void addCommand(ICommand command) {

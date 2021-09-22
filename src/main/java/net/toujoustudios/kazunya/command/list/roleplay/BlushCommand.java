@@ -46,8 +46,12 @@ public class BlushCommand implements ICommand {
             context.getEvent().replyEmbeds(ErrorEmbed.buildError(ErrorType.COMMAND_INVALID_SYNTAX)).addActionRow(Button.link(config.getString("link.help"), "Help")).queue();
             return;
         }
+        
+        ArrayList<String> images = new ArrayList<>();
+        images.add("");
 
         embedBuilder.setTitle("**" + member.getEffectiveName() + "is blushing! :3");
+        embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
         embedBuilder.setColor(Config.getDefault().getString("format.color.default"));
 
     }

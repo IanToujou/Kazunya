@@ -53,6 +53,7 @@ public class BlushCommand implements ICommand {
         embedBuilder.setTitle("**" + member.getEffectiveName() + "is blushing! :3");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
         embedBuilder.setColor(Config.getDefault().getString("format.color.default"));
+        context.getEvent().replyEmbeds(embedBuilder.build()).queue();
 
     }
 

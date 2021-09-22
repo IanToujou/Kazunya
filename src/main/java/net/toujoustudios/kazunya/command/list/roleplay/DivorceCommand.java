@@ -22,7 +22,7 @@ public class DivorceCommand implements ICommand {
             embedBuilder.setTitle("");
             embedBuilder.setDescription("Do you really want to divorce?\nPlease type `/divorce` again to confirm this action.");
             list.add(member.getId());
-            context.getEvent().reply(embedBuilder.build()).queue();
+            context.getEvent().replyEmbeds(embedBuilder.build()).queue();
             return;
             
         }

@@ -6,11 +6,9 @@ import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
-import net.dv8tion.jda.api.interactions.components.Button;
 import net.toujoustudios.kazunya.color.ColorTools;
 import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
-import net.toujoustudios.kazunya.command.CommandManager;
 import net.toujoustudios.kazunya.command.ICommand;
 import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
@@ -19,8 +17,6 @@ import net.toujoustudios.kazunya.main.Main;
 import net.toujoustudios.kazunya.user.UserManager;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 
 public class DivorceCommand implements ICommand {
@@ -47,7 +43,7 @@ public class DivorceCommand implements ICommand {
 
         UserManager memberManager = UserManager.getUser(member.getId());
 
-        if(!memberManager.hasPartner()) {
+        if (!memberManager.hasPartner()) {
             ErrorEmbed.sendError(context, ErrorType.ACTION_NO_PARTNER);
             return;
         }
@@ -58,7 +54,7 @@ public class DivorceCommand implements ICommand {
 
             User target = Main.getBot().getJDA().getUserById(memberManager.getPartner());
             embedBuilder.setTitle("**:broken_heart: Divorce**");
-            if(target != null) {
+            if (target != null) {
                 embedBuilder.setDescription("You and `" + target.getName() + "` are now divorced.");
             } else {
                 embedBuilder.setDescription("You and `your partner` are now divorced.");

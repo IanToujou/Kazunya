@@ -26,7 +26,7 @@ public class UserDataManager {
 
             ResultSet resultSet = DatabaseManager.executeQuery("SELECT * FROM user_data WHERE user_id='" + userId + "';");
 
-            if(resultSet != null) {
+            if (resultSet != null) {
                 double money = resultSet.getDouble("money");
                 return (double) Math.round(money * 100) / 100;
             }

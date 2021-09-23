@@ -3,19 +3,17 @@ package net.toujoustudios.kazunya.command.list.roleplay;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
-import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
-import net.dv8tion.jda.api.interactions.components.Button;
 import net.toujoustudios.kazunya.color.ColorTools;
 import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
-import net.toujoustudios.kazunya.command.CommandManager;
 import net.toujoustudios.kazunya.command.ICommand;
 import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * This file has been created by Ian Toujou.
@@ -42,7 +40,7 @@ public class BlushCommand implements ICommand {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_SYNTAX);
             return;
         }
-        
+
         //ArrayList<String> images = new ArrayList<>();
         //images.add("");
 

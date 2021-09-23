@@ -52,7 +52,7 @@ public class CommandManager {
             Logger.log(LogLevel.DEBUG, "Command: " + command.getName());
             Logger.log(LogLevel.DEBUG, "Options Size: " + command.getOptions().size());
 
-            if(command.getOptions().size() > 0) {
+            if (command.getOptions().size() > 0) {
                 for (OptionData data : command.getOptions()) {
                     commandData.addOptions(data);
                 }

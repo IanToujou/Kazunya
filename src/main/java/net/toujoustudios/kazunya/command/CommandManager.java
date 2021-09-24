@@ -52,12 +52,11 @@ public class CommandManager {
             Logger.log(LogLevel.DEBUG, "Command: " + command.getName());
             Logger.log(LogLevel.DEBUG, "Options Size: " + command.getOptions().size());
 
-            if (command.getOptions().size() > 0) {
+            if (command.getOptions().size() > 0 && command.getOptions() != null) {
                 for (OptionData data : command.getOptions()) {
+                    Logger.log(LogLevel.DEBUG, "Registering option for " + data.getName());
                     commandData.addOptions(data);
                 }
-            } else {
-                commandData.addOptions(Collections.emptyList());
             }
 
             updateAction.addCommands(commandData);

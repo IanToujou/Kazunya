@@ -22,7 +22,6 @@ import java.util.List;
 public class DivorceCommand implements ICommand {
 
     private final ArrayList<String> list = new ArrayList<>();
-
     private final Config config;
 
     public DivorceCommand() {
@@ -83,9 +82,7 @@ public class DivorceCommand implements ICommand {
 
     @Override
     public List<OptionData> getOptions() {
-        List<OptionData> optionData = new ArrayList<>();
-        optionData.add(new OptionData(OptionType.STRING, "test", "Test option", false));
-        return optionData;
+        return null;
     }
 
     @Override

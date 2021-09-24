@@ -44,7 +44,7 @@ public class BlushCommand implements ICommand {
         //ArrayList<String> images = new ArrayList<>();
         //images.add("");
 
-        embedBuilder.setTitle("**" + member.getEffectiveName() + "is blushing! :3");
+        embedBuilder.setTitle("**" + member.getEffectiveName() + "is blushing!** :3");
         //embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
         embedBuilder.setColor(ColorTools.getFromRGBString(config.getString("format.color.default")));
         context.getEvent().replyEmbeds(embedBuilder.build()).queue();
@@ -63,7 +63,7 @@ public class BlushCommand implements ICommand {
 
     @Override
     public List<OptionData> getOptions() {
-        return Collections.emptyList();
+        return null;
     }
 
     @Override

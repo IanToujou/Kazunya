@@ -15,7 +15,6 @@ import net.toujoustudios.kazunya.main.Main;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -49,12 +48,9 @@ public class CommandManager {
         for (ICommand command : this.commands) {
 
             CommandData commandData = new CommandData(command.getName(), command.getDescription());
-            Logger.log(LogLevel.DEBUG, "Command: " + command.getName());
-            Logger.log(LogLevel.DEBUG, "Options Size: " + command.getOptions().size());
 
-            if (command.getOptions().size() > 0 && command.getOptions() != null) {
+            if(command.getOptions() != null) {
                 for (OptionData data : command.getOptions()) {
-                    Logger.log(LogLevel.DEBUG, "Registering option for " + data.getName());
                     commandData.addOptions(data);
                 }
             }

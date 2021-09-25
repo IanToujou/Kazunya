@@ -49,13 +49,14 @@ public class CommandManager {
 
             CommandData commandData = new CommandData(command.getName(), command.getDescription());
 
-            if(command.getOptions() != null) {
+            if (command.getOptions() != null) {
                 for (OptionData data : command.getOptions()) {
                     commandData.addOptions(data);
                 }
+                updateAction.addCommands(commandData);
+            } else {
+                Main.getBot().getJDA().upsertCommand(command.getName(), command.getDescription()).queue();
             }
-
-            updateAction.addCommands(commandData);
 
         }
 

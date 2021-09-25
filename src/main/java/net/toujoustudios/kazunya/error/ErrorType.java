@@ -8,7 +8,7 @@ public enum ErrorType {
     GENERAL_UNFINISHED("0004", "This bot function is still under development."),
     GENERAL_DATABASE("0005", "An error occurred with the database."),
     GENERAL_PERMISSION("0006", "You do not have the permission to perform this action."),
-    
+
     COMMAND_INVALID_SYNTAX("1001", "The command syntax is not correct."),
     COMMAND_INVALID_SEARCH("1002", "The given search has no results."),
     COMMAND_INVALID_USER_NOT_FOUND("1003", "The given user is invalid."),

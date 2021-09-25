@@ -12,7 +12,6 @@ import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
 
-import java.util.Collections;
 import java.util.List;
 
 /**

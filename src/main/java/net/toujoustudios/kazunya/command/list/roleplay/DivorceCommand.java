@@ -16,6 +16,7 @@ import net.toujoustudios.kazunya.main.Main;
 import net.toujoustudios.kazunya.user.UserManager;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class DivorceCommand implements ICommand {
@@ -81,7 +82,7 @@ public class DivorceCommand implements ICommand {
 
     @Override
     public List<OptionData> getOptions() {
-        return null;
+        return Collections.emptyList();
     }
 
     @Override

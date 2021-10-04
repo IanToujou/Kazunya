@@ -13,6 +13,8 @@ import java.util.Locale;
  */
 public class Logger {
 
+    public static final Config config = Config.getDefault();
+
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_BRIGHT_RED = "\u001b[31;1m";
@@ -21,6 +23,8 @@ public class Logger {
     public static final String ANSI_CYAN = "\u001B[36m";
 
     public static void log(LogLevel level, String message) {
+
+        if (level == LogLevel.DEBUG && !config.getBoolean("general.debug")) return;
 
         SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss", new Locale("de", "DE"));
         SimpleDateFormat fileDate = new SimpleDateFormat("dd-MM-yyyy");

@@ -81,4 +81,8 @@ public class Config {
         return (int) content.getOrDefault(key, 0);
     }
 
+    public boolean getBoolean(String key) {
+        return (boolean) content.getOrDefault(key, false);
+    }
+
 }

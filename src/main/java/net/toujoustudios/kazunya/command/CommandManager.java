@@ -43,24 +43,38 @@ public class CommandManager {
     @SuppressWarnings("all")
     public void registerCommands() {
 
+        Logger.log(LogLevel.INFORMATION, "Registering commands. This may take a while...");
         CommandListUpdateAction updateAction = Main.getBot().getJDA().updateCommands();
+        ArrayList<CommandData> dataList = new ArrayList<>();
 
         for (ICommand command : this.commands) {
 
-            CommandData commandData = new CommandData(command.getName(), command.getDescription());
+            Logger.log(LogLevel.DEBUG, "--------------------------------------------------");
+            Logger.log(LogLevel.DEBUG, "Started registration of a new command. More information below:");
+            Logger.log(LogLevel.DEBUG, "Name: " + command.getName());
+            Logger.log(LogLevel.DEBUG, "Description: " + command.getDescription());
+            Logger.log(LogLevel.DEBUG, "Syntax: " + command.getSyntax());
+            Logger.log(LogLevel.DEBUG, "Options:");
+            for (OptionData option : command.getOptions()) {
+                Logger.log(LogLevel.DEBUG, "| Option Name: " + option.getName());
+                Logger.log(LogLevel.DEBUG, "| Option Description: " + option.getDescription());
+                Logger.log(LogLevel.DEBUG, "| Option Type: " + option.getType());
+                Logger.log(LogLevel.DEBUG, "| Option Required: " + option.isRequired());
+            }
+            Logger.log(LogLevel.DEBUG, "--------------------------------------------------");
 
-            if (command.getOptions() != null) {
-                for (OptionData data : command.getOptions()) {
-                    commandData.addOptions(data);
-                }
-                updateAction.addCommands(commandData);
-            } else {
+            CommandData data = new CommandData(command.getName(), command.getDescription()).addOptions(command.getOptions());
+
+            if (command.getOptions().isEmpty()) {
                 Main.getBot().getJDA().upsertCommand(command.getName(), command.getDescription()).queue();
+            } else {
+                dataList.add(data);
+                Main.getBot().getJDA().upsertCommand(data).queue();
             }
 
         }
 
-        updateAction.queue();
+        //updateAction.addCommands(dataList).queue();
         Logger.log(LogLevel.INFORMATION, "Successfully registered " + commands.size() + " commands.");
 
     }

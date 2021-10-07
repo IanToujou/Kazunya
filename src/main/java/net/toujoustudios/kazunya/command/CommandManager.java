@@ -40,12 +40,11 @@ public class CommandManager {
         commands.add(command);
     }
 
-    @SuppressWarnings("all")
+    @SuppressWarnings("unused")
     public void registerCommands() {
 
         Logger.log(LogLevel.INFORMATION, "Registering commands. This may take a while...");
         CommandListUpdateAction updateAction = Main.getBot().getJDA().updateCommands();
-        ArrayList<CommandData> dataList = new ArrayList<>();
 
         for (ICommand command : this.commands) {
 
@@ -68,13 +67,11 @@ public class CommandManager {
             if (command.getOptions().isEmpty()) {
                 Main.getBot().getJDA().upsertCommand(command.getName(), command.getDescription()).queue();
             } else {
-                dataList.add(data);
                 Main.getBot().getJDA().upsertCommand(data).queue();
             }
 
         }
 
-        //updateAction.addCommands(dataList).queue();
         Logger.log(LogLevel.INFORMATION, "Successfully registered " + commands.size() + " commands.");
 
     }

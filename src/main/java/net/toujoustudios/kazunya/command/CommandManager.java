@@ -32,6 +32,7 @@ public class CommandManager {
         this.addCommand(new MarryCommand());
         this.addCommand(new DivorceCommand());
         this.addCommand(new BlushCommand());
+        this.addCommand(new HugCommand());
     }
 
     private void addCommand(ICommand command) {

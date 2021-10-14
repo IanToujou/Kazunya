@@ -9,6 +9,8 @@ import net.toujoustudios.kazunya.command.list.general.HelpCommand;
 import net.toujoustudios.kazunya.command.list.roleplay.BlushCommand;
 import net.toujoustudios.kazunya.command.list.roleplay.DivorceCommand;
 import net.toujoustudios.kazunya.command.list.roleplay.MarryCommand;
+import net.toujoustudios.kazunya.command.list.roleplay.HugCommand;
+import net.toujoustudios.kazunya.command.list.roleplay.CuddleCommand;
 import net.toujoustudios.kazunya.log.LogLevel;
 import net.toujoustudios.kazunya.log.Logger;
 import net.toujoustudios.kazunya.main.Main;
@@ -33,6 +35,7 @@ public class CommandManager {
         this.addCommand(new DivorceCommand());
         this.addCommand(new BlushCommand());
         this.addCommand(new HugCommand());
+        this.addCommand(new CuddleCommand());
     }
 
     private void addCommand(ICommand command) {

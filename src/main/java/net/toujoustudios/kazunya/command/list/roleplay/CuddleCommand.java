@@ -23,11 +23,11 @@ import java.util.Random;
  * Date: 14/10/2021
  * Time: 09:20
  */
-public class HugCommand implements ICommand {
+public class CuddleCommand implements ICommand {
 
     private final Config config;
 
-    public HugCommand() {
+    public CuddleCommand() {
         config = Config.getDefault();
     }
 
@@ -48,7 +48,7 @@ public class HugCommand implements ICommand {
         ArrayList<String> images = new ArrayList<>();
         images.add("");
 
-        embedBuilder.setTitle("**" + member.getEffectiveName() + " hugs " + target.getAsMention() + "!** :3");
+        embedBuilder.setTitle("**" + member.getEffectiveName() + " cuddles " + target.getAsMention() + "!** :3");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
         embedBuilder.setColor(ColorTools.getFromRGBString(config.getString("format.color.default")));
         context.getEvent().replyEmbeds(embedBuilder.build()).queue();
@@ -57,18 +57,18 @@ public class HugCommand implements ICommand {
 
     @Override
     public String getName() {
-        return "hug";
+        return "cuddle";
     }
 
     @Override
     public String getDescription() {
-        return "Hug another person.";
+        return "Cuddle another person.";
     }
 
     @Override
     public List<OptionData> getOptions() {
         List<OptionData> optionData = new ArrayList<>();
-        optionData.add(new OptionData(OptionType.USER, "user", "The person you want to hug.", true));
+        optionData.add(new OptionData(OptionType.USER, "user", "The person you want to cuddle.", true));
         return optionData;
     }
 

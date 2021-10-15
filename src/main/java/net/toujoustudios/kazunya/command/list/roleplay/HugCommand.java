@@ -3,6 +3,7 @@ package net.toujoustudios.kazunya.command.list.roleplay;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
+import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.toujoustudios.kazunya.color.ColorTools;
 import net.toujoustudios.kazunya.command.CommandCategory;
@@ -13,7 +14,6 @@ import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -42,12 +42,13 @@ public class HugCommand implements ICommand {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_SYNTAX);
             return;
         }
-        
+
         Member target = args.get(0).getAsMember();
 
         ArrayList<String> images = new ArrayList<>();
         images.add("");
 
+        assert target != null;
         embedBuilder.setTitle("**" + member.getEffectiveName() + " hugs " + target.getAsMention() + "!** :3");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
         embedBuilder.setColor(ColorTools.getFromRGBString(config.getString("format.color.default")));

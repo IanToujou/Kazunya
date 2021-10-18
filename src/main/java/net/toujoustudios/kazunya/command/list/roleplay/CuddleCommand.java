@@ -46,7 +46,26 @@ public class CuddleCommand implements ICommand {
         Member target = args.get(0).getAsMember();
 
         ArrayList<String> images = new ArrayList<>();
-        images.add("");
+        images.add("https://c.tenor.com/08vDStcjoGAAAAAd/cuddle-anime-hug-anime.gif");
+        images.add("https://c.tenor.com/dbIbtIyByEwAAAAC/cuddle-anime.gif");
+        images.add("https://c.tenor.com/BmbTYhCZ5UsAAAAC/yuri-sleeping-yuri-sleep.gif");
+        images.add("https://c.tenor.com/okeP090NK1cAAAAC/anime-couples.gif");
+        images.add("https://c.tenor.com/sK9icjg3xm4AAAAC/strugglesnuggle-annoyed.gif");
+        images.add("https://c.tenor.com/ItpTQW2UKPYAAAAC/cuddle-hug.gif");
+        images.add("https://c.tenor.com/ch1kq7TOxlkAAAAC/anime-cuddle.gif");
+        images.add("https://c.tenor.com/hsnYxyxQbRoAAAAC/hug-anime.gif");
+        images.add("https://c.tenor.com/0PIj7XctFr4AAAAC/a-whisker-away-hug.gif");
+        images.add("https://c.tenor.com/X54vC9bzK6MAAAAC/cute-cuddle.gif");
+        images.add("https://c.tenor.com/fklZNDaU9NMAAAAC/hideri-hideri-kanzaki.gif");
+        images.add("https://c.tenor.com/wwd7R-pi7DIAAAAC/anime-cuddle.gif");
+        images.add("https://c.tenor.com/DVOTqLcB2jUAAAAC/anime-hug-love.gif");
+        images.add("https://c.tenor.com/GuHHnDT6quYAAAAd/anime-couples.gif");
+        images.add("https://c.tenor.com/gowinK__PvAAAAAC/anime-cuddle.gif");
+        images.add("https://c.tenor.com/ABT86RpJUMUAAAAC/love-asuna.gif");
+        images.add("https://c.tenor.com/A5ZuMAZ44l8AAAAC/anime-cuddle.gif");
+        images.add("https://c.tenor.com/sBFE3GeNpJ4AAAAC/tackle-hug-couple.gif");
+        images.add("https://c.tenor.com/5UwhB5xQSTEAAAAC/anime-hug.gif");
+        images.add("https://c.tenor.com/0gCYBXXb2toAAAAC/hug-hugs-and-love.gif");
 
         assert target != null;
         embedBuilder.setTitle("**" + member.getEffectiveName() + " cuddles " + target.getAsMention() + "!** :3");

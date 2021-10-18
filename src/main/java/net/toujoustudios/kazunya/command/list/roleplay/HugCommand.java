@@ -46,7 +46,30 @@ public class HugCommand implements ICommand {
         Member target = args.get(0).getAsMember();
 
         ArrayList<String> images = new ArrayList<>();
-        images.add("");
+        images.add("https://c.tenor.com/9e1aE_xBLCsAAAAC/anime-hug.gif");
+        images.add("https://c.tenor.com/c8M8yU1q6c4AAAAC/hug-anime.gif");
+        images.add("https://c.tenor.com/DVOTqLcB2jUAAAAC/anime-hug-love.gif");
+        images.add("https://c.tenor.com/0vl21YIsGvgAAAAC/hug-anime.gif");
+        images.add("https://c.tenor.com/kPgR6UH6AXcAAAAC/anime-hug.gif");
+        images.add("https://c.tenor.com/Ct4bdr2ZGeAAAAAC/teria-wang-kishuku-gakkou-no-juliet.gif");
+        images.add("https://c.tenor.com/stLEkL3l0NAAAAAC/anime-acchi-kocchi.gif");
+        images.add("https://c.tenor.com/dIvoDyyk5LIAAAAC/anime-hug-sweet.gif");
+        images.add("https://c.tenor.com/2bWwi8DhDsAAAAAC/hugs-and-love.gif");
+        images.add("https://c.tenor.com/pcULC09CfkgAAAAC/hug-anime.gif");
+        images.add("https://c.tenor.com/F1VUry86n7kAAAAC/hug-anime.gif");
+        images.add("https://c.tenor.com/xgVPw2QK5n8AAAAC/sakura-quest-anime.gif");
+        images.add("https://c.tenor.com/KD__SewDxK0AAAAC/horimiya-izumi-miyamura.gif");
+        images.add("https://c.tenor.com/z2QaiBZCLCQAAAAC/hug-anime.gif");
+        images.add("https://c.tenor.com/Pd2sMiVr09YAAAAC/hug-anime-hug.gif");
+        images.add("https://c.tenor.com/SPs0Rpt7HAcAAAAC/chiya-urara.gif");
+        images.add("https://c.tenor.com/nHkiUCkS04gAAAAC/anime-hug-hearts.gif");
+        images.add("https://c.tenor.com/xIuXbMtA38sAAAAd/toilet-bound-hanakokun.gif");
+        images.add("https://c.tenor.com/EnfEuWDXthkAAAAC/hug-couple.gif");
+        images.add("https://c.tenor.com/X5nBTYuoKpoAAAAC/anime-cheeks.gif");
+        images.add("https://c.tenor.com/nmzZIEFv8nkAAAAC/hug-anime.gif");
+        images.add("https://c.tenor.com/mmQyXP3JvKwAAAAC/anime-cute.gif");
+        images.add("https://c.tenor.com/fLxZt7jo1YEAAAAC/loli-dragon.gif");
+        images.add("https://c.tenor.com/vkiqyZJWJ4wAAAAC/hug-cat.gif");
 
         assert target != null;
         embedBuilder.setTitle("**" + member.getEffectiveName() + " hugs " + target.getAsMention() + "!** :3");

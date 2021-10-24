@@ -58,6 +58,7 @@ public class DivorceCommand implements ICommand {
             } else {
                 embedBuilder.setDescription("You and `your partner` are now divorced.");
             }
+            context.getEvent().replyEmbeds(embedBuilder.build()).setEphemeral(true).queue();
             return;
 
         }

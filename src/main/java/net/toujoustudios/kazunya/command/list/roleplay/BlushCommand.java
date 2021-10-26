@@ -71,7 +71,7 @@ public class BlushCommand implements ICommand {
         images.add("https://c.tenor.com/Pyhna-FV8dwAAAAC/blush-kawaii.gif");
 
         embedBuilder.setTitle("**:purple_heart: Blush**");
-        embedBuilder.setDescription(member.getEffectiveName() + "is blushing! :3");
+        embedBuilder.setDescription(member.getEffectiveName() + " is blushing! :3");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
         embedBuilder.setColor(ColorTools.getFromRGBString(config.getString("format.color.default")));
         context.getEvent().replyEmbeds(embedBuilder.build()).queue();

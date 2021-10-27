@@ -5,6 +5,7 @@ import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
+import net.toujoustudios.kazunya.command.list.fun.ShipCommand;
 import net.toujoustudios.kazunya.command.list.general.HelpCommand;
 import net.toujoustudios.kazunya.command.list.roleplay.*;
 import net.toujoustudios.kazunya.log.LogLevel;
@@ -32,6 +33,7 @@ public class CommandManager {
         this.addCommand(new BlushCommand());
         this.addCommand(new HugCommand());
         this.addCommand(new CuddleCommand());
+        this.addCommand(new ShipCommand());
     }
 
     private void addCommand(ICommand command) {

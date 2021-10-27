@@ -105,7 +105,8 @@ public class ShipCommand implements ICommand {
 
         }
 
-        embedBuilder.setDescription(commentary + "\n\n:chart_with_upwards_trend: Ship Rating: **" + rating + "%**\n:heart: Ship Name: **" + shipName + "**");
+        embedBuilder.setTitle("**:purple_heart: Ship Rating**");
+        embedBuilder.setDescription(first.getAsMention() + " and " + second.getAsMention() + "'s ship results:\n" + commentary + "\n\n:chart_with_upwards_trend: Ship Rating: **" + rating + "%**\n:heart: Ship Name: **" + shipName + "**");
         context.getEvent().replyEmbeds(embedBuilder.build()).queue();
 
     }

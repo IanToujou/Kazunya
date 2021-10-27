@@ -2,6 +2,6 @@ package net.toujoustudios.kazunya.command;
 
 public enum CommandCategory {
 
-    GENERAL, ROLEPLAY, FUN
+    GENERAL, ROLEPLAY, FUN, STATS
 
 }

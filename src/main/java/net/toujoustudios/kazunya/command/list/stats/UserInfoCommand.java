@@ -1,5 +1,6 @@
 package net.toujoustudios.kazunya.command.list.stats;
 
+import com.mysql.cj.result.StringValueFactory;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.User;
@@ -44,7 +45,14 @@ public class UserInfoCommand implements ICommand {
 
         embedBuilder.setTitle("**:zap: User Information**");
         embedBuilder.setThumbnail(targetUser.getEffectiveAvatarUrl());
-        embedBuilder.addField(":information_source: General Information:", "**Username:** " + targetUser.getAsTag() + "\n**Display Name:** " + target.getEffectiveName() + "\n**User ID:** " + targetUser.getId() + "\n**Bot Account:** " + (targetUser.isBot() ? "Yes" : "No"), false);
+
+        StringBuilder generalBuilder = new StringBuilder();
+        generalBuilder.append("**Username:**" + targetUser.getAsTag() + "\n");
+        generalBuilder.append("**Display Name:** " + target.getEffectiveName() + "\n");
+        generalBuilder.append("**User ID:** " + target.getId() + "\n");
+        generalBuilder.append("**Bot Account:**" + (targetUser.isBot() ? "Yes" : "No"));
+
+        embedBuilder.addField(":information_source: General Information:", generalBuilder.toString(), false);
         embedBuilder.addField(":calendar: Dates:", "**Account Created:** " + targetUser.getTimeCreated().format(DateTimeFormatter.RFC_1123_DATE_TIME) + "\n**Server Joined:** " + target.getTimeJoined().format(DateTimeFormatter.RFC_1123_DATE_TIME), false);
 
         String partner = "None";

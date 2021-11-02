@@ -95,7 +95,7 @@ public class ModifyBalanceCommand implements ICommand {
 
     @Override
     public String getName() {
-        return "modify balance";
+        return "modifybalance";
     }
 
     @Override

@@ -47,13 +47,17 @@ public class UserInfoCommand implements ICommand {
         embedBuilder.setThumbnail(targetUser.getEffectiveAvatarUrl());
 
         StringBuilder generalBuilder = new StringBuilder();
-        generalBuilder.append("**Username:**" + targetUser.getAsTag() + "\n");
-        generalBuilder.append("**Display Name:** " + target.getEffectiveName() + "\n");
-        generalBuilder.append("**User ID:** " + target.getId() + "\n");
-        generalBuilder.append("**Bot Account:**" + (targetUser.isBot() ? "Yes" : "No"));
+        generalBuilder.append("Username: `" + targetUser.getAsTag() + "`\n");
+        generalBuilder.append("Display Name: `" + target.getEffectiveName() + "`\n");
+        generalBuilder.append("User ID: `" + target.getId() + "`\n");
+        generalBuilder.append("Bot Account: `" + (targetUser.isBot() ? "Yes" : "No") + "`");
+
+        StringBuilder datesBuilder = new StringBuilder();
+        datesBuilder.append("Account Created: `" + targetUser.getTimeCreated().format(DateTimeFormatter.RFC_1123_DATE_TIME) + "`\n");
+        datesBuilder.append("Server Joined: `" + target.getTimeJoined().format(DateTimeFormatter.RFC_1123_DATE_TIME) + "`");
 
         embedBuilder.addField(":information_source: General Information:", generalBuilder.toString(), false);
-        embedBuilder.addField(":calendar: Dates:", "**Account Created:** " + targetUser.getTimeCreated().format(DateTimeFormatter.RFC_1123_DATE_TIME) + "\n**Server Joined:** " + target.getTimeJoined().format(DateTimeFormatter.RFC_1123_DATE_TIME), false);
+        embedBuilder.addField(":calendar: Dates:", datesBuilder.toString(), false);
 
         String partner = "None";
         if (targetManager.hasPartner()) {

@@ -1,6 +1,5 @@
 package net.toujoustudios.kazunya.command.list.stats;
 
-import com.mysql.cj.result.StringValueFactory;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.User;
@@ -39,7 +38,7 @@ public class UserInfoCommand implements ICommand {
         }
 
         Member target = args.get(0).getAsMember();
-        if(target == null) return;
+        if (target == null) return;
         User targetUser = target.getUser();
         UserManager targetManager = UserManager.getUser(targetUser.getId());
 

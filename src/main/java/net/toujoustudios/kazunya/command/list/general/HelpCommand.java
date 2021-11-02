@@ -63,7 +63,7 @@ public class HelpCommand implements ICommand {
                 if (command.getCategory() == CommandCategory.FUN) {
                     builderFun.append("`/" + command.getName() + "` - " + command.getDescription() + "\n");
                 }
-                if(command.getCategory() == CommandCategory.STATS) {
+                if (command.getCategory() == CommandCategory.STATS) {
                     builderStats.append("`/" + command.getName() + "` - " + command.getDescription() + "\n");
                 }
             }

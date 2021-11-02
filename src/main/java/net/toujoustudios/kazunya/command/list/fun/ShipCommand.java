@@ -2,7 +2,6 @@ package net.toujoustudios.kazunya.command.list.fun;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
@@ -40,7 +39,7 @@ public class ShipCommand implements ICommand {
         Member first = args.get(0).getAsMember();
         Member second = args.get(1).getAsMember();
 
-        if(first == null || second == null) return;
+        if (first == null || second == null) return;
 
         int rating = 0;
         String firstId = first.getId();

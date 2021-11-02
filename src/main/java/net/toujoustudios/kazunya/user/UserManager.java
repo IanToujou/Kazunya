@@ -15,13 +15,13 @@ public class UserManager {
 
     private static final HashMap<String, UserManager> users = new HashMap<>();
     private String userId;
-    private double money;
+    private double accountMoney;
     private String partner;
 
     public UserManager(String userId) {
 
         this.userId = userId;
-        this.money = UserDataManager.getMoney(userId);
+        this.accountMoney = UserDataManager.getAccountMoney(userId);
         this.partner = UserDataManager.getPartner(userId);
 
     }
@@ -52,7 +52,7 @@ public class UserManager {
 
     public void save() {
 
-        UserDataManager.setMoney(userId, money);
+        UserDataManager.setAccountMoney(userId, accountMoney);
         if (hasPartner()) {
             UserDataManager.setPartner(userId, partner);
         } else {
@@ -75,20 +75,20 @@ public class UserManager {
         this.userId = userId;
     }
 
-    public double getMoney() {
-        return money;
+    public double getAccountMoney() {
+        return accountMoney;
     }
 
-    public void setMoney(double money) {
-        this.money = money;
+    public void setMoney(double accountMoney) {
+        this.accountMoney = accountMoney;
     }
 
-    public void addMoney(double amount) {
-        setMoney(getMoney() + amount);
+    public void addAccountMoney(double amount) {
+        setMoney(getAccountMoney() + amount);
     }
 
-    public void removeMoney(double amount) {
-        setMoney(getMoney() - amount);
+    public void removeAccountMoney(double amount) {
+        setMoney(getAccountMoney() - amount);
     }
 
     public String getPartner() {

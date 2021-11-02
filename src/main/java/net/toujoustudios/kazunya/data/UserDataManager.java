@@ -13,21 +13,21 @@ import java.sql.SQLException;
  */
 public class UserDataManager {
 
-    public static void setMoney(String userId, double amount) {
+    public static void setAccountMoney(String userId, double amount) {
 
         amount = (double) Math.round(amount * 100) / 100;
-        DatabaseManager.executeUpdate("INSERT INTO user_data (user_id, money) VALUES ('" + userId + "', '" + amount + "') ON DUPLICATE KEY UPDATE money='" + amount + "';");
+        DatabaseManager.executeUpdate("INSERT INTO user_data (user_id, account_money) VALUES ('" + userId + "', '" + amount + "') ON DUPLICATE KEY UPDATE account_money='" + amount + "';");
 
     }
 
-    public static double getMoney(String userId) {
+    public static double getAccountMoney(String userId) {
 
         try {
 
-            ResultSet resultSet = DatabaseManager.executeQuery("SELECT money FROM user_data WHERE user_id='" + userId + "';");
+            ResultSet resultSet = DatabaseManager.executeQuery("SELECT account_money FROM user_data WHERE user_id='" + userId + "';");
 
             if (resultSet != null && resultSet.next()) {
-                double money = resultSet.getDouble("money");
+                double money = resultSet.getDouble("account_money");
                 return (double) Math.round(money * 100) / 100;
             }
 

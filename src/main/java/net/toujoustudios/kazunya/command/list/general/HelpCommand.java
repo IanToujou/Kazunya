@@ -52,6 +52,7 @@ public class HelpCommand implements ICommand {
             StringBuilder builderRoleplay = new StringBuilder();
             StringBuilder builderFun = new StringBuilder();
             StringBuilder builderStats = new StringBuilder();
+            StringBuilder builderEconomy = new StringBuilder();
 
             for (ICommand command : manager.getCommands()) {
                 if (command.getCategory() == CommandCategory.GENERAL) {
@@ -66,12 +67,16 @@ public class HelpCommand implements ICommand {
                 if (command.getCategory() == CommandCategory.STATS) {
                     builderStats.append("`/" + command.getName() + "` - " + command.getDescription() + "\n");
                 }
+                if (command.getCategory() == CommandCategory.ECONOMY) {
+                    builderEconomy.append("`/" + command.getName() + "` - " + command.getDescription() + "\n");
+                }
             }
 
             embedBuilder.addField(":satellite_orbital: General:", builderGeneral.toString(), false);
             embedBuilder.addField(":heart: Roleplay:", builderRoleplay.toString(), false);
             embedBuilder.addField(":sparkles: Fun:", builderFun.toString(), false);
             embedBuilder.addField(":bar_chart: Stats:", builderStats.toString(), false);
+            embedBuilder.addField(":credit_card: Economy:", builderEconomy.toString(), false);
 
             boolean isOwnerOnServer = false;
             for (Member member : context.getGuild().getMembers()) {

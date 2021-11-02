@@ -35,6 +35,7 @@ public class CommandManager {
         this.addCommand(new BlushCommand());
         this.addCommand(new HugCommand());
         this.addCommand(new CuddleCommand());
+        this.addCommand(new CryCommand());
         this.addCommand(new ShipCommand());
         this.addCommand(new UserInfoCommand());
         this.addCommand(new ModifyBalanceCommand());

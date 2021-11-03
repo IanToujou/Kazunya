@@ -2,8 +2,6 @@ package net.toujoustudios.kazunya.command.list.economy;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.entities.TextChannel;
-import net.dv8tion.jda.api.interactions.commands.Command;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
@@ -65,29 +63,29 @@ public class ModifyAccountBalanceCommand implements ICommand {
         if (action.equals("set")) {
 
             targetManager.setMoney(value);
-            embedBuilder.setDescription(":credit_card: You set the account value of " + target.getAsMention() + " to **" + value + "$**.");
+            embedBuilder.setDescription("You set the account value of " + target.getAsMention() + " to **" + value + "$**.");
 
         } else if (action.equals("add")) {
 
             targetManager.addAccountMoney(value);
-            embedBuilder.setDescription(":credit_card: You added  **" + value + "$** to the account of " + target.getAsMention() + ". New balance: `" + targetManager.getAccountMoney() + "$`.");
+            embedBuilder.setDescription("You added  **" + value + "$** to the account of " + target.getAsMention() + ". New balance: `" + targetManager.getAccountMoney() + "$`.");
 
         } else if (action.equals("remove")) {
 
             targetManager.removeAccountMoney(value);
-            embedBuilder.setDescription(":credit_card: You removed  **" + value + "$** from the account of " + target.getAsMention() + ". New balance: `" + targetManager.getAccountMoney() + "$`.");
+            embedBuilder.setDescription("You removed  **" + value + "$** from the account of " + target.getAsMention() + ". New balance: `" + targetManager.getAccountMoney() + "$`.");
 
         } else if (action.equals("show")) {
 
             double money = targetManager.getAccountMoney();
-            embedBuilder.setDescription(":credit_card: " + target.getAsMention() + "'s account balance is currently: `" + targetManager.getAccountMoney() + "$`.");
+            embedBuilder.setDescription(target.getAsMention() + "'s account balance is currently: `" + targetManager.getAccountMoney() + "$`.");
 
         } else {
             ErrorEmbed.sendError(context, ErrorType.ACTION_INVALID_OPERATION_BALANCE);
             return;
         }
 
-        embedBuilder.setTitle("**:moneybag: Account Modification:**");
+        embedBuilder.setTitle("**:credit_card: Account Modification:**");
         embedBuilder.setColor(ColorTools.getFromRGBString(config.getString("format.color.default")));
         context.getEvent().replyEmbeds(embedBuilder.build()).queue();
 

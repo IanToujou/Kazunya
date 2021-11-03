@@ -2,6 +2,7 @@ package net.toujoustudios.kazunya.error;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.MessageEmbed;
+import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.interactions.components.Button;
 import net.toujoustudios.kazunya.color.ColorTools;
 import net.toujoustudios.kazunya.command.CommandContext;
@@ -28,6 +29,10 @@ public class ErrorEmbed {
 
     public static void sendError(CommandContext context, ErrorType type) {
         context.getEvent().replyEmbeds(buildError(type)).addActionRow(Button.link(config.getString("link.help"), "Help")).setEphemeral(true).queue();
+    }
+
+    public static void sendError(SlashCommandEvent event, ErrorType type) {
+        event.replyEmbeds(buildError(type)).addActionRow(Button.link(config.getString("link.help"), "Help")).setEphemeral(true).queue();
     }
 
 }

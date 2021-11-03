@@ -17,6 +17,8 @@ public interface ICommand {
 
     CommandCategory getCategory();
 
+    default boolean isNSFW() { return false; }
+
     default List<String> getAliases() {
         return Collections.emptyList();
     }

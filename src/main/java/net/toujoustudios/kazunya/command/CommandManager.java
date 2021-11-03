@@ -10,6 +10,8 @@ import net.toujoustudios.kazunya.command.list.fun.ShipCommand;
 import net.toujoustudios.kazunya.command.list.general.HelpCommand;
 import net.toujoustudios.kazunya.command.list.roleplay.*;
 import net.toujoustudios.kazunya.command.list.stats.UserInfoCommand;
+import net.toujoustudios.kazunya.error.ErrorEmbed;
+import net.toujoustudios.kazunya.error.ErrorType;
 import net.toujoustudios.kazunya.log.LogLevel;
 import net.toujoustudios.kazunya.log.Logger;
 import net.toujoustudios.kazunya.main.Main;
@@ -109,8 +111,13 @@ public class CommandManager {
         if (command != null) {
 
             event.getChannel().sendTyping().queue();
-            List<OptionMapping> args = event.getOptions();
 
+            if(command.isNSFW() && !event.getTextChannel().isNSFW()) {
+                ErrorEmbed.sendError(event, ErrorType.GENERAL_NSFW);
+                return;
+            }
+
+            List<OptionMapping> args = event.getOptions();
             CommandContext context = new CommandContext(event, args);
             command.handle(context);
 

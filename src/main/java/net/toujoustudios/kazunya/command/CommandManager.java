@@ -42,6 +42,7 @@ public class CommandManager {
         this.addCommand(new ShipCommand());
         this.addCommand(new UserInfoCommand());
         this.addCommand(new ModifyBalanceCommand());
+        this.addCommand(new FuckCommand());
     }
 
     private void addCommand(ICommand command) {

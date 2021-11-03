@@ -25,11 +25,11 @@ import java.util.List;
  * Date: 02/11/2021
  * Time: 04:12
  */
-public class ModifyBalanceCommand implements ICommand {
+public class ModifyAccountBalanceCommand implements ICommand {
 
     private final Config config;
 
-    public ModifyBalanceCommand() {
+    public ModifyAccountBalanceCommand() {
         config = Config.getDefault();
     }
 
@@ -42,8 +42,6 @@ public class ModifyBalanceCommand implements ICommand {
 
         List<OptionMapping> args = context.getArgs();
         EmbedBuilder embedBuilder = new EmbedBuilder();
-
-        embedBuilder.setColor(ColorTools.getFromRGBString(config.getString("format.color.default")));
 
         if (args.size() != 3) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_SYNTAX);
@@ -60,7 +58,7 @@ public class ModifyBalanceCommand implements ICommand {
             return;
         }
 
-        Member target = args.get(0).getAsMember();
+        Member target = args.get(2).getAsMember();
         assert target != null;
         UserManager targetManager = UserManager.getUser(target.getId());
 
@@ -89,13 +87,15 @@ public class ModifyBalanceCommand implements ICommand {
             return;
         }
 
+        embedBuilder.setTitle("**:moneybag: Account Modification:**");
+        embedBuilder.setColor(ColorTools.getFromRGBString(config.getString("format.color.default")));
         context.getEvent().replyEmbeds(embedBuilder.build()).queue();
 
     }
 
     @Override
     public String getName() {
-        return "modifybalance";
+        return "modifyaccountbalance";
     }
 
     @Override

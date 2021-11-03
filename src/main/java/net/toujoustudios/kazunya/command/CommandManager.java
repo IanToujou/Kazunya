@@ -114,7 +114,7 @@ public class CommandManager {
 
             event.getChannel().sendTyping().queue();
 
-            if(command.getCategory() == CommandCategory.NSFW && !event.getTextChannel().isNSFW()) {
+            if (command.getCategory() == CommandCategory.NSFW && !event.getTextChannel().isNSFW()) {
                 ErrorEmbed.sendError(event, ErrorType.GENERAL_NSFW);
                 return;
             }

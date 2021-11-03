@@ -14,7 +14,6 @@ import net.toujoustudios.kazunya.command.ICommand;
 import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
-import org.codehaus.plexus.util.xml.SerializerXMLWriter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,7 +81,8 @@ public class HelpCommand implements ICommand {
             embedBuilder.addField(":sparkles: Fun:", builderFun.toString(), false);
             embedBuilder.addField(":bar_chart: Stats:", builderStats.toString(), false);
             embedBuilder.addField(":credit_card: Economy:", builderEconomy.toString(), false);
-            if(context.getEvent().getTextChannel().isNSFW()) embedBuilder.addField(":no_entry_sign: NSFW:", builderNSFW.toString(), false);
+            if (context.getEvent().getTextChannel().isNSFW())
+                embedBuilder.addField(":no_entry_sign: NSFW:", builderNSFW.toString(), false);
 
             boolean isOwnerOnServer = false;
             for (Member member : context.getGuild().getMembers()) {

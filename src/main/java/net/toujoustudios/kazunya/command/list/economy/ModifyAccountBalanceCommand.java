@@ -52,13 +52,13 @@ public class ModifyAccountBalanceCommand implements ICommand {
         double value = 0;
 
         try {
-            value = Double.parseDouble(args.get(1).getAsString());
+            value = Double.parseDouble(args.get(2).getAsString());
         } catch (Exception exception) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_NUMBER_DOUBLE);
             return;
         }
 
-        Member target = args.get(2).getAsMember();
+        Member target = args.get(1).getAsMember();
         assert target != null;
         UserManager targetManager = UserManager.getUser(target.getId());
 

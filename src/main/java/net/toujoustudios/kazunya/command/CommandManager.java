@@ -39,6 +39,7 @@ public class CommandManager {
         this.addCommand(new KissCommand());
         this.addCommand(new CuddleCommand());
         this.addCommand(new CryCommand());
+        this.addCommand(new PatCommand());
         this.addCommand(new ShipCommand());
         this.addCommand(new UserInfoCommand());
         this.addCommand(new ModifyBalanceCommand());
@@ -113,7 +114,7 @@ public class CommandManager {
 
             event.getChannel().sendTyping().queue();
 
-            if(command.isNSFW() && !event.getTextChannel().isNSFW()) {
+            if(command.getCategory() == CommandCategory.NSFW && !event.getTextChannel().isNSFW()) {
                 ErrorEmbed.sendError(event, ErrorType.GENERAL_NSFW);
                 return;
             }

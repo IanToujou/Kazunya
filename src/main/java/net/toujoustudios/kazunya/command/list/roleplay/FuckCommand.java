@@ -82,12 +82,7 @@ public class FuckCommand implements ICommand {
 
     @Override
     public CommandCategory getCategory() {
-        return CommandCategory.ROLEPLAY;
-    }
-
-    @Override
-    public boolean isNSFW() {
-        return true;
+        return CommandCategory.NSFW;
     }
 
 }

@@ -6,6 +6,7 @@ import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
+import net.toujoustudios.kazunya.color.ColorTools;
 import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.command.ICommand;
@@ -25,6 +26,12 @@ import java.util.List;
  * Time: 23:56
  */
 public class UserInfoCommand implements ICommand {
+
+    private final Config config;
+
+    public UserInfoCommand() {
+        config = Config.getDefault();
+    }
 
     @Override
     @SuppressWarnings("all")
@@ -80,6 +87,7 @@ public class UserInfoCommand implements ICommand {
 
         }
 
+        embedBuilder.setColor(ColorTools.getFromRGBString(config.getString("format.color.default")));
         context.getEvent().replyEmbeds(embedBuilder.build()).queue();
 
     }

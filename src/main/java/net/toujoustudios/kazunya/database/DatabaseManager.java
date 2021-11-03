@@ -84,7 +84,7 @@ public class DatabaseManager {
     }
 
     public static void setup() {
-        executeUpdate("CREATE TABLE IF NOT EXISTS user_data ( `user_id` VARCHAR(256) NOT NULL , `usage_banned` BOOLEAN NOT NULL DEFAULT FALSE , `money` INT NOT NULL DEFAULT '0' , `partner_id` VARCHAR(256) NULL DEFAULT NULL , PRIMARY KEY (`user_id`)) ENGINE = InnoDB;");
+        executeUpdate("CREATE TABLE IF NOT EXISTS user_data ( `user_id` VARCHAR(256) NOT NULL , `usage_banned` BOOLEAN NOT NULL DEFAULT FALSE , `account_money` INT NOT NULL DEFAULT '0' , `wallet_money` INT NOT NULL DEFAULT '0', `partner_id` VARCHAR(256) NULL DEFAULT NULL , PRIMARY KEY (`user_id`)) ENGINE = InnoDB;");
     }
 
 }

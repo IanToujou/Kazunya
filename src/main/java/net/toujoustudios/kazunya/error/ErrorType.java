@@ -17,11 +17,13 @@ public enum ErrorType {
     COMMAND_INVALID_USER_SELF("1005", "You cannot do that to yourself. Please specify another user."),
     COMMAND_INVALID_NUMBER_INTEGER("1006", "The given number is invalid. It must be a full number."),
     COMMAND_INVALID_NUMBER_DOUBLE("1007", "The given number is invalid. It must be either a full or a decimal number."),
+    COMMAND_INVALID_OPERATION_BALANCE("1008", "The specified operation is invalid. You can either set, add, remove or show the account balance of someone."),
+    COMMAND_INVALID_STOCK("1009", "The specified stock does not exist. Please use /marketinfo to get the full list of available stocks."),
 
     ACTION_ALREADY_MARRIED_SELF("2001", "You are already married."),
     ACTION_ALREADY_MARRIED_TARGET("2002", "The specified person is already married. Sorry about that."),
-    ACTION_NO_PARTNER("2003", "You don't have any partner."),
-    ACTION_INVALID_OPERATION_BALANCE("2004", "The specified operation is invalid. You can either set, add, remove or show the account balance of someone.");
+    ACTION_NO_PARTNER("2003", "You don't have any partner.");
+
 
     private final String code;
     private final String description;

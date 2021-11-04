@@ -81,7 +81,7 @@ public class ModifyAccountBalanceCommand implements ICommand {
             embedBuilder.setDescription(target.getAsMention() + "'s account balance is currently: `" + targetManager.getAccountMoney() + "$`.");
 
         } else {
-            ErrorEmbed.sendError(context, ErrorType.ACTION_INVALID_OPERATION_BALANCE);
+            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_OPERATION_BALANCE);
             return;
         }
 

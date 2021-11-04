@@ -1,6 +1,7 @@
 package net.toujoustudios.kazunya.loader;
 
 import net.toujoustudios.kazunya.config.Config;
+import net.toujoustudios.kazunya.economy.stock.StockMarket;
 import net.toujoustudios.kazunya.main.Main;
 
 /**
@@ -29,6 +30,7 @@ public class Loader {
     }
 
     private static void initialize() {
+        StockMarket.initialize();
         Main.getBot().build();
     }
 

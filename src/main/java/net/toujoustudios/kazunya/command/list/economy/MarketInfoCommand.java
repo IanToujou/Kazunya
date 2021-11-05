@@ -106,7 +106,7 @@ public class MarketInfoCommand implements ICommand {
     @Override
     public List<OptionData> getOptions() {
         List<OptionData> optionData = new ArrayList<>();
-        optionData.add(new OptionData(OptionType.USER, "stock", "The stock you want to retrieve information from.", false));
+        optionData.add(new OptionData(OptionType.STRING, "stock", "The stock you want to retrieve information from.", false));
         return optionData;
     }
 

@@ -57,7 +57,7 @@ public class TickleCommand implements ICommand {
         images.add("https://c.tenor.com/sa1QuA9GFaoAAAAC/anime-tickle.gif");
 
         assert target != null;
-        embedBuilder.setTitle("**:purple_heart: Tickle**");
+        embedBuilder.setTitle("**:yellow_heart: Tickle**");
         embedBuilder.setDescription("**" + member.getEffectiveName() + " tickles " + target.getAsMention() + "!** :3");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
         embedBuilder.setColor(ColorTools.getFromRGBString(config.getString("format.color.default")));

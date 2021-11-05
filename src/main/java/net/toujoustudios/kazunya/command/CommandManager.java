@@ -59,6 +59,7 @@ public class CommandManager {
 
         Logger.log(LogLevel.INFORMATION, "Registering commands. This may take a while...");
         CommandListUpdateAction updateAction = Main.getBot().getJDA().updateCommands();
+        List<CommandData> commands = new ArrayList<>();
 
         for (ICommand command : this.commands) {
 
@@ -77,6 +78,7 @@ public class CommandManager {
             Logger.log(LogLevel.DEBUG, "--------------------------------------------------");
 
             CommandData data = new CommandData(command.getName(), command.getDescription()).addOptions(command.getOptions());
+            commands.add(data);
 
             if (command.getOptions().isEmpty()) {
                 Main.getBot().getJDA().upsertCommand(command.getName(), command.getDescription()).queue();
@@ -86,6 +88,7 @@ public class CommandManager {
 
         }
 
+        //updateAction.addCommands(commands).queue();
         Logger.log(LogLevel.INFORMATION, "Successfully registered " + commands.size() + " commands.");
 
     }

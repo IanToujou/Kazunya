@@ -51,7 +51,7 @@ public class MarketInfoCommand implements ICommand {
 
             embedBuilder.setTitle("**__STOCK MARKET__**");
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("*Here is a full list of the available stocks or currencies.\nPlease type `nya marketinfo [id]` to get more information on a stock.*\n");
+            stringBuilder.append("*Here is a full list of the available stocks or currencies.\nPlease type `/marketinfo [id]` to get more information on a stock.*\n");
 
             for (Stock stock : StockMarket.getStockMarket("default_market").getStocks()) {
 

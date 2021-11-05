@@ -46,6 +46,7 @@ public class CommandManager {
         this.addCommand(new LickCommand());
         this.addCommand(new PurrCommand());
         this.addCommand(new SmileCommand());
+        this.addCommand(new KillCommand());
         this.addCommand(new ShipCommand());
         this.addCommand(new UserInfoCommand());
         this.addCommand(new ModifyAccountBalanceCommand());

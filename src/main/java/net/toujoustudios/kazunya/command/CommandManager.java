@@ -41,6 +41,7 @@ public class CommandManager {
         this.addCommand(new CuddleCommand());
         this.addCommand(new CryCommand());
         this.addCommand(new PatCommand());
+        this.addCommand(new TickleCommand());
         this.addCommand(new ShipCommand());
         this.addCommand(new UserInfoCommand());
         this.addCommand(new ModifyAccountBalanceCommand());

@@ -51,9 +51,13 @@ public class KillCommand implements ICommand {
         images.add("https://c.tenor.com/FJmJM5jRVp4AAAAd/wasted-anime.gif");
         images.add("https://c.tenor.com/PJbU0yjG3BUAAAAd/anime-girl.gif");
 
+        ArrayList<String> messages = new ArrayList<>();
+        messages.add("{Victim} got killed by {Killer}!");
+        messages.add("{Killer} used a nuke on {Victim}!");
+
         assert target != null;
         embedBuilder.setTitle("**:skull: Kill**");
-        embedBuilder.setDescription("**" + member.getEffectiveName() + " killed " + target.getAsMention() + "!** >:c");
+        embedBuilder.setDescription(messages.get(new Random().nextInt(messages.size())).replace("{Victim}", target.getAsMention()).replace("{Killer}", member.getAsMention()));
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
         embedBuilder.setColor(ColorTools.getFromRGBString(config.getString("format.color.default")));
         context.getEvent().replyEmbeds(embedBuilder.build()).queue();

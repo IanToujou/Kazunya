@@ -52,14 +52,48 @@ public class KillCommand implements ICommand {
         images.add("https://c.tenor.com/PJbU0yjG3BUAAAAd/anime-girl.gif");
 
         ArrayList<String> messages = new ArrayList<>();
-        messages.add("{Victim} got killed by {Killer}!");
-        messages.add("{Killer} used a nuke on {Victim}!");
-        messages.add("{Victim} stepped on a landmine and died.");
-        messages.add("{Killer} hugged {Victim} a little too hard...");
-        messages.add("");
+
+        int random = new Random().nextInt(2);
+
+        if(random == 1) {
+            embedBuilder.setTitle("**:skull: Kill**");
+            messages.add("{Victim} got killed by {Killer}.");
+            messages.add("{Killer} used a nuke on {Victim}.");
+            messages.add("{Victim} stepped on a landmine and died.");
+            messages.add("{Killer} hugged {Victim} a little too hard...");
+            messages.add("{Victim} got crushed by {Killer}'s fat ass. Whoops...");
+            messages.add("{Victim} died due to a cuddle overdose.");
+            messages.add("{Victim} ate too many hamburgers.");
+            messages.add("{Killer} threw a bottle of highly concentrated sulfuric acid on {Victim}.");
+            messages.add("{Victim} was used as a fuel source for {Killer}'s car.");
+            messages.add("{Victim} got sandwiched by {Killer}.");
+            messages.add("{Victim} was too beautiful for this world.");
+            messages.add("{Victim} was too ugly for this world.");
+            messages.add("{Victim} got dominated by {Killer}.");
+            messages.add("{Victim} watched too much Anime.");
+            messages.add("{Victim} died in a car crash.");
+            messages.add("{Killer} used kinetic bombardment on {Victim}.");
+            messages.add("{Victim} was too horny and died.");
+            messages.add("{Killer} yeeted {Victim} out of the window.");
+            messages.add("{Killer} was hungry and ate {Victim}.");
+            messages.add("{Victim} played too much Genshin Impact and starved to death.");
+            messages.add("{Killer} stole all the food from {Victim}.");
+            messages.add("{Victim} watched certain Ankha videos and died.");
+            messages.add("{Killer} threw {Victim} into an abandoned nuclear missile shaft.");
+            messages.add("{Victim} got killed by SCP-173.");
+            messages.add("{Victim} was sent to space by {Killer}");
+        } else {
+            embedBuilder.setTitle("**:boom: Kill Failed**");
+            messages.add("{Victim} escaped {Killer}'s knife and ran away.");
+            messages.add("{Victim} used the UNO reverse card on {Killer}.");
+            messages.add("{Victim} was about to die but replied \"No u\".");
+            messages.add("Ricardo Milos saved {Victim} and killed {Killer}.");
+            messages.add("{Killer} slipped over a Banana and broke the neck while trying to get near {Victim}.");
+            messages.add("{Killer} died due to a heart attack before he could kill {Victim}. Death Note moment lmao.");
+        }
 
         assert target != null;
-        embedBuilder.setTitle("**:skull: Kill**");
+
         embedBuilder.setDescription(messages.get(new Random().nextInt(messages.size())).replace("{Victim}", target.getAsMention()).replace("{Killer}", member.getAsMention()));
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
         embedBuilder.setColor(ColorTools.getFromRGBString(config.getString("format.color.default")));

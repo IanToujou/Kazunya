@@ -54,6 +54,9 @@ public class KillCommand implements ICommand {
         ArrayList<String> messages = new ArrayList<>();
         messages.add("{Victim} got killed by {Killer}!");
         messages.add("{Killer} used a nuke on {Victim}!");
+        messages.add("{Victim} stepped on a landmine and died.");
+        messages.add("{Killer} hugged {Victim} a little too hard...");
+        messages.add("");
 
         assert target != null;
         embedBuilder.setTitle("**:skull: Kill**");

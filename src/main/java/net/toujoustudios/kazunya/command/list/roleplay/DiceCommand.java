@@ -50,17 +50,21 @@ public class DiceCommand implements ICommand {
         if(args.size() > 1) offset = (int) args.get(1).getAsLong();
 
         if(sides <= 0 || sides >= 1000000) {
-            //Sides not in range.
+            ErrorEmbed.sendError(context, ErrorType.ACTION_DICE_SIDES_NOT_IN_RANGE);
             return;
         }
 
         if(offset <= -1000000 || offset >= 1000000) {
-            //Offset not in range.
+            ErrorEmbed.sendError(context, ErrorType.ACTION_DICE_OFFSET_NOT_IN_RANGE);
             return;
         }
 
         int random = new Random().nextInt(sides) + 1;
+        random += offset;
 
+        embedBuilder.setTitle("**:dice: Dice Roll**");
+        embedBuilder.setDescription("You rolled a dice!\nResult: `" + random + "`");
+        embedBuilder.addField("Input", "Sides: `" + sides + "`\nOffset: `" + offset + "`", false);
         embedBuilder.setColor(ColorTools.getFromRGBString(config.getString("format.color.default")));
         context.getEvent().replyEmbeds(embedBuilder.build()).queue();
 

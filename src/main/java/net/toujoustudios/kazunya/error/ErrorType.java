@@ -22,7 +22,9 @@ public enum ErrorType {
 
     ACTION_ALREADY_MARRIED_SELF("2001", "You are already married."),
     ACTION_ALREADY_MARRIED_TARGET("2002", "The specified person is already married. Sorry about that."),
-    ACTION_NO_PARTNER("2003", "You don't have any partner.");
+    ACTION_NO_PARTNER("2003", "You don't have any partner."),
+    ACTION_DICE_SIDES_NOT_IN_RANGE("2004", "The specified side amount is not in the given range (1 to 999999)."),
+    ACTION_DICE_OFFSET_NOT_IN_RANGE("2005", "The specified offset is not in the given range (-999999 to 999999");
 
 
     private final String code;

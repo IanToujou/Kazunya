@@ -52,6 +52,7 @@ public class CommandManager {
         this.addCommand(new ModifyAccountBalanceCommand());
         this.addCommand(new MarketInfoCommand());
         this.addCommand(new FuckCommand());
+        this.addCommand(new DiceCommand());
     }
 
     private void addCommand(ICommand command) {

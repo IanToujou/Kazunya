@@ -52,7 +52,7 @@ public class CommandManager {
         this.addCommand(new ModifyAccountBalanceCommand());
         this.addCommand(new MarketInfoCommand());
         this.addCommand(new FuckCommand());
-        this.addCommand(new DiceCommand());
+        this.addCommand(new RollCommand());
     }
 
     private void addCommand(ICommand command) {

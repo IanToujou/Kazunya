@@ -23,11 +23,11 @@ import java.util.Random;
  * Date: 30/11/2021
  * Time: 06:38
  */
-public class DiceCommand implements ICommand {
+public class RollCommand implements ICommand {
 
     private final Config config;
 
-    public DiceCommand() {
+    public RollCommand() {
         config = Config.getDefault();
     }
 
@@ -62,7 +62,7 @@ public class DiceCommand implements ICommand {
         int random = new Random().nextInt(sides) + 1;
         random += offset;
 
-        embedBuilder.setTitle("**:dice: Dice Roll**");
+        embedBuilder.setTitle("**:game_die: Dice Roll**");
         embedBuilder.setDescription("You rolled a dice!\nResult: `" + random + "`");
         embedBuilder.addField("Input", "Sides: `" + sides + "`\nOffset: `" + offset + "`", false);
         embedBuilder.setColor(ColorTools.getFromRGBString(config.getString("format.color.default")));
@@ -72,7 +72,7 @@ public class DiceCommand implements ICommand {
 
     @Override
     public String getName() {
-        return "dice";
+        return "roll";
     }
 
     @Override

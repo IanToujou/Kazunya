@@ -38,7 +38,7 @@ public class RollCommand implements ICommand {
         Member member = context.getMember();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
-        if (args.size() > 2) {
+        if (args.size() > 3) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_SYNTAX);
             return;
         }
@@ -48,8 +48,8 @@ public class RollCommand implements ICommand {
         int offset = 0;
 
         if (args.size() > 0) sides = (int) args.get(0).getAsLong();
-        if (args.size() > 1) offset = (int) args.get(1).getAsLong();
-        if (args.size() > 2) times = (int) args.get(2).getAsLong();
+        if (args.size() > 1) times = (int) args.get(1).getAsLong();
+        if (args.size() > 2) offset = (int) args.get(2).getAsLong();
 
         if (sides <= 0 || sides >= 1000000) {
             ErrorEmbed.sendError(context, ErrorType.ACTION_DICE_SIDES_NOT_IN_RANGE);
@@ -74,15 +74,19 @@ public class RollCommand implements ICommand {
         } else {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("You rolled `").append(times).append("` dice!\n");
-            stringBuilder.append("Result: `");
+            stringBuilder.append("Result: `(");
 
-            int finalResult = 0;
-            for (int i = 0; i <= results.length; i++) {
+            int sum = 0;
+            for (int i = 0; i < results.length; i++) {
                 if (i != 0) stringBuilder.append(" + ");
                 stringBuilder.append(results[i]);
-                finalResult += results[i];
+                sum += results[i];
             }
 
+            int finalResult = sum + offset;
+
+            stringBuilder.append(") + ");
+            stringBuilder.append(offset);
             stringBuilder.append(" = ");
             stringBuilder.append(finalResult);
             stringBuilder.append("`");

@@ -92,7 +92,7 @@ public class RollCommand implements ICommand {
             stringBuilder.append("`");
 
             embedBuilder.setDescription(stringBuilder.toString());
-            embedBuilder.addField("Input", "Sides: `" + sides + "`\nOffset: `" + offset + "`\nTimes: `" + times + "`", false);
+            embedBuilder.addField(":level_slider: Input", "Sides: `" + sides + "`\nOffset: `" + offset + "`\nTimes: `" + times + "`", false);
         }
 
         embedBuilder.setTitle("**:game_die: Dice Roll**");

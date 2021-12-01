@@ -47,28 +47,28 @@ public class RollCommand implements ICommand {
         int times = 1;
         int offset = 0;
 
-        if(args.size() > 0) sides = (int) args.get(0).getAsLong();
-        if(args.size() > 1) offset = (int) args.get(1).getAsLong();
-        if(args.size() > 2) times = (int) args.get(2).getAsLong();
+        if (args.size() > 0) sides = (int) args.get(0).getAsLong();
+        if (args.size() > 1) offset = (int) args.get(1).getAsLong();
+        if (args.size() > 2) times = (int) args.get(2).getAsLong();
 
-        if(sides <= 0 || sides >= 1000000) {
+        if (sides <= 0 || sides >= 1000000) {
             ErrorEmbed.sendError(context, ErrorType.ACTION_DICE_SIDES_NOT_IN_RANGE);
             return;
         }
 
-        if(offset <= -1000000 || offset >= 1000000) {
+        if (offset <= -1000000 || offset >= 1000000) {
             ErrorEmbed.sendError(context, ErrorType.ACTION_DICE_OFFSET_NOT_IN_RANGE);
             return;
         }
 
         int[] results = new int[times];
 
-        for(int i = 0; i < times; i++) {
+        for (int i = 0; i < times; i++) {
             int random = new Random().nextInt(sides) + 1;
             results[i] = random;
         }
 
-        if(times == 1) {
+        if (times == 1) {
             embedBuilder.setDescription("You rolled `1` dice!\nResult: `" + results[0] + "`");
             embedBuilder.addField("Input", "Sides: `" + sides + "`\nOffset: `" + offset + "`\nTimes: `" + times + "`", false);
         } else {
@@ -77,8 +77,8 @@ public class RollCommand implements ICommand {
             stringBuilder.append("Result: `");
 
             int finalResult = 0;
-            for(int i = 0; i <= results.length; i++) {
-                if(i != 0) stringBuilder.append(" + ");
+            for (int i = 0; i <= results.length; i++) {
+                if (i != 0) stringBuilder.append(" + ");
                 stringBuilder.append(results[i]);
                 finalResult += results[i];
             }

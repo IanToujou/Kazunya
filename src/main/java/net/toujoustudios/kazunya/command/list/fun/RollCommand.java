@@ -1,4 +1,4 @@
-package net.toujoustudios.kazunya.command.list.roleplay;
+package net.toujoustudios.kazunya.command.list.fun;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;

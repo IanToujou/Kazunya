@@ -89,14 +89,14 @@ public class CommandManager {
             commands.add(data);
 
             if (command.getOptions().isEmpty()) {
-                Main.getBot().getJDA().upsertCommand(command.getName(), command.getDescription()).queue();
+                //Main.getBot().getJDA().upsertCommand(command.getName(), command.getDescription()).queue();
             } else {
-                Main.getBot().getJDA().upsertCommand(data).queue();
+                //Main.getBot().getJDA().upsertCommand(data).queue();
             }
 
         }
 
-        //updateAction.addCommands(commands).queue();
+        updateAction.addCommands(commands).queue();
         Logger.log(LogLevel.INFORMATION, "Successfully registered " + commands.size() + " commands.");
 
     }

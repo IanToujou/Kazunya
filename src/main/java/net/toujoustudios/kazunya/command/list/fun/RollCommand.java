@@ -44,10 +44,12 @@ public class RollCommand implements ICommand {
         }
 
         int sides = 6;
+        int times = 1;
         int offset = 0;
 
         if(args.size() > 0) sides = (int) args.get(0).getAsLong();
         if(args.size() > 1) offset = (int) args.get(1).getAsLong();
+        if(args.size() > 2) times = (int) args.get(2).getAsLong();
 
         if(sides <= 0 || sides >= 1000000) {
             ErrorEmbed.sendError(context, ErrorType.ACTION_DICE_SIDES_NOT_IN_RANGE);
@@ -59,12 +61,37 @@ public class RollCommand implements ICommand {
             return;
         }
 
-        int random = new Random().nextInt(sides) + 1;
-        random += offset;
+        int[] results = new int[times];
+
+        for(int i = 0; i < times; i++) {
+            int random = new Random().nextInt(sides) + 1;
+            results[i] = random;
+        }
+
+        if(times == 1) {
+            embedBuilder.setDescription("You rolled `1` dice!\nResult: `" + results[0] + "`");
+            embedBuilder.addField("Input", "Sides: `" + sides + "`\nOffset: `" + offset + "`\nTimes: `" + times + "`", false);
+        } else {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("You rolled `").append(times).append("` dice!\n");
+            stringBuilder.append("Result: `");
+
+            int finalResult = 0;
+            for(int i = 0; i <= results.length; i++) {
+                stringBuilder.append(results[i]);
+                stringBuilder.append(" + ");
+                finalResult += results[i];
+            }
+
+            stringBuilder.append(" = ");
+            stringBuilder.append(finalResult);
+            stringBuilder.append("`");
+
+            embedBuilder.setDescription(stringBuilder.toString());
+            embedBuilder.addField("Input", "Sides: `" + sides + "`\nOffset: `" + offset + "`\nTimes: `" + times + "`", false);
+        }
 
         embedBuilder.setTitle("**:game_die: Dice Roll**");
-        embedBuilder.setDescription("You rolled a dice!\nResult: `" + random + "`");
-        embedBuilder.addField("Input", "Sides: `" + sides + "`\nOffset: `" + offset + "`", false);
         embedBuilder.setColor(ColorTools.getFromRGBString(config.getString("format.color.default")));
         context.getEvent().replyEmbeds(embedBuilder.build()).queue();
 
@@ -84,6 +111,7 @@ public class RollCommand implements ICommand {
     public List<OptionData> getOptions() {
         List<OptionData> optionData = new ArrayList<>();
         optionData.add(new OptionData(OptionType.INTEGER, "sides", "The number of sides the dice has. Default is 6.", false));
+        optionData.add(new OptionData(OptionType.INTEGER, "times", "The number of times that you want to roll the dice. Default is 1.", false));
         optionData.add(new OptionData(OptionType.INTEGER, "offset", "A number that should be added (or subtracted if negative) to the result.", false));
         return optionData;
     }

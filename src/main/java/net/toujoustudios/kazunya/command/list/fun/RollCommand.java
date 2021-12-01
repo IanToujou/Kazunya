@@ -78,8 +78,8 @@ public class RollCommand implements ICommand {
 
             int finalResult = 0;
             for(int i = 0; i <= results.length; i++) {
+                if(i != 0) stringBuilder.append(" + ");
                 stringBuilder.append(results[i]);
-                stringBuilder.append(" + ");
                 finalResult += results[i];
             }
 

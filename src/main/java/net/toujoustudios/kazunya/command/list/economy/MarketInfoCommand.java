@@ -49,13 +49,13 @@ public class MarketInfoCommand implements ICommand {
 
         if (args.size() == 0) {
 
-            embedBuilder.setTitle("**__STOCK MARKET__**");
+            embedBuilder.setTitle(":chart_with_upwards_trend: **Stock Market**");
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("*Here is a full list of the available stocks or currencies.\nPlease type `/marketinfo [id]` to get more information on a stock.*\n");
 
             for (Stock stock : StockMarket.getStockMarket("default_market").getStocks()) {
 
-                stringBuilder.append("\n`" + stock.getId() + "` | :chart: Price: " + stockMarket.getStockPrice(stock.getId()) + config.getString("format.char.currency"));
+                stringBuilder.append("\n`").append(stock.getId()).append("` | :chart: Price: ").append(stockMarket.getStockPrice(stock.getId())).append(config.getString("format.char.currency"));
 
             }
 
@@ -69,7 +69,7 @@ public class MarketInfoCommand implements ICommand {
             String discriminator = args.get(0).getAsString().toUpperCase();
             StringBuilder stringBuilder = new StringBuilder();
 
-            embedBuilder.setTitle("**__STOCK MARKET: " + discriminator + "__**");
+            embedBuilder.setTitle("**:chart_with_upwards_trend: Stock Market: " + discriminator + "**");
 
             for (Stock stock : StockMarket.getStockMarket("default_market").getStocks()) {
 

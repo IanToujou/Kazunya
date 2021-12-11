@@ -47,7 +47,7 @@ public class ModifyAccountBalanceCommand implements ICommand {
         }
 
         String action = args.get(0).getAsString().toLowerCase();
-        double value = 0;
+        double value;
 
         try {
             value = Double.parseDouble(args.get(2).getAsString());
@@ -60,32 +60,30 @@ public class ModifyAccountBalanceCommand implements ICommand {
         assert target != null;
         UserManager targetManager = UserManager.getUser(target.getId());
 
-        if (action.equals("set")) {
-
-            targetManager.setMoney(value);
-            embedBuilder.setDescription("You set the account value of " + target.getAsMention() + " to **" + value + "$**.");
-
-        } else if (action.equals("add")) {
-
-            targetManager.addAccountMoney(value);
-            embedBuilder.setDescription("You added  **" + value + "$** to the account of " + target.getAsMention() + ". New balance: `" + targetManager.getAccountMoney() + "$`.");
-
-        } else if (action.equals("remove")) {
-
-            targetManager.removeAccountMoney(value);
-            embedBuilder.setDescription("You removed  **" + value + "$** from the account of " + target.getAsMention() + ". New balance: `" + targetManager.getAccountMoney() + "$`.");
-
-        } else if (action.equals("show")) {
-
-            double money = targetManager.getAccountMoney();
-            embedBuilder.setDescription(target.getAsMention() + "'s account balance is currently: `" + targetManager.getAccountMoney() + "$`.");
-
-        } else {
-            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_OPERATION_BALANCE);
-            return;
+        switch (action) {
+            case "set" -> {
+                targetManager.setMoney(value);
+                embedBuilder.setDescription("You set the account value of " + target.getAsMention() + " to **" + value + "$**.");
+            }
+            case "add" -> {
+                targetManager.addAccountMoney(value);
+                embedBuilder.setDescription("You added  **" + value + "$** to the account of " + target.getAsMention() + ". New balance: `" + targetManager.getAccountMoney() + "$`.");
+            }
+            case "remove" -> {
+                targetManager.removeAccountMoney(value);
+                embedBuilder.setDescription("You removed  **" + value + "$** from the account of " + target.getAsMention() + ". New balance: `" + targetManager.getAccountMoney() + "$`.");
+            }
+            case "show" -> {
+                double money = targetManager.getAccountMoney();
+                embedBuilder.setDescription(target.getAsMention() + "'s account balance is currently: `" + targetManager.getAccountMoney() + "$`.");
+            }
+            default -> {
+                ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_OPERATION_BALANCE);
+                return;
+            }
         }
 
-        embedBuilder.setTitle("**:credit_card: Account Modification:**");
+        embedBuilder.setTitle("**:credit_card: Account Modification**");
         embedBuilder.setColor(ColorTools.getFromRGBString(config.getString("format.color.default")));
         context.getEvent().replyEmbeds(embedBuilder.build()).queue();
 

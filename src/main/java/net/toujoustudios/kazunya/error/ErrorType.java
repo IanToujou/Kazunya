@@ -24,8 +24,9 @@ public enum ErrorType {
     ACTION_ALREADY_MARRIED_TARGET("2002", "The specified person is already married. Sorry about that."),
     ACTION_NO_PARTNER("2003", "You don't have any partner."),
     ACTION_DICE_SIDES_NOT_IN_RANGE("2004", "The specified side amount is not in the given range (1 to 999999)."),
-    ACTION_DICE_OFFSET_NOT_IN_RANGE("2005", "The specified offset is not in the given range (-999999 to 999999");
+    ACTION_DICE_OFFSET_NOT_IN_RANGE("2005", "The specified offset is not in the given range (-999999 to 999999"),
 
+    AUDIO_UNABLE_TO_LOAD("3001", "The audio couldn't be loaded due to an unexpected error.");
 
     private final String code;
     private final String description;

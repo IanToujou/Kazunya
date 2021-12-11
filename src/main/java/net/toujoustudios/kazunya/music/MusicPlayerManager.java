@@ -9,7 +9,6 @@ import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Guild;
-import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.toujoustudios.kazunya.color.ColorTools;
 import net.toujoustudios.kazunya.config.Config;
@@ -66,7 +65,7 @@ public class MusicPlayerManager {
 
     public void loadAndPlay(SlashCommandEvent event, String trackUrl) {
 
-        if(event.getGuild() == null) return;
+        if (event.getGuild() == null) return;
         GuildMusicManager musicManager = getGuildMusicManager(event.getGuild());
 
         EmbedBuilder embedBuilder = new EmbedBuilder();

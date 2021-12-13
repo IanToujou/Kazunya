@@ -10,6 +10,7 @@ import net.toujoustudios.kazunya.command.list.economy.ModifyAccountBalanceComman
 import net.toujoustudios.kazunya.command.list.fun.RollCommand;
 import net.toujoustudios.kazunya.command.list.fun.ShipCommand;
 import net.toujoustudios.kazunya.command.list.general.HelpCommand;
+import net.toujoustudios.kazunya.command.list.music.PlayCommand;
 import net.toujoustudios.kazunya.command.list.roleplay.*;
 import net.toujoustudios.kazunya.command.list.stats.UserInfoCommand;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
@@ -48,12 +49,19 @@ public class CommandManager {
         this.addCommand(new PurrCommand());
         this.addCommand(new SmileCommand());
         this.addCommand(new KillCommand());
+        this.addCommand(new RollCommand());
+
         this.addCommand(new ShipCommand());
         this.addCommand(new UserInfoCommand());
         this.addCommand(new ModifyAccountBalanceCommand());
         this.addCommand(new MarketInfoCommand());
+
+        //Register NSFW commands
         this.addCommand(new FuckCommand());
-        this.addCommand(new RollCommand());
+
+        //Register music commands
+        this.addCommand(new PlayCommand());
+
     }
 
     private void addCommand(ICommand command) {

@@ -89,7 +89,7 @@ public class PlayCommand implements ICommand {
     @Override
     public List<OptionData> getOptions() {
         List<OptionData> optionData = new ArrayList<>();
-        optionData.add(new OptionData(OptionType.USER, "link", "The link of the song. It can be either SoundCloud, YouTube, Bandcamp, Vimeo, Twitch or a direct link.", true));
+        optionData.add(new OptionData(OptionType.USER, "link", "The link of the song.", true));
         return optionData;
     }
 

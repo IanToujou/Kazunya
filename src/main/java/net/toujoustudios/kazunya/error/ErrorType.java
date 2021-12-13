@@ -19,6 +19,7 @@ public enum ErrorType {
     COMMAND_INVALID_NUMBER_DOUBLE("1007", "The given number is invalid. It must be either a full or a decimal number."),
     COMMAND_INVALID_OPERATION_BALANCE("1008", "The specified operation is invalid. You can either set, add, remove or show the account balance of someone."),
     COMMAND_INVALID_STOCK("1009", "The specified stock does not exist. Please use /marketinfo to get the full list of available stocks."),
+    COMMAND_INVALID_URL("1010", "The given link is invalid. Please provide a valid link."),
 
     ACTION_ALREADY_MARRIED_SELF("2001", "You are already married."),
     ACTION_ALREADY_MARRIED_TARGET("2002", "The specified person is already married. Sorry about that."),
@@ -26,7 +27,10 @@ public enum ErrorType {
     ACTION_DICE_SIDES_NOT_IN_RANGE("2004", "The specified side amount is not in the given range (1 to 999999)."),
     ACTION_DICE_OFFSET_NOT_IN_RANGE("2005", "The specified offset is not in the given range (-999999 to 999999"),
 
-    AUDIO_UNABLE_TO_LOAD("3001", "The audio couldn't be loaded due to an unexpected error.");
+    AUDIO_UNABLE_TO_LOAD("3001", "The audio couldn't be loaded due to an unexpected error."),
+    AUDIO_USER_NOT_IN_CHANNEL("3002", "You are not in a voice channel right now."),
+
+    PERMISSION_VOICE_CHANNEL_NOT_AVAILABLE("4001", "I don't have any permissions to access the voice channel.");
 
     private final String code;
     private final String description;

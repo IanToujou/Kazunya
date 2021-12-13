@@ -52,7 +52,7 @@ public class PlayCommand implements ICommand {
         AudioManager audioManager = context.getGuild().getAudioManager();
         String input = args.get(0).getAsString();
 
-        if(!URLManager.isURL(input)) {
+        if (!URLManager.isURL(input)) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_URL);
             return;
         }

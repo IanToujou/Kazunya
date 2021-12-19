@@ -44,6 +44,12 @@ public class LickCommand implements ICommand {
         }
 
         Member target = args.get(0).getAsMember();
+        assert target != null;
+
+        if(target.getId().equals(member.getId())) {
+            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_SELF);
+            return;
+        }
 
         ArrayList<String> images = new ArrayList<>();
         images.add("https://c.tenor.com/uw6-q_y4xKsAAAAd/%D0%B0%D0%BD%D0%B8%D0%BC%D0%B5-darling-in-the-franxx.gif");

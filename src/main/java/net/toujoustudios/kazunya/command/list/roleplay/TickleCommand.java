@@ -44,6 +44,12 @@ public class TickleCommand implements ICommand {
         }
 
         Member target = args.get(0).getAsMember();
+        assert target != null;
+
+        if(target.getId().equals(member.getId())) {
+            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_SELF);
+            return;
+        }
 
         ArrayList<String> images = new ArrayList<>();
         images.add("https://c.tenor.com/PXL1ONAO9CEAAAAC/tickle-laugh.gif");

@@ -44,6 +44,12 @@ public class KissCommand implements ICommand {
         }
 
         Member target = args.get(0).getAsMember();
+        assert target != null;
+
+        if(target.getId().equals(member.getId())) {
+            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_SELF);
+            return;
+        }
 
         ArrayList<String> images = new ArrayList<>();
         images.add("https://c.tenor.com/F02Ep3b2jJgAAAAC/cute-kawai.gif");

@@ -53,7 +53,7 @@ public class MarryCommand implements ICommand {
             return;
         }
 
-        if (target == member) {
+        if(target.getId().equals(member.getId())) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_SELF);
             return;
         }

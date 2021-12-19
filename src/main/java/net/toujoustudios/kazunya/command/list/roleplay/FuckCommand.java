@@ -44,6 +44,12 @@ public class FuckCommand implements ICommand {
         }
 
         Member target = args.get(0).getAsMember();
+        assert target != null;
+
+        if(target.getId().equals(member.getId())) {
+            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_SELF);
+            return;
+        }
 
         ArrayList<String> images = new ArrayList<>();
         images.add("https://wimg.rule34.xxx//images/3591/835ceb4c8a166c81b585640ee7824eb6.gif");

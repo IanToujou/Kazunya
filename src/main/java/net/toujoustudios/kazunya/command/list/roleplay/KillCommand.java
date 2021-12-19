@@ -45,7 +45,12 @@ public class KillCommand implements ICommand {
 
         Member target = args.get(0).getAsMember();
 
-        if(target == member) {
+        if(target == null) {
+            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_NOT_FOUND);
+            return;
+        }
+
+        if(target.getId().equals(member.getId())) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_SELF);
             return;
         }

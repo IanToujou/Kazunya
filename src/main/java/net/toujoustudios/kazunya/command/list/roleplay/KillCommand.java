@@ -45,6 +45,11 @@ public class KillCommand implements ICommand {
 
         Member target = args.get(0).getAsMember();
 
+        if(target == member) {
+            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_SELF);
+            return;
+        }
+
         ArrayList<String> images = new ArrayList<>();
         images.add("https://c.tenor.com/hDFU7nFDFhcAAAAd/wasted-anime.gif");
         images.add("https://c.tenor.com/Re9dglY0sCwAAAAC/anime-wasted.gif");

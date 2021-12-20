@@ -46,7 +46,7 @@ public class CuddleCommand implements ICommand {
         Member target = args.get(0).getAsMember();
         assert target != null;
 
-        if(target.getId().equals(member.getId())) {
+        if (target.getId().equals(member.getId())) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_SELF);
             return;
         }
@@ -73,7 +73,6 @@ public class CuddleCommand implements ICommand {
         images.add("https://c.tenor.com/5UwhB5xQSTEAAAAC/anime-hug.gif");
         images.add("https://c.tenor.com/0gCYBXXb2toAAAAC/hug-hugs-and-love.gif");
 
-        assert target != null;
         embedBuilder.setTitle("**:purple_heart: Cuddles**");
         embedBuilder.setDescription(member.getAsMention() + " cuddles " + target.getAsMention() + "! :3");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));

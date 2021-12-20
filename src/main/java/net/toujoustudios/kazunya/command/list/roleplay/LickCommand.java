@@ -46,7 +46,7 @@ public class LickCommand implements ICommand {
         Member target = args.get(0).getAsMember();
         assert target != null;
 
-        if(target.getId().equals(member.getId())) {
+        if (target.getId().equals(member.getId())) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_SELF);
             return;
         }
@@ -68,7 +68,6 @@ public class LickCommand implements ICommand {
         images.add("https://c.tenor.com/eWkQ7-1c4qcAAAAC/anime-lovecraft.gif");
         images.add("https://c.tenor.com/Xb1u2Z6nLRQAAAAC/lick-anime.gif");
 
-        assert target != null;
         embedBuilder.setTitle("**:sweat_drops: Lick**");
         embedBuilder.setDescription("**" + member.getEffectiveName() + " licks " + target.getAsMention() + "!** :3");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));

@@ -46,7 +46,7 @@ public class PatCommand implements ICommand {
         Member target = args.get(0).getAsMember();
         assert target != null;
 
-        if(target.getId().equals(member.getId())) {
+        if (target.getId().equals(member.getId())) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_SELF);
             return;
         }
@@ -96,7 +96,6 @@ public class PatCommand implements ICommand {
         images.add("https://c.tenor.com/pB5LKEouppgAAAAC/pat-pat-on-head.gif");
         images.add("https://c.tenor.com/-hkJYNs7tUkAAAAC/anime-pat.gif");
 
-        assert target != null;
         embedBuilder.setTitle("**:purple_heart: Headpat**");
         embedBuilder.setDescription("**" + member.getEffectiveName() + " pats " + target.getAsMention() + "!** :3");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));

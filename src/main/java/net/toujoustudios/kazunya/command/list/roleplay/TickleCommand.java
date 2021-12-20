@@ -46,7 +46,7 @@ public class TickleCommand implements ICommand {
         Member target = args.get(0).getAsMember();
         assert target != null;
 
-        if(target.getId().equals(member.getId())) {
+        if (target.getId().equals(member.getId())) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_SELF);
             return;
         }
@@ -62,7 +62,6 @@ public class TickleCommand implements ICommand {
         images.add("https://c.tenor.com/ymMtVnW-TrYAAAAd/nekopara-anime.gif");
         images.add("https://c.tenor.com/sa1QuA9GFaoAAAAC/anime-tickle.gif");
 
-        assert target != null;
         embedBuilder.setTitle("**:yellow_heart: Tickle**");
         embedBuilder.setDescription("**" + member.getEffectiveName() + " tickles " + target.getAsMention() + "!** :3");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));

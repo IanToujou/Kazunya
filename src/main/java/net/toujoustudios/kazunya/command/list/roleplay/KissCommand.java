@@ -46,7 +46,7 @@ public class KissCommand implements ICommand {
         Member target = args.get(0).getAsMember();
         assert target != null;
 
-        if(target.getId().equals(member.getId())) {
+        if (target.getId().equals(member.getId())) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_SELF);
             return;
         }
@@ -92,7 +92,6 @@ public class KissCommand implements ICommand {
         images.add("https://c.tenor.com/hayBS0l13xcAAAAd/anime-kiss.gif");
         images.add("https://c.tenor.com/VxNAxTOeT3YAAAAC/anime-kiss.gif");
 
-        assert target != null;
         embedBuilder.setTitle("**:heart: Kiss**");
         embedBuilder.setDescription(member.getAsMention() + " gives " + target.getAsMention() + " a kiss! Nawww~");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));

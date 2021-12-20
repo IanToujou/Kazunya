@@ -46,7 +46,7 @@ public class HugCommand implements ICommand {
         Member target = args.get(0).getAsMember();
         assert target != null;
 
-        if(target.getId().equals(member.getId())) {
+        if (target.getId().equals(member.getId())) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_SELF);
             return;
         }
@@ -77,7 +77,6 @@ public class HugCommand implements ICommand {
         images.add("https://c.tenor.com/fLxZt7jo1YEAAAAC/loli-dragon.gif");
         images.add("https://c.tenor.com/vkiqyZJWJ4wAAAAC/hug-cat.gif");
 
-        assert target != null;
         embedBuilder.setTitle("**:purple_heart: Hugs**");
         embedBuilder.setDescription(member.getAsMention() + " hugs " + target.getAsMention() + "! :3");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));

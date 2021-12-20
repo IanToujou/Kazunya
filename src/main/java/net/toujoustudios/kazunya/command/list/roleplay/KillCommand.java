@@ -46,7 +46,7 @@ public class KillCommand implements ICommand {
         Member target = args.get(0).getAsMember();
         assert target != null;
 
-        if(target.getId().equals(member.getId())) {
+        if (target.getId().equals(member.getId())) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_SELF);
             return;
         }
@@ -97,8 +97,6 @@ public class KillCommand implements ICommand {
             messages.add("{Killer} slipped over a Banana and broke the neck while trying to get near {Victim}.");
             messages.add("{Killer} died due to a heart attack before he could kill {Victim}. Death Note moment lmao.");
         }
-
-        assert target != null;
 
         embedBuilder.setDescription(messages.get(new Random().nextInt(messages.size())).replace("{Victim}", target.getAsMention()).replace("{Killer}", member.getAsMention()));
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));

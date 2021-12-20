@@ -46,7 +46,7 @@ public class FuckCommand implements ICommand {
         Member target = args.get(0).getAsMember();
         assert target != null;
 
-        if(target.getId().equals(member.getId())) {
+        if (target.getId().equals(member.getId())) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_SELF);
             return;
         }
@@ -60,7 +60,6 @@ public class FuckCommand implements ICommand {
         images.add("http://x3vid.com/images/17112/https:__ep1.xhcdn.com_000_158_121_375_1000.gif");
         images.add("https://bobsvagene.club/wp-content/uploads/2018/05/uncensored-8465.gif");
 
-        assert target != null;
         embedBuilder.setTitle("**:sweat_drops: Fucky Wucky**");
         embedBuilder.setDescription(member.getAsMention() + " is giving " + target.getAsMention() + " a sexy time! o//w//o");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));

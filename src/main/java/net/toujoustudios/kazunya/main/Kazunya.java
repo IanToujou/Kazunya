@@ -47,7 +47,7 @@ public class Kazunya {
         builder.enableIntents(GatewayIntent.GUILD_MEMBERS);
         builder.enableIntents(GatewayIntent.GUILD_PRESENCES);
         builder.addEventListeners(new SlashCommandListener());
-        builder.addEventListeners(new GuildMessageReceivedListener());
+        //builder.addEventListeners(new GuildMessageReceivedListener());
 
     }
 

@@ -54,7 +54,7 @@ public class PurrCommand implements ICommand {
         images.add("https://c.tenor.com/agReLT91Aw8AAAAC/nyan-nya.gif");
 
         embedBuilder.setTitle("**:purple_heart: Purr**");
-        embedBuilder.setDescription("**" + member.getEffectiveName() + " purrs! Meow~");
+        embedBuilder.setDescription("**" + member.getEffectiveName() + "** purrs! Meow~");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
         embedBuilder.setColor(ColorTools.getFromRGBString(config.getString("format.color.default")));
         context.getEvent().replyEmbeds(embedBuilder.build()).queue();

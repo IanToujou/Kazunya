@@ -17,9 +17,8 @@ public class GuildMessageReceivedListener extends ListenerAdapter {
     @Override
     public void onGuildMessageReceived(@NotNull GuildMessageReceivedEvent event) {
 
-        if(event.getGuild().getId() != "803708765265985587") return;
         String rawMessage = event.getMessage().getContentRaw();
-        String baseMessage = rawMessage.toLowerCase(Locale.ROOT);
+        String baseMessage = rawMessage.toLowerCase();
 
         if(baseMessage.equalsIgnoreCase("sus")) {
             event.getMessage().reply("obama hamburger sussy balls").queue();

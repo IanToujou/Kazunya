@@ -27,6 +27,8 @@ public class GuildMessageReceivedListener extends ListenerAdapter {
 
         if (baseMessage.contains("http://") || baseMessage.contains("https://")) {
 
+            String checkString = baseMessage.split("http")[1];
+
             if (baseMessage.contains("https://discord.com/") || baseMessage.contains("https://discord.gift/") || baseMessage.contains("https://discord.gg/")) {
                 return;
             }
@@ -47,7 +49,7 @@ public class GuildMessageReceivedListener extends ListenerAdapter {
 
             for (String all : bannedWords) {
 
-                if (baseMessage.contains(all)) {
+                if (checkString.contains(all)) {
                     event.getChannel().sendMessage(embedBuilder.build()).queue();
                     event.getMessage().delete().queue();
                     break;

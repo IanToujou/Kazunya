@@ -6,7 +6,6 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.toujoustudios.kazunya.color.ColorTools;
 import net.toujoustudios.kazunya.config.Config;
-import net.toujoustudios.kazunya.main.Kazunya;
 import net.toujoustudios.kazunya.main.Main;
 import org.jetbrains.annotations.NotNull;
 
@@ -61,7 +60,8 @@ public class GuildMessageReceivedListener extends ListenerAdapter {
                     embedBuilder.setTitle(":warning: **Scam Link Detection:**");
                     embedBuilder.setDescription("A message was flagged as scam and removed from a server.```" + rawMessage + "```");
                     User user = Main.getBot().getJDA().getUserById(config.getString("user.admin"));
-                    if(user != null) user.openPrivateChannel().flatMap(channel -> channel.sendMessage(embedBuilder.build())).queue();
+                    if (user != null)
+                        user.openPrivateChannel().flatMap(channel -> channel.sendMessage(embedBuilder.build())).queue();
                     break;
 
                 }

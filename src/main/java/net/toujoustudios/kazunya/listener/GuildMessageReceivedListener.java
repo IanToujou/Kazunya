@@ -27,7 +27,7 @@ public class GuildMessageReceivedListener extends ListenerAdapter {
 
         if (baseMessage.contains("http://") || baseMessage.contains("https://")) {
 
-            if (baseMessage.startsWith("https://discord.com/") || baseMessage.startsWith("https://discord.gift/") || baseMessage.startsWith("https://discord.gg/")) {
+            if (baseMessage.contains("https://discord.com/") || baseMessage.contains("https://discord.gift/") || baseMessage.contains("https://discord.gg/")) {
                 return;
             }
 

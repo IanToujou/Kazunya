@@ -1,10 +1,13 @@
 package net.toujoustudios.kazunya.listener;
 
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.toujoustudios.kazunya.color.ColorTools;
 import net.toujoustudios.kazunya.config.Config;
+import net.toujoustudios.kazunya.main.Kazunya;
+import net.toujoustudios.kazunya.main.Main;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -37,6 +40,7 @@ public class GuildMessageReceivedListener extends ListenerAdapter {
             bannedWords.add("discord");
             bannedWords.add("gift");
             bannedWords.add("nitro");
+            bannedWords.add("nirto");
             bannedWords.add("nitr0");
             bannedWords.add("g1ft");
             bannedWords.add("discrd");
@@ -50,9 +54,15 @@ public class GuildMessageReceivedListener extends ListenerAdapter {
             for (String all : bannedWords) {
 
                 if (checkString.contains(all)) {
+
                     event.getChannel().sendMessage(embedBuilder.build()).queue();
-                    event.getMessage().delete().queue();
+
+                    embedBuilder.setTitle(":warning: **Scam Link Detection:**");
+                    embedBuilder.setDescription("A message was flagged as scam and removed from a server.\nContent: ```" + baseMessage + "```");
+                    User user = Main.getBot().getJDA().getUserById(config.getString("user.admin"));
+                    if(user != null) user.openPrivateChannel().flatMap(channel -> channel.sendMessage("anus")).queue();
                     break;
+
                 }
 
             }

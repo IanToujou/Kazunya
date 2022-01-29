@@ -3,7 +3,6 @@ package net.toujoustudios.kazunya.main;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
-import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.toujoustudios.kazunya.command.CommandManager;
 import net.toujoustudios.kazunya.config.Config;
@@ -47,7 +46,7 @@ public class Kazunya {
         builder.enableIntents(GatewayIntent.GUILD_MEMBERS);
         builder.enableIntents(GatewayIntent.GUILD_PRESENCES);
         builder.addEventListeners(new SlashCommandListener());
-        //builder.addEventListeners(new GuildMessageReceivedListener());
+        builder.addEventListeners(new GuildMessageReceivedListener());
 
     }
 

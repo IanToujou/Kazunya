@@ -55,12 +55,13 @@ public class GuildMessageReceivedListener extends ListenerAdapter {
 
                 if (checkString.contains(all)) {
 
+                    event.getMessage().delete().queue();
                     event.getChannel().sendMessage(embedBuilder.build()).queue();
 
                     embedBuilder.setTitle(":warning: **Scam Link Detection:**");
-                    embedBuilder.setDescription("A message was flagged as scam and removed from a server.\nContent: ```" + baseMessage + "```");
+                    embedBuilder.setDescription("A message was flagged as scam and removed from a server.```" + rawMessage + "```");
                     User user = Main.getBot().getJDA().getUserById(config.getString("user.admin"));
-                    if(user != null) user.openPrivateChannel().flatMap(channel -> channel.sendMessage("anus")).queue();
+                    if(user != null) user.openPrivateChannel().flatMap(channel -> channel.sendMessage(embedBuilder.build())).queue();
                     break;
 
                 }

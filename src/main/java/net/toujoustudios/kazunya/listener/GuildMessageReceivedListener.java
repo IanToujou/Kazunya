@@ -31,17 +31,14 @@ public class GuildMessageReceivedListener extends ListenerAdapter {
 
             String checkString = baseMessage.split("http")[1];
 
-            if (baseMessage.contains("https://discord.com/") || baseMessage.contains("https://discord.gift/") || baseMessage.contains("https://discord.gg/")) {
+            if (baseMessage.contains("discord.com/") || baseMessage.contains("discord.gift/") || baseMessage.contains("discord.gg/") || baseMessage.contains("tenor.com/")) {
                 return;
             }
 
             ArrayList<String> bannedWords = new ArrayList<>();
-            bannedWords.add("discord");
-            bannedWords.add("gift");
             bannedWords.add("nitro");
             bannedWords.add("nirto");
             bannedWords.add("nitr0");
-            bannedWords.add("g1ft");
             bannedWords.add("discrd");
             bannedWords.add("disc0rd");
 

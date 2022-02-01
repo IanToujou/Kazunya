@@ -4,9 +4,9 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.interactions.components.Button;
-import net.toujoustudios.kazunya.util.ColorUtil;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.config.Config;
+import net.toujoustudios.kazunya.util.ColorUtil;
 
 /**
  * This file has been created by Ian Toujou.

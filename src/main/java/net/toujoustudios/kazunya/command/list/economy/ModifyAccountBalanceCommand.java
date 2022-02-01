@@ -5,7 +5,7 @@ import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
-import net.toujoustudios.kazunya.color.ColorTools;
+import net.toujoustudios.kazunya.util.ColorUtil;
 import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.command.ICommand;
@@ -84,7 +84,7 @@ public class ModifyAccountBalanceCommand implements ICommand {
         }
 
         embedBuilder.setTitle("**:credit_card: Account Modification**");
-        embedBuilder.setColor(ColorTools.getFromRGBString(config.getString("format.color.default")));
+        embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
         context.getEvent().replyEmbeds(embedBuilder.build()).queue();
 
     }

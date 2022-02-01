@@ -1,4 +1,4 @@
-package net.toujoustudios.kazunya.network;
+package net.toujoustudios.kazunya.util;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -9,7 +9,7 @@ import java.net.URL;
  * Date: 13/12/2021
  * Time: 21:16
  */
-public class URLManager {
+public class LinkUtil {
 
     public static boolean isURL(String input) {
 

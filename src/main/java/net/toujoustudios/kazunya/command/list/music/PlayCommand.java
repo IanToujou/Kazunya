@@ -16,7 +16,7 @@ import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
 import net.toujoustudios.kazunya.music.MusicPlayerManager;
-import net.toujoustudios.kazunya.network.URLManager;
+import net.toujoustudios.kazunya.util.LinkUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +52,7 @@ public class PlayCommand implements ICommand {
         AudioManager audioManager = context.getGuild().getAudioManager();
         String input = args.get(0).getAsString();
 
-        if (!URLManager.isURL(input)) {
+        if (!LinkUtil.isURL(input)) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_URL);
             return;
         }

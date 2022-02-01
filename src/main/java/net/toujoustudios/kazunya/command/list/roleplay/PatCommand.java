@@ -5,13 +5,14 @@ import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
-import net.toujoustudios.kazunya.color.ColorTools;
+import net.toujoustudios.kazunya.util.ColorUtil;
 import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.command.ICommand;
 import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
+import net.toujoustudios.kazunya.util.ColorUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -99,7 +100,7 @@ public class PatCommand implements ICommand {
         embedBuilder.setTitle("**:purple_heart: Headpat**");
         embedBuilder.setDescription("**" + member.getEffectiveName() + " pats " + target.getAsMention() + "!** :3");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
-        embedBuilder.setColor(ColorTools.getFromRGBString(config.getString("format.color.default")));
+        embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
         context.getEvent().replyEmbeds(embedBuilder.build()).queue();
 
     }

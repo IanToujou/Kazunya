@@ -4,7 +4,7 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.interactions.components.Button;
-import net.toujoustudios.kazunya.color.ColorTools;
+import net.toujoustudios.kazunya.util.ColorUtil;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.config.Config;
 
@@ -21,7 +21,7 @@ public class ErrorEmbed {
     public static MessageEmbed buildError(ErrorType type) {
         EmbedBuilder embedBuilder = new EmbedBuilder();
         embedBuilder.setTitle(":x: **Something went wrong**");
-        embedBuilder.setColor(ColorTools.getFromRGBString(config.getString("format.color.error")));
+        embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.error")));
         embedBuilder.setThumbnail(config.getString("assets.icon.error"));
         embedBuilder.setDescription("Oops! An error occurred while attempting to perform this action. Please review the details below.\n\n**Error Code:** `" + type.getCode() + "`\n**Description:** " + type.getDescription());
         return embedBuilder.build();

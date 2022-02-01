@@ -1,4 +1,4 @@
-package net.toujoustudios.kazunya.string;
+package net.toujoustudios.kazunya.util;
 
 import java.util.concurrent.TimeUnit;
 
@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
  * Date: 26/08/2021
  * Time: 23:40
  */
-public class StringTools {
+public class StringUtil {
 
     public static String formatTime(long millis) {
 

@@ -4,7 +4,7 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import net.toujoustudios.kazunya.color.ColorTools;
+import net.toujoustudios.kazunya.util.ColorUtil;
 import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.main.Main;
 import org.jetbrains.annotations.NotNull;
@@ -43,7 +43,7 @@ public class GuildMessageReceivedListener extends ListenerAdapter {
                     if (link.contains(site)) {
 
                         EmbedBuilder embedBuilder = new EmbedBuilder();
-                        embedBuilder.setColor(ColorTools.getFromRGBString(config.getString("format.color.default")));
+                        embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
                         embedBuilder.setTitle(":warning: **Message Deleted**");
                         embedBuilder.setDescription("Your message has been deleted for the following reason:\n`Potentially malicious or dangerous links.`\n\n*This message has been automatically reported to administrators.*");
 

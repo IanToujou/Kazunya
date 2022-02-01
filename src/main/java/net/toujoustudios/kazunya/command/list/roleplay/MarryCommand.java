@@ -5,7 +5,7 @@ import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
-import net.toujoustudios.kazunya.color.ColorTools;
+import net.toujoustudios.kazunya.util.ColorUtil;
 import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.command.ICommand;
@@ -82,7 +82,7 @@ public class MarryCommand implements ICommand {
 
                 memberManager.setPartner(target.getId());
                 targetManager.setPartner(member.getId());
-                embedBuilder.setColor(ColorTools.getFromRGBString(config.getString("format.color.default")));
+                embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
                 embedBuilder.setTitle(":ring: **Marriage**");
                 embedBuilder.setDescription(member.getAsMention() + " and " + target.getAsMention() + " are now happily married!");
                 context.getEvent().replyEmbeds(embedBuilder.build()).queue();
@@ -96,7 +96,7 @@ public class MarryCommand implements ICommand {
                 message = args.get(1).getAsString();
             }
 
-            embedBuilder.setColor(ColorTools.getFromRGBString(config.getString("format.color.default")));
+            embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
             embedBuilder.setTitle(":ring: **Proposal**");
             embedBuilder.setDescription(member.getAsMention() + " wants to marry you, " + target.getAsMention() + "!\n" + member.getEffectiveName() + ": `" + message + "`");
             embedBuilder.addField(":white_check_mark: Accept:", "To accept the proposal, please type `/marry @" + member.getEffectiveName() + "`", false);

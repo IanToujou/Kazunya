@@ -5,7 +5,7 @@ import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
-import net.toujoustudios.kazunya.color.ColorTools;
+import net.toujoustudios.kazunya.util.ColorUtil;
 import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.command.ICommand;
@@ -40,7 +40,7 @@ public class MarketInfoCommand implements ICommand {
         EmbedBuilder embedBuilder = new EmbedBuilder();
         StockMarket stockMarket = StockMarket.getStockMarket("default_market");
 
-        embedBuilder.setColor(ColorTools.getFromRGBString(config.getString("format.color.default")));
+        embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
 
         if (args.size() > 1) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_SYNTAX);
@@ -75,9 +75,9 @@ public class MarketInfoCommand implements ICommand {
 
                 if (stock.getId().equalsIgnoreCase(discriminator)) {
 
-                    stringBuilder.append(":regional_indicator_a: **Name:** " + stock.getName() + "\n");
-                    stringBuilder.append(":hash: **ID:** " + stock.getId() + "\n");
-                    stringBuilder.append(":chart: **Current Price:** " + stockMarket.getStockPrice(stock.getId()) + config.getString("format.char.currency") + "\n");
+                    stringBuilder.append(":regional_indicator_a: **Name:** ").append(stock.getName()).append("\n");
+                    stringBuilder.append(":hash: **ID:** ").append(stock.getId()).append("\n");
+                    stringBuilder.append(":chart: **Current Price:** ").append(stockMarket.getStockPrice(stock.getId())).append(config.getString("format.char.currency")).append("\n");
                     embedBuilder.setDescription(stringBuilder.toString());
                     embedBuilder.setThumbnail("https://github.com/IanToujou/Kazunya/blob/master/src/main/resources/chart_icon.png?raw=true");
                     context.getEvent().replyEmbeds(embedBuilder.build()).queue();

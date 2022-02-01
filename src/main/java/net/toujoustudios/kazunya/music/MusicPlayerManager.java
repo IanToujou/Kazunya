@@ -10,7 +10,7 @@ import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
-import net.toujoustudios.kazunya.color.ColorTools;
+import net.toujoustudios.kazunya.util.ColorUtil;
 import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
@@ -69,7 +69,7 @@ public class MusicPlayerManager {
         GuildMusicManager musicManager = getGuildMusicManager(event.getGuild());
 
         EmbedBuilder embedBuilder = new EmbedBuilder();
-        embedBuilder.setColor(ColorTools.getFromRGBString(config.getString("format.color.default")));
+        embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
         embedBuilder.setTitle("**:musical_note: Music**");
 
         playerManager.loadItemOrdered(musicManager, trackUrl, new AudioLoadResultHandler() {

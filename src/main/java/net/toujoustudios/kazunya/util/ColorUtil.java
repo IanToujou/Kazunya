@@ -1,4 +1,4 @@
-package net.toujoustudios.kazunya.color;
+package net.toujoustudios.kazunya.util;
 
 import java.awt.*;
 
@@ -8,7 +8,7 @@ import java.awt.*;
  * Date: 26/08/2021
  * Time: 23:10
  */
-public class ColorTools {
+public class ColorUtil {
 
     /**
      * Get a new color by giving an integer RGB value input.

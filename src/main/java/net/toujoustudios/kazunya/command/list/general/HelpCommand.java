@@ -44,7 +44,7 @@ public class HelpCommand implements ICommand {
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
         embedBuilder.setTitle(":sparkles: **Kazunya Help**");
         embedBuilder.setDescription("Here is a full list of all bot commands and features.\nYou can also type `/help [<command>]` to look up a specific command and its usage.");
-        embedBuilder.setThumbnail(config.getString("assets.icon.search"));
+        embedBuilder.setThumbnail(config.getString("assets.img.icon_search"));
 
         if (args.isEmpty()) {
 

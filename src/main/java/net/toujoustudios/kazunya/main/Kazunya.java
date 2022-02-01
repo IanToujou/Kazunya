@@ -9,7 +9,6 @@ import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.database.DatabaseManager;
 import net.toujoustudios.kazunya.database.DatabaseTimer;
 import net.toujoustudios.kazunya.guild.GuildManager;
-import net.toujoustudios.kazunya.listener.GuildMessageReceivedListener;
 import net.toujoustudios.kazunya.listener.SlashCommandListener;
 import net.toujoustudios.kazunya.log.LogLevel;
 import net.toujoustudios.kazunya.log.Logger;
@@ -46,7 +45,6 @@ public class Kazunya {
         builder.enableIntents(GatewayIntent.GUILD_MEMBERS);
         builder.enableIntents(GatewayIntent.GUILD_PRESENCES);
         builder.addEventListeners(new SlashCommandListener());
-        builder.addEventListeners(new GuildMessageReceivedListener());
 
     }
 
@@ -97,24 +95,18 @@ public class Kazunya {
                 StringBuilder message = new StringBuilder();
 
                 for (int i = 2; i < args.length; i++) {
-
                     if (i != 2) {
                         message.append(" ").append(args[i]);
                     } else {
                         message.append(args[i]);
                     }
-
                 }
 
                 try {
-
                     Objects.requireNonNull(jda.getTextChannelById(channel)).sendMessage(message).queue();
                     Logger.log(LogLevel.INFORMATION, "The message has been sent.");
-
                 } catch (Exception exception) {
-
                     Logger.log(LogLevel.ERROR, "Could not send message to channel.");
-
                 }
 
             } else if (input.startsWith("pmsg")) {
@@ -124,29 +116,22 @@ public class Kazunya {
                 StringBuilder message = new StringBuilder();
 
                 for (int i = 2; i < args.length; i++) {
-
                     if (i != 2) {
                         message.append(" ").append(args[i]);
                     } else {
                         message.append(args[i]);
                     }
-
                 }
 
                 try {
-
                     Objects.requireNonNull(jda.getUserById(user)).openPrivateChannel().queue((channel) -> channel.sendMessage(message.toString()).queue());
-
                     Logger.log(LogLevel.INFORMATION, "The message has been sent.");
-
                 } catch (Exception exception) {
-
                     Logger.log(LogLevel.ERROR, "Could not send message to user.");
-
                 }
 
             } else {
-                //Invalid command
+                Logger.log(LogLevel.ERROR, "The specified command does not exist.");
             }
 
         }

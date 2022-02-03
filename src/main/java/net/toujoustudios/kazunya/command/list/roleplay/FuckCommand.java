@@ -53,7 +53,6 @@ public class FuckCommand implements ICommand {
 
         ArrayList<String> images = new ArrayList<>();
         images.add("https://wimg.rule34.xxx//images/3591/835ceb4c8a166c81b585640ee7824eb6.gif");
-        images.add("https://wimg.rule34.xxx//images/3427/2852bbe6a9182c5091f31530a119ead06f3a977a.gif?3862267");
         images.add("https://sexxxgif.com/content/2021/07/hentai-gif-67_001.gif");
         images.add("https://static.hentai-img.com/upload/20111002/6/5861/10.gif");
         images.add("https://uncensoredhentaigif.com/content/_gifs/hentai/sexcom/18280640_min.gif");

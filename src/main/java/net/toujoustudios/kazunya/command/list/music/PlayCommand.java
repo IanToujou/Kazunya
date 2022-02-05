@@ -67,7 +67,7 @@ public class PlayCommand implements ICommand {
         VoiceChannel voiceChannel = memberVoiceState.getChannel();
 
         if (voiceChannel == null || !context.getSelfMember().hasPermission(voiceChannel, Permission.VOICE_CONNECT)) {
-            ErrorEmbed.sendError(context, ErrorType.PERMISSION_VOICE_CHANNEL_NOT_AVAILABLE);
+            ErrorEmbed.sendError(context, ErrorType.PERMISSION_VOICE_CONNECT);
             return;
         }
 

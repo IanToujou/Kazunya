@@ -97,7 +97,7 @@ public class PatCommand implements ICommand {
         images.add("https://c.tenor.com/-hkJYNs7tUkAAAAC/anime-pat.gif");
 
         embedBuilder.setTitle("**:purple_heart: Headpat**");
-        embedBuilder.setDescription("**" + member.getEffectiveName() + " pats " + target.getAsMention() + "!** :3");
+        embedBuilder.setDescription(member.getAsMention() + " pats " + target.getAsMention() + "! :3");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
         context.getEvent().replyEmbeds(embedBuilder.build()).queue();

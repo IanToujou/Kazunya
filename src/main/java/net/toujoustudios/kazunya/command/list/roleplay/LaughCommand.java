@@ -93,7 +93,7 @@ public class LaughCommand implements ICommand {
         images.add("https://c.tenor.com/ti0_Sz-HQecAAAAC/kyoko-mogami-skip-beat.gif");
 
         embedBuilder.setTitle("**:laughing: Laugh**");
-        embedBuilder.setDescription("**" + member.getEffectiveName() + " is laughing! Haha~");
+        embedBuilder.setDescription(member.getAsMention() + " is laughing! Haha~");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
         context.getEvent().replyEmbeds(embedBuilder.build()).queue();

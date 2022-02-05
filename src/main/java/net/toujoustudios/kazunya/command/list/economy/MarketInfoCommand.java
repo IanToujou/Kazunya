@@ -14,7 +14,6 @@ import net.toujoustudios.kazunya.economy.stock.StockMarket;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
 import net.toujoustudios.kazunya.util.ColorUtil;
-import net.toujoustudios.kazunya.util.LinkUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +53,8 @@ public class MarketInfoCommand implements ICommand {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("*Here is a full list of the available stocks or currencies.\nPlease type `/marketinfo [id]` to get more information on a stock.*\n");
 
-            for (Stock stock : StockMarket.getStockMarket("default_market").getStocks()) stringBuilder.append("\n`").append(stock.getId()).append("` | :chart: Price: ").append(stockMarket.getStockPrice(stock.getId())).append(config.getString("format.char.currency"));
+            for (Stock stock : StockMarket.getStockMarket("default_market").getStocks())
+                stringBuilder.append("\n`").append(stock.getId()).append("` | :chart: Price: ").append(stockMarket.getStockPrice(stock.getId())).append(config.getString("format.char.currency"));
 
             embedBuilder.setDescription(stringBuilder.toString());
             embedBuilder.setThumbnail(config.getString("assets.img.icon_stock_market"));

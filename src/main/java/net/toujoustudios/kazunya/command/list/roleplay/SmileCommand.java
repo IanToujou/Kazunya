@@ -91,7 +91,7 @@ public class SmileCommand implements ICommand {
         images.add("https://c.tenor.com/AOPVAMTmFfQAAAAC/mochizou-mochizou-ooji.gif");
 
         embedBuilder.setTitle("**:purple_heart: Smile**");
-        embedBuilder.setDescription("**" + member.getEffectiveName() + " is smiling! Yay~");
+        embedBuilder.setDescription(member.getAsMention() + " is smiling! Yay~");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
         context.getEvent().replyEmbeds(embedBuilder.build()).queue();

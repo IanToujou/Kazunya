@@ -69,7 +69,7 @@ public class LickCommand implements ICommand {
         images.add("https://c.tenor.com/Xb1u2Z6nLRQAAAAC/lick-anime.gif");
 
         embedBuilder.setTitle("**:sweat_drops: Lick**");
-        embedBuilder.setDescription("**" + member.getEffectiveName() + " licks " + target.getAsMention() + "!** :3");
+        embedBuilder.setDescription(member.getAsMention() + " licks " + target.getAsMention() + "! :3");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
         context.getEvent().replyEmbeds(embedBuilder.build()).queue();

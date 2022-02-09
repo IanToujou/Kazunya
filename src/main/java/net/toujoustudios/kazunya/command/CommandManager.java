@@ -3,14 +3,12 @@ package net.toujoustudios.kazunya.command;
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
-import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
 import net.toujoustudios.kazunya.command.list.economy.MarketInfoCommand;
 import net.toujoustudios.kazunya.command.list.economy.ModifyAccountBalanceCommand;
 import net.toujoustudios.kazunya.command.list.fun.RollCommand;
 import net.toujoustudios.kazunya.command.list.fun.ShipCommand;
 import net.toujoustudios.kazunya.command.list.general.HelpCommand;
-import net.toujoustudios.kazunya.command.list.music.PlayCommand;
 import net.toujoustudios.kazunya.command.list.roleplay.*;
 import net.toujoustudios.kazunya.command.list.stats.UserInfoCommand;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
@@ -31,9 +29,14 @@ import java.util.List;
  */
 public class CommandManager {
 
+    private static CommandManager instance;
     private final List<ICommand> commands = new ArrayList<>();
 
     public CommandManager() {
+
+        instance = this;
+
+        //Register non NSFW commands
         this.addCommand(new HelpCommand(this));
         this.addCommand(new MarryCommand());
         this.addCommand(new DivorceCommand());
@@ -50,7 +53,6 @@ public class CommandManager {
         this.addCommand(new SmileCommand());
         this.addCommand(new KillCommand());
         this.addCommand(new RollCommand());
-
         this.addCommand(new ShipCommand());
         this.addCommand(new UserInfoCommand());
         this.addCommand(new ModifyAccountBalanceCommand());
@@ -58,9 +60,6 @@ public class CommandManager {
 
         //Register NSFW commands
         this.addCommand(new FuckCommand());
-
-        //Register music commands
-        this.addCommand(new PlayCommand());
 
     }
 
@@ -78,30 +77,9 @@ public class CommandManager {
         List<CommandData> commands = new ArrayList<>();
 
         for (ICommand command : this.commands) {
-
-            Logger.log(LogLevel.DEBUG, "--------------------------------------------------");
-            Logger.log(LogLevel.DEBUG, "Started registration of a new command. More information below:");
-            Logger.log(LogLevel.DEBUG, "Name: " + command.getName());
-            Logger.log(LogLevel.DEBUG, "Description: " + command.getDescription());
-            Logger.log(LogLevel.DEBUG, "Syntax: " + command.getSyntax());
-            Logger.log(LogLevel.DEBUG, "Options:");
-            for (OptionData option : command.getOptions()) {
-                Logger.log(LogLevel.DEBUG, "| Option Name: " + option.getName());
-                Logger.log(LogLevel.DEBUG, "| Option Description: " + option.getDescription());
-                Logger.log(LogLevel.DEBUG, "| Option Type: " + option.getType());
-                Logger.log(LogLevel.DEBUG, "| Option Required: " + option.isRequired());
-            }
-            Logger.log(LogLevel.DEBUG, "--------------------------------------------------");
-
+            Logger.log(LogLevel.DEBUG, "Started registration of the following commands: /" + command.getName());
             CommandData data = new CommandData(command.getName(), command.getDescription()).addOptions(command.getOptions());
             commands.add(data);
-
-            if (command.getOptions().isEmpty()) {
-                //Main.getBot().getJDA().upsertCommand(command.getName(), command.getDescription()).queue();
-            } else {
-                //Main.getBot().getJDA().upsertCommand(data).queue();
-            }
-
         }
 
         updateAction.addCommands(commands).queue();
@@ -146,6 +124,10 @@ public class CommandManager {
 
         }
 
+    }
+
+    public static CommandManager getInstance() {
+        return instance;
     }
 
 }

@@ -53,7 +53,6 @@ public class HelpCommand implements ICommand {
             StringBuilder builderFun = new StringBuilder();
             StringBuilder builderStats = new StringBuilder();
             StringBuilder builderEconomy = new StringBuilder();
-            StringBuilder builderMusic = new StringBuilder();
             StringBuilder builderNSFW = new StringBuilder();
 
             for (ICommand command : manager.getCommands()) {
@@ -72,9 +71,6 @@ public class HelpCommand implements ICommand {
                 if (command.getCategory() == CommandCategory.ECONOMY) {
                     builderEconomy.append("`/" + command.getName() + "` - " + command.getDescription() + "\n");
                 }
-                if (command.getCategory() == CommandCategory.MUSIC) {
-                    builderMusic.append("`/" + command.getName() + "` - " + command.getDescription() + "\n");
-                }
                 if (command.getCategory() == CommandCategory.NSFW) {
                     builderNSFW.append("`/" + command.getName() + "` - " + command.getDescription() + "\n");
                 }
@@ -85,7 +81,6 @@ public class HelpCommand implements ICommand {
             embedBuilder.addField(":sparkles: Fun:", builderFun.toString(), false);
             embedBuilder.addField(":bar_chart: Stats:", builderStats.toString(), false);
             embedBuilder.addField(":credit_card: Economy:", builderEconomy.toString(), false);
-            embedBuilder.addField(":musical_note: Music:", builderMusic.toString(), false);
             if (context.getEvent().getTextChannel().isNSFW())
                 embedBuilder.addField(":no_entry_sign: NSFW:", builderNSFW.toString(), false);
 

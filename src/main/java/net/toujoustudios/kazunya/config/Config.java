@@ -84,5 +84,9 @@ public class Config {
     public boolean getBoolean(String key) {
         return (boolean) content.getOrDefault(key, false);
     }
+    
+    public List<T> getStringList(String key) {
+        return Arrays.asList(content.getOrDefault(key, "").split(", "));
+    }
 
 }

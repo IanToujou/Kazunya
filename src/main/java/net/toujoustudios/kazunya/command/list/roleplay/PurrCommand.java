@@ -12,7 +12,6 @@ import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
 import net.toujoustudios.kazunya.util.ColorUtil;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -43,15 +42,7 @@ public class PurrCommand implements ICommand {
             return;
         }
 
-        ArrayList<String> images = new ArrayList<>();
-        images.add("https://c.tenor.com/gWf8TwO0BKcAAAAC/purr-kitten.gif");
-        images.add("https://c.tenor.com/LhGIR486YogAAAAC/neko-anime.gif");
-        images.add("https://c.tenor.com/G57GjEpd4E8AAAAC/nya-leateq.gif");
-        images.add("https://c.tenor.com/dkX3A1YEDSwAAAAC/shy-anime.gif");
-        images.add("https://c.tenor.com/gjavgtxeEjQAAAAC/chiya-anime.gif");
-        images.add("https://c.tenor.com/V6dzSIT-iEcAAAAC/kawaii-neko.gif");
-        images.add("https://c.tenor.com/O6r43C_Pb0gAAAAd/neko-nekomimi.gif");
-        images.add("https://c.tenor.com/agReLT91Aw8AAAAC/nyan-nya.gif");
+        List<String> images = config.getStringList("gif.command.purr");
 
         embedBuilder.setTitle("**:purple_heart: Purr**");
         embedBuilder.setDescription(member.getAsMention() + " purrs! Meow~");

@@ -51,16 +51,7 @@ public class TickleCommand implements ICommand {
             return;
         }
 
-        ArrayList<String> images = new ArrayList<>();
-        images.add("https://c.tenor.com/PXL1ONAO9CEAAAAC/tickle-laugh.gif");
-        images.add("https://c.tenor.com/9KCaFFBc_lkAAAAC/anime-tickle.gif");
-        images.add("https://c.tenor.com/0UY84zQWda8AAAAC/laugh-droll.gif");
-        images.add("https://c.tenor.com/3OduUUYND64AAAAd/bang-dream-bandori.gif");
-        images.add("https://c.tenor.com/L5-ABrIwrksAAAAC/tickle-anime.gif");
-        images.add("https://c.tenor.com/jT65qUu0eeEAAAAC/anime-boy.gif");
-        images.add("https://c.tenor.com/lX4VUs86-q4AAAAC/ijiranaide-nagatoro-nagataro.gif");
-        images.add("https://c.tenor.com/ymMtVnW-TrYAAAAd/nekopara-anime.gif");
-        images.add("https://c.tenor.com/sa1QuA9GFaoAAAAC/anime-tickle.gif");
+        List<String> images = config.getStringList("gif.command.tickle");
 
         embedBuilder.setTitle("**:yellow_heart: Tickle**");
         embedBuilder.setDescription(member.getAsMention() + " tickles " + target.getAsMention() + "! :3");

@@ -63,6 +63,10 @@ public class CommandManager {
 
     }
 
+    public static CommandManager getInstance() {
+        return instance;
+    }
+
     private void addCommand(ICommand command) {
         boolean nameFound = this.commands.stream().anyMatch((it) -> it.getName().equalsIgnoreCase(command.getName()));
         if (nameFound) throw new IllegalArgumentException("A command with this name is already present.");
@@ -124,10 +128,6 @@ public class CommandManager {
 
         }
 
-    }
-
-    public static CommandManager getInstance() {
-        return instance;
     }
 
 }

@@ -51,22 +51,7 @@ public class LickCommand implements ICommand {
             return;
         }
 
-        ArrayList<String> images = new ArrayList<>();
-        images.add("https://c.tenor.com/uw6-q_y4xKsAAAAd/%D0%B0%D0%BD%D0%B8%D0%BC%D0%B5-darling-in-the-franxx.gif");
-        images.add("https://c.tenor.com/Yo1IUz2KJy0AAAAC/loli-lick.gif");
-        images.add("https://c.tenor.com/5FOgNEcoaYMAAAAC/neck-kisses.gif");
-        images.add("https://c.tenor.com/S5I9g4dPRn4AAAAC/omamori-himari-manga.gif");
-        images.add("https://c.tenor.com/q8oaLRMnoq8AAAAC/lick-tongue.gif");
-        images.add("https://c.tenor.com/rWtIltahEoAAAAAC/kawaii-lick.gif");
-        images.add("https://c.tenor.com/0LMxPQdFBKAAAAAC/nekopara-kiss.gif");
-        images.add("https://c.tenor.com/Pb1JPfqXpAIAAAAC/lick-licky.gif");
-        images.add("https://c.tenor.com/XBs2LbC5QFcAAAAC/t34-squid-game.gif");
-        images.add("https://c.tenor.com/zIU_JbsnMQ8AAAAC/zatch-bell-golden-gash.gif");
-        images.add("https://c.tenor.com/WvjCp611y9wAAAAC/lick-intimate.gif");
-        images.add("https://c.tenor.com/Qaj69b3i3-sAAAAd/hatsune-miku-lick.gif");
-        images.add("https://c.tenor.com/YD8a9VOLYcoAAAAd/anime-girl.gif");
-        images.add("https://c.tenor.com/eWkQ7-1c4qcAAAAC/anime-lovecraft.gif");
-        images.add("https://c.tenor.com/Xb1u2Z6nLRQAAAAC/lick-anime.gif");
+        List<String> images = config.getStringList("gif.command.lick");
 
         embedBuilder.setTitle("**:sweat_drops: Lick**");
         embedBuilder.setDescription(member.getAsMention() + " licks " + target.getAsMention() + "! :3");

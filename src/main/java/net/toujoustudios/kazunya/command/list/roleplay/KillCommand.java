@@ -51,15 +51,10 @@ public class KillCommand implements ICommand {
             return;
         }
 
-        ArrayList<String> images = new ArrayList<>();
-        images.add("https://c.tenor.com/hDFU7nFDFhcAAAAd/wasted-anime.gif");
-        images.add("https://c.tenor.com/Re9dglY0sCwAAAAC/anime-wasted.gif");
-        images.add("https://c.tenor.com/FJmJM5jRVp4AAAAd/wasted-anime.gif");
-        images.add("https://c.tenor.com/PJbU0yjG3BUAAAAd/anime-girl.gif");
+        List<String> images = config.getStringList("gif.command.kill");
 
         ArrayList<String> messages = new ArrayList<>();
-
-        int random = new Random().nextInt(2);
+        int random = new Random().nextInt(5);
 
         if (random == 1) {
             embedBuilder.setTitle("**:skull: Kill**");

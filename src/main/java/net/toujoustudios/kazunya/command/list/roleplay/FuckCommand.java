@@ -51,13 +51,7 @@ public class FuckCommand implements ICommand {
             return;
         }
 
-        ArrayList<String> images = new ArrayList<>();
-        images.add("https://wimg.rule34.xxx//images/3591/835ceb4c8a166c81b585640ee7824eb6.gif");
-        images.add("https://sexxxgif.com/content/2021/07/hentai-gif-67_001.gif");
-        images.add("https://static.hentai-img.com/upload/20111002/6/5861/10.gif");
-        images.add("https://uncensoredhentaigif.com/content/_gifs/hentai/sexcom/18280640_min.gif");
-        images.add("http://x3vid.com/images/17112/https:__ep1.xhcdn.com_000_158_121_375_1000.gif");
-        images.add("https://bobsvagene.club/wp-content/uploads/2018/05/uncensored-8465.gif");
+        List<String> images = config.getStringList("gif.command.fuck");
 
         embedBuilder.setTitle("**:sweat_drops: Fucky Wucky**");
         embedBuilder.setDescription(member.getAsMention() + " is giving " + target.getAsMention() + " a sexy time! o//w//o");

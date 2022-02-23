@@ -91,7 +91,6 @@ public class Config {
         String[] stringArray = getString(key).split(", ");
         if (stringArray.length >= 1) return Arrays.asList(stringArray);
         else return null;
-
     }
 
 }

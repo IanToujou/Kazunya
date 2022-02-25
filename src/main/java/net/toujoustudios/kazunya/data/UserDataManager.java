@@ -13,6 +13,27 @@ import java.sql.SQLException;
  */
 public class UserDataManager {
 
+    public static void setUsageBanned(String userId, boolean usageBanned) {
+        DatabaseManager.executeUpdate("INSERT INTO user_data (user_id, usage_banned) VALUES ('" + userId + "', '" + usageBanned + "') ON DUPLICATE KEY UPDATE usage_banned='" + usageBanned + "';");
+    }
+
+    public static boolean isUsageBanned(String userId) {
+
+        try {
+
+            ResultSet resultSet = DatabaseManager.executeQuery("SELECT usage_banned FROM user_data WHERE user_id='" + userId + "';");
+            if (resultSet != null && resultSet.next()) {
+                return resultSet.getBoolean("usage_banned");
+            }
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
+        return false;
+
+    }
+
     public static void setAccountMoney(String userId, double amount) {
 
         amount = (double) Math.round(amount * 100) / 100;

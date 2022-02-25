@@ -15,12 +15,14 @@ public class UserManager {
 
     private static final HashMap<String, UserManager> users = new HashMap<>();
     private String userId;
+    private boolean usageBanned;
     private double accountMoney;
     private String partner;
 
     public UserManager(String userId) {
 
         this.userId = userId;
+        this.usageBanned = UserDataManager.isUsageBanned(userId);
         this.accountMoney = UserDataManager.getAccountMoney(userId);
         this.partner = UserDataManager.getPartner(userId);
 
@@ -36,35 +38,28 @@ public class UserManager {
     }
 
     public static void unloadAll() {
-
         for (Map.Entry<String, UserManager> entry : users.entrySet()) {
             users.get(entry.getKey()).unload();
         }
-
     }
 
     public void unload() {
-
         save();
         destroy();
-
     }
 
     public void save() {
-
+        UserDataManager.setUsageBanned(userId, usageBanned);
         UserDataManager.setAccountMoney(userId, accountMoney);
         if (hasPartner()) {
             UserDataManager.setPartner(userId, partner);
         } else {
             UserDataManager.removePartner(userId);
         }
-
     }
 
     public void destroy() {
-
-        users.remove(this);
-
+        users.remove(this.userId);
     }
 
     public String getUserId() {
@@ -73,6 +68,14 @@ public class UserManager {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public boolean isUsageBanned() {
+        return usageBanned;
+    }
+
+    public void setBanned(boolean usageBanned) {
+        this.usageBanned = usageBanned;
     }
 
     public double getAccountMoney() {

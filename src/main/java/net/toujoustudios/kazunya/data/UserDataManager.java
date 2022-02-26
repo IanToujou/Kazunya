@@ -14,7 +14,7 @@ import java.sql.SQLException;
 public class UserDataManager {
 
     public static void setUsageBanned(String userId, boolean usageBanned) {
-        DatabaseManager.executeUpdate("INSERT INTO user_data (user_id, usage_banned) VALUES ('" + userId + "', '" + usageBanned + "') ON DUPLICATE KEY UPDATE usage_banned='" + usageBanned + "';");
+        DatabaseManager.executeUpdate("INSERT INTO user_data (user_id, usage_banned) VALUES ('" + userId + "', '" + (usageBanned ? 1 : 0) + "') ON DUPLICATE KEY UPDATE usage_banned='" + (usageBanned ? 1 : 0) + "';");
     }
 
     public static boolean isUsageBanned(String userId) {

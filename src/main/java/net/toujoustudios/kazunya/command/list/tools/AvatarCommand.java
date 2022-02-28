@@ -49,7 +49,7 @@ public class AvatarCommand implements ICommand {
         UserManager targetManager = UserManager.getUser(targetUser.getId());
 
         embedBuilder.setTitle("**:frame_photo: Avatar**");
-        embedBuilder.setDescription("Here is " + targetUser.getAsMention() + "'s avatar. It looks very cool! :3");
+        embedBuilder.setDescription("Here is " + targetUser.getAsMention() + "'s Discord avatar. It looks very cool! :3");
         embedBuilder.setImage(targetUser.getEffectiveAvatarUrl());
 
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
@@ -59,18 +59,18 @@ public class AvatarCommand implements ICommand {
 
     @Override
     public String getName() {
-        return "userinfo";
+        return "avatar";
     }
 
     @Override
     public String getDescription() {
-        return "Displays general information about a discord user.";
+        return "Displays the user's Discord avatar.";
     }
 
     @Override
     public List<OptionData> getOptions() {
         List<OptionData> optionData = new ArrayList<>();
-        optionData.add(new OptionData(OptionType.USER, "user", "The user you want to get information on.", true));
+        optionData.add(new OptionData(OptionType.USER, "user", "The user you want to get the Discord avatar from.", true));
         return optionData;
     }
 

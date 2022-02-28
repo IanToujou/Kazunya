@@ -1,4 +1,4 @@
-package net.toujoustudios.kazunya.command.list.stats;
+package net.toujoustudios.kazunya.command.list.tools;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
@@ -111,6 +111,6 @@ public class UserInfoCommand implements ICommand {
 
     @Override
     public CommandCategory getCategory() {
-        return CommandCategory.STATS;
+        return CommandCategory.TOOLS;
     }
 }

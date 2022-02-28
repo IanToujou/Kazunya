@@ -10,7 +10,7 @@ import net.toujoustudios.kazunya.command.list.fun.RollCommand;
 import net.toujoustudios.kazunya.command.list.fun.ShipCommand;
 import net.toujoustudios.kazunya.command.list.general.HelpCommand;
 import net.toujoustudios.kazunya.command.list.roleplay.*;
-import net.toujoustudios.kazunya.command.list.stats.UserInfoCommand;
+import net.toujoustudios.kazunya.command.list.tools.UserInfoCommand;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
 import net.toujoustudios.kazunya.log.LogLevel;

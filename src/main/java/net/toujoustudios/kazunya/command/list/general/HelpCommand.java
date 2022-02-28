@@ -66,9 +66,6 @@ public class HelpCommand implements ICommand {
                 if (command.getCategory() == CommandCategory.FUN) {
                     builderFun.append("`/" + command.getName() + "` - " + command.getDescription() + "\n");
                 }
-                if (command.getCategory() == CommandCategory.STATS) {
-                    builderStats.append("`/" + command.getName() + "` - " + command.getDescription() + "\n");
-                }
                 if (command.getCategory() == CommandCategory.TOOLS) {
                     builderTools.append("`/" + command.getName() + "` - " + command.getDescription() + "\n");
                 }
@@ -83,7 +80,6 @@ public class HelpCommand implements ICommand {
             embedBuilder.addField(":satellite_orbital: General:", builderGeneral.toString(), false);
             embedBuilder.addField(":heart: Roleplay:", builderRoleplay.toString(), false);
             embedBuilder.addField(":sparkles: Fun:", builderFun.toString(), false);
-            embedBuilder.addField(":bar_chart: Stats:", builderStats.toString(), false);
             embedBuilder.addField(":hammer: Tools:", builderTools.toString(), false);
             embedBuilder.addField(":credit_card: Economy:", builderEconomy.toString(), false);
             if (context.getEvent().getTextChannel().isNSFW())

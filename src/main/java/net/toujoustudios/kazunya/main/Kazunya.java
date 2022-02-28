@@ -4,7 +4,6 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
-import net.toujoustudios.kazunya.analytics.AnalyticsManager;
 import net.toujoustudios.kazunya.command.CommandManager;
 import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.database.DatabaseManager;
@@ -31,14 +30,12 @@ public class Kazunya {
     private JDABuilder builder;
     private JDA jda;
     private CommandManager commandManager;
-    private AnalyticsManager analyticsManager;
 
     public void build() {
 
         Config config = Config.getDefault();
         Config keysConfig = Config.getFile("keys.yml");
         commandManager = new CommandManager();
-        analyticsManager = new AnalyticsManager();
 
         builder = JDABuilder.createDefault(keysConfig.getString("keys.token"));
 
@@ -151,10 +148,6 @@ public class Kazunya {
 
     public CommandManager getCommandManager() {
         return commandManager;
-    }
-
-    public AnalyticsManager getAnalyticsManager() {
-        return analyticsManager;
     }
 
 }

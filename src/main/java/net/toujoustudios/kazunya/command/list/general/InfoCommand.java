@@ -24,7 +24,7 @@ import java.util.List;
  * Date: 28/02/2022
  * Time: 23:09
  */
-public class HelpCommand implements ICommand {
+public class InfoCommand implements ICommand {
 
     private final CommandManager manager;
     private final Config config;

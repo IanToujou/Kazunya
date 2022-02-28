@@ -38,6 +38,7 @@ public class UserManager {
     }
 
     public static void unloadAll() {
+        if (users == null || users.size() == 0) return;
         for (Map.Entry<String, UserManager> entry : users.entrySet()) {
             users.get(entry.getKey()).unload();
         }

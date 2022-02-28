@@ -10,6 +10,7 @@ import net.toujoustudios.kazunya.command.list.fun.RollCommand;
 import net.toujoustudios.kazunya.command.list.fun.ShipCommand;
 import net.toujoustudios.kazunya.command.list.general.HelpCommand;
 import net.toujoustudios.kazunya.command.list.roleplay.*;
+import net.toujoustudios.kazunya.command.list.tools.AvatarCommand;
 import net.toujoustudios.kazunya.command.list.tools.UserInfoCommand;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
@@ -55,6 +56,7 @@ public class CommandManager {
         this.addCommand(new RollCommand());
         this.addCommand(new ShipCommand());
         this.addCommand(new UserInfoCommand());
+        this.addCommand(new AvatarCommand());
         this.addCommand(new ModifyAccountBalanceCommand());
         this.addCommand(new MarketInfoCommand());
 

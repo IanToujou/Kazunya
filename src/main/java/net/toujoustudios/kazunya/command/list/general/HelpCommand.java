@@ -70,7 +70,7 @@ public class HelpCommand implements ICommand {
                     builderStats.append("`/" + command.getName() + "` - " + command.getDescription() + "\n");
                 }
                 if (command.getCategory() == CommandCategory.TOOLS) {
-                    builderStats.append("`/" + command.getName() + "` - " + command.getDescription() + "\n");
+                    builderTools.append("`/" + command.getName() + "` - " + command.getDescription() + "\n");
                 }
                 if (command.getCategory() == CommandCategory.ECONOMY) {
                     builderEconomy.append("`/" + command.getName() + "` - " + command.getDescription() + "\n");

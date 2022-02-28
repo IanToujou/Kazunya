@@ -8,7 +8,7 @@ import net.toujoustudios.kazunya.command.list.economy.MarketInfoCommand;
 import net.toujoustudios.kazunya.command.list.economy.ModifyAccountBalanceCommand;
 import net.toujoustudios.kazunya.command.list.fun.RollCommand;
 import net.toujoustudios.kazunya.command.list.fun.ShipCommand;
-import net.toujoustudios.kazunya.command.list.general.HelpCommand;
+import net.toujoustudios.kazunya.command.list.general.*;
 import net.toujoustudios.kazunya.command.list.roleplay.*;
 import net.toujoustudios.kazunya.command.list.tools.AvatarCommand;
 import net.toujoustudios.kazunya.command.list.tools.UserInfoCommand;
@@ -39,6 +39,7 @@ public class CommandManager {
 
         //Register non NSFW commands
         this.addCommand(new HelpCommand(this));
+        this.addCommand(new InfoCommand());
         this.addCommand(new MarryCommand());
         this.addCommand(new DivorceCommand());
         this.addCommand(new BlushCommand());

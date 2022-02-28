@@ -34,7 +34,7 @@ public class InfoCommand implements ICommand {
 
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
         embedBuilder.setTitle(":information: **Kazunya Help**");
-        embedBuilder.setDescription("Here are all the informations you need to know about the **Kazunya Bot**");
+        embedBuilder.setDescription("Here is all the information you need to know about the **Kazunya Bot**");
         embedBuilder.setThumbnail(config.getString("assets.img.icon_information"));
         context.getEvent().replyEmbeds(embedBuilder.build()).queue();
 

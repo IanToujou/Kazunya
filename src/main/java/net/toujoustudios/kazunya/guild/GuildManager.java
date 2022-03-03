@@ -30,26 +30,22 @@ public class GuildManager {
 
     }
 
-    public static void unloadAll() {
+    public static void saveAll() {
         for (Map.Entry<String, GuildManager> entry : guilds.entrySet()) {
-            guilds.get(entry.getKey()).unload();
+            guilds.get(entry.getKey()).save();
         }
+    }
+
+    public static void unloadAll() {
+        saveAll();
+        guilds.clear();
     }
 
     public static HashMap<String, GuildManager> getGuilds() {
         return guilds;
     }
 
-    public void unload() {
-        save();
-        destroy();
-    }
-
     public void save() {
-    }
-
-    public void destroy() {
-        guilds.remove(guildId);
     }
 
 }

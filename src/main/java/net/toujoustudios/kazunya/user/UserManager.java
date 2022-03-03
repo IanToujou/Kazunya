@@ -37,16 +37,16 @@ public class UserManager {
 
     }
 
-    public static void unloadAll() {
+    public static void saveAll() {
         if (users == null || users.size() == 0) return;
         for (Map.Entry<String, UserManager> entry : users.entrySet()) {
-            users.get(entry.getKey()).unload();
+            users.get(entry.getKey()).save();
         }
     }
 
-    public void unload() {
-        save();
-        destroy();
+    public static void unloadAll() {
+        saveAll();
+        users.clear();
     }
 
     public void save() {
@@ -57,10 +57,6 @@ public class UserManager {
         } else {
             UserDataManager.removePartner(userId);
         }
-    }
-
-    public void destroy() {
-        users.remove(this.userId);
     }
 
     public String getUserId() {

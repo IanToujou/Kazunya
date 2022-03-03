@@ -85,7 +85,7 @@ public class DatabaseManager {
 
     public static void setup() {
         executeUpdate("CREATE TABLE IF NOT EXISTS user_data ( `user_id` VARCHAR(256) NOT NULL , `usage_banned` BOOLEAN NOT NULL DEFAULT FALSE , `account_money` INT NOT NULL DEFAULT '0' , `wallet_money` INT NOT NULL DEFAULT '0', `partner_id` VARCHAR(256) NULL DEFAULT NULL , PRIMARY KEY (`user_id`)) ENGINE = InnoDB;");
-        executeUpdate("CREATE TABLE IF NOT EXISTS command_logs ( `command_id` VARCHAR(256) NOT NULL , `execution_successful` BOOLEAN NOT NULL DEFAULT FALSE, `execution_date` DATE NULL DEFAULT NULL , `execution_time` TIME NULL DEFAULT NULL , `user_id` VARCHAR(64) NULL DEFAULT NULL , `server_id` VARCHAR(64) NULL DEFAULT NULL , `command_arguments` VARCHAR(256) NULL DEFAULT NULL , PRIMARY KEY (`command_id`)) ENGINE = InnoDB;");
+        executeUpdate("CREATE TABLE IF NOT EXISTS command_logs ( `entry_id` INT NOT NULL AUTO_INCREMENT, `command_id` VARCHAR(256) NOT NULL , `execution_successful` BOOLEAN NOT NULL DEFAULT FALSE, `execution_time` DATETIME NULL DEFAULT NULL , `user_id` VARCHAR(64) NULL DEFAULT NULL , `server_id` VARCHAR(64) NULL DEFAULT NULL , `full_command` VARCHAR(256) NULL DEFAULT NULL , PRIMARY KEY (`entry_id`)) ENGINE = InnoDB;");
     }
 
 }

@@ -10,6 +10,7 @@ import net.toujoustudios.kazunya.database.DatabaseManager;
 import net.toujoustudios.kazunya.database.DatabaseTimer;
 import net.toujoustudios.kazunya.guild.GuildManager;
 import net.toujoustudios.kazunya.listener.SlashCommandListener;
+import net.toujoustudios.kazunya.log.CommandLog;
 import net.toujoustudios.kazunya.log.LogLevel;
 import net.toujoustudios.kazunya.log.Logger;
 import net.toujoustudios.kazunya.user.UserManager;
@@ -79,12 +80,14 @@ public class Kazunya {
 
                 UserManager.unloadAll();
                 GuildManager.unloadAll();
+                CommandLog.unloadAll();
                 Logger.log(LogLevel.INFORMATION, "Successfully saved all data in the cache.");
 
             } else if (input.startsWith("shutdown")) {
 
                 UserManager.unloadAll();
                 GuildManager.unloadAll();
+                CommandLog.unloadAll();
                 Logger.log(LogLevel.INFORMATION, "Successfully saved all data in the cache.");
                 System.exit(0);
 

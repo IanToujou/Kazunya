@@ -2,7 +2,11 @@ package net.toujoustudios.kazunya.log;
 
 import net.toujoustudios.kazunya.config.Config;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 /**
@@ -28,7 +32,18 @@ public class Logger {
 
         SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss", new Locale("de", "DE"));
         SimpleDateFormat fileDate = new SimpleDateFormat("dd-MM-yyyy");
-        System.out.println("[" + Config.getDefault().getString("general.name") + " - " + level + "] " + level.getColor() + message + ANSI_RESET);
+        Date date = new Date();
+
+        System.out.println("[" + format.format(date) + " - " + level + "] " + level.getColor() + message + ANSI_RESET);
+
+        String filename = "logs/" + (new SimpleDateFormat("dd-MM-yyyy").format(new Date())) + ".log";
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true));
+            writer.write("[" + format.format(date) + " - " + level + "] " + message + "\n");
+            writer.close();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
 
     }
 

@@ -15,13 +15,13 @@ import net.toujoustudios.kazunya.command.list.tools.AvatarCommand;
 import net.toujoustudios.kazunya.command.list.tools.UserInfoCommand;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
-import net.toujoustudios.kazunya.log.CommandLog;
 import net.toujoustudios.kazunya.log.LogLevel;
 import net.toujoustudios.kazunya.log.Logger;
 import net.toujoustudios.kazunya.main.Main;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This file has been created by Ian Toujou.
@@ -123,14 +123,11 @@ public class CommandManager {
 
             if (command.getCategory() == CommandCategory.NSFW && !event.getTextChannel().isNSFW()) {
                 ErrorEmbed.sendError(event, ErrorType.GENERAL_NSFW);
-                CommandLog commandLog = new CommandLog(command.getName().toLowerCase(Locale.ROOT), false, new Date(), event.getUser().getId(), Objects.requireNonNull(event.getGuild()).getId(), event.getCommandString());
                 return;
             }
 
             List<OptionMapping> args = event.getOptions();
             CommandContext context = new CommandContext(event, args);
-
-            CommandLog commandLog = new CommandLog(command.getName().toLowerCase(Locale.ROOT), true, new Date(), event.getUser().getId(), Objects.requireNonNull(event.getGuild()).getId(), event.getCommandString());
 
             command.handle(context);
 

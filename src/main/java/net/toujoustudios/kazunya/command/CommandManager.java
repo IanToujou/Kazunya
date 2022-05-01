@@ -6,6 +6,7 @@ import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
 import net.toujoustudios.kazunya.command.list.economy.MarketInfoCommand;
 import net.toujoustudios.kazunya.command.list.economy.ModifyAccountBalanceCommand;
+import net.toujoustudios.kazunya.command.list.fun.PeePeeCommand;
 import net.toujoustudios.kazunya.command.list.fun.RollCommand;
 import net.toujoustudios.kazunya.command.list.fun.ShipCommand;
 import net.toujoustudios.kazunya.command.list.general.HelpCommand;
@@ -61,6 +62,7 @@ public class CommandManager {
         this.addCommand(new AvatarCommand());
         this.addCommand(new ModifyAccountBalanceCommand());
         this.addCommand(new MarketInfoCommand());
+        this.addCommand(new PeePeeCommand());
 
         //Register NSFW commands
         this.addCommand(new FuckCommand());

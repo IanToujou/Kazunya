@@ -8,8 +8,6 @@ import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.command.ICommand;
 import net.toujoustudios.kazunya.config.Config;
-import net.toujoustudios.kazunya.error.ErrorEmbed;
-import net.toujoustudios.kazunya.error.ErrorType;
 import net.toujoustudios.kazunya.util.ColorUtil;
 
 import java.util.Collections;
@@ -36,11 +34,6 @@ public class BlushCommand implements ICommand {
         List<OptionMapping> args = context.getArgs();
         Member member = context.getMember();
         EmbedBuilder embedBuilder = new EmbedBuilder();
-
-        if (args.size() != 0) {
-            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_SYNTAX);
-            return;
-        }
 
         List<String> images = config.getStringList("gif.command.blush");
 

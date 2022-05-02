@@ -35,7 +35,11 @@ public class PeePeeCommand implements ICommand {
 
         List<OptionMapping> args = context.getArgs();
         EmbedBuilder embedBuilder = new EmbedBuilder();
-        Member member = args.get(0).getAsMember();
+        Member member = context.getMember();
+
+        if (args.size() == 1) {
+            member = args.get(0).getAsMember();
+        }
 
         if (member == null) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_NOT_FOUND);
@@ -46,10 +50,9 @@ public class PeePeeCommand implements ICommand {
         String memberId = member.getId();
         int num = Integer.parseInt(memberId.substring(memberId.length() - 2));
         int size = Math.round(num) / 4;
-
         String pp = "8" + "=".repeat(Math.max(0, size)) + "D";
 
-        embedBuilder.setDescription(member.getAsMention() + " has the following PP size:\n" + pp);
+        embedBuilder.setDescription(member.getAsMention() + " has the following PP size:\n**" + pp + "**");
         embedBuilder.setTitle("**:eggplant: PP Size**");
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
         context.getEvent().replyEmbeds(embedBuilder.build()).queue();

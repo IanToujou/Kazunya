@@ -80,12 +80,5 @@ public class PeePeeCommand implements ICommand {
     public CommandCategory getCategory() {
         return CommandCategory.FUN;
     }
-
-    @Override
-    public List<String> getAliases() {
-        ArrayList<String> aliases = new ArrayList<>();
-        aliases.add("pp");
-        return aliases;
-    }
-
+    
 }

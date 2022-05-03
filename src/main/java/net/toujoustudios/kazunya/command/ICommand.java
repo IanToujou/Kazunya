@@ -17,10 +17,6 @@ public interface ICommand {
 
     CommandCategory getCategory();
 
-    default List<String> getAliases() {
-        return Collections.emptyList();
-    }
-
     default String getSyntax() {
 
         StringBuilder builder = new StringBuilder();

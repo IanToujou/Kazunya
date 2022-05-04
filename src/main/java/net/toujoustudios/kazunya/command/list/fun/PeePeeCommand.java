@@ -98,5 +98,5 @@ public class PeePeeCommand implements ICommand {
     public CommandCategory getCategory() {
         return CommandCategory.FUN;
     }
-    
+
 }

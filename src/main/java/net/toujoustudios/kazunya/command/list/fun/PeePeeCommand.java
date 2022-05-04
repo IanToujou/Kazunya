@@ -46,15 +46,33 @@ public class PeePeeCommand implements ICommand {
             return;
         }
 
-        int rating = 0;
         String memberId = member.getId();
         int num = Integer.parseInt(memberId.substring(memberId.length() - 2));
-        int size = Math.round(num) / 4;
+        int size = Math.round(num) / 3;
         String pp = "8" + "=".repeat(Math.max(0, size)) + "D";
 
-        embedBuilder.setDescription(member.getAsMention() + " has the following PP size:\n**" + pp + "**");
+        String comment;
+
+        if (size <= 1) {
+            comment = ":knife: Oh no, did someone chop it off?! I can't see it.";
+        } else if (size <= 5) {
+            comment = ":microscope: Hold up. I need an electron microscope for this one.";
+        } else if (size <= 10) {
+            comment = ":arrow_down_small: Below average but still fine.";
+        } else if (size <= 20) {
+            comment = ":sparkles: Pretty average, very nice tip though. A solid 7/10. Now onto the taste test.";
+        } else if (size <= 29) {
+            comment = ":muscle: That's a nice one bro! A solid 9/10.";
+        } else if (size >= 33) {
+            comment = ":moyai: That one is max-size. What a gigachad.";
+        } else {
+            comment = ":flushed: This one is huuuuge...";
+        }
+
         embedBuilder.setTitle("**:eggplant: PP Size**");
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
+        embedBuilder.setDescription(member.getAsMention() + " has the following PP size:\n```" + pp + "```\n" + comment);
+
         context.getEvent().replyEmbeds(embedBuilder.build()).queue();
 
     }

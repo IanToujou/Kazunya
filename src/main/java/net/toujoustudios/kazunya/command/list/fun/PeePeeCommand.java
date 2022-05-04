@@ -61,7 +61,7 @@ public class PeePeeCommand implements ICommand {
 
     @Override
     public String getName() {
-        return "peepee";
+        return "pp";
     }
 
     @Override
@@ -72,7 +72,7 @@ public class PeePeeCommand implements ICommand {
     @Override
     public List<OptionData> getOptions() {
         List<OptionData> optionData = new ArrayList<>();
-        optionData.add(new OptionData(OptionType.USER, "user", "The user you want to get the PP size from.", false));
+        optionData.add(new OptionData(OptionType.USER, "user", "The user you want to get the pp size from.", false));
         return optionData;
     }
 

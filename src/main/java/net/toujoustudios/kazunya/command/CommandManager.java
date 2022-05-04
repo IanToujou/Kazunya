@@ -107,7 +107,7 @@ public class CommandManager {
         String searchLower = search.toLowerCase();
 
         for (ICommand command : this.commands) {
-            if (command.getName().equals(searchLower) || command.getAliases().contains(searchLower)) return command;
+            if (command.getName().equals(searchLower)) return command;
         }
 
         return null;

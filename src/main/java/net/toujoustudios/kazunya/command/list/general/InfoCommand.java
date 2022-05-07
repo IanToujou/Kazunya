@@ -34,7 +34,7 @@ public class InfoCommand implements ICommand {
 
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
         embedBuilder.setTitle(":purple_heart: **Kazunya Information**");
-        embedBuilder.setDescription("Here is all the information you need to know about the **Kazunya Bot**");
+        embedBuilder.setDescription("Here is all the information you need to know about the **Kazunya Bot**.");
         embedBuilder.addField(":information_source: Description:", "Kazunya is a general purpose bot that mainly focuses on roleplay and Anime!", false);
         embedBuilder.addField(":test_tube: Development:", "**GitHub:** https://github.com/IanToujou/Kazunya\n**Credits:** Made by `Toujou Studios`", false);
         embedBuilder.setThumbnail(config.getString("assets.img.icon_information"));

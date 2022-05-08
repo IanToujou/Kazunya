@@ -55,6 +55,7 @@ public class HelpCommand implements ICommand {
             StringBuilder builderTools = new StringBuilder();
             StringBuilder builderEconomy = new StringBuilder();
             StringBuilder builderNSFW = new StringBuilder();
+            StringBuilder builderAdministration = new StringBuilder();
 
             for (ICommand command : manager.getCommands()) {
                 if (command.getCategory() == CommandCategory.GENERAL) {
@@ -75,6 +76,9 @@ public class HelpCommand implements ICommand {
                 if (command.getCategory() == CommandCategory.NSFW) {
                     builderNSFW.append("`/" + command.getName() + "` - " + command.getDescription() + "\n");
                 }
+                if (command.getCategory() == CommandCategory.ADMINISTRATION) {
+                    builderAdministration.append("`/" + command.getName() + "` - " + command.getDescription() + "\n");
+                }
             }
 
             embedBuilder.addField(":satellite_orbital: General:", builderGeneral.toString(), false);
@@ -84,6 +88,8 @@ public class HelpCommand implements ICommand {
             embedBuilder.addField(":credit_card: Economy:", builderEconomy.toString(), false);
             if (context.getEvent().getTextChannel().isNSFW())
                 embedBuilder.addField(":no_entry_sign: NSFW:", builderNSFW.toString(), false);
+            if (!context.getMember().getId().equals(config.getString("user.admin")))
+                embedBuilder.addField(":tools: Administration:", builderAdministration.toString(), false);
 
             boolean isOwnerOnServer = false;
             for (Member member : context.getGuild().getMembers()) {

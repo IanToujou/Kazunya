@@ -4,8 +4,8 @@ import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
+import net.toujoustudios.kazunya.command.list.administration.AdminBalanceCommand;
 import net.toujoustudios.kazunya.command.list.economy.MarketInfoCommand;
-import net.toujoustudios.kazunya.command.list.economy.ModifyAccountBalanceCommand;
 import net.toujoustudios.kazunya.command.list.fun.PeePeeCommand;
 import net.toujoustudios.kazunya.command.list.fun.RollCommand;
 import net.toujoustudios.kazunya.command.list.fun.ShipCommand;
@@ -60,7 +60,7 @@ public class CommandManager {
         this.addCommand(new ShipCommand());
         this.addCommand(new UserInfoCommand());
         this.addCommand(new AvatarCommand());
-        this.addCommand(new ModifyAccountBalanceCommand());
+        this.addCommand(new AdminBalanceCommand());
         this.addCommand(new MarketInfoCommand());
         this.addCommand(new PeePeeCommand());
 

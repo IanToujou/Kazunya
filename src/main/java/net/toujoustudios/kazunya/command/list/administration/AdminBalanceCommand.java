@@ -1,4 +1,4 @@
-package net.toujoustudios.kazunya.command.list.economy;
+package net.toujoustudios.kazunya.command.list.administration;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
@@ -23,11 +23,11 @@ import java.util.List;
  * Date: 02/11/2021
  * Time: 04:12
  */
-public class ModifyAccountBalanceCommand implements ICommand {
+public class AdminBalanceCommand implements ICommand {
 
     private final Config config;
 
-    public ModifyAccountBalanceCommand() {
+    public AdminBalanceCommand() {
         config = Config.getDefault();
     }
 
@@ -60,24 +60,22 @@ public class ModifyAccountBalanceCommand implements ICommand {
         Member target = args.get(1).getAsMember();
         assert target != null;
         UserManager targetManager = UserManager.getUser(target.getId());
+        String currency = config.getString("format.char.currency");
 
         switch (action) {
             case "set" -> {
                 targetManager.setMoney(value);
-                embedBuilder.setDescription("You set the account value of " + target.getAsMention() + " to **" + value + "$**.");
+                embedBuilder.setDescription("You set the account value of " + target.getAsMention() + " to `" + value + " " + currency + "`.");
             }
             case "add" -> {
                 targetManager.addAccountMoney(value);
-                embedBuilder.setDescription("You added  **" + value + "$** to the account of " + target.getAsMention() + ". New balance: `" + targetManager.getAccountMoney() + "$`.");
+                embedBuilder.setDescription("You added `" + value + " " + currency + "` to the account of " + target.getAsMention() + ".\nNew balance: `" + targetManager.getAccountMoney() + " " + currency + "`.");
             }
             case "remove" -> {
                 targetManager.removeAccountMoney(value);
-                embedBuilder.setDescription("You removed  **" + value + "$** from the account of " + target.getAsMention() + ". New balance: `" + targetManager.getAccountMoney() + "$`.");
+                embedBuilder.setDescription("You removed `" + value + " " + currency + "` from the account of " + target.getAsMention() + ".\nNew balance: `" + targetManager.getAccountMoney() + " " + currency + "`.");
             }
-            case "show" -> {
-                double money = targetManager.getAccountMoney();
-                embedBuilder.setDescription(target.getAsMention() + "'s account balance is currently: `" + targetManager.getAccountMoney() + "$`.");
-            }
+            case "get" -> embedBuilder.setDescription(target.getAsMention() + "'s account balance is currently: `" + targetManager.getAccountMoney() + " " + currency + "`.");
             default -> {
                 ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_OPERATION_BALANCE);
                 return;
@@ -92,7 +90,7 @@ public class ModifyAccountBalanceCommand implements ICommand {
 
     @Override
     public String getName() {
-        return "admin balance";
+        return "admin-balance";
     }
 
     @Override
@@ -103,7 +101,7 @@ public class ModifyAccountBalanceCommand implements ICommand {
     @Override
     public List<OptionData> getOptions() {
         List<OptionData> optionData = new ArrayList<>();
-        optionData.add(new OptionData(OptionType.STRING, "action", "The action to perform on the account, either set, add, remove or show.", true));
+        optionData.add(new OptionData(OptionType.STRING, "action", "The action to perform on the account, either set, add, remove or get.", true));
         optionData.add(new OptionData(OptionType.USER, "user", "The user to whom the account belongs to.", true));
         optionData.add(new OptionData(OptionType.STRING, "amount", "The desired amount. It must be a decimal number.", true));
         return optionData;
@@ -111,7 +109,7 @@ public class ModifyAccountBalanceCommand implements ICommand {
 
     @Override
     public CommandCategory getCategory() {
-        return CommandCategory.ECONOMY;
+        return CommandCategory.ADMINISTRATION;
     }
 
 }

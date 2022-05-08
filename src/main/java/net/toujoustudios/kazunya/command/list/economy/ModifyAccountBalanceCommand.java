@@ -35,6 +35,7 @@ public class ModifyAccountBalanceCommand implements ICommand {
     public void handle(CommandContext context) {
 
         if (!context.getMember().getId().equals(config.getString("user.admin"))) {
+            ErrorEmbed.sendError(context, ErrorType.GENERAL_PERMISSION);
             return;
         }
 
@@ -96,7 +97,7 @@ public class ModifyAccountBalanceCommand implements ICommand {
 
     @Override
     public String getDescription() {
-        return "Modify the account balance of someone.";
+        return "💳 Modify the account balance of someone.";
     }
 
     @Override

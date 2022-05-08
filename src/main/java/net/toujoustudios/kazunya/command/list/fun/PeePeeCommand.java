@@ -71,7 +71,7 @@ public class PeePeeCommand implements ICommand {
 
         embedBuilder.setTitle("**:eggplant: PP Size**");
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
-        embedBuilder.setDescription(member.getAsMention() + " has the following PP size:\n```" + pp + "```" + comment);
+        embedBuilder.setDescription(member.getAsMention() + " has the following PP size:\n`" + pp + "`\n" + comment);
 
         context.getEvent().replyEmbeds(embedBuilder.build()).queue();
 

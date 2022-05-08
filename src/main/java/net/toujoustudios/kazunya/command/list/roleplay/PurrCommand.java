@@ -59,7 +59,7 @@ public class PurrCommand implements ICommand {
 
     @Override
     public String getDescription() {
-        return "Make yourself purr like a cat.";
+        return "😺 Make yourself purr like a cat.";
     }
 
     @Override

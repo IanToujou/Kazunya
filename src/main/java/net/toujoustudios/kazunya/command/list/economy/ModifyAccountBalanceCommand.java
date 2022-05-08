@@ -92,7 +92,7 @@ public class ModifyAccountBalanceCommand implements ICommand {
 
     @Override
     public String getName() {
-        return "modifyaccountbalance";
+        return "admin balance";
     }
 
     @Override

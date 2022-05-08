@@ -78,7 +78,7 @@ public class DivorceCommand implements ICommand {
 
     @Override
     public String getDescription() {
-        return "Divorce yourself from your partner.";
+        return "💔 Divorce yourself from your partner.";
     }
 
     @Override

@@ -59,7 +59,7 @@ public class LaughCommand implements ICommand {
 
     @Override
     public String getDescription() {
-        return "Make yourself laugh.";
+        return "😂 Make yourself laugh.";
     }
 
     @Override

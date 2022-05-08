@@ -108,7 +108,7 @@ public class RollCommand implements ICommand {
 
     @Override
     public String getDescription() {
-        return "Roll a dice and get a random result.";
+        return "🎲 Roll a dice and get a random result.";
     }
 
     @Override

@@ -84,7 +84,7 @@ public class PeePeeCommand implements ICommand {
 
     @Override
     public String getDescription() {
-        return "Shows the size of a persons pp.";
+        return "🍆 Shows the size of a persons pp.";
     }
 
     @Override

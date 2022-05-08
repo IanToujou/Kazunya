@@ -52,7 +52,7 @@ public class BlushCommand implements ICommand {
 
     @Override
     public String getDescription() {
-        return "Make yourself blush.";
+        return "😊 Make yourself blush.";
     }
 
     @Override

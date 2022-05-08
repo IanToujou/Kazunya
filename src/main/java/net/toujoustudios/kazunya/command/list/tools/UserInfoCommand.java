@@ -99,7 +99,7 @@ public class UserInfoCommand implements ICommand {
 
     @Override
     public String getDescription() {
-        return "Displays general information about a discord user.";
+        return "👤 Displays general information about a discord user.";
     }
 
     @Override

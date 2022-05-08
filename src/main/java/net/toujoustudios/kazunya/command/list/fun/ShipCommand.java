@@ -117,7 +117,7 @@ public class ShipCommand implements ICommand {
 
     @Override
     public String getDescription() {
-        return "Ship two users and get a compatibility score.";
+        return "💞 Ship two users and get a compatibility score.";
     }
 
     @Override

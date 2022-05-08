@@ -114,7 +114,7 @@ public class MarryCommand implements ICommand {
 
     @Override
     public String getDescription() {
-        return "Ask someone to be your wife or husband.";
+        return "💍 Ask someone to be your wife or husband.";
     }
 
     @Override

@@ -68,7 +68,7 @@ public class FuckCommand implements ICommand {
 
     @Override
     public String getDescription() {
-        return "Fuck another person.";
+        return "💦 Fuck another person.";
     }
 
     @Override

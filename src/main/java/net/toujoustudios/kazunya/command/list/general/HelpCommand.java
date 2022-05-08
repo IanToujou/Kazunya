@@ -132,7 +132,7 @@ public class HelpCommand implements ICommand {
 
     @Override
     public String getDescription() {
-        return "Shows a list of all the bot commands.";
+        return "🛰️ Shows a list of all the bot commands.";
     }
 
     @Override

@@ -68,7 +68,7 @@ public class KissCommand implements ICommand {
 
     @Override
     public String getDescription() {
-        return "Kiss another person.";
+        return "😚 Kiss another person.";
     }
 
     @Override

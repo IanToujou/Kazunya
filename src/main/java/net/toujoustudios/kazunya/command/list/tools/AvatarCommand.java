@@ -64,7 +64,7 @@ public class AvatarCommand implements ICommand {
 
     @Override
     public String getDescription() {
-        return "🖼️ Displays the user's Discord avatar.";
+        return "🪟 Displays the user's Discord avatar.";
     }
 
     @Override

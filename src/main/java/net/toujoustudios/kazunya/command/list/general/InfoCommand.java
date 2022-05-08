@@ -49,7 +49,7 @@ public class InfoCommand implements ICommand {
 
     @Override
     public String getDescription() {
-        return "ℹ️ Get general information about the bot.";
+        return "💜 Get general information about the bot.";
     }
 
     @Override

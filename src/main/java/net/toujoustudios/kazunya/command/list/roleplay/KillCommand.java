@@ -107,7 +107,12 @@ public class KillCommand implements ICommand {
 
     @Override
     public String getDescription() {
-        return "🔫 Kill someone else and commit a very bad thing.";
+        return "Kill someone else and commit a very bad thing.";
+    }
+
+    @Override
+    public String getEmoji() {
+        return "🔫";
     }
 
     @Override

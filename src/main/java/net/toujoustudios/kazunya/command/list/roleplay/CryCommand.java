@@ -52,7 +52,12 @@ public class CryCommand implements ICommand {
 
     @Override
     public String getDescription() {
-        return "😢 Make yourself cry.";
+        return "Make yourself cry.";
+    }
+
+    @Override
+    public String getEmoji() {
+        return "😢";
     }
 
     @Override

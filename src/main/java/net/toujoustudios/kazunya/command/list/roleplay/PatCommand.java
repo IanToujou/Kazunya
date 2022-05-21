@@ -68,7 +68,12 @@ public class PatCommand implements ICommand {
 
     @Override
     public String getDescription() {
-        return "💙 Headpat another person.";
+        return "Headpat another person.";
+    }
+
+    @Override
+    public String getEmoji() {
+        return "💙";
     }
 
     @Override

@@ -12,6 +12,8 @@ public interface ICommand {
 
     String getDescription();
 
+    String getEmoji();
+
     List<OptionData> getOptions();
 
     CommandCategory getCategory();

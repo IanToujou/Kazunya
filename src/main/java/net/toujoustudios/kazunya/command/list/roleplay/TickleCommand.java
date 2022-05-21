@@ -68,7 +68,12 @@ public class TickleCommand implements ICommand {
 
     @Override
     public String getDescription() {
-        return "😆 Tickle another user.";
+        return "Tickle another user.";
+    }
+
+    @Override
+    public String getEmoji() {
+        return "😆";
     }
 
     @Override

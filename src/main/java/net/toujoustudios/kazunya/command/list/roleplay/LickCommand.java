@@ -68,7 +68,12 @@ public class LickCommand implements ICommand {
 
     @Override
     public String getDescription() {
-        return "👅 Lick another user.";
+        return "Lick another user.";
+    }
+
+    @Override
+    public String getEmoji() {
+        return "👅";
     }
 
     @Override

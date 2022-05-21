@@ -95,7 +95,12 @@ public class AdminBalanceCommand implements ICommand {
 
     @Override
     public String getDescription() {
-        return "💳 Modify the account balance of someone.";
+        return "Modify the account balance of someone.";
+    }
+
+    @Override
+    public String getEmoji() {
+        return "💳";
     }
 
     @Override

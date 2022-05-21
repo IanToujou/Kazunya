@@ -97,7 +97,12 @@ public class MarketInfoCommand implements ICommand {
 
     @Override
     public String getDescription() {
-        return "💹 Retrieve information about the virtual stock market.";
+        return "Retrieve information about the virtual stock market.";
+    }
+
+    @Override
+    public String getEmoji() {
+        return "💹";
     }
 
     @Override

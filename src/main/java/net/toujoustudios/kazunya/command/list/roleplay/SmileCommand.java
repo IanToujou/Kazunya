@@ -59,7 +59,12 @@ public class SmileCommand implements ICommand {
 
     @Override
     public String getDescription() {
-        return "😁 Make yourself smile.";
+        return "Make yourself smile.";
+    }
+
+    @Override
+    public String getEmoji() {
+        return "😁";
     }
 
     @Override

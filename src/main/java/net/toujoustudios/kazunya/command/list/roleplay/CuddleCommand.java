@@ -63,7 +63,12 @@ public class CuddleCommand implements ICommand {
 
     @Override
     public String getDescription() {
-        return "💜 Cuddle another person.";
+        return "Cuddle another person.";
+    }
+
+    @Override
+    public String getEmoji() {
+        return "💜";
     }
 
     @Override

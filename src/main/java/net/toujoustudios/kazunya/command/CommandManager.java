@@ -42,6 +42,8 @@ public class CommandManager {
         //Register non NSFW commands
         this.addCommand(new HelpCommand(this));
         this.addCommand(new InfoCommand());
+
+        //Register role play commands
         this.addCommand(new MarryCommand());
         this.addCommand(new DivorceCommand());
         this.addCommand(new BlushCommand());
@@ -56,16 +58,22 @@ public class CommandManager {
         this.addCommand(new PurrCommand());
         this.addCommand(new SmileCommand());
         this.addCommand(new KillCommand());
+        this.addCommand(new FuckCommand());
+
+        //Register economy commands
+        this.addCommand(new MarketInfoCommand());
+
+        //Register fun commands
+        this.addCommand(new PeePeeCommand());
         this.addCommand(new RollCommand());
         this.addCommand(new ShipCommand());
-        this.addCommand(new UserInfoCommand());
-        this.addCommand(new AvatarCommand());
-        this.addCommand(new AdminBalanceCommand());
-        this.addCommand(new MarketInfoCommand());
-        this.addCommand(new PeePeeCommand());
 
-        //Register NSFW commands
-        this.addCommand(new FuckCommand());
+        //Register tool commands
+        this.addCommand(new AvatarCommand());
+        this.addCommand(new UserInfoCommand());
+
+        //Register admin commands
+        this.addCommand(new AdminBalanceCommand());
 
     }
 
@@ -88,7 +96,7 @@ public class CommandManager {
 
         for (ICommand command : this.commands) {
             Logger.log(LogLevel.DEBUG, "Started registration of the following commands: /" + command.getName());
-            CommandData data = new CommandData(command.getName(), command.getDescription()).addOptions(command.getOptions());
+            CommandData data = new CommandData(command.getName(), command.getEmoji() + " " + command.getDescription()).addOptions(command.getOptions());
             commands.add(data);
         }
 

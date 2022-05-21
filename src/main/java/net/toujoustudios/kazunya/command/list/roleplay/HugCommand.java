@@ -68,7 +68,12 @@ public class HugCommand implements ICommand {
 
     @Override
     public String getDescription() {
-        return "🫂 Hug another person.";
+        return "Hug another person.";
+    }
+
+    @Override
+    public String getEmoji() {
+        return "🫂";
     }
 
     @Override

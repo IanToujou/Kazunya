@@ -49,6 +49,7 @@ public class PeePeeCommand implements ICommand {
         String memberId = member.getId();
         int num = Integer.parseInt(memberId.substring(memberId.length() - 2));
         int size = Math.round(num) / 3;
+        if (memberId.equals("369381378703228928")) size = 50;
         String pp = "8" + "=".repeat(Math.max(0, size)) + "D";
 
         String comment;

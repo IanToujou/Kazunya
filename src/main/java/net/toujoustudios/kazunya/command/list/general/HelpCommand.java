@@ -113,16 +113,11 @@ public class HelpCommand implements ICommand {
 
         }
 
-        if (args.size() > 1) {
-            context.getEvent().replyEmbeds(ErrorEmbed.buildError(ErrorType.COMMAND_INVALID_SYNTAX)).addActionRow(Button.link(config.getString("link.help"), "Help")).queue();
-            return;
-        }
-
         String search = args.get(0).getAsString();
         ICommand command = manager.getCommand(search);
 
         if (command == null) {
-            context.getEvent().replyEmbeds(ErrorEmbed.buildError(ErrorType.COMMAND_INVALID_SEARCH)).addActionRow(Button.link(config.getString("link.help"), "Help")).queue();
+            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_SEARCH);
             return;
         }
 

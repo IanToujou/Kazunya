@@ -1,0 +1,34 @@
+site_name: Kazunya
+site_url: https://kazunya.toujoustudios.net/
+nav:
+  - 'Home': 'index.md'
+  - 'Commands':
+      - 'All Commands': 'commands/index.md'
+      - 'Roleplay':
+          - '/blush': 'commands/roleplay/blush.md'
+          - '/cry': 'commands/roleplay/cry.md'
+          - '/cuddle': 'commands/roleplay/cuddle.md'
+          - '/divorce': 'commands/roleplay/divorce.md'
+          - '/hug': 'commands/roleplay/hug.md'
+          - '/kill': 'commands/roleplay/kill.md'
+          - '/kiss': 'commands/roleplay/kiss.md'
+          - '/laugh': 'commands/roleplay/laugh.md'
+          - '/lick': 'commands/roleplay/lick.md'
+          - '/marry': 'commands/roleplay/marry.md'
+          - '/pat': 'commands/roleplay/pat.md'
+          - '/purr': 'commands/roleplay/purr.md'
+          - '/smile': 'commands/roleplay/smile.md'
+          - '/tickle': 'commands/roleplay/tickle.md'
+  - 'Errors': 'errors/index.md'
+  - 'About': 'about.md'
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - attr_list
+  - md_in_html
+theme:
+  name: material
+  palette:
+    scheme: slate
+    primary: pink

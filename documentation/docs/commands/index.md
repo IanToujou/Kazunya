@@ -1,0 +1,109 @@
+# All Commands
+
+## **Introduction**
+
+Commands are an essential part of Discord bots, and therefore also for Kazunya! Commands trigger most of the events and
+actions that Kazunya features. Below is a list of all the commands that Kazunya supports, including NSFW ones and
+admin-only commands.
+
+### **Categories**
+
+- 🟢 `PUBLIC` | These commands can be used by every person. Most commands are public and everyone can use them.
+- 🟡 `RESTRICTED` | Restricted commands can only be accessed by people with specific server permissions, for example
+  message deletion, reaction handling, etc.
+- 🟠 `ADMIN` | Admin commands can only be used by server owners or by server admins. These commands include, but are not
+  limited to, server settings and moderation settings.
+- 🔴 `BOT ADMIN` | Bot-administrative commands can only be used by bot administrators or the owner of the Discord bot
+  Kazunya. These commands can be executed by the bot admins no matter on what server they are on.
+
+### **Additional Tags**
+
+Some commands have additional tags that can define whether a command can be used in a specific channel or only in a
+specific situation.
+
+- 🔞 `NSFW` | NSFW commands can only be used in NSFW channels. This is mandatory to avoid posting NSFW media in the
+  wrong channels.
+- 🌐 `GLOBAL` | These commands can also be used by people who are banned from using the bot. These commands normally
+  include information and ban appeals.
+
+## **Command List**
+
+### **General**
+
+!!! Info General commands function as information or help commands to get basic information and status data from the
+bot.
+
+| Status | <div style="width:130px">Command</div> | <div style="width: 220px">Description</div> | Tags | Version |:-:|:
+-|:-|:-:|:-:
+| 🟢 | `/help` | Shows a list of all the bot commands. | 🌐 | `v1.0.0`
+| 🟢 | `/info` | Get general information about the bot. | 🌐 | `v1.0.0`
+
+### **Roleplay**
+
+!!! Info Roleplay commands are used in general, like the name says, in roleplay situations. Most of these commands are
+quick actions and emotes, but there are also ones that change stuff like relationships between users.
+
+| Status | <div style="width:130px">Command</div> | <div style="width: 220px">Description</div> | Tags | Version |:-:|:
+-|:-|:-:|:-:
+| 🟢 | <a href="/commands/roleplay/blush/">`/blush`</a> | Make yourself blush and turn red. | None | `v1.0.0`
+| 🟢 | <a href="/commands/roleplay/cry/">`/cry`</a> | Make yourself cry and be sad. | None | `v1.0.0`
+| 🟢 | <a href="/commands/roleplay/cuddle/">`/cuddle`</a> | Cuddle another user on Discord. | None | `v1.0.0`
+| 🟢 | <a href="/commands/roleplay/divorce/">`/divorce`</a> | Divorce your partner that you married before. | None
+| `v1.0.0`
+| 🟢 | <a href="/commands/roleplay/hug/">`/hug`</a> | Give another user a hug. | None | `v1.0.0`
+| 🟢 | <a href="/commands/roleplay/kill/">`/kill`</a> | Be a bad person and kill someone else. | None | `v1.0.0`
+| 🟢 | <a href="/commands/roleplay/kiss/">`/kiss`</a> | Kiss another user on Discord. | None | `v1.0.0`
+| 🟢 | <a href="/commands/roleplay/laugh/">`/laugh`</a> | Make yourself laugh. | None | `v1.0.0`
+| 🟢 | <a href="/commands/roleplay/lick/">`/lick`</a> | Lick someone else. | None | `v1.0.0`
+| 🟢 | <a href="/commands/roleplay/marry/">`/marry`</a> | Propose to another person on Discord. | None | `v1.0.0`
+| 🟢 | <a href="/commands/roleplay/pat/">`/pat`</a> | Give someone else headpats. | None | `v1.0.0`
+| 🟢 | <a href="/commands/roleplay/purr/">`/purr`</a> | Make yourself purr like a kitten. | None | `v1.0.0`
+| 🟢 | <a href="/commands/roleplay/smile/">`/smile`</a> | Make yourself smile and be happy. | None | `v1.0.0`
+| 🟢 | <a href="/commands/roleplay/tickle/">`/tickle`</a> | Tickle someone else to make them laugh. | None | `v1.0.0`
+
+### **NSFW**
+
+!!! Info NSFW commands are the Not-Safe-For-Work variant of the roleplay commands.
+
+!!! Warning NSFW commands can only be used in NSFW channels!
+
+| Status | <div style="width:130px">Command</div> | <div style="width: 220px">Description</div> | Tags | Version |:-:|:
+-|:-|:-:|:-:
+| 🟢 | `/fuck` | Fuck another user on the server. | 🔞 | `v1.0.0`
+
+### **Fun**
+
+!!! Info Fun commands are used for fun stuff! Nobody would've guessed that, right?
+
+| Status | <div style="width:130px">Command</div> | <div style="width: 220px">Description</div> | Tags | Version |:-:|:
+-|:-|:-:|:-:
+| 🟢 | `/pp` | Get your pp size or the pp size of another user. | None | `v1.0.0`
+| 🟢 | `/roll` | Roll a dice and get a random result. Just like an RPG dice. | None | `v1.0.0`
+| 🟢 | `/ship` | Ship two users and get a relationship rating score. | None | `v1.0.0`
+
+### **Tools**
+
+!!! Info Tool commands are used to execute various commands that get information or generate stuff, like colors.
+
+| Status | <div style="width:130px">Command</div> | <div style="width: 220px">Description</div> | Tags | Version |:-:|:
+-|:-|:-:|:-:
+| 🟢 | `/avatar` | Get your pp size or the pp size of another user. | None | `v1.0.0`
+| 🟢 | `/userinfo` | Get information concerning a user on the server. | None | `v1.0.0`
+
+### **Economy**
+
+!!! Info Economy commands are used to modify or get insight on Kazunya's economic system. These commands include banking
+commands and the stock market.
+
+| Status | <div style="width:130px">Command</div> | <div style="width: 220px">Description</div> | Tags | Version |:-:|:
+-|:-|:-:|:-:
+| 🟢 | `/marketinfo` | Get information on the shares that are on the virtual stock market. | None | `v1.0.0`
+
+### **Administration**
+
+!!! Info Administration commands can only be used by bot admins and are used for administrative purposes, for instance
+modifying user data.
+
+| Status | <div style="width:130px">Command</div> | <div style="width: 220px">Description</div> | Tags | Version |:-:|:
+-|:-|:-:|:-:
+| 🔴 | `/admin-balance` | Get information on the shares that are on the virtual stock market. | None | `v1.0.0`

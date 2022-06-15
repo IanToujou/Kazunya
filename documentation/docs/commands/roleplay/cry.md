@@ -7,8 +7,7 @@
 
     No changes have been made since the first release.
 
-The cry command is used to make yourself cry, as a roleplay reaction in a text channel. Kazunya will return a random
-Anime cry GIF.
+The cry command is used to make yourself cry, as a roleplay reaction in a text channel. Kazunya will return a random Anime cry GIF.
 
 <p align="center"><img src="https://c.tenor.com/q9V98YHPZX4AAAAC/anime-umaru.gif"></p>
 

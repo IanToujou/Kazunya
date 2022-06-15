@@ -2,7 +2,8 @@
 
 ## **Description**
 
-??? Changelog Abstract Released in version `1.0.0`.
+??? Changelog Abstract
+    Released in version `1.0.0`.
 
     No changes have been made since the first release.
 
@@ -19,7 +20,8 @@ Anime cry GIF.
 
 ## **Examples**
 
-!!! Example The basic command usage to make yourself cry.
+!!! Example
+    The basic command usage to make yourself cry.
 
         /cry
 

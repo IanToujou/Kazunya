@@ -1,7 +1,6 @@
 package net.toujoustudios.kazunya.command.list.economy;
 
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
@@ -36,7 +35,6 @@ public class MarketInfoCommand implements ICommand {
     public void handle(CommandContext context) {
 
         List<OptionMapping> args = context.getArgs();
-        Member member = context.getMember();
         EmbedBuilder embedBuilder = new EmbedBuilder();
         StockMarket stockMarket = StockMarket.getStockMarket("default_market");
 

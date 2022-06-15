@@ -2,12 +2,12 @@
 
 ## **Description**
 
-??? Changelog Abstract Released in version `1.0.0`.
+??? Changelog Abstract
+    Released in version `1.0.0`.
 
     No changes have been made since the first release.
 
-The blush command is used to make yourself blush and turn red, as a roleplay reaction in a text channel. Kazunya will
-return a random Anime blush GIF.
+The blush command is used to make yourself blush and turn red, as a roleplay reaction in a text channel. Kazunya will return a random Anime blush GIF.
 
 <p align="center"><img src="https://c.tenor.com/wwxHnJqUNEMAAAAC/anime-blush.gif"></p>
 
@@ -19,7 +19,8 @@ return a random Anime blush GIF.
 
 ## **Examples**
 
-!!! Example The basic command usage to make yourself blush.
+!!! Example
+    The basic command usage to make yourself blush.
 
         /blush
 

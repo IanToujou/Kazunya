@@ -9,7 +9,7 @@
 
 The kill command is used to kill other users on the server. Kazunya will return a random Anime kill GIF and select a random death message. There is a chance that the kill will fail, in which case Kazunya will return a random fail message.
 
-<p align="center"><img src="https://c.tenor.com/wUQH5CF2DJ4AAAAC/horimiya-hug-anime.gif"></p>
+<p align="center"><img src="https://c.tenor.com/FJmJM5jRVp4AAAAd/wasted-anime.gif"></p>
 
 ### **Death Messages**
 

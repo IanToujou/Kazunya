@@ -58,11 +58,13 @@ public class DivorceCommand implements ICommand {
             } else {
                 embedBuilder.setDescription("You and `your partner` are now divorced.");
             }
+            UserManager targetManager = UserManager.getUser(memberManager.getPartner());
+            targetManager.removePartner();
+            memberManager.removePartner();
             context.getEvent().replyEmbeds(embedBuilder.build()).setEphemeral(true).queue();
             return;
 
         }
-
 
         embedBuilder.setTitle("**:broken_heart: Divorce: Confirm**");
         embedBuilder.setDescription("Do you really want to divorce?\nPlease type `/divorce` again to confirm this action.");

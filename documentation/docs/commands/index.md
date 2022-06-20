@@ -27,13 +27,16 @@ Some commands have additional tags that can define whether a command can be used
 
 | Status | <div style="width:130px">Command</div> | <div style="width: 220px">Description</div> | Tags | Version
 |:-:|:-|:-|:-:|:-:
-| 🟢 | `/help` | Shows a list of all the bot commands. | 🌐 | `v1.0.0`
-| 🟢 | `/info` | Get general information about the bot. | 🌐 | `v1.0.0`
+| 🟢 | <a href="/commands/roleplay/tickle/">`/help`</a> | Shows a list of all the bot commands. | 🌐 | `v1.0.0`
+| 🟢 | <a href="/commands/roleplay/tickle/">`/info`</a> | Get general information about the bot. | 🌐 | `v1.0.0`
 
 ### **Roleplay**
 
 !!! Info
     Roleplay commands are used in general, like the name says, in roleplay situations. Most of these commands are quick actions and emotes, but there are also ones that change stuff like relationships between users.
+
+??? Warning
+    This section contains NSFW commands that are only available in NSFW channels.
 
 | Status | <div style="width:130px">Command</div> | <div style="width: 220px">Description</div> | Tags | Version
 |:-:|:-|:-|:-:|:-:
@@ -41,6 +44,7 @@ Some commands have additional tags that can define whether a command can be used
 | 🟢 | <a href="/commands/roleplay/cry/">`/cry`</a> | Make yourself cry and be sad. | None | `v1.0.0`
 | 🟢 | <a href="/commands/roleplay/cuddle/">`/cuddle`</a> | Cuddle another user on Discord. | None | `v1.0.0`
 | 🟢 | <a href="/commands/roleplay/divorce/">`/divorce`</a> | Divorce your partner that you married before. | None | `v1.0.0`
+| 🟢 | <a href="/commands/roleplay/fuck/">`/fuck`</a> | Fuck another user on the server. | 🔞 | `v1.0.0`
 | 🟢 | <a href="/commands/roleplay/hug/">`/hug`</a> | Give another user a hug. | None | `v1.0.0`
 | 🟢 | <a href="/commands/roleplay/kill/">`/kill`</a> | Be a bad person and kill someone else. | None | `v1.0.0`
 | 🟢 | <a href="/commands/roleplay/kiss/">`/kiss`</a> | Kiss another user on Discord. | None | `v1.0.0`
@@ -52,18 +56,6 @@ Some commands have additional tags that can define whether a command can be used
 | 🟢 | <a href="/commands/roleplay/smile/">`/smile`</a> | Make yourself smile and be happy. | None | `v1.0.0`
 | 🟢 | <a href="/commands/roleplay/tickle/">`/tickle`</a> | Tickle someone else to make them laugh. | None | `v1.0.0`
 
-### **NSFW**
-
-!!! Info
-    NSFW commands are the Not-Safe-For-Work variant of the roleplay commands.
-
-!!! Warning
-    NSFW commands can only be used in NSFW channels!
-
-| Status | <div style="width:130px">Command</div> | <div style="width: 220px">Description</div> | Tags | Version
-|:-:|:-|:-|:-:|:-:
-| 🟢 | `/fuck` | Fuck another user on the server. | 🔞 | `v1.0.0`
-
 ### **Fun**
 
 !!! Info
@@ -71,9 +63,9 @@ Some commands have additional tags that can define whether a command can be used
 
 | Status | <div style="width:130px">Command</div> | <div style="width: 220px">Description</div> | Tags | Version
 |:-:|:-|:-|:-:|:-:
-| 🟢 | `/pp` | Get your pp size or the pp size of another user. | None | `v1.0.0`
-| 🟢 | `/roll` | Roll a dice and get a random result. Just like an RPG dice. | None | `v1.0.0`
-| 🟢 | `/ship` | Ship two users and get a relationship rating score. | None | `v1.0.0`
+| 🟢 | <a href="/commands/fun/pp/">`/pp`</a> | Get your pp size or the pp size of another user. | None | `v1.0.0`
+| 🟢 | <a href="/commands/fun/roll/">`/roll`</a> | Roll a dice and get a random result. Just like an RPG dice. | None | `v1.0.0`
+| 🟢 | <a href="/commands/fun/ship/">`/ship`</a> | Ship two users and get a relationship rating score. | None | `v1.0.0`
 
 ### **Tools**
 
@@ -82,8 +74,8 @@ Some commands have additional tags that can define whether a command can be used
 
 | Status | <div style="width:130px">Command</div> | <div style="width: 220px">Description</div> | Tags | Version
 |:-:|:-|:-|:-:|:-:
-| 🟢 | `/avatar` | Get your pp size or the pp size of another user. | None | `v1.0.0`
-| 🟢 | `/userinfo` | Get information concerning a user on the server. | None | `v1.0.0`
+| 🟢 | <a href="/commands/tools/avatar/">`/avatar`</a> | Get your pp size or the pp size of another user. | None | `v1.0.0`
+| 🟢 | <a href="/commands/tools/userinfo/">`/userinfo`</a> | Get information concerning a user on the server. | None | `v1.0.0`
 
 ### **Economy**
 
@@ -92,7 +84,7 @@ Some commands have additional tags that can define whether a command can be used
 
 | Status | <div style="width:130px">Command</div> | <div style="width: 220px">Description</div> | Tags | Version
 |:-:|:-|:-|:-:|:-:
-| 🟢 | `/marketinfo` | Get information on the shares that are on the virtual stock market. | None | `v1.0.0`
+| 🟢 | <a href="/commands/economy/marketinfo/">`/marketinfo`</a> | Get information on the shares that are on the virtual stock market. | None | `v1.0.0`
 
 ### **Administration**
 
@@ -101,4 +93,4 @@ Some commands have additional tags that can define whether a command can be used
 
 | Status | <div style="width:130px">Command</div> | <div style="width: 220px">Description</div> | Tags | Version
 |:-:|:-|:-|:-:|:-:
-| 🔴 | `/admin-balance` | Get information on the shares that are on the virtual stock market. | None | `v1.0.0`
+| 🔴 | <a href="/commands/administration/admin-balance/">`/admin-balance`</a> | Get information on the shares that are on the virtual stock market. | None | `v1.0.0`

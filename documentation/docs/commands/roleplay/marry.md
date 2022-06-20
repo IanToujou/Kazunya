@@ -21,9 +21,10 @@ Being married does not grant any special abilities to the users at the moment. H
 
 ## **Syntax**
 
-    /marry [@user]
+    /marry [@user] ([message])
 
 `@user` *(<span color="blue">@Mention</span>)* | The user you want to marry.
+`message` *(<span color=„yellow„>String</span>* | A custom proposal message.
 
 ## **Examples**
 

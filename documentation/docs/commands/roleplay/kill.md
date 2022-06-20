@@ -56,7 +56,7 @@ These messages will display when a kill failed.
 
     /kill [@user]
 
-`@user` *(<span color="blue">@Mention</span>)* | The user you want to kill.
+`@user` *(<span style="color:aqua">@Mention</span>)* | The user you want to kill.
 
 ## **Examples**
 

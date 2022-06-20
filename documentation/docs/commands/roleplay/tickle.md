@@ -15,7 +15,7 @@ The tickle command is used to tickle other users on the server. Kazunya will ret
 
     /tickle [@user]
 
-`@user` *(<span color="blue">@Mention</span>)* | The user you want to tickle.
+`@user` *(<span style="color:aqua">@Mention</span>)* | The user you want to tickle.
 
 ## **Examples**
 

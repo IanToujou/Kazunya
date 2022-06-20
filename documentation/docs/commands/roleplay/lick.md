@@ -15,7 +15,7 @@ The lick command is used to lick other users on the server. Kazunya will return 
 
     /lick [@user]
 
-`@user` *(<span color="blue">@Mention</span>)* | The user you want to lick.
+`@user` *(<span style="color:aqua">@Mention</span>)* | The user you want to lick.
 
 ## **Examples**
 

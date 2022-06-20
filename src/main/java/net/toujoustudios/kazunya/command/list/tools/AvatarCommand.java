@@ -46,7 +46,6 @@ public class AvatarCommand implements ICommand {
         Member target = args.get(0).getAsMember();
         if (target == null) return;
         User targetUser = target.getUser();
-        UserManager targetManager = UserManager.getUser(targetUser.getId());
 
         embedBuilder.setTitle("**:frame_photo: Avatar**");
         embedBuilder.setDescription("Here is " + targetUser.getAsMention() + "'s Discord avatar. It looks very cool! :3");

@@ -30,7 +30,6 @@ public class InfoCommand implements ICommand {
     @Override
     public void handle(CommandContext context) {
 
-        List<OptionMapping> args = context.getArgs();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));

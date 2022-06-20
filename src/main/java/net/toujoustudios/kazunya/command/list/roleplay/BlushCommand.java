@@ -31,7 +31,6 @@ public class BlushCommand implements ICommand {
     @Override
     public void handle(CommandContext context) {
 
-        List<OptionMapping> args = context.getArgs();
         Member member = context.getMember();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 

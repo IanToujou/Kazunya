@@ -27,8 +27,8 @@ Some commands have additional tags that can define whether a command can be used
 
 | Status | <div style="width:130px">Command</div> | <div style="width: 220px">Description</div> | Tags | Version
 |:-:|:-|:-|:-:|:-:
-| 🟢 | <a href="/commands/roleplay/tickle/">`/help`</a> | Shows a list of all the bot commands. | 🌐 | `v1.0.0`
-| 🟢 | <a href="/commands/roleplay/tickle/">`/info`</a> | Get general information about the bot. | 🌐 | `v1.0.0`
+| 🟢 | <a href="/commands/roleplay/help/">`/help`</a> | Shows a list of all the bot commands. | 🌐 | `v1.0.0`
+| 🟢 | <a href="/commands/roleplay/info/">`/info`</a> | Get general information about the bot. | 🌐 | `v1.0.0`
 
 ### **Roleplay**
 

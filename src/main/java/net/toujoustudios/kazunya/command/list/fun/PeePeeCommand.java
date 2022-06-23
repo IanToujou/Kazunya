@@ -41,11 +41,6 @@ public class PeePeeCommand implements ICommand {
             member = args.get(0).getAsMember();
         }
 
-        if (member == null) {
-            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_NOT_FOUND);
-            return;
-        }
-
         String memberId = member.getId();
         int num = Integer.parseInt(memberId.substring(memberId.length() - 2));
         int size = Math.round(num) / 3;

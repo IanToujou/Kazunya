@@ -30,8 +30,8 @@ In addition, Kazunya will give a small comment depending on the resulting score.
 
     /ship [@user] [@user2]
 
-- `@user` *(<span style=„color:aqua“>@Mention</span>)* | The first user you want to ship with the second user.
-- `@user2` *(<span style=„color:aqua“>@Mention</span>)* | The second user you want to ship with the first user.
+- `@user` *(<span style="color:aqua">@Mention</span>)* | The first user you want to ship with the second user.
+- `@user2` *(<span style="color:aqua">@Mention</span>)* | The second user you want to ship with the first user.
 
 ## **Examples**
 
@@ -42,6 +42,6 @@ In addition, Kazunya will give a small comment depending on the resulting score.
 
 ## **Error Messages**
 
-An overview of all error messages can be found under the <a href=„/errors/„>Errors</a> section.
+An overview of all error messages can be found under the <a href="/errors/">Errors</a> section.
 
 *There are no errors that are directly associated with this feature.*

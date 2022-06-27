@@ -54,6 +54,11 @@ public class RollCommand implements ICommand {
             return;
         }
 
+        if (times <= 0 || times >= 50) {
+            ErrorEmbed.sendError(context, ErrorType.ACTION_DICE_TIMES_NOT_IN_RANGE);
+            return;
+        }
+
         int[] results = new int[times];
 
         for (int i = 0; i < times; i++) {

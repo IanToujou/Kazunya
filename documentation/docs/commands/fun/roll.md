@@ -13,9 +13,9 @@ The roll command is used to roll a dice. It does not use the default RPG dice sy
 
     /roll ([sides]) ([times]) ([offset])
 
-- `sides` *(<span style="color:aqua">@Mention</span>)* | The number of sides the dice has.
-- `times` *(<span style="color:aqua">@Mention</span>)* | How many times you want to roll the dice.
-- `offset` *(<span style="color:aqua">@Mention</span>)* | The offset you want to add to the value that is rolled. This value can also be negative.
+- `sides` *(<span style="color:lime">Integer</span>)* | The number of sides the dice has.
+- `times` *(<span style="color:lime">Integer</span>)* | How many times you want to roll the dice.
+- `offset` *(<span style="color:lime">Integer</span>)* | The offset you want to add to the value that is rolled. This value can also be negative.
 
 ## **Examples**
 

@@ -7,14 +7,14 @@
 
     No changes have been made since the first release.
 
-The roll command is used to roll a dice like in RPG games. The command does not follow the default RPG dice syntax, 
+The roll command is used to roll a dice. It does not use the default RPG dice syntax, but instead it uses custom arguments to define the dice.
 
 ## **Syntax**
 
     /roll ([sides]) ([times]) ([offset])
 
-- `@user` *(<span style=„color:aqua“>@Mention</span>)* | The first user you want to ship with the second user.
-- `@user2` *(<span style=„color:aqua“>@Mention</span>* | The second user you want to ship with the first user.
+- `sides` *(<span style=„color:aqua“>@Mention</span>)* | 
+- `@user2` *(<span style=„color:aqua“>@Mention</span>)* | The second user you want to ship with the first user.
 
 ## **Examples**
 

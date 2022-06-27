@@ -33,23 +33,16 @@ public class RollCommand implements ICommand {
 
     @Override
     public void handle(CommandContext context) {
-
-        List<OptionMapping> args = context.getArgs();
-        Member member = context.getMember();
+        
         EmbedBuilder embedBuilder = new EmbedBuilder();
-
-        if (args.size() > 3) {
-            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_SYNTAX);
-            return;
-        }
 
         int sides = 6;
         int times = 1;
         int offset = 0;
 
-        if (args.size() > 0) sides = (int) args.get(0).getAsLong();
-        if (args.size() > 1) times = (int) args.get(1).getAsLong();
-        if (args.size() > 2) offset = (int) args.get(2).getAsLong();
+        if (context.getEvent().getOption("sides") != null) sides = (int) context.getEvent().getOption("sides").getAsDouble();
+        if (context.getEvent().getOption("times") != null) times = (int) context.getEvent().getOption("times").getAsDouble();
+        if (context.getEvent().getOption("offset") != null) offset = (int) context.getEvent().getOption("offset").getAsDouble();
 
         if (sides <= 0 || sides >= 1000000) {
             ErrorEmbed.sendError(context, ErrorType.ACTION_DICE_SIDES_NOT_IN_RANGE);

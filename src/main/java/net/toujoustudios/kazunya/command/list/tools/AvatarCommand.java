@@ -38,11 +38,6 @@ public class AvatarCommand implements ICommand {
         List<OptionMapping> args = context.getArgs();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
-        if (args.size() != 1) {
-            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_SYNTAX);
-            return;
-        }
-
         Member target = args.get(0).getAsMember();
         if (target == null) return;
         User targetUser = target.getUser();

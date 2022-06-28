@@ -18,13 +18,13 @@ In addition, Kazunya will give a small comment depending on the resulting score.
 | Score | Comment | Color
 |:-:|:-|:-:
 | `0-9` | The relationship would be truly horrible... | Red
-| `10-29` | This wouldn’t work that great... | Red
-| `30-49` | It is fine. | Red
-| `50-68` | This could work nya~ | Red
-| `69` | 69? Nice. | Red
-| `70-89` | This would be a wholesome relationship! Nya~ | Red
-| `90-99` | The two should instantly get married! Nyaaa~ | Red
-| `100` | I WANT THEM TO GET MARRIED! NOW! | Red
+| `10-29` | This wouldn’t work that great... | Orange
+| `30-49` | It is fine. | Yellow
+| `50-68` | This could work nya~ | Green
+| `69` | 69? Nice. | Green
+| `70-89` | This would be a wholesome relationship! Nya~ | Pink
+| `90-99` | The two should instantly get married! Nyaaa~ | Magenta
+| `100` | I WANT THEM TO GET MARRIED! NOW! | Magenta
 
 ## **Syntax**
 

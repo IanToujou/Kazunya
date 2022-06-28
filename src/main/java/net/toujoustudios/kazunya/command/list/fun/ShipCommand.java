@@ -95,12 +95,12 @@ public class ShipCommand implements ICommand {
         } else if (rating < 100) {
 
             commentary = "The two should instantly get married! Nyaaa~";
-            embedBuilder.setColor(Color.PINK);
+            embedBuilder.setColor(Color.MAGENTA);
 
         } else {
 
             commentary = "I WANT THEM TO GET MARRIED! NOW!";
-            embedBuilder.setColor(Color.PINK);
+            embedBuilder.setColor(Color.MAGENTA);
 
         }
 

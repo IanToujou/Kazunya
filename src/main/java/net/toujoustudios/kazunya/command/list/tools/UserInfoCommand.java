@@ -40,11 +40,6 @@ public class UserInfoCommand implements ICommand {
         List<OptionMapping> args = context.getArgs();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
-        if (args.size() != 1) {
-            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_SYNTAX);
-            return;
-        }
-
         Member target = args.get(0).getAsMember();
         if (target == null) return;
         User targetUser = target.getUser();
@@ -66,26 +61,27 @@ public class UserInfoCommand implements ICommand {
         embedBuilder.addField(":information_source: General Information:", generalBuilder.toString(), false);
         embedBuilder.addField(":calendar: Dates:", datesBuilder.toString(), false);
 
+        StringBuilder relationshipBuilder = new StringBuilder();
+        
         String partner = "None";
         if (targetManager.hasPartner()) {
 
             String partnerId = targetManager.getPartner();
 
             if (context.getGuild().getMemberById(partnerId) != null) {
-
                 partner = context.getGuild().getMemberById(partnerId).getAsMention();
-
             } else {
-
                 if (context.getJDA().getUserById(partnerId) != null) {
                     partner = "`" + context.getJDA().getUserById(partnerId).getName() + "`";
                 } else {
                     partner = "`Invalid`";
                 }
-
             }
 
         }
+
+        relationshipBuilder.append("Partner: " + partner);
+        embedBuilder.addField(":heart: Relationships:", relationshipBuilder.toString(), false);
 
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
         context.getEvent().replyEmbeds(embedBuilder.build()).queue();

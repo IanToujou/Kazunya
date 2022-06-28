@@ -10,8 +10,6 @@ import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.command.ICommand;
 import net.toujoustudios.kazunya.config.Config;
-import net.toujoustudios.kazunya.error.ErrorEmbed;
-import net.toujoustudios.kazunya.error.ErrorType;
 import net.toujoustudios.kazunya.user.UserManager;
 import net.toujoustudios.kazunya.util.ColorUtil;
 
@@ -63,7 +61,7 @@ public class UserInfoCommand implements ICommand {
 
         StringBuilder relationshipBuilder = new StringBuilder();
         
-        String partner = "None";
+        String partner = "`None`";
         if (targetManager.hasPartner()) {
 
             String partnerId = targetManager.getPartner();

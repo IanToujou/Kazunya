@@ -40,11 +40,6 @@ public class MarketInfoCommand implements ICommand {
 
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
 
-        if (args.size() > 1) {
-            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_SYNTAX);
-            return;
-        }
-
         if (args.size() == 0) {
 
             embedBuilder.setTitle(":chart_with_upwards_trend: **Stock Market**");

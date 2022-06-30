@@ -15,7 +15,7 @@ If the user provides a specific stock as an argument, Kazunya will return more i
 
     /marketinfo ([stock])
 
-- `stock` *(<span style=„color:yellow“>String</span>)* | The stock you want to get more detailed information on.
+- `stock` *(<span style="color:yellow">String</span>)* | The stock you want to get more detailed information on.
 
 ## **Examples**
 

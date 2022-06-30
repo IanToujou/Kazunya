@@ -65,7 +65,7 @@ public class AdminBalanceCommand implements ICommand {
             }
 
             if(amount >= 10000000) {
-                ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_NUMBER_DOUBLE);
+                ErrorEmbed.sendError(context, ErrorType.ACTION_BALANCE_AMOUNT_NOT_IN_RANGE);
                 return;
             }
 

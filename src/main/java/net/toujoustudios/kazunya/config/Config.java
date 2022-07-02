@@ -52,10 +52,11 @@ public class Config {
                 }
             }
 
+            reader.close();
+
         } catch (IOException exception) {
             exception.printStackTrace();
         }
-
         return map;
 
     }

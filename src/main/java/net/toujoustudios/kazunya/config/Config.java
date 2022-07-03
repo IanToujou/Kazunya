@@ -35,6 +35,7 @@ public class Config {
 
     }
 
+    @SuppressWarnings("unused")
     private static HashMap<String, Object> readFile(String filename) {
 
         HashMap<String, Object> map = new HashMap<>();

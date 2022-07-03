@@ -38,11 +38,6 @@ public class FuckCommand implements ICommand {
         Member member = context.getMember();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
-        if (args.size() == 0) {
-            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_SYNTAX);
-            return;
-        }
-
         Member target = args.get(0).getAsMember();
         assert target != null;
 

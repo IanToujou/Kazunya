@@ -2,7 +2,6 @@ package net.toujoustudios.kazunya.command.list.administration;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.toujoustudios.kazunya.command.CommandCategory;
@@ -32,6 +31,7 @@ public class AdminBalanceCommand implements ICommand {
     }
 
     @Override
+    @SuppressWarnings("all")
     public void handle(CommandContext context) {
 
         if (!context.getMember().getId().equals(config.getString("user.admin"))) {

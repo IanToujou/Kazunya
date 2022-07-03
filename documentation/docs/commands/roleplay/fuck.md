@@ -16,7 +16,7 @@ The fuck command is used to fuck someone else on the server. This command is an 
 
     /fuck [@user]
 
-`@user` *(<span style=„color:aqua“>@Mention</span>)* | The user you want to fuck.
+`@user` *(<span style="color:aqua">@Mention</span>)* | The user you want to fuck.
 
 ## **Examples**
 

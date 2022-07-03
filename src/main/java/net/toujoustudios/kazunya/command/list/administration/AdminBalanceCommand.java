@@ -83,7 +83,7 @@ public class AdminBalanceCommand implements ICommand {
                     embedBuilder.setDescription("You removed `" + amount + " " + currency + "` from the account of " + target.getAsMention() + ".\nNew balance: `" + targetManager.getAccountMoney() + " " + currency + "`.");
                 }
                 default -> {
-                    ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_OPERATION_BALANCE);
+                    ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_OPERATION_GET_SET_ADD_REMOVE);
                     return;
                 }
             }

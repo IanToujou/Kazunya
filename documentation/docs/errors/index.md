@@ -51,14 +51,15 @@ Error codes are used in a variety of situations when an error comes up. You can 
 `1008` | The specified operation is invalid. You can either get, set, add or remove. | You provided a wrong operation on the command. You can only use get, add, remove or set as an argument.
 `1009` | The specified stock does not exist. Please use /marketinfo to get the full list of available stocks. | You provided a stock that does not exist on the normal virtual stock market.
 `1010` | The given link is invalid. Please provide a valid link. | You provided an invalid URL. Don't forget the `http://` or `https://` in front of the link.
+`1011` | The specified number is not in the given range. Please read the documentation to see the correct range. | You provided an invalid numeric range. You can read the command descriptions to see which range you can use.
+
+### **Command (**`2001-3000`**)**
 
 !!! Info
-    Command errors are errors that are directly related to command inputs by the user.
+    Action errors are errors that occur while attempting to perform a certain action.
 
 | Code | <div style=„width:180px“>Description</div> | Help
 |:-:|:-|:-
 `2001` | You are already married. | You already have a partner and you can’t marry two persons at the same time.
 `2002` | The specified person is already married. Sorry about that. | Your desired partner already has a partner. You can only marry people who don’t have any partner.
 `2003` | You don’t have any partner. | You are single and do not have any partner at the moment.
-`2004` | The specified side amount is not in the given range (1 to 999999). | You specified a number that is not in the given range, between 1 and 999999.
-`2005` | 

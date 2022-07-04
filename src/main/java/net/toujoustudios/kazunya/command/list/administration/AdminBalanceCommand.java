@@ -64,8 +64,8 @@ public class AdminBalanceCommand implements ICommand {
                 return;
             }
 
-            if(amount >= 10000000) {
-                ErrorEmbed.sendError(context, ErrorType.ACTION_BALANCE_AMOUNT_NOT_IN_RANGE);
+            if(amount > 1000000) {
+                ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_RANGE);
                 return;
             }
 

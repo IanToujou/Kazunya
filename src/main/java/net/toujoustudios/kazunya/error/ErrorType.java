@@ -27,14 +27,11 @@ public enum ErrorType {
     COMMAND_INVALID_OPERATION_GET_SET_ADD_REMOVE("1008", "The specified operation is invalid. You can either get, set, add or remove."),
     COMMAND_INVALID_STOCK("1009", "The specified stock does not exist. Please use /marketinfo to get the full list of available stocks."),
     COMMAND_INVALID_URL("1010", "The given link is invalid. Please provide a valid link."),
+    COMMAND_INVALID_RANGE("1011", "The specified number is not in the given range. Please read the documentation to see the correct range."),
 
     ACTION_ALREADY_MARRIED_SELF("2001", "You are already married."),
     ACTION_ALREADY_MARRIED_TARGET("2002", "The specified person is already married. Sorry about that."),
     ACTION_NO_PARTNER("2003", "You don't have any partner."),
-    ACTION_DICE_SIDES_NOT_IN_RANGE("2004", "The specified side amount is not in the given range (1 to 999999)."),
-    ACTION_DICE_OFFSET_NOT_IN_RANGE("2005", "The specified offset is not in the given range (-999999 to 999999)."),
-    ACTION_DICE_TIMES_NOT_IN_RANGE("2006", "The specified times to roll the dice is not in the given range (1 to 50)."),
-    ACTION_BALANCE_AMOUNT_NOT_IN_RANGE("2007", "The specified amount is not in the given range (0 to 9999999)."),
 
     AUDIO_UNABLE_TO_LOAD("3001", "The audio couldn't be loaded due to an unexpected error."),
     AUDIO_USER_NOT_IN_CHANNEL("3002", "You are not in a voice channel right now."),

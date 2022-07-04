@@ -32,6 +32,7 @@ public class RollCommand implements ICommand {
     }
 
     @Override
+    @SuppressWarnings("all")
     public void handle(CommandContext context) {
         
         EmbedBuilder embedBuilder = new EmbedBuilder();
@@ -44,18 +45,18 @@ public class RollCommand implements ICommand {
         if (context.getEvent().getOption("times") != null) times = (int) context.getEvent().getOption("times").getAsDouble();
         if (context.getEvent().getOption("offset") != null) offset = (int) context.getEvent().getOption("offset").getAsDouble();
 
-        if (sides <= 0 || sides >= 1000000) {
-            ErrorEmbed.sendError(context, ErrorType.ACTION_DICE_SIDES_NOT_IN_RANGE);
+        if (sides <= 0 || sides > 1000000) {
+            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_RANGE);
             return;
         }
 
-        if (offset <= -1000000 || offset >= 1000000) {
-            ErrorEmbed.sendError(context, ErrorType.ACTION_DICE_OFFSET_NOT_IN_RANGE);
+        if (offset <= -1000000 || offset > 1000000) {
+            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_RANGE);
             return;
         }
 
-        if (times <= 0 || times >= 50) {
-            ErrorEmbed.sendError(context, ErrorType.ACTION_DICE_TIMES_NOT_IN_RANGE);
+        if (times <= 0 || times > 50) {
+            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_RANGE);
             return;
         }
 

@@ -45,17 +45,17 @@ public class RollCommand implements ICommand {
         if (context.getEvent().getOption("times") != null) times = (int) context.getEvent().getOption("times").getAsDouble();
         if (context.getEvent().getOption("offset") != null) offset = (int) context.getEvent().getOption("offset").getAsDouble();
 
-        if (sides <= 0 || sides > 1000000) {
+        if (sides < 2 || sides > 1000) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_RANGE);
             return;
         }
 
-        if (offset <= -1000000 || offset > 1000000) {
+        if (offset < -1000 || offset > 1000) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_RANGE);
             return;
         }
 
-        if (times <= 0 || times > 50) {
+        if (times < 1 || times > 50) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_RANGE);
             return;
         }

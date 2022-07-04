@@ -19,7 +19,7 @@ The admin-balance command is used to get or modify the balance of a user. It can
 
 - `action` *(<span style="color:yellow">String</span>)* | The action to perform on the user's account balance.
 - `user` *(<span style="color:cyan">@User</span>)* | The user to perform the action on.
-- `amount` *(<span style="color:greenyellow">Double</span>)* | The amount to add or remove from the user's balance.
+- `amount` *(<span style="color:greenyellow">Double</span>)* | The amount to add or remove from the user's balance. (0 to 1000000)
 
 ## **Examples**
 

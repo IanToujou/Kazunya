@@ -53,13 +53,71 @@ Error codes are used in a variety of situations when an error comes up. You can 
 `1010` | The given link is invalid. Please provide a valid link. | You provided an invalid URL. Don't forget the `http://` or `https://` in front of the link.
 `1011` | The specified number is not in the given range. Please read the documentation to see the correct range. | You provided an invalid numeric range. You can read the command descriptions to see which range you can use.
 
-### **Command (**`2001-3000`**)**
+### **Action (**`2001-3000`**)**
 
 !!! Info
     Action errors are errors that occur while attempting to perform a certain action.
 
-| Code | <div style=„width:180px“>Description</div> | Help
+| Code | <div style="width:180px">Description</div> | Help
 |:-:|:-|:-
 `2001` | You are already married. | You already have a partner and you can’t marry two persons at the same time.
 `2002` | The specified person is already married. Sorry about that. | Your desired partner already has a partner. You can only marry people who don’t have any partner.
 `2003` | You don’t have any partner. | You are single and do not have any partner at the moment.
+
+### **Audio (**`3001-4000`**)**
+
+!!! Info
+    Audio errors are errors that occur when an error is thrown related to audio output or input in voice channels.
+
+| Code | <div style="width:180px">Description</div> | Help
+|:-:|:-|:-
+`3001` | The audio couldn't be loaded due to an unexpected error. | The bot encountered an error while tryint to load an audio. Please try again or contact the support.
+`3002` | You are not in a voice channel right now. | You should join a voice channel before attempting this.
+
+### **Permission (**`4001-5000`**)**
+
+!!! Info
+    Permission errors are errors that occur when the bot lacks a permission to fulfill an action or a command.
+
+| Code | <div style="width:180px">Description</div> | Help
+|:-:|:-|:-
+`4001` | I don't have the permission to view channels. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4002` | I don't have the permission to manage channels. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4003` | I don't have the permission to manage roles. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4004` | I don't have the permission to manage emojis and stickers. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4005` | I don't have the permission to view the audit log. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4006` | I don't have the permission to view the server insights. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4007` | I don't have the permission to manage webhooks. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4008` | I don't have the permission to manage the server. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4009` | I don't have the permission to create invites. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4010` | I don't have the permission to manage my own nickname. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4011` | I don't have the permission to manage nicknames. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4012` | I don't have the permission to kick members. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4013` | I don't have the permission to ban members. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4014` | I don't have the permission to timeout members. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4015` | I don't have the permission to send messages. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4016` | I don't have the permission to send messages in threads. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4017` | I don't have the permission to create public threads. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4018` | I don't have the permission to create private threads. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4019` | I don't have the permission to embed links. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4020` | I don't have the permission to attach files. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4021` | I don't have the permission to add reactions. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4022` | I don't have the permission to use emojis. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4023` | I don't have the permission to use stickers. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4024` | I don't have the permission to mention everyone. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4025` | I don't have the permission to delete messages. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4026` | I don't have the permission to manage threads. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4027` | I don't have the permission to read the message history. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4028` | I don't have the permission to send text-to-speech (TTS) messages. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4029` | I don't have the permission to use commands. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4030` | I don't have the permission to connect to voice channels. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4031` | I don't have the permission to speak in voice channels. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4032` | I don't have the permission to stream in voice channels. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4033` | I don't have the permission to use voice activity. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4034` | I don't have the permission to be a priority speaker. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4035` | I don't have the permission to mute other in voice channels. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4036` | I don't have the permission to deafen other in voice channels. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4037` | I don't have the permission to move people in voice channels. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4038` | I don't have the permission to request stage access. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4039` | I don't have the permission to manage server events. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.
+`4040` | I don't have the administrator permissions. | The bot permissions are not configured correctly. Please grant the bot the necessary permissions.

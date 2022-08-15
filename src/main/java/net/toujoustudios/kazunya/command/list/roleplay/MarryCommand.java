@@ -80,8 +80,14 @@ public class MarryCommand implements ICommand {
                 requests.remove(target);
                 requests.remove(member);
 
+                System.out.println("Marrying " + member.getUser().getName() + " and " + target.getUser().getName());
+
                 memberManager.setPartner(target.getId());
                 targetManager.setPartner(member.getId());
+
+                System.out.println(memberManager.getPartner());
+                System.out.println(targetManager.getPartner());
+
                 embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
                 embedBuilder.setTitle(":ring: **Marriage**");
                 embedBuilder.setDescription(member.getAsMention() + " and " + target.getAsMention() + " are now happily married!");

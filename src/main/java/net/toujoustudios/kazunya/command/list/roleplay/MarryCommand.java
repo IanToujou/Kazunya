@@ -27,7 +27,7 @@ import java.util.List;
 public class MarryCommand implements ICommand {
 
     private final Config config;
-    private final HashMap<Member, Member> requests = new HashMap<>();
+    private final HashMap<String, String> requests = new HashMap<>();
 
     public MarryCommand() {
         config = Config.getDefault();
@@ -47,6 +47,8 @@ public class MarryCommand implements ICommand {
 
         Member target = args.get(0).getAsMember();
         assert target != null;
+        String memberId = member.getId();
+        String targetId = target.getId();
 
         if (target.getUser().isBot()) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_BOT);
@@ -71,22 +73,16 @@ public class MarryCommand implements ICommand {
             return;
         }
 
-        requests.putIfAbsent(member, target);
+        requests.putIfAbsent(memberId, targetId);
 
-        if (requests.containsKey(target)) {
+        if (requests.containsKey(targetId)) {
 
-            if (requests.get(target) == member) {
+            if (requests.get(target.getId()).equals(member.getId())) {
 
-                requests.remove(target);
-                requests.remove(member);
-
-                System.out.println("Marrying " + member.getUser().getName() + " and " + target.getUser().getName());
-
-                memberManager.setPartner(target.getId());
-                targetManager.setPartner(member.getId());
-
-                System.out.println(memberManager.getPartner());
-                System.out.println(targetManager.getPartner());
+                requests.remove(targetId);
+                requests.remove(memberId);
+                memberManager.setPartner(targetId);
+                targetManager.setPartner(memberId);
 
                 embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
                 embedBuilder.setTitle(":ring: **Marriage**");

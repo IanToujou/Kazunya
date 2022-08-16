@@ -4,22 +4,15 @@ import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.economy.stock.StockMarket;
 import net.toujoustudios.kazunya.main.Main;
 
-/**
- * This file has been created by Ian Toujou.
- * Project: Kazunya
- * Date: 26/08/2021
- * Time: 23:02
- */
+@SuppressWarnings("unused")
 public class Loader {
 
     private static LoaderState state;
 
     public static void startLoading() {
-
         preInitialize();
         initialize();
         postInitialize();
-
     }
 
     private static void preInitialize() {

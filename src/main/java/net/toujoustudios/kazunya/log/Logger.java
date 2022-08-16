@@ -10,11 +10,11 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * This file has been created by Ian Toujou.
- * Project: Kazunya
- * Date: 26/08/2021
- * Time: 23:05
+ * A logger to print logs to the console and to a file.
+ * @since 1.0.0
+ * @author Ian Toujou
  */
+@SuppressWarnings("unused")
 public class Logger {
 
     public static final Config config = Config.getDefault();

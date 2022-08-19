@@ -35,6 +35,7 @@ nav:
       - 'Administration':
           - '/admin-balance': 'commands/administration/admin-balance.md'
   - 'Errors': 'errors/index.md'
+  - 'Changelog': 'changelog/index.md'
 markdown_extensions:
   - admonition
   - pymdownx.details

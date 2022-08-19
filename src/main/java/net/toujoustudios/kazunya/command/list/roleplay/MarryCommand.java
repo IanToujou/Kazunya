@@ -19,10 +19,10 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * This file has been created by Ian Toujou.
- * Project: Kazunya
- * Date: 29/08/2021
- * Time: 13:19
+ * A command to marry other people on Discord using the bot. The marriage is valid on all Discord servers. A user cannot have multiple partners in different servers, but are rather limited to one single person.
+ * @since 1.0.0
+ * @see net.toujoustudios.kazunya.command.list.roleplay.DivorceCommand
+ * @author Ian Toujou
  */
 public class MarryCommand implements ICommand {
 

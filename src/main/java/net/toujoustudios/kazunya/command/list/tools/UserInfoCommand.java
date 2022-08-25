@@ -39,7 +39,7 @@ public class UserInfoCommand implements ICommand {
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
         Member target = args.get(0).getAsMember();
-        if (target == null) return;
+        if(target == null) return;
         User targetUser = target.getUser();
         UserManager targetManager = UserManager.getUser(targetUser.getId());
 
@@ -60,16 +60,16 @@ public class UserInfoCommand implements ICommand {
         embedBuilder.addField(":calendar: Dates:", datesBuilder.toString(), false);
 
         StringBuilder relationshipBuilder = new StringBuilder();
-        
+
         String partner = "`None`";
-        if (targetManager.hasPartner()) {
+        if(targetManager.hasPartner()) {
 
             String partnerId = targetManager.getPartner();
 
-            if (context.getGuild().getMemberById(partnerId) != null) {
+            if(context.getGuild().getMemberById(partnerId) != null) {
                 partner = context.getGuild().getMemberById(partnerId).getAsMention();
             } else {
-                if (context.getJDA().getUserById(partnerId) != null) {
+                if(context.getJDA().getUserById(partnerId) != null) {
                     partner = "`" + context.getJDA().getUserById(partnerId).getName() + "`";
                 } else {
                     partner = "`Invalid`";

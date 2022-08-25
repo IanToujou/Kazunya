@@ -25,7 +25,7 @@ public class DatabaseTimer extends TimerTask {
 
         try {
             Thread.sleep(1000);
-        } catch (InterruptedException exception) {
+        } catch(InterruptedException exception) {
             exception.printStackTrace();
         }
 

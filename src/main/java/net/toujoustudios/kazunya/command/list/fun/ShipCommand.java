@@ -31,7 +31,7 @@ public class ShipCommand implements ICommand {
         List<OptionMapping> args = context.getArgs();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
-        if (args.size() != 2) {
+        if(args.size() != 2) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_SYNTAX);
             return;
         }
@@ -39,7 +39,7 @@ public class ShipCommand implements ICommand {
         Member first = args.get(0).getAsMember();
         Member second = args.get(1).getAsMember();
 
-        if (first == null || second == null) return;
+        if(first == null || second == null) return;
 
         int rating = 0;
         String firstId = first.getId();
@@ -47,7 +47,7 @@ public class ShipCommand implements ICommand {
         int num1 = Integer.parseInt(firstId.substring(firstId.length() - 2));
         int num2 = Integer.parseInt(secondId.substring(firstId.length() - 2));
         rating = num1 + num2;
-        if (rating > 100) rating -= 100;
+        if(rating > 100) rating -= 100;
 
         String firstName = first.getEffectiveName();
         String secondName = second.getEffectiveName();
@@ -62,37 +62,37 @@ public class ShipCommand implements ICommand {
 
         String commentary = "";
 
-        if (rating < 10) {
+        if(rating < 10) {
 
             commentary = "The relationship would be truly horrible...";
             embedBuilder.setColor(Color.RED);
 
-        } else if (rating < 30) {
+        } else if(rating < 30) {
 
             commentary = "This wouldn't work that great...";
             embedBuilder.setColor(Color.ORANGE);
 
-        } else if (rating < 50) {
+        } else if(rating < 50) {
 
             commentary = "It is fine.";
             embedBuilder.setColor(Color.YELLOW);
 
-        } else if (rating == 69) {
+        } else if(rating == 69) {
 
             commentary = "69? Nice.";
             embedBuilder.setColor(Color.GREEN);
 
-        } else if (rating < 70) {
+        } else if(rating < 70) {
 
             commentary = "This could work nya~";
             embedBuilder.setColor(Color.GREEN);
 
-        } else if (rating < 90) {
+        } else if(rating < 90) {
 
             commentary = "This would be a wholesome relationship! Nya~";
             embedBuilder.setColor(Color.PINK);
 
-        } else if (rating < 100) {
+        } else if(rating < 100) {
 
             commentary = "The two should instantly get married! Nyaaa~";
             embedBuilder.setColor(Color.MAGENTA);

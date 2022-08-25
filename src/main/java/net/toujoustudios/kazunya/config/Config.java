@@ -26,7 +26,7 @@ public class Config {
             InputStream inputStream = new FileInputStream(filename);
             Yaml yaml = new Yaml();
             content = yaml.load(inputStream);
-        } catch (FileNotFoundException e) {
+        } catch(FileNotFoundException e) {
             e.printStackTrace();
         }
 
@@ -44,9 +44,9 @@ public class Config {
 
             BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/" + filename));
             String line;
-            while ((line = reader.readLine()) != null) {
+            while((line = reader.readLine()) != null) {
                 String[] content = line.split(": ");
-                if (content.length == 2) {
+                if(content.length == 2) {
                     String key = content[0];
                     String value = content[1].replaceAll("\"", "");
                     map.put(key, value);
@@ -55,7 +55,7 @@ public class Config {
 
             reader.close();
 
-        } catch (IOException exception) {
+        } catch(IOException exception) {
             exception.printStackTrace();
         }
         return map;
@@ -71,7 +71,7 @@ public class Config {
     }
 
     public void printContent() {
-        for (String name : content.keySet()) {
+        for(String name : content.keySet()) {
             String value = content.get(name).toString();
             System.out.println(name + " => " + value);
         }
@@ -91,7 +91,7 @@ public class Config {
 
     public List<String> getStringList(String key) {
         String[] stringArray = getString(key).split(", ");
-        if (stringArray.length >= 1) return Arrays.asList(stringArray);
+        if(stringArray.length >= 1) return Arrays.asList(stringArray);
         else return null;
     }
 

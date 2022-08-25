@@ -46,7 +46,7 @@ public class HelpCommand implements ICommand {
         embedBuilder.setDescription("Here is a full list of all bot commands and features.\nYou can also type `/help [<command>]` to look up a specific command and its usage.");
         embedBuilder.setThumbnail(config.getString("assets.img.icon_search"));
 
-        if (args.isEmpty()) {
+        if(args.isEmpty()) {
 
             StringBuilder builderGeneral = new StringBuilder();
             StringBuilder builderRoleplay = new StringBuilder();
@@ -57,26 +57,26 @@ public class HelpCommand implements ICommand {
             StringBuilder builderNSFW = new StringBuilder();
             StringBuilder builderAdministration = new StringBuilder();
 
-            for (ICommand command : manager.getCommands()) {
-                if (command.getCategory() == CommandCategory.GENERAL) {
+            for(ICommand command : manager.getCommands()) {
+                if(command.getCategory() == CommandCategory.GENERAL) {
                     builderGeneral.append("`/" + command.getName() + "` - " + command.getDescription() + "\n");
                 }
-                if (command.getCategory() == CommandCategory.ROLEPLAY) {
+                if(command.getCategory() == CommandCategory.ROLEPLAY) {
                     builderRoleplay.append("`/" + command.getName() + "` - " + command.getDescription() + "\n");
                 }
-                if (command.getCategory() == CommandCategory.FUN) {
+                if(command.getCategory() == CommandCategory.FUN) {
                     builderFun.append("`/" + command.getName() + "` - " + command.getDescription() + "\n");
                 }
-                if (command.getCategory() == CommandCategory.TOOLS) {
+                if(command.getCategory() == CommandCategory.TOOLS) {
                     builderTools.append("`/" + command.getName() + "` - " + command.getDescription() + "\n");
                 }
-                if (command.getCategory() == CommandCategory.ECONOMY) {
+                if(command.getCategory() == CommandCategory.ECONOMY) {
                     builderEconomy.append("`/" + command.getName() + "` - " + command.getDescription() + "\n");
                 }
-                if (command.getCategory() == CommandCategory.NSFW) {
+                if(command.getCategory() == CommandCategory.NSFW) {
                     builderNSFW.append("`/" + command.getName() + "` - " + command.getDescription() + "\n");
                 }
-                if (command.getCategory() == CommandCategory.ADMINISTRATION) {
+                if(command.getCategory() == CommandCategory.ADMINISTRATION) {
                     builderAdministration.append("`/" + command.getName() + "` - " + command.getDescription() + "\n");
                 }
             }
@@ -86,21 +86,21 @@ public class HelpCommand implements ICommand {
             embedBuilder.addField(":sparkles: Fun:", builderFun.toString(), false);
             embedBuilder.addField(":hammer: Tools:", builderTools.toString(), false);
             embedBuilder.addField(":credit_card: Economy:", builderEconomy.toString(), false);
-            if (context.getEvent().getTextChannel().isNSFW())
+            if(context.getEvent().getTextChannel().isNSFW())
                 embedBuilder.addField(":no_entry_sign: NSFW:", builderNSFW.toString(), false);
-            if (!context.getMember().getId().equals(config.getString("user.admin")))
+            if(!context.getMember().getId().equals(config.getString("user.admin")))
                 embedBuilder.addField(":tools: Administration:", builderAdministration.toString(), false);
 
             boolean isOwnerOnServer = false;
-            for (Member member : context.getGuild().getMembers()) {
+            for(Member member : context.getGuild().getMembers()) {
                 String id = member.getId();
-                if (id.equals(config.getString("user.admin"))) {
+                if(id.equals(config.getString("user.admin"))) {
                     isOwnerOnServer = true;
                     break;
                 }
             }
 
-            if (isOwnerOnServer) {
+            if(isOwnerOnServer) {
                 embedBuilder.addField(":bookmark_tabs: Credits:", context.getGuild().getMemberById(config.getString("user.admin")).getAsMention() + " - Toujou Studios", false);
             } else {
                 embedBuilder.addField(":bookmark_tabs: Credits:", "IanToujou - Toujou Studios", false);
@@ -116,7 +116,7 @@ public class HelpCommand implements ICommand {
         String search = args.get(0).getAsString();
         ICommand command = manager.getCommand(search);
 
-        if (command == null) {
+        if(command == null) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_SEARCH);
             return;
         }

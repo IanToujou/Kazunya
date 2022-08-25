@@ -1,8 +1,6 @@
 package net.toujoustudios.kazunya.command.list.fun;
 
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.toujoustudios.kazunya.command.CommandCategory;
@@ -34,40 +32,43 @@ public class RollCommand implements ICommand {
     @Override
     @SuppressWarnings("all")
     public void handle(CommandContext context) {
-        
+
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
         int sides = 6;
         int times = 1;
         int offset = 0;
 
-        if (context.getEvent().getOption("sides") != null) sides = (int) context.getEvent().getOption("sides").getAsDouble();
-        if (context.getEvent().getOption("times") != null) times = (int) context.getEvent().getOption("times").getAsDouble();
-        if (context.getEvent().getOption("offset") != null) offset = (int) context.getEvent().getOption("offset").getAsDouble();
+        if(context.getEvent().getOption("sides") != null)
+            sides = (int) context.getEvent().getOption("sides").getAsDouble();
+        if(context.getEvent().getOption("times") != null)
+            times = (int) context.getEvent().getOption("times").getAsDouble();
+        if(context.getEvent().getOption("offset") != null)
+            offset = (int) context.getEvent().getOption("offset").getAsDouble();
 
-        if (sides < 2 || sides > 1000) {
+        if(sides < 2 || sides > 1000) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_RANGE);
             return;
         }
 
-        if (offset < -1000 || offset > 1000) {
+        if(offset < -1000 || offset > 1000) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_RANGE);
             return;
         }
 
-        if (times < 1 || times > 50) {
+        if(times < 1 || times > 50) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_RANGE);
             return;
         }
 
         int[] results = new int[times];
 
-        for (int i = 0; i < times; i++) {
+        for(int i = 0; i < times; i++) {
             int random = new Random().nextInt(sides) + 1;
             results[i] = random;
         }
 
-        if (times == 1) {
+        if(times == 1) {
             embedBuilder.setDescription("You rolled `1` dice!\nResult: `" + results[0] + "`");
             embedBuilder.addField("Input", "Sides: `" + sides + "`\nOffset: `" + offset + "`\nTimes: `" + times + "`", false);
         } else {
@@ -76,8 +77,8 @@ public class RollCommand implements ICommand {
             stringBuilder.append("Result: `(");
 
             int sum = 0;
-            for (int i = 0; i < results.length; i++) {
-                if (i != 0) stringBuilder.append(" + ");
+            for(int i = 0; i < results.length; i++) {
+                if(i != 0) stringBuilder.append(" + ");
                 stringBuilder.append(results[i]);
                 sum += results[i];
             }

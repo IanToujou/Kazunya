@@ -23,7 +23,7 @@ public class GuildManager {
 
     public static GuildManager getGuild(String guildId) {
 
-        if (guilds.containsKey(guildId)) return guilds.get(guildId);
+        if(guilds.containsKey(guildId)) return guilds.get(guildId);
         GuildManager guildManager = new GuildManager(guildId);
         guilds.put(guildId, guildManager);
         return guildManager;
@@ -31,7 +31,7 @@ public class GuildManager {
     }
 
     public static void saveAll() {
-        for (Map.Entry<String, GuildManager> entry : guilds.entrySet()) {
+        for(Map.Entry<String, GuildManager> entry : guilds.entrySet()) {
             guilds.get(entry.getKey()).save();
         }
     }

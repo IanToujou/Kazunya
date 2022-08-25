@@ -1,7 +1,6 @@
 package net.toujoustudios.kazunya.command.list.general;
 
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.dv8tion.jda.api.interactions.components.Button;
 import net.toujoustudios.kazunya.command.CommandCategory;

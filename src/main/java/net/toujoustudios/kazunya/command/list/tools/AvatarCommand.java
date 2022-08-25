@@ -36,7 +36,7 @@ public class AvatarCommand implements ICommand {
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
         Member target = args.get(0).getAsMember();
-        if (target == null) return;
+        if(target == null) return;
         User targetUser = target.getUser();
 
         embedBuilder.setTitle("**:frame_photo: Avatar**");

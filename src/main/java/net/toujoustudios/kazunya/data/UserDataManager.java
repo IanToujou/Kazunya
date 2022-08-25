@@ -20,10 +20,10 @@ public class UserDataManager {
     public static boolean isUsageBanned(String userId) {
         try {
             ResultSet resultSet = DatabaseManager.executeQuery("SELECT usage_banned FROM user_data WHERE user_id='" + userId + "';");
-            if (resultSet != null && resultSet.next()) {
+            if(resultSet != null && resultSet.next()) {
                 return resultSet.getBoolean("usage_banned");
             }
-        } catch (SQLException exception) {
+        } catch(SQLException exception) {
             exception.printStackTrace();
         }
         return false;
@@ -37,11 +37,11 @@ public class UserDataManager {
     public static double getAccountMoney(String userId) {
         try {
             ResultSet resultSet = DatabaseManager.executeQuery("SELECT account_money FROM user_data WHERE user_id='" + userId + "';");
-            if (resultSet != null && resultSet.next()) {
+            if(resultSet != null && resultSet.next()) {
                 double money = resultSet.getDouble("account_money");
                 return (double) Math.round(money * 100) / 100;
             }
-        } catch (SQLException exception) {
+        } catch(SQLException exception) {
             exception.printStackTrace();
         }
         return 0;
@@ -55,11 +55,11 @@ public class UserDataManager {
     public static double getWalletMoney(String userId) {
         try {
             ResultSet resultSet = DatabaseManager.executeQuery("SELECT wallet_money FROM user_data WHERE user_id='" + userId + "';");
-            if (resultSet != null && resultSet.next()) {
+            if(resultSet != null && resultSet.next()) {
                 double money = resultSet.getDouble("wallet_money");
                 return (double) Math.round(money * 100) / 100;
             }
-        } catch (SQLException exception) {
+        } catch(SQLException exception) {
             exception.printStackTrace();
         }
         return 0;
@@ -72,10 +72,10 @@ public class UserDataManager {
     public static String getPartner(String userId) {
         try {
             ResultSet resultSet = DatabaseManager.executeQuery("SELECT partner_id FROM user_data WHERE user_id='" + userId + "';");
-            if (resultSet != null && resultSet.next()) {
+            if(resultSet != null && resultSet.next()) {
                 return resultSet.getString("partner_id");
             }
-        } catch (SQLException exception) {
+        } catch(SQLException exception) {
             exception.printStackTrace();
         }
         return null;

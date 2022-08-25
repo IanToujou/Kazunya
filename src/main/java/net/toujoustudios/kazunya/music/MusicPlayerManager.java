@@ -42,7 +42,7 @@ public class MusicPlayerManager {
     }
 
     public static synchronized MusicPlayerManager getInstance() {
-        if (INSTANCE == null) {
+        if(INSTANCE == null) {
             INSTANCE = new MusicPlayerManager();
         }
         return INSTANCE;
@@ -53,7 +53,7 @@ public class MusicPlayerManager {
         long guildId = guild.getIdLong();
         GuildMusicManager musicManager = musicManagers.get(guildId);
 
-        if (musicManager == null) {
+        if(musicManager == null) {
             musicManager = new GuildMusicManager(playerManager);
             musicManagers.put(guildId, musicManager);
         }
@@ -65,7 +65,7 @@ public class MusicPlayerManager {
 
     public void loadAndPlay(SlashCommandEvent event, String trackUrl) {
 
-        if (event.getGuild() == null) return;
+        if(event.getGuild() == null) return;
         GuildMusicManager musicManager = getGuildMusicManager(event.getGuild());
 
         EmbedBuilder embedBuilder = new EmbedBuilder();
@@ -88,7 +88,7 @@ public class MusicPlayerManager {
 
                 AudioTrack firstTrack = playlist.getSelectedTrack();
 
-                if (firstTrack == null) firstTrack = playlist.getTracks().remove(0);
+                if(firstTrack == null) firstTrack = playlist.getTracks().remove(0);
 
                 embedBuilder.setDescription(":arrow_forward: Now playing `" + firstTrack.getInfo().title + "` and added another `" + playlist.getTracks().size() + "` songs from the playlist.");
                 event.replyEmbeds(embedBuilder.build()).queue();
@@ -98,7 +98,7 @@ public class MusicPlayerManager {
 
                 playlist.getTracks().remove(0);
 
-                for (AudioTrack audioTrack : playlist.getTracks()) {
+                for(AudioTrack audioTrack : playlist.getTracks()) {
                     trackScheduler.queue(audioTrack);
                 }
 

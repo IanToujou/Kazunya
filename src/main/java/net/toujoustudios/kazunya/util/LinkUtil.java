@@ -16,7 +16,7 @@ public class LinkUtil {
         try {
             new URL(input);
             return true;
-        } catch (MalformedURLException exception) {
+        } catch(MalformedURLException exception) {
             return false;
         }
 

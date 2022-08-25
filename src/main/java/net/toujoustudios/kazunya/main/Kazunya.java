@@ -53,7 +53,7 @@ public class Kazunya {
             jda = builder.build();
             commandManager.registerCommands();
             startConsole();
-        } catch (LoginException exception) {
+        } catch(LoginException exception) {
             exception.printStackTrace();
         }
     }
@@ -71,31 +71,31 @@ public class Kazunya {
     public void startConsole() {
 
         Scanner scanner = new Scanner(System.in);
-        while (true) {
+        while(true) {
 
             String input = scanner.nextLine();
 
-            if (input.startsWith("save")) {
+            if(input.startsWith("save")) {
 
                 UserManager.unloadAll();
                 GuildManager.unloadAll();
                 Logger.log(LogLevel.INFORMATION, "Successfully saved all data in the cache.");
 
-            } else if (input.startsWith("shutdown")) {
+            } else if(input.startsWith("shutdown")) {
 
                 UserManager.unloadAll();
                 GuildManager.unloadAll();
                 Logger.log(LogLevel.INFORMATION, "Successfully saved all data in the cache.");
                 System.exit(0);
 
-            } else if (input.startsWith("msg")) {
+            } else if(input.startsWith("msg")) {
 
                 String[] args = input.split(" ");
                 String channel = args[1];
                 StringBuilder message = new StringBuilder();
 
-                for (int i = 2; i < args.length; i++) {
-                    if (i != 2) {
+                for(int i = 2; i < args.length; i++) {
+                    if(i != 2) {
                         message.append(" ").append(args[i]);
                     } else {
                         message.append(args[i]);
@@ -105,18 +105,18 @@ public class Kazunya {
                 try {
                     Objects.requireNonNull(jda.getTextChannelById(channel)).sendMessage(message).queue();
                     Logger.log(LogLevel.INFORMATION, "The message has been sent.");
-                } catch (Exception exception) {
+                } catch(Exception exception) {
                     Logger.log(LogLevel.ERROR, "Could not send message to channel.");
                 }
 
-            } else if (input.startsWith("pmsg")) {
+            } else if(input.startsWith("pmsg")) {
 
                 String[] args = input.split(" ");
                 String user = args[1];
                 StringBuilder message = new StringBuilder();
 
-                for (int i = 2; i < args.length; i++) {
-                    if (i != 2) {
+                for(int i = 2; i < args.length; i++) {
+                    if(i != 2) {
                         message.append(" ").append(args[i]);
                     } else {
                         message.append(args[i]);
@@ -126,7 +126,7 @@ public class Kazunya {
                 try {
                     Objects.requireNonNull(jda.getUserById(user)).openPrivateChannel().queue((channel) -> channel.sendMessage(message.toString()).queue());
                     Logger.log(LogLevel.INFORMATION, "The message has been sent.");
-                } catch (Exception exception) {
+                } catch(Exception exception) {
                     Logger.log(LogLevel.ERROR, "Could not send message to user.");
                 }
 

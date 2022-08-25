@@ -41,7 +41,7 @@ public class KillCommand implements ICommand {
         Member target = args.get(0).getAsMember();
         assert target != null;
 
-        if (target.getId().equals(member.getId())) {
+        if(target.getId().equals(member.getId())) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_SELF);
             return;
         }
@@ -51,7 +51,7 @@ public class KillCommand implements ICommand {
         ArrayList<String> messages = new ArrayList<>();
         int random = new Random().nextInt(5);
 
-        if (random == 1) {
+        if(random == 1) {
             embedBuilder.setTitle("**:skull: Kill**");
             messages.add("{Victim} got killed by {Killer}.");
             messages.add("{Killer} used a nuke on {Victim}.");

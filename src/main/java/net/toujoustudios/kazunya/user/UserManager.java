@@ -32,7 +32,7 @@ public class UserManager {
 
     public static UserManager getUser(String userId) {
 
-        if (users.containsKey(userId)) return users.get(userId);
+        if(users.containsKey(userId)) return users.get(userId);
         UserManager userManager = new UserManager(userId);
         users.put(userId, userManager);
         return userManager;
@@ -40,8 +40,8 @@ public class UserManager {
     }
 
     public static void saveAll() {
-        if (users == null || users.size() == 0) return;
-        for (Map.Entry<String, UserManager> entry : users.entrySet()) {
+        if(users == null || users.size() == 0) return;
+        for(Map.Entry<String, UserManager> entry : users.entrySet()) {
             users.get(entry.getKey()).save();
         }
     }
@@ -55,7 +55,7 @@ public class UserManager {
         UserDataManager.setUsageBanned(userId, usageBanned);
         UserDataManager.setAccountMoney(userId, accountMoney);
         UserDataManager.setWalletMoney(userId, walletMoney);
-        if (hasPartner()) {
+        if(hasPartner()) {
             UserDataManager.setPartner(userId, partner);
         } else {
             UserDataManager.removePartner(userId);

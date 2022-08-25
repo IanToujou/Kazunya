@@ -35,25 +35,25 @@ public class DivorceCommand implements ICommand {
         List<OptionMapping> args = context.getArgs();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
-        if (args.size() > 1) {
+        if(args.size() > 1) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_SYNTAX);
             return;
         }
 
         UserManager memberManager = UserManager.getUser(member.getId());
 
-        if (!memberManager.hasPartner()) {
+        if(!memberManager.hasPartner()) {
             ErrorEmbed.sendError(context, ErrorType.ACTION_NO_PARTNER);
             return;
         }
 
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
 
-        if (list.contains(member.getId())) {
+        if(list.contains(member.getId())) {
 
             User target = Main.getBot().getJDA().getUserById(memberManager.getPartner());
             embedBuilder.setTitle("**:broken_heart: Divorce**");
-            if (target != null) {
+            if(target != null) {
                 embedBuilder.setDescription("You and `" + target.getName() + "` are now divorced.");
             } else {
                 embedBuilder.setDescription("You and `your partner` are now divorced.");

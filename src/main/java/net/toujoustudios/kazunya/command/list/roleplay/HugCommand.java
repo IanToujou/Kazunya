@@ -41,7 +41,7 @@ public class HugCommand implements ICommand {
         Member target = args.get(0).getAsMember();
         assert target != null;
 
-        if (target.getId().equals(member.getId())) {
+        if(target.getId().equals(member.getId())) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_SELF);
             return;
         }

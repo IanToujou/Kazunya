@@ -22,7 +22,7 @@ public class DatabaseManager {
 
     public static void connect() {
 
-        if (isConnected()) {
+        if(isConnected()) {
             disconnect();
         }
 
@@ -32,7 +32,7 @@ public class DatabaseManager {
             connection = DriverManager.getConnection(url, config.getString("database.user"), config.getString("database.password"));
             Logger.log(LogLevel.INFORMATION, "The connection to the database has been established.");
 
-        } catch (SQLException exception) {
+        } catch(SQLException exception) {
             exception.printStackTrace();
         }
 
@@ -40,12 +40,12 @@ public class DatabaseManager {
 
     public static void disconnect() {
 
-        if (isConnected()) {
+        if(isConnected()) {
 
             try {
                 connection.close();
                 Logger.log(LogLevel.INFORMATION, "The database has been disconnected.");
-            } catch (Exception exception) {
+            } catch(Exception exception) {
                 exception.printStackTrace();
             }
 
@@ -61,7 +61,7 @@ public class DatabaseManager {
 
         try {
             return connection.prepareStatement(query).executeQuery();
-        } catch (SQLException exception) {
+        } catch(SQLException exception) {
             exception.printStackTrace();
         }
 
@@ -73,7 +73,7 @@ public class DatabaseManager {
 
         try {
             connection.prepareStatement(update).executeUpdate();
-        } catch (SQLException exception) {
+        } catch(SQLException exception) {
             exception.printStackTrace();
         }
 

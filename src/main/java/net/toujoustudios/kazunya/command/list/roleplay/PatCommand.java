@@ -38,7 +38,7 @@ public class PatCommand implements ICommand {
         Member member = context.getMember();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
-        if (args.size() == 0) {
+        if(args.size() == 0) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_SYNTAX);
             return;
         }
@@ -46,7 +46,7 @@ public class PatCommand implements ICommand {
         Member target = args.get(0).getAsMember();
         assert target != null;
 
-        if (target.getId().equals(member.getId())) {
+        if(target.getId().equals(member.getId())) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_SELF);
             return;
         }

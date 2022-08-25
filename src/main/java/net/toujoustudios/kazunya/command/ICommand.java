@@ -23,9 +23,9 @@ public interface ICommand {
         StringBuilder builder = new StringBuilder();
         builder.append(getName());
 
-        for (OptionData data : getOptions()) {
+        for(OptionData data : getOptions()) {
             builder.append(" ");
-            if (data.isRequired()) {
+            if(data.isRequired()) {
                 builder.append("<");
                 builder.append(data.getName());
                 builder.append(">");

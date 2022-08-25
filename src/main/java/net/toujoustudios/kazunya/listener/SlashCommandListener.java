@@ -19,11 +19,11 @@ public class SlashCommandListener extends ListenerAdapter {
     @Override
     public void onSlashCommand(@NotNull SlashCommandEvent event) {
 
-        if (event.getGuild() == null) return;
-        if (event.getUser().isBot()) return;
+        if(event.getGuild() == null) return;
+        if(event.getUser().isBot()) return;
 
         UserManager userManager = UserManager.getUser(event.getUser().getId());
-        if (userManager.isUsageBanned()) {
+        if(userManager.isUsageBanned()) {
             ErrorEmbed.sendError(event, ErrorType.GENERAL_BANNED);
             return;
         }

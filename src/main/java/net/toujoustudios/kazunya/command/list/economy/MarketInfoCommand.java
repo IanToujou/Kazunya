@@ -40,13 +40,13 @@ public class MarketInfoCommand implements ICommand {
 
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
 
-        if (args.size() == 0) {
+        if(args.size() == 0) {
 
             embedBuilder.setTitle(":chart_with_upwards_trend: **Stock Market**");
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("*Here is a full list of the available stocks or currencies.\nPlease type `/marketinfo [id]` to get more information on a stock.*\n");
 
-            for (Stock stock : StockMarket.getStockMarket("default_market").getStocks())
+            for(Stock stock : StockMarket.getStockMarket("default_market").getStocks())
                 stringBuilder.append("\n`").append(stock.getId()).append("` | :chart: Price: ").append(stockMarket.getStockPrice(stock.getId())).append(config.getString("format.char.currency"));
 
             embedBuilder.setDescription(stringBuilder.toString());
@@ -61,9 +61,9 @@ public class MarketInfoCommand implements ICommand {
 
             embedBuilder.setTitle("**:chart_with_upwards_trend: Stock Market: " + discriminator + "**");
 
-            for (Stock stock : StockMarket.getStockMarket("default_market").getStocks()) {
+            for(Stock stock : StockMarket.getStockMarket("default_market").getStocks()) {
 
-                if (stock.getId().equalsIgnoreCase(discriminator)) {
+                if(stock.getId().equalsIgnoreCase(discriminator)) {
 
                     stringBuilder.append(":regional_indicator_a: **Name:** ").append(stock.getName()).append("\n");
                     stringBuilder.append(":hash: **ID:** ").append(stock.getId()).append("\n");

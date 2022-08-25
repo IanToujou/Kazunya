@@ -34,7 +34,7 @@ public class AdminBalanceCommand implements ICommand {
     @SuppressWarnings("all")
     public void handle(CommandContext context) {
 
-        if (!context.getMember().getId().equals(config.getString("user.admin"))) {
+        if(!context.getMember().getId().equals(config.getString("user.admin"))) {
             ErrorEmbed.sendError(context, ErrorType.GENERAL_PERMISSION);
             return;
         }
@@ -59,7 +59,7 @@ public class AdminBalanceCommand implements ICommand {
             String amountString = context.getEvent().getOption("amount").getAsString();
             try {
                 amount = Double.parseDouble(amountString);
-            } catch (Exception exception) {
+            } catch(Exception exception) {
                 ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_NUMBER_DOUBLE);
                 return;
             }
@@ -69,7 +69,7 @@ public class AdminBalanceCommand implements ICommand {
                 return;
             }
 
-            switch (action) {
+            switch(action) {
                 case "set" -> {
                     targetManager.setAccountMoney(amount);
                     embedBuilder.setDescription("You set the account value of " + target.getAsMention() + " to `" + amount + " " + currency + "`.");

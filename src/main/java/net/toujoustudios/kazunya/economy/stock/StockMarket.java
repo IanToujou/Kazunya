@@ -96,14 +96,14 @@ public class StockMarket {
 
     public void initializeMarket() {
 
-        for (Stock currentStock : stocks) stockPrices.put(currentStock, currentStock.getBasePrice());
+        for(Stock currentStock : stocks) stockPrices.put(currentStock, currentStock.getBasePrice());
 
         timer.schedule(new TimerTask() {
 
             @Override
             public void run() {
 
-                for (Stock currentStock : stocks) {
+                for(Stock currentStock : stocks) {
 
                     double variability = currentStock.getVariability();
                     double upperBound = currentStock.getUpperBound();
@@ -121,27 +121,27 @@ public class StockMarket {
                     int passProbableBoundRandom = new Random().nextInt(101);
                     double finalPrice;
 
-                    switch (operation) {
+                    switch(operation) {
                         case 0:
                             predictedPrice = oldPrice + operator;
                         case 1:
                             predictedPrice = oldPrice - operator;
                     }
 
-                    if (passProbableBoundRandom <= passBoundProbability) passProbableBound = true;
+                    if(passProbableBoundRandom <= passBoundProbability) passProbableBound = true;
 
-                    if (predictedPrice > upperBound || predictedPrice < lowerBound) {
-                        if (predictedPrice > upperBound) {
+                    if(predictedPrice > upperBound || predictedPrice < lowerBound) {
+                        if(predictedPrice > upperBound) {
                             finalPrice = oldPrice - operator;
                         } else {
                             finalPrice = oldPrice + operator;
                         }
                     } else {
-                        if (predictedPrice > upperProbableBound || predictedPrice < lowerProbableBound) {
-                            if (passProbableBound) {
+                        if(predictedPrice > upperProbableBound || predictedPrice < lowerProbableBound) {
+                            if(passProbableBound) {
                                 finalPrice = predictedPrice;
                             } else {
-                                if (predictedPrice > upperBound) {
+                                if(predictedPrice > upperBound) {
                                     finalPrice = oldPrice - operator;
                                 } else {
                                     finalPrice = oldPrice + operator;

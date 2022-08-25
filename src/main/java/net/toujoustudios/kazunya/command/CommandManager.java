@@ -85,7 +85,7 @@ public class CommandManager {
 
     private void addCommand(ICommand command) {
         boolean nameFound = this.commands.stream().anyMatch((it) -> it.getName().equalsIgnoreCase(command.getName()));
-        if (nameFound) throw new IllegalArgumentException("A command with this name is already present.");
+        if(nameFound) throw new IllegalArgumentException("A command with this name is already present.");
         commands.add(command);
     }
 
@@ -96,7 +96,7 @@ public class CommandManager {
         CommandListUpdateAction updateAction = Main.getBot().getJDA().updateCommands();
         List<CommandData> commands = new ArrayList<>();
 
-        for (ICommand command : this.commands) {
+        for(ICommand command : this.commands) {
             Logger.log(LogLevel.DEBUG, "Started registration of the following commands: /" + command.getName());
             CommandData data = new CommandData(command.getName(), command.getEmoji() + " " + command.getDescription()).addOptions(command.getOptions());
             commands.add(data);
@@ -116,8 +116,8 @@ public class CommandManager {
 
         String searchLower = search.toLowerCase();
 
-        for (ICommand command : this.commands) {
-            if (command.getName().equals(searchLower)) return command;
+        for(ICommand command : this.commands) {
+            if(command.getName().equals(searchLower)) return command;
         }
 
         return null;
@@ -129,11 +129,11 @@ public class CommandManager {
         String invoke = event.getName();
         ICommand command = this.getCommand(invoke);
 
-        if (command != null) {
+        if(command != null) {
 
             event.getChannel().sendTyping().queue();
 
-            if (command.getCategory() == CommandCategory.NSFW && !event.getTextChannel().isNSFW()) {
+            if(command.getCategory() == CommandCategory.NSFW && !event.getTextChannel().isNSFW()) {
                 ErrorEmbed.sendError(event, ErrorType.GENERAL_NSFW);
                 return;
             }

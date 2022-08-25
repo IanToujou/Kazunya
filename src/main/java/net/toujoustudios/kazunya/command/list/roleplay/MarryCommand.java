@@ -20,9 +20,10 @@ import java.util.List;
 
 /**
  * A command to marry other people on Discord using the bot. The marriage is valid on all Discord servers. A user cannot have multiple partners in different servers, but are rather limited to one single person.
- * @since 1.0.0
- * @see net.toujoustudios.kazunya.command.list.roleplay.DivorceCommand
+ *
  * @author Ian Toujou
+ * @see net.toujoustudios.kazunya.command.list.roleplay.DivorceCommand
+ * @since 1.0.0
  */
 public class MarryCommand implements ICommand {
 
@@ -40,7 +41,7 @@ public class MarryCommand implements ICommand {
         Member member = context.getMember();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
-        if (args.size() < 1) {
+        if(args.size() < 1) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_SYNTAX);
             return;
         }
@@ -50,12 +51,12 @@ public class MarryCommand implements ICommand {
         String memberId = member.getId();
         String targetId = target.getId();
 
-        if (target.getUser().isBot()) {
+        if(target.getUser().isBot()) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_BOT);
             return;
         }
 
-        if (target.getId().equals(member.getId())) {
+        if(target.getId().equals(member.getId())) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_SELF);
             return;
         }
@@ -63,21 +64,21 @@ public class MarryCommand implements ICommand {
         UserManager memberManager = UserManager.getUser(member.getId());
         UserManager targetManager = UserManager.getUser(target.getId());
 
-        if (memberManager.hasPartner()) {
+        if(memberManager.hasPartner()) {
             ErrorEmbed.sendError(context, ErrorType.ACTION_ALREADY_MARRIED_SELF);
             return;
         }
 
-        if (targetManager.hasPartner()) {
+        if(targetManager.hasPartner()) {
             ErrorEmbed.sendError(context, ErrorType.ACTION_ALREADY_MARRIED_TARGET);
             return;
         }
 
         requests.putIfAbsent(memberId, targetId);
 
-        if (requests.containsKey(targetId)) {
+        if(requests.containsKey(targetId)) {
 
-            if (requests.get(target.getId()).equals(member.getId())) {
+            if(requests.get(target.getId()).equals(member.getId())) {
 
                 requests.remove(targetId);
                 requests.remove(memberId);
@@ -94,7 +95,7 @@ public class MarryCommand implements ICommand {
         } else {
 
             String message = "Do you want to marry me?";
-            if (args.size() > 1) {
+            if(args.size() > 1) {
                 message = args.get(1).getAsString();
             }
 

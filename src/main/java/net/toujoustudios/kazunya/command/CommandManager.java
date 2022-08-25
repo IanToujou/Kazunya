@@ -6,6 +6,7 @@ import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
 import net.toujoustudios.kazunya.command.list.administration.AdminBalanceCommand;
 import net.toujoustudios.kazunya.command.list.economy.MarketInfoCommand;
+import net.toujoustudios.kazunya.command.list.economy.WalletCommand;
 import net.toujoustudios.kazunya.command.list.fun.PeePeeCommand;
 import net.toujoustudios.kazunya.command.list.fun.RollCommand;
 import net.toujoustudios.kazunya.command.list.fun.ShipCommand;
@@ -62,6 +63,7 @@ public class CommandManager {
 
         //Register economy commands
         this.addCommand(new MarketInfoCommand());
+        this.addCommand(new WalletCommand());
 
         //Register fun commands
         this.addCommand(new PeePeeCommand());

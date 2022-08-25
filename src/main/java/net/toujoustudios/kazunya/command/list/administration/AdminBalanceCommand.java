@@ -71,7 +71,7 @@ public class AdminBalanceCommand implements ICommand {
 
             switch (action) {
                 case "set" -> {
-                    targetManager.setMoney(amount);
+                    targetManager.setAccountMoney(amount);
                     embedBuilder.setDescription("You set the account value of " + target.getAsMention() + " to `" + amount + " " + currency + "`.");
                 }
                 case "add" -> {

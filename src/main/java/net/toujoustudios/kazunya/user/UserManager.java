@@ -17,6 +17,7 @@ public class UserManager {
     private String userId;
     private boolean usageBanned;
     private double accountMoney;
+    private double walletMoney;
     private String partner;
 
     public UserManager(String userId) {
@@ -24,6 +25,7 @@ public class UserManager {
         this.userId = userId;
         this.usageBanned = UserDataManager.isUsageBanned(userId);
         this.accountMoney = UserDataManager.getAccountMoney(userId);
+        this.walletMoney = UserDataManager.getWalletMoney(userId);
         this.partner = UserDataManager.getPartner(userId);
 
     }
@@ -52,6 +54,7 @@ public class UserManager {
     public void save() {
         UserDataManager.setUsageBanned(userId, usageBanned);
         UserDataManager.setAccountMoney(userId, accountMoney);
+        UserDataManager.setWalletMoney(userId, walletMoney);
         if (hasPartner()) {
             UserDataManager.setPartner(userId, partner);
         } else {
@@ -79,16 +82,32 @@ public class UserManager {
         return accountMoney;
     }
 
-    public void setMoney(double accountMoney) {
+    public void setAccountMoney(double accountMoney) {
         this.accountMoney = accountMoney;
     }
 
     public void addAccountMoney(double amount) {
-        setMoney(getAccountMoney() + amount);
+        setAccountMoney(getAccountMoney() + amount);
     }
 
     public void removeAccountMoney(double amount) {
-        setMoney(getAccountMoney() - amount);
+        setAccountMoney(getAccountMoney() - amount);
+    }
+
+    public double getWalletMoney() {
+        return walletMoney;
+    }
+
+    public void setWalletMoney(double walletMoney) {
+        this.walletMoney = walletMoney;
+    }
+
+    public void addWalletMoney(double amount) {
+        setWalletMoney(getWalletMoney() + amount);
+    }
+
+    public void removeWalletMoney(double amount) {
+        setWalletMoney(getWalletMoney() - amount);
     }
 
     public String getPartner() {

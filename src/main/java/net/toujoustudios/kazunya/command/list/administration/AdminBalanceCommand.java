@@ -40,9 +40,8 @@ public class AdminBalanceCommand implements ICommand {
         }
 
         EmbedBuilder embedBuilder = new EmbedBuilder();
-
         String action = context.getEvent().getOption("action").getAsString();
-        Member target = context.getEvent().getOption("member").getAsMember();
+        Member target = context.getEvent().getOption("user").getAsMember();
 
         assert target != null;
         UserManager targetManager = UserManager.getUser(target.getId());
@@ -72,15 +71,15 @@ public class AdminBalanceCommand implements ICommand {
             switch(action) {
                 case "set" -> {
                     targetManager.setAccountMoney(amount);
-                    embedBuilder.setDescription("You set the account value of " + target.getAsMention() + " to `" + amount + " " + currency + "`.");
+                    embedBuilder.setDescription("You set the account value of " + target.getAsMention() + " to `" + amount + currency + "`.");
                 }
                 case "add" -> {
                     targetManager.addAccountMoney(amount);
-                    embedBuilder.setDescription("You added `" + amount + " " + currency + "` to the account of " + target.getAsMention() + ".\nNew balance: `" + targetManager.getAccountMoney() + " " + currency + "`.");
+                    embedBuilder.setDescription("You added `" + amount + currency + "` to the account of " + target.getAsMention() + ".\nNew balance: `" + targetManager.getAccountMoney() + " " + currency + "`.");
                 }
                 case "remove" -> {
                     targetManager.removeAccountMoney(amount);
-                    embedBuilder.setDescription("You removed `" + amount + " " + currency + "` from the account of " + target.getAsMention() + ".\nNew balance: `" + targetManager.getAccountMoney() + " " + currency + "`.");
+                    embedBuilder.setDescription("You removed `" + amount + currency + "` from the account of " + target.getAsMention() + ".\nNew balance: `" + targetManager.getAccountMoney() + " " + currency + "`.");
                 }
                 default -> {
                     ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_OPERATION_GET_SET_ADD_REMOVE);
@@ -95,7 +94,7 @@ public class AdminBalanceCommand implements ICommand {
                 return;
             }
 
-            embedBuilder.setDescription(target.getAsMention() + "'s account balance is currently: `" + targetManager.getAccountMoney() + " " + currency + "`.");
+            embedBuilder.setDescription(target.getAsMention() + "'s account balance is currently: `" + targetManager.getAccountMoney() + currency + "`.");
 
         }
 

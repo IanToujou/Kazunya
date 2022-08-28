@@ -27,7 +27,7 @@ public class WalletCommand implements ICommand {
 
         UserManager memberManager = UserManager.getUser(context.getMember().getId());
         String currency = config.getString("format.char.currency");
-        double amount = memberManager.getAccountMoney();
+        double amount = memberManager.getWalletMoney();
 
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
         embedBuilder.setTitle("**:dollar: Your Wallet**");

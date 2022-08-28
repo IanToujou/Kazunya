@@ -1,6 +1,7 @@
 package net.toujoustudios.kazunya.command.list.economy;
 
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
@@ -12,25 +13,32 @@ import net.toujoustudios.kazunya.util.ColorUtil;
 import java.util.Collections;
 import java.util.List;
 
-public class WalletCommand implements ICommand {
+public class BankCommand implements ICommand {
 
-    private final Config config;
+    public final Config config;
 
-    public WalletCommand() {
-        config = Config.getDefault();
+    public BankCommand() {
+        this.config = Config.getDefault();
     }
 
     @Override
     public void handle(CommandContext context) {
 
         EmbedBuilder embedBuilder = new EmbedBuilder();
-        UserManager memberManager = UserManager.getUser(context.getMember().getId());
+        Member member = context.getMember();
+        UserManager memberManager = UserManager.getUser(member.getId());
         String currency = config.getString("format.char.currency");
-        double amount = memberManager.getWalletMoney();
+        double accountMoney = memberManager.getAccountMoney();
+
+        String ibanBegin = "NYA" + member.getId().substring(0, 2);
+        String processId = member.getId().substring(2);
+        String iban = ibanBegin + java.util.Arrays.toString(processId.split("(?<=\\G....)"));
 
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
-        embedBuilder.setTitle("**:dollar: Your Wallet**");
-        embedBuilder.setDescription("You currently have `" + amount + currency + "` in your wallet.");
+        embedBuilder.setTitle("**:bank: Bank Account**");
+        embedBuilder.setDescription("Here is your current bank account status.");
+        embedBuilder.addField("**:credit_card: Client Information:**", "Name: `" + member.getEffectiveName() + "`", false);
+        embedBuilder.addField("**:euro: Current Account:**", "IBAN: `" + iban + "`\nAmount: `" + accountMoney + currency + "`", false);
 
         context.getEvent().replyEmbeds(embedBuilder.build()).queue();
 
@@ -38,17 +46,17 @@ public class WalletCommand implements ICommand {
 
     @Override
     public String getName() {
-        return "wallet";
+        return "bank";
     }
 
     @Override
     public String getDescription() {
-        return "Display or manage your wallet.";
+        return "Retrieve information about your current bank account.";
     }
 
     @Override
     public String getEmoji() {
-        return "💵";
+        return "🏦";
     }
 
     @Override

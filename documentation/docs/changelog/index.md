@@ -24,6 +24,12 @@ Changes listed in the changelog are divided into categories.
 !!! Info
     The changes are listed in chronological order, with the newest versions first.
 
+### **Release v1.1.0 (**`Unknown`**)**
+
+- ✨ Added new economy system
+- ✨ Added wallet & bank account money
+- 🔊 Improved bot startup messages & logs
+
 ### **Release v1.0.0 (**`19.08.2022`**)**
 
 - 📝 Initial release: *The bot is now fully functional.*

@@ -2,9 +2,12 @@ package net.toujoustudios.kazunya.loader;
 
 import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.economy.stock.StockMarket;
+import net.toujoustudios.kazunya.log.LogLevel;
+import net.toujoustudios.kazunya.log.Logger;
 import net.toujoustudios.kazunya.main.Main;
 
-@SuppressWarnings("unused")
+import java.util.Scanner;
+
 public class Loader {
 
     private static LoaderState state;
@@ -41,6 +44,15 @@ public class Loader {
 
     public static void cancel() {
         Loader.state = LoaderState.CANCELLED;
+    }
+
+    public static void ensureLoad() {
+        if(Loader.getState() == LoaderState.CANCELLED) {
+            Logger.log(LogLevel.WARNING, "Loader state is set to cancelled. Aborting startup. Please press any key.");
+            Scanner scanner = new Scanner(System.in);
+            scanner.nextLine();
+            System.exit(0);
+        }
     }
 
 }

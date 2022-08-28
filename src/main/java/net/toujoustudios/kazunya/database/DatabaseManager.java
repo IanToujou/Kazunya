@@ -1,6 +1,7 @@
 package net.toujoustudios.kazunya.database;
 
 import net.toujoustudios.kazunya.config.Config;
+import net.toujoustudios.kazunya.loader.Loader;
 import net.toujoustudios.kazunya.log.LogLevel;
 import net.toujoustudios.kazunya.log.Logger;
 
@@ -18,39 +19,32 @@ import java.sql.SQLException;
 public class DatabaseManager {
 
     private static Connection connection;
-    private static Config config = Config.getFile("database.yml");
+    private static final Config config = Config.getFile("database.yml");
 
     public static void connect() {
-
         if(isConnected()) {
             disconnect();
         }
-
         try {
-
             String url = "jdbc:mysql://" + config.getString("database.host") + ":" + config.getString("database.port") + "/" + config.getString("database.name") + "?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC";
             connection = DriverManager.getConnection(url, config.getString("database.user"), config.getString("database.password"));
             Logger.log(LogLevel.INFORMATION, "The connection to the database has been established.");
-
         } catch(SQLException exception) {
-            exception.printStackTrace();
+            Logger.log(LogLevel.FATAL, "Could not establish a connection to the database. Please review the error below:");
+            Logger.log(LogLevel.FATAL, exception.getMessage());
+            Loader.cancel();
         }
-
     }
 
     public static void disconnect() {
-
         if(isConnected()) {
-
             try {
                 connection.close();
                 Logger.log(LogLevel.INFORMATION, "The database has been disconnected.");
             } catch(Exception exception) {
                 exception.printStackTrace();
             }
-
         }
-
     }
 
     public static boolean isConnected() {
@@ -58,25 +52,20 @@ public class DatabaseManager {
     }
 
     public static ResultSet executeQuery(String query) {
-
         try {
             return connection.prepareStatement(query).executeQuery();
         } catch(SQLException exception) {
             exception.printStackTrace();
         }
-
         return null;
-
     }
 
     public static void executeUpdate(String update) {
-
         try {
             connection.prepareStatement(update).executeUpdate();
         } catch(SQLException exception) {
             exception.printStackTrace();
         }
-
     }
 
     public static Connection getConnection() {
@@ -84,6 +73,7 @@ public class DatabaseManager {
     }
 
     public static void setup() {
+        Loader.ensureLoad();
         executeUpdate("CREATE TABLE IF NOT EXISTS user_data ( `user_id` VARCHAR(256) NOT NULL , `usage_banned` BOOLEAN NOT NULL DEFAULT FALSE , `account_money` INT NOT NULL DEFAULT '0' , `wallet_money` INT NOT NULL DEFAULT '0', `partner_id` VARCHAR(256) NULL DEFAULT NULL , PRIMARY KEY (`user_id`)) ENGINE = InnoDB;");
     }
 

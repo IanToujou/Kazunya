@@ -10,6 +10,7 @@ import net.toujoustudios.kazunya.database.DatabaseManager;
 import net.toujoustudios.kazunya.database.DatabaseTimer;
 import net.toujoustudios.kazunya.guild.GuildManager;
 import net.toujoustudios.kazunya.listener.SlashCommandListener;
+import net.toujoustudios.kazunya.loader.Loader;
 import net.toujoustudios.kazunya.log.LogLevel;
 import net.toujoustudios.kazunya.log.Logger;
 import net.toujoustudios.kazunya.user.UserManager;
@@ -50,22 +51,22 @@ public class Kazunya {
 
     public void start() {
         try {
+            Loader.ensureLoad();
             jda = builder.build();
             commandManager.registerCommands();
             startConsole();
         } catch(LoginException exception) {
-            exception.printStackTrace();
+            Logger.log(LogLevel.FATAL, "Failed to log the bot in. Please review the error below:");
+            Logger.log(LogLevel.FATAL, exception.getMessage());
         }
     }
 
     public void initializeDatabase() {
-
         DatabaseManager.connect();
         DatabaseTimer databaseTimer = new DatabaseTimer();
         Timer timer = new Timer();
         DatabaseManager.setup();
         timer.schedule(databaseTimer, 3600000, 3600000);
-
     }
 
     public void startConsole() {
@@ -76,18 +77,16 @@ public class Kazunya {
             String input = scanner.nextLine();
 
             if(input.startsWith("save")) {
-
                 UserManager.unloadAll();
                 GuildManager.unloadAll();
                 Logger.log(LogLevel.INFORMATION, "Successfully saved all data in the cache.");
-
+            } else if(input.startsWith("help")) {
+                Logger.log(LogLevel.INFORMATION, "Here is a list of all available commands: help, save, shutdown, msg, pmsg");
             } else if(input.startsWith("shutdown")) {
-
                 UserManager.unloadAll();
                 GuildManager.unloadAll();
                 Logger.log(LogLevel.INFORMATION, "Successfully saved all data in the cache.");
                 System.exit(0);
-
             } else if(input.startsWith("msg")) {
 
                 String[] args = input.split(" ");

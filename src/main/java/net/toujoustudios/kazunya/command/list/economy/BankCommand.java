@@ -32,10 +32,15 @@ public class BankCommand implements ICommand {
 
         String ibanBegin = "NYA" + member.getId().substring(0, 2);
         String processId = member.getId().substring(2);
+
         String iban = ibanBegin + java.util.Arrays.toString(processId.split("(?<=\\G....)"));
+        iban = iban.replace("[", " ");
+        iban = iban.replace("]", "");
+        iban = iban.replace(",", "");
 
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
         embedBuilder.setTitle("**:bank: Bank Account**");
+        embedBuilder.setThumbnail(config.getString("assets.img.icon_money"));
         embedBuilder.setDescription("Here is your current bank account status.");
         embedBuilder.addField("**:credit_card: Client Information:**", "Name: `" + member.getEffectiveName() + "`", false);
         embedBuilder.addField("**:euro: Current Account:**", "IBAN: `" + iban + "`\nAmount: `" + accountMoney + currency + "`", false);

@@ -85,12 +85,3 @@ Some commands have additional tags that can define whether a command can be used
 | Status | <div style="width:130px">Command</div> | <div style="width: 220px">Description</div> | Tags | Version
 |:-:|:-|:-|:-:|:-:
 | 🟢 | <a href="/commands/economy/marketinfo/">`/marketinfo`</a> | Get information on the shares that are on the virtual stock market. | None | `v1.0.0`
-
-### **Administration**
-
-!!! Info
-    Administration commands can only be used by bot admins and are used for administrative purposes, for instance modifying user data.
-
-| Status | <div style="width:130px">Command</div> | <div style="width: 220px">Description</div> | Tags | Version
-|:-:|:-|:-|:-:|:-:
-| 🔴 | <a href="/commands/administration/admin-balance/">`/admin-balance`</a> | Get information on the shares that are on the virtual stock market. | None | `v1.0.0`

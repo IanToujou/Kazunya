@@ -76,9 +76,6 @@ public class HelpCommand implements ICommand {
                 if(command.getCategory() == CommandCategory.NSFW) {
                     builderNSFW.append("`/" + command.getName() + "` - " + command.getDescription() + "\n");
                 }
-                if(command.getCategory() == CommandCategory.ADMINISTRATION) {
-                    builderAdministration.append("`/" + command.getName() + "` - " + command.getDescription() + "\n");
-                }
             }
 
             embedBuilder.addField(":satellite_orbital: General:", builderGeneral.toString(), false);

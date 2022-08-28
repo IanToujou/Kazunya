@@ -4,7 +4,6 @@ import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
-import net.toujoustudios.kazunya.command.list.administration.AdminBalanceCommand;
 import net.toujoustudios.kazunya.command.list.economy.MarketInfoCommand;
 import net.toujoustudios.kazunya.command.list.economy.WalletCommand;
 import net.toujoustudios.kazunya.command.list.fun.PeePeeCommand;
@@ -73,9 +72,6 @@ public class CommandManager {
         //Register tool commands
         this.addCommand(new AvatarCommand());
         this.addCommand(new UserInfoCommand());
-
-        //Register admin commands
-        this.addCommand(new AdminBalanceCommand());
 
     }
 

@@ -28,6 +28,7 @@ Changes listed in the changelog are divided into categories.
 
 - ✨ Added new economy system
 - ✨ Added wallet & bank account money
+- 🔥 Removed /admin-balance command
 - 🔊 Improved bot startup messages & logs
 
 ### **Release v1.0.0 (**`19.08.2022`**)**

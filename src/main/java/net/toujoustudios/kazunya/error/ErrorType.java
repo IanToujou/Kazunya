@@ -32,6 +32,8 @@ public enum ErrorType {
     ACTION_ALREADY_MARRIED_SELF("2001", "You are already married."),
     ACTION_ALREADY_MARRIED_TARGET("2002", "The specified person is already married. Sorry about that."),
     ACTION_NO_PARTNER("2003", "You don't have any partner."),
+    ACTION_NOT_ENOUGH_WALLET_MONEY("2004", "You don't have enough money in your wallet for this action."),
+    ACTION_NOT_ENOUGH_BANK_MONEY("2005", "You don't have enough money in your bank account for this action."),
 
     AUDIO_UNABLE_TO_LOAD("3001", "The audio couldn't be loaded due to an unexpected error."),
     AUDIO_USER_NOT_IN_CHANNEL("3002", "You are not in a voice channel right now."),

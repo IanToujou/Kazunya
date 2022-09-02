@@ -4,9 +4,7 @@ import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
-import net.toujoustudios.kazunya.command.list.economy.BankCommand;
-import net.toujoustudios.kazunya.command.list.economy.MarketInfoCommand;
-import net.toujoustudios.kazunya.command.list.economy.WalletCommand;
+import net.toujoustudios.kazunya.command.list.economy.*;
 import net.toujoustudios.kazunya.command.list.fun.PeePeeCommand;
 import net.toujoustudios.kazunya.command.list.fun.RollCommand;
 import net.toujoustudios.kazunya.command.list.fun.ShipCommand;
@@ -33,12 +31,9 @@ import java.util.List;
  */
 public class CommandManager {
 
-    private static CommandManager instance;
     private final List<ICommand> commands = new ArrayList<>();
 
     public CommandManager() {
-
-        instance = this;
 
         //Register non NSFW commands
         this.addCommand(new HelpCommand(this));
@@ -65,6 +60,8 @@ public class CommandManager {
         this.addCommand(new MarketInfoCommand());
         this.addCommand(new WalletCommand());
         this.addCommand(new BankCommand());
+        this.addCommand(new DepositCommand());
+        this.addCommand(new WithdrawCommand());
 
         //Register fun commands
         this.addCommand(new PeePeeCommand());
@@ -75,10 +72,6 @@ public class CommandManager {
         this.addCommand(new AvatarCommand());
         this.addCommand(new UserInfoCommand());
 
-    }
-
-    public static CommandManager getInstance() {
-        return instance;
     }
 
     private void addCommand(ICommand command) {

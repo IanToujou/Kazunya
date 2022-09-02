@@ -26,6 +26,8 @@ Changes listed in the changelog are divided into categories.
 
 ### **Release v1.1.0 (**`Unknown`**)**
 
+- ✨ Added deposit, withdraw and transfer features.
+- ✨ Added /bank and /wallet commands
 - ✨ Added new economy system
 - ✨ Added wallet & bank account money
 - 🔥 Removed /admin-balance command

@@ -31,9 +31,11 @@ nav:
           - '/avatar': 'commands/tools/avatar.md'
           - '/userinfo': 'commands/tools/userinfo.md'
       - 'Economy':
+          - '/wallet': 'commands/economy/wallet.md'
+          - '/bank': 'commands/economy/bank.md'
+          - '/deposit': 'commands/economy/deposit.md'
+          - '/withdraw': 'commands/economy/withdraw.md'
           - '/marketinfo': 'commands/economy/marketinfo.md'
-      - 'Administration':
-          - '/admin-balance': 'commands/administration/admin-balance.md'
   - 'Errors': 'errors/index.md'
   - 'Changelog': 'changelog/index.md'
 markdown_extensions:

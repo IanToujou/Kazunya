@@ -60,9 +60,11 @@ Error codes are used in a variety of situations when an error comes up. You can 
 
 | Code | <div style="width:180px">Description</div> | Help
 |:-:|:-|:-
-`2001` | You are already married. | You already have a partner and you can’t marry two persons at the same time.
+`2001` | You are already married. | You already have a partner, and you can’t marry two persons at the same time.
 `2002` | The specified person is already married. Sorry about that. | Your desired partner already has a partner. You can only marry people who don’t have any partner.
 `2003` | You don’t have any partner. | You are single and do not have any partner at the moment.
+`2004` | You don't have enough money in your wallet for this action. | You have insufficient funds in your wallet to perform this operation. You can use the `/withdraw` command to withdraw money from your bank account.
+`2005` | You don't have enough money in your bank account. | You have insufficient funds in your bank account to perform this operation. You can use the `/deposit` command to deposit money into your bak account.
 
 ### **Audio (**`3001-4000`**)**
 

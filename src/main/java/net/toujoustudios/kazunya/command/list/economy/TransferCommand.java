@@ -1,6 +1,7 @@
 package net.toujoustudios.kazunya.command.list.economy;
 
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.toujoustudios.kazunya.command.CommandCategory;
@@ -15,11 +16,11 @@ import net.toujoustudios.kazunya.util.ColorUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WithdrawCommand implements ICommand {
+public class TransferCommand implements ICommand {
 
     private final Config config;
 
-    public WithdrawCommand() {
+    public TransferCommand() {
         this.config = Config.getDefault();
     }
 
@@ -29,9 +30,20 @@ public class WithdrawCommand implements ICommand {
         EmbedBuilder embedBuilder = new EmbedBuilder();
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
 
-        UserManager memberManager = UserManager.getUser(context.getMember().getId());
+        Member member = context.getMember();
+        UserManager memberManager = UserManager.getUser(member.getId());
 
-        double amount = context.getArgs().get(0).getAsDouble();
+        Member target = context.getArgs().get(0).getAsMember();
+        assert target != null;
+
+        if(target.getId().equals(member.getId())) {
+            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_SELF);
+            return;
+        }
+
+        UserManager targetManager = UserManager.getUser(target.getId());
+
+        double amount = context.getArgs().get(1).getAsDouble();
         String currency = config.getString("format.char.currency");
 
         if(amount <= 0) {
@@ -44,34 +56,35 @@ public class WithdrawCommand implements ICommand {
             return;
         }
 
-        memberManager.addWalletMoney(amount);
         memberManager.removeAccountMoney(amount);
+        targetManager.addAccountMoney(amount);
 
-        embedBuilder.setTitle("**:moneybag: Bank Withdrawal**");
-        embedBuilder.setDescription("You successfully withdrew `" + amount + currency + "` from your bank account.");
+        embedBuilder.setTitle("**:credit_card: Bank Transfer**");
+        embedBuilder.setDescription(":white_check_mark: Transfer successful!\nYou successfully transferred `" + amount + currency + "` to " + target.getAsMention() + ".");
         context.getEvent().replyEmbeds(embedBuilder.build()).queue();
 
     }
 
     @Override
     public String getName() {
-        return "withdraw";
+        return "transfer";
     }
 
     @Override
     public String getDescription() {
-        return "Withdraw money from your bank account to your wallet.";
+        return "Transfer money from your bank account to another user.";
     }
 
     @Override
     public String getEmoji() {
-        return "💰";
+        return "💳";
     }
 
     @Override
     public List<OptionData> getOptions() {
         List<OptionData> optionData = new ArrayList<>();
-        optionData.add(new OptionData(OptionType.INTEGER, "amount", "The amount of cash you want to deposit.", true));
+        optionData.add(new OptionData(OptionType.USER, "user", "The user you want to transfer money to.", true));
+        optionData.add(new OptionData(OptionType.INTEGER, "amount", "The amount of money you want to transfer.", true));
         return optionData;
     }
 

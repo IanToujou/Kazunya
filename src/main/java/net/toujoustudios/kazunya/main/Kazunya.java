@@ -76,18 +76,18 @@ public class Kazunya {
 
             String input = scanner.nextLine();
 
-            if(input.startsWith("save")) {
+            if(input.startsWith("save ")) {
                 UserManager.unloadAll();
                 GuildManager.unloadAll();
                 Logger.log(LogLevel.INFORMATION, "Successfully saved all data in the cache.");
-            } else if(input.startsWith("help")) {
+            } else if(input.startsWith("help ")) {
                 Logger.log(LogLevel.INFORMATION, "Here is a list of all available commands: help, save, shutdown, msg, pmsg");
-            } else if(input.startsWith("shutdown")) {
+            } else if(input.startsWith("shutdown ")) {
                 UserManager.unloadAll();
                 GuildManager.unloadAll();
                 Logger.log(LogLevel.INFORMATION, "Successfully saved all data in the cache.");
                 System.exit(0);
-            } else if(input.startsWith("msg")) {
+            } else if(input.startsWith("msg ")) {
 
                 String[] args = input.split(" ");
                 String channel = args[1];
@@ -108,7 +108,7 @@ public class Kazunya {
                     Logger.log(LogLevel.ERROR, "Could not send message to channel.");
                 }
 
-            } else if(input.startsWith("pmsg")) {
+            } else if(input.startsWith("pmsg ")) {
 
                 String[] args = input.split(" ");
                 String user = args[1];

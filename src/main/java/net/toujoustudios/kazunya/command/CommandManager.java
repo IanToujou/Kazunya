@@ -62,6 +62,7 @@ public class CommandManager {
         this.addCommand(new BankCommand());
         this.addCommand(new DepositCommand());
         this.addCommand(new WithdrawCommand());
+        this.addCommand(new TransferCommand());
 
         //Register fun commands
         this.addCommand(new PeePeeCommand());

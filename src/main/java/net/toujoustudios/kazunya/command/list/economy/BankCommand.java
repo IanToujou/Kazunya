@@ -31,7 +31,7 @@ public class BankCommand implements ICommand {
         double accountMoney = memberManager.getAccountMoney();
 
         String ibanBegin = "NYA" + member.getId().substring(0, 2);
-        String processId = member.getId().substring(2);
+        String processId = member.getId().substring(2, 18);
 
         String iban = ibanBegin + java.util.Arrays.toString(processId.split("(?<=\\G....)"));
         iban = iban.replace("[", " ");

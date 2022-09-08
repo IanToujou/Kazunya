@@ -45,7 +45,7 @@ public class ShipCommand implements ICommand {
         String firstId = first.getId();
         String secondId = second.getId();
         int num1 = Integer.parseInt(firstId.substring(firstId.length() - 2));
-        int num2 = Integer.parseInt(secondId.substring(firstId.length() - 2));
+        int num2 = Integer.parseInt(secondId.substring(secondId.length() - 2));
         rating = num1 + num2;
         if(rating > 100) rating -= 100;
 

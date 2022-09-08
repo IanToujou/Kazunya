@@ -15,6 +15,7 @@ Changes listed in the changelog are divided into categories.
 |:-:|:-|:-|
 | ✨ | **NEW FEATURE** | *A new major or minor feature has been added.*
 | 💥 | **BREAKING CHANGES** | *A large feature has been added that will completely change the bot.*
+| 🔥 | **REMOVAL** | *A feature has been removed.*
 | 🐛 | **BUGFIX** | *A bug has been fixed.*
 | 🚑 | **HOTFIX** | *A critical bug has been fixed as fast as possible.*
 | 📝 | **OTHER** | *Changes that don't fall into any other category.*
@@ -24,14 +25,15 @@ Changes listed in the changelog are divided into categories.
 !!! Info
     The changes are listed in chronological order, with the newest versions first.
 
-### **Release v1.1.0 (**`Unknown`**)**
+### **Release v1.1.0 (**`08.09.2022`**)**
 
-- ✨ Added deposit, withdraw and transfer features.
-- ✨ Added /bank and /wallet commands
-- ✨ Added new economy system
-- ✨ Added wallet & bank account money
-- 🔥 Removed /admin-balance command
-- 🔊 Improved bot startup messages & logs
+- `[✨]` Added deposit, withdraw and transfer features.
+- `[✨]` Added /bank and /wallet commands.
+- `[✨]` Added new economy system.
+- `[✨]` Added wallet & bank account money.
+- `[🔥]` Removed /admin-balance command.
+- `[🔊]` Improved bot startup messages & logs.
+- `[🐛]` Added support for longer Discord IDs.
 
 ### **Release v1.0.0 (**`19.08.2022`**)**
 

@@ -51,7 +51,7 @@ public class KillCommand implements ICommand {
         ArrayList<String> messages = new ArrayList<>();
         int random = new Random().nextInt(5);
 
-        if(random == 1) {
+        if(random < 3) {
             embedBuilder.setTitle("**:skull: Kill**");
             messages.add("{Victim} got killed by {Killer}.");
             messages.add("{Killer} used a nuke on {Victim}.");

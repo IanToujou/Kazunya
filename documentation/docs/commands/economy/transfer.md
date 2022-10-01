@@ -1,4 +1,4 @@
-# **Command:** `/deposit`
+# **Command:** `/transfer`
 
 ## **Description**
 
@@ -7,20 +7,21 @@
 
     No changes have been made since the first release.
 
-The withdraw command is used to withdraw money from your bank account and put it in your wallet.
+The transfer command is used to transfer money from your bank account to another bank account by specifying another user.
 
 ## **Syntax**
 
-    /withdraw [amount]
+    /transfer [amount] [@user]
     
-- `amount` *(<span style="color:lime">Double</span>)* | The amount of money you want to withdraw.
+- `amount` *(<span style="color:lime">Double</span>)* | The amount of money you want to transfer.
+- `@user` *(<span style="color:aqua">@Mention</span>)* | The user you want to give the money.
 
 ## **Examples**
 
 !!! Example
-    Withdraw 500€ from your bank account.
+    Transfer 500€ to Kazunya's bank account.
 
-        /withdraw 500
+        /transfer 500 @Kazunya
 
 ## **Error Messages**
 

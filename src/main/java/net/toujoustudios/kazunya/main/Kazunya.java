@@ -87,7 +87,7 @@ public class Kazunya {
                 GuildManager.unloadAll();
                 Logger.log(LogLevel.INFORMATION, "Successfully saved all data in the cache.");
                 System.exit(0);
-            } else if(input.startsWith("msg ")) {
+            } else if(input.startsWith("msg")) {
 
                 String[] args = input.split(" ");
                 String channel = args[1];
@@ -108,7 +108,7 @@ public class Kazunya {
                     Logger.log(LogLevel.ERROR, "Could not send message to channel.");
                 }
 
-            } else if(input.startsWith("pmsg ")) {
+            } else if(input.startsWith("pmsg")) {
 
                 String[] args = input.split(" ");
                 String user = args[1];

@@ -23,6 +23,7 @@ nav:
           - '/purr': 'commands/roleplay/purr.md'
           - '/smile': 'commands/roleplay/smile.md'
           - '/tickle': 'commands/roleplay/tickle.md'
+          - '/bonk': 'commands/roleplay/bonk.md'
       - 'Fun':
           - '/pp': 'commands/fun/pp.md'
           - '/roll': 'commands/fun/roll.md'
@@ -36,6 +37,7 @@ nav:
           - '/deposit': 'commands/economy/deposit.md'
           - '/withdraw': 'commands/economy/withdraw.md'
           - '/marketinfo': 'commands/economy/marketinfo.md'
+          - '/transfer': 'commands/economy/transfer.md'
   - 'Errors': 'errors/index.md'
   - 'Changelog': 'changelog/index.md'
 markdown_extensions:

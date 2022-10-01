@@ -35,7 +35,7 @@ public class CommandManager {
 
     public CommandManager() {
 
-        //Register non NSFW commands
+        //Register general commands
         this.addCommand(new HelpCommand(this));
         this.addCommand(new InfoCommand());
 
@@ -55,6 +55,7 @@ public class CommandManager {
         this.addCommand(new SmileCommand());
         this.addCommand(new KillCommand());
         this.addCommand(new FuckCommand());
+        this.addCommand(new BonkCommand());
 
         //Register economy commands
         this.addCommand(new MarketInfoCommand());

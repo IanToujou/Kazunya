@@ -75,6 +75,9 @@ public class DatabaseManager {
     public static void setup() {
         Loader.ensureLoad();
         executeUpdate("CREATE TABLE IF NOT EXISTS user_data ( `user_id` VARCHAR(256) NOT NULL , `usage_banned` BOOLEAN NOT NULL DEFAULT FALSE , `account_money` INT NOT NULL DEFAULT '0' , `wallet_money` INT NOT NULL DEFAULT '0', `partner_id` VARCHAR(256) NULL DEFAULT NULL , PRIMARY KEY (`user_id`)) ENGINE = InnoDB;");
+        executeUpdate("CREATE TABLE IF NOT EXISTS user_jobs ( `user_id` VARCHAR(256) NOT NULL , `job` VARCHAR(256) NULL DEFAULT NULL , `position` VARCHAR(256) NULL DEFAULT NULL, PRIMARY KEY (`user_id`)) ENGINE = InnoDB;");
+        executeUpdate("CREATE TABLE IF NOT EXISTS jobs (`id` VARCHAR(256) NOT NULL , `name` VARCHAR(256) NULL DEFAULT NULL , `description` VARCHAR(256) NULL DEFAULT NULL, `positions` VARCHAR(256) NULL DEFAULT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;");
+        executeUpdate("CREATE TABLE IF NOT EXISTS job_positions (`id` VARCHAR(256) NOT NULL , `job` VARCHAR(256) NULL DEFAULT NULL , `grade` INT NOT NULL DEFAULT '0', `name` VARCHAR(256) NULL DEFAULT NULL, `salary` INT NOT NULL DEFAULT '0', PRIMARY KEY (`id`)) ENGINE = InnoDB;");
     }
 
 }

@@ -5,23 +5,17 @@ import net.toujoustudios.kazunya.database.DatabaseManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- * This file has been created by Ian Toujou.
- * Project: Kazunya
- * Date: 26/08/2021
- * Time: 23:34
- */
 public class UserDataManager {
 
-    public static void setUsageBanned(String userId, boolean usageBanned) {
-        DatabaseManager.executeUpdate("INSERT INTO user_data (user_id, usage_banned) VALUES ('" + userId + "', '" + (usageBanned ? 1 : 0) + "') ON DUPLICATE KEY UPDATE usage_banned='" + (usageBanned ? 1 : 0) + "';");
+    public static void setBanned(String userId, boolean usageBanned) {
+        DatabaseManager.executeUpdate("INSERT INTO users (id, banned) VALUES ('" + userId + "', '" + (usageBanned ? 1 : 0) + "') ON DUPLICATE KEY UPDATE banned='" + (usageBanned ? 1 : 0) + "';");
     }
 
-    public static boolean isUsageBanned(String userId) {
+    public static boolean isBanned(String userId) {
         try {
-            ResultSet resultSet = DatabaseManager.executeQuery("SELECT usage_banned FROM user_data WHERE user_id='" + userId + "';");
+            ResultSet resultSet = DatabaseManager.executeQuery("SELECT banned FROM users WHERE id='" + userId + "';");
             if(resultSet != null && resultSet.next()) {
-                return resultSet.getBoolean("usage_banned");
+                return resultSet.getBoolean("banned");
             }
         } catch(SQLException exception) {
             exception.printStackTrace();
@@ -31,12 +25,12 @@ public class UserDataManager {
 
     public static void setAccountMoney(String userId, double amount) {
         amount = (double) Math.round(amount * 100) / 100;
-        DatabaseManager.executeUpdate("INSERT INTO user_data (user_id, account_money) VALUES ('" + userId + "', '" + amount + "') ON DUPLICATE KEY UPDATE account_money='" + amount + "';");
+        DatabaseManager.executeUpdate("INSERT INTO user_money (id, account_money) VALUES ('" + userId + "', '" + amount + "') ON DUPLICATE KEY UPDATE account_money='" + amount + "';");
     }
 
     public static double getAccountMoney(String userId) {
         try {
-            ResultSet resultSet = DatabaseManager.executeQuery("SELECT account_money FROM user_data WHERE user_id='" + userId + "';");
+            ResultSet resultSet = DatabaseManager.executeQuery("SELECT account_money FROM user_money WHERE id='" + userId + "';");
             if(resultSet != null && resultSet.next()) {
                 double money = resultSet.getDouble("account_money");
                 return (double) Math.round(money * 100) / 100;
@@ -49,12 +43,12 @@ public class UserDataManager {
 
     public static void setWalletMoney(String userId, double amount) {
         amount = (double) Math.round(amount * 100) / 100;
-        DatabaseManager.executeUpdate("INSERT INTO user_data (user_id, wallet_money) VALUES ('" + userId + "', '" + amount + "') ON DUPLICATE KEY UPDATE wallet_money='" + amount + "';");
+        DatabaseManager.executeUpdate("INSERT INTO user_money (id, wallet_money) VALUES ('" + userId + "', '" + amount + "') ON DUPLICATE KEY UPDATE wallet_money='" + amount + "';");
     }
 
     public static double getWalletMoney(String userId) {
         try {
-            ResultSet resultSet = DatabaseManager.executeQuery("SELECT wallet_money FROM user_data WHERE user_id='" + userId + "';");
+            ResultSet resultSet = DatabaseManager.executeQuery("SELECT wallet_money FROM user_money WHERE id='" + userId + "';");
             if(resultSet != null && resultSet.next()) {
                 double money = resultSet.getDouble("wallet_money");
                 return (double) Math.round(money * 100) / 100;
@@ -66,12 +60,12 @@ public class UserDataManager {
     }
 
     public static void setPartner(String userId, String partnerId) {
-        DatabaseManager.executeUpdate("UPDATE user_data SET partner_id='" + partnerId + "' WHERE user_id='" + userId + "';");
+        DatabaseManager.executeUpdate("UPDATE user_relations SET partner_id='" + partnerId + "' WHERE id='" + userId + "';");
     }
 
     public static String getPartner(String userId) {
         try {
-            ResultSet resultSet = DatabaseManager.executeQuery("SELECT partner_id FROM user_data WHERE user_id='" + userId + "';");
+            ResultSet resultSet = DatabaseManager.executeQuery("SELECT partner_id FROM user_relations WHERE id='" + userId + "';");
             if(resultSet != null && resultSet.next()) {
                 return resultSet.getString("partner_id");
             }
@@ -82,7 +76,7 @@ public class UserDataManager {
     }
 
     public static void removePartner(String userId) {
-        DatabaseManager.executeUpdate("UPDATE user_data SET partner_id=NULL WHERE user_id='" + userId + "';");
+        DatabaseManager.executeUpdate("UPDATE user_relations SET partner_id=NULL WHERE id='" + userId + "';");
     }
 
     public static boolean hasPartner(String userId) {

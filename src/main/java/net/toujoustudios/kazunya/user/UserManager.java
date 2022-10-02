@@ -15,7 +15,7 @@ public class UserManager {
 
     private static final HashMap<String, UserManager> users = new HashMap<>();
     private String userId;
-    private boolean usageBanned;
+    private boolean banned;
     private double accountMoney;
     private double walletMoney;
     private String partner;
@@ -23,7 +23,7 @@ public class UserManager {
     public UserManager(String userId) {
 
         this.userId = userId;
-        this.usageBanned = UserDataManager.isUsageBanned(userId);
+        this.banned = UserDataManager.isBanned(userId);
         this.accountMoney = UserDataManager.getAccountMoney(userId);
         this.walletMoney = UserDataManager.getWalletMoney(userId);
         this.partner = UserDataManager.getPartner(userId);
@@ -52,7 +52,7 @@ public class UserManager {
     }
 
     public void save() {
-        UserDataManager.setUsageBanned(userId, usageBanned);
+        UserDataManager.setBanned(userId, banned);
         UserDataManager.setAccountMoney(userId, accountMoney);
         UserDataManager.setWalletMoney(userId, walletMoney);
         if(hasPartner()) {
@@ -70,12 +70,12 @@ public class UserManager {
         this.userId = userId;
     }
 
-    public boolean isUsageBanned() {
-        return usageBanned;
+    public boolean isBanned() {
+        return banned;
     }
 
-    public void setBanned(boolean usageBanned) {
-        this.usageBanned = usageBanned;
+    public void setBanned(boolean banned) {
+        this.banned = banned;
     }
 
     public double getAccountMoney() {

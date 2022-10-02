@@ -23,7 +23,7 @@ public class SlashCommandListener extends ListenerAdapter {
         if(event.getUser().isBot()) return;
 
         UserManager userManager = UserManager.getUser(event.getUser().getId());
-        if(userManager.isUsageBanned()) {
+        if(userManager.isBanned()) {
             ErrorEmbed.sendError(event, ErrorType.GENERAL_BANNED);
             return;
         }

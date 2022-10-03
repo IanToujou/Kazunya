@@ -8,12 +8,12 @@ import java.sql.SQLException;
 public class UserDataManager {
 
     public static void setBanned(String userId, boolean usageBanned) {
-        DatabaseManager.executeUpdate("INSERT INTO users (id, banned) VALUES ('" + userId + "', '" + (usageBanned ? 1 : 0) + "') ON DUPLICATE KEY UPDATE banned='" + (usageBanned ? 1 : 0) + "';");
+        DatabaseManager.executeUpdate("INSERT INTO user_bans (id, banned) VALUES ('" + userId + "', '" + (usageBanned ? 1 : 0) + "') ON DUPLICATE KEY UPDATE banned='" + (usageBanned ? 1 : 0) + "';");
     }
 
     public static boolean isBanned(String userId) {
         try {
-            ResultSet resultSet = DatabaseManager.executeQuery("SELECT banned FROM users WHERE id='" + userId + "';");
+            ResultSet resultSet = DatabaseManager.executeQuery("SELECT banned FROM user_bans WHERE id='" + userId + "';");
             if(resultSet != null && resultSet.next()) {
                 return resultSet.getBoolean("banned");
             }
@@ -25,14 +25,14 @@ public class UserDataManager {
 
     public static void setAccountMoney(String userId, double amount) {
         amount = (double) Math.round(amount * 100) / 100;
-        DatabaseManager.executeUpdate("INSERT INTO user_money (id, account_money) VALUES ('" + userId + "', '" + amount + "') ON DUPLICATE KEY UPDATE account_money='" + amount + "';");
+        DatabaseManager.executeUpdate("INSERT INTO user_money (id, bank) VALUES ('" + userId + "', '" + amount + "') ON DUPLICATE KEY UPDATE bank='" + amount + "';");
     }
 
     public static double getAccountMoney(String userId) {
         try {
-            ResultSet resultSet = DatabaseManager.executeQuery("SELECT account_money FROM user_money WHERE id='" + userId + "';");
+            ResultSet resultSet = DatabaseManager.executeQuery("SELECT bank FROM user_money WHERE id='" + userId + "';");
             if(resultSet != null && resultSet.next()) {
-                double money = resultSet.getDouble("account_money");
+                double money = resultSet.getDouble("bank");
                 return (double) Math.round(money * 100) / 100;
             }
         } catch(SQLException exception) {
@@ -43,12 +43,12 @@ public class UserDataManager {
 
     public static void setWalletMoney(String userId, double amount) {
         amount = (double) Math.round(amount * 100) / 100;
-        DatabaseManager.executeUpdate("INSERT INTO user_money (id, wallet_money) VALUES ('" + userId + "', '" + amount + "') ON DUPLICATE KEY UPDATE wallet_money='" + amount + "';");
+        DatabaseManager.executeUpdate("INSERT INTO user_money (id, wallet) VALUES ('" + userId + "', '" + amount + "') ON DUPLICATE KEY UPDATE wallet='" + amount + "';");
     }
 
     public static double getWalletMoney(String userId) {
         try {
-            ResultSet resultSet = DatabaseManager.executeQuery("SELECT wallet_money FROM user_money WHERE id='" + userId + "';");
+            ResultSet resultSet = DatabaseManager.executeQuery("SELECT wallet FROM user_money WHERE id='" + userId + "';");
             if(resultSet != null && resultSet.next()) {
                 double money = resultSet.getDouble("wallet_money");
                 return (double) Math.round(money * 100) / 100;

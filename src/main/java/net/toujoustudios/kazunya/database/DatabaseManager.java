@@ -73,13 +73,20 @@ public class DatabaseManager {
     }
 
     public static void setup() {
+        //Ensure that the bot has been loaded.
         Loader.ensureLoad();
-        executeUpdate("CREATE TABLE IF NOT EXISTS users (`id` VARCHAR(256) NOT NULL, `banned` BOOLEAN NOT NULL DEFAULT FALSE, PRIMARY KEY (`id`)) ENGINE = InnoDB;");
-        executeUpdate("CREATE TABLE IF NOT EXISTS user_relations (`id` VARCHAR(256) NOT NULL, `partner_id` VARCHAR(256) NULL DEFAULT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;");
-        executeUpdate("CREATE TABLE IF NOT EXISTS user_money (`id` VARCHAR(256) NOT NULL, `account_money` INT NOT NULL DEFAULT '0', `wallet_money` INT NOT NULL DEFAULT '0', PRIMARY KEY (`id`)) ENGINE = InnoDB;");
+        //Create user related databases.
+        executeUpdate("CREATE TABLE IF NOT EXISTS user_bans (`id` VARCHAR(256) NOT NULL, `reason` VARCHAR(256) NOT NULL, `date` DATETIME NOT NULL, `until` DATETIME NULL DEFAULT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;");
+        executeUpdate("CREATE TABLE IF NOT EXISTS user_relations (`id` VARCHAR(256) NOT NULL, `target` VARCHAR(256) NOT NULL, `type` VARCHAR(256) NOT NULL, `date` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;");
+        executeUpdate("CREATE TABLE IF NOT EXISTS user_money (`id` VARCHAR(256) NOT NULL, `bank` INT NOT NULL DEFAULT '0', `wallet` INT NOT NULL DEFAULT '0', PRIMARY KEY (`id`)) ENGINE = InnoDB;");
         executeUpdate("CREATE TABLE IF NOT EXISTS user_jobs (`id` VARCHAR(256) NOT NULL, `job` VARCHAR(256) NULL DEFAULT NULL, `position` VARCHAR(256) NULL DEFAULT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;");
-        executeUpdate("CREATE TABLE IF NOT EXISTS jobs (`id` VARCHAR(256) NOT NULL, `name` VARCHAR(256) NULL DEFAULT NULL, `description` VARCHAR(256) NULL DEFAULT NULL, `positions` VARCHAR(256) NULL DEFAULT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;");
-        executeUpdate("CREATE TABLE IF NOT EXISTS job_positions (`id` VARCHAR(256) NOT NULL, `job` VARCHAR(256) NULL DEFAULT NULL, `grade` INT NOT NULL DEFAULT '0', `name` VARCHAR(256) NULL DEFAULT NULL, `salary` INT NOT NULL DEFAULT '0', PRIMARY KEY (`id`)) ENGINE = InnoDB;");
+        executeUpdate("CREATE TABLE IF NOT EXISTS user_skills (`id` VARCHAR(256) NOT NULL, `skill` VARCHAR(256) NULL DEFAULT NULL, `xp` INT NOT NULL DEFAULT '0', PRIMARY KEY (`id`)) ENGINE = InnoDB;");
+        executeUpdate("CREATE TABLE IF NOT EXISTS user_settings (`id` VARCHAR(256) NOT NULL, `nsfw_enabled` BOOLEAN NOT NULL DEFAULT FALSE, `gif_gender` VARCHAR(256) NULL DEFAULT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;");
+        //Create bot databases to create the environment.
+        executeUpdate("CREATE TABLE IF NOT EXISTS jobs (`id` VARCHAR(256) NOT NULL, `name` VARCHAR(256) NULL DEFAULT NULL, `description` VARCHAR(256) NULL DEFAULT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;");
+        executeUpdate("CREATE TABLE IF NOT EXISTS job_positions (`id` VARCHAR(256) NOT NULL, `name` VARCHAR(256) NULL DEFAULT NULL, `job` VARCHAR(256) NULL DEFAULT NULL, `grade` INT NOT NULL DEFAULT '0', `salary` INT NOT NULL DEFAULT '0', `required_skills` VARCHAR(256) NULL DEFAULT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;");
+        executeUpdate("CREATE TABLE IF NOT EXISTS skills (`id` VARCHAR(256) NOT NULL, `name` VARCHAR(256) NULL DEFAULT NULL, `max_level` INT NOT NULL DEFAULT '0', `base_xp` INT NOT NULL DEFAULT '0', PRIMARY KEY (`id`)) ENGINE = InnoDB;");
+        executeUpdate("CREATE TABLE IF NOT EXISTS relations (`id` VARCHAR(256) NOT NULL, `name` VARCHAR(256) NULL DEFAULT NULL, `max_users` INT NOT NULL DEFAULT '0', PRIMARY KEY (`id`)) ENGINE = InnoDB;");
     }
 
 }

@@ -1,4 +1,4 @@
-# **Command:** `/cuddle`
+# **Command:** `/fuck`
 
 ## **Description**
 

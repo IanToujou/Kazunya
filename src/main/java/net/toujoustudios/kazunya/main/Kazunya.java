@@ -20,12 +20,7 @@ import java.util.Objects;
 import java.util.Scanner;
 import java.util.Timer;
 
-/**
- * This file has been created by Ian Toujou.
- * Project: Kazunya
- * Date: 26/08/2021
- * Time: 23:01
- */
+
 public class Kazunya {
 
     private JDABuilder builder;

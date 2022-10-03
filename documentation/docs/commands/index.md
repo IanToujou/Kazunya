@@ -55,7 +55,7 @@ Some commands have additional tags that can define whether a command can be used
 | 🟢 | <a href="/commands/roleplay/purr/">`/purr`</a> | Make yourself purr like a kitten. | None | `v1.0.0`
 | 🟢 | <a href="/commands/roleplay/smile/">`/smile`</a> | Make yourself smile and be happy. | None | `v1.0.0`
 | 🟢 | <a href="/commands/roleplay/tickle/">`/tickle`</a> | Tickle someone else to make them laugh. | None | `v1.0.0`
-| 🟢 | <a href="/commands/roleplay/tickle/">`/bonk`</a> | Bonk someone because horny is bad. | None | `v1.1.0`
+| 🟢 | <a href="/commands/roleplay/bonk/">`/bonk`</a> | Bonk someone because horny is bad. | None | `v1.1.0`
 
 ### **Fun**
 
@@ -86,8 +86,8 @@ Some commands have additional tags that can define whether a command can be used
 | Status | <div style="width:130px">Command</div> | <div style="width: 220px">Description</div> | Tags | Version
 |:-:|:-|:-|:-:|:-:
 | 🟢 | <a href="/commands/economy/marketinfo/">`/marketinfo`</a> | Get information on the shares that are on the virtual stock market. | None | `v1.0.0`
-| 🟢 | <a href="/commands/economy/marketinfo/">`/wallet`</a> | Retrieve your current wallet status. | None | `v1.1.0`
-| 🟢 | <a href="/commands/economy/marketinfo/">`/bank`</a> | Retrieve your current bank account status. | None | `v1.1.0`
-| 🟢 | <a href="/commands/economy/marketinfo/">`/withdraw`</a> | Withdraw money from your bank account into your wallet. | None | `v1.1.0`
-| 🟢 | <a href="/commands/economy/marketinfo/">`/deposit`</a> | Deposit money from your wallet into your bank account. | None | `v1.1.0`
-| 🟢 | <a href="/commands/economy/marketinfo/">`/transfer`</a> | Transfer money from one bank account to another. | None | `v1.1.0`
+| 🟢 | <a href="/commands/economy/wallet/">`/wallet`</a> | Retrieve your current wallet status. | None | `v1.1.0`
+| 🟢 | <a href="/commands/economy/bank/">`/bank`</a> | Retrieve your current bank account status. | None | `v1.1.0`
+| 🟢 | <a href="/commands/economy/withdraw/">`/withdraw`</a> | Withdraw money from your bank account into your wallet. | None | `v1.1.0`
+| 🟢 | <a href="/commands/economy/deposit/">`/deposit`</a> | Deposit money from your wallet into your bank account. | None | `v1.1.0`
+| 🟢 | <a href="/commands/economy/transfer/">`/transfer`</a> | Transfer money from one bank account to another. | None | `v1.1.0`

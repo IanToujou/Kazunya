@@ -25,6 +25,10 @@ Changes listed in the changelog are divided into categories.
 !!! Info
     The changes are listed in chronological order, with the newest versions first.
 
+### **Release v1.2.0 (**`01.10.2022`**)**
+
+- `[💥]` Completely reworked the database.
+
 ### **Release v1.1.0 (**`01.10.2022`**)**
 
 - `[💥]` Added new economy system.

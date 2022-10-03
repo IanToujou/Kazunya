@@ -16,6 +16,8 @@ import net.toujoustudios.kazunya.log.Logger;
 import net.toujoustudios.kazunya.user.UserManager;
 
 import javax.security.auth.login.LoginException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Objects;
 import java.util.Scanner;
 import java.util.Timer;
@@ -71,59 +73,43 @@ public class Kazunya {
 
             String input = scanner.nextLine();
 
-            if(input.startsWith("save ")) {
+            if(input.startsWith("save")) {
                 UserManager.unloadAll();
                 GuildManager.unloadAll();
                 Logger.log(LogLevel.INFORMATION, "Successfully saved all data in the cache.");
-            } else if(input.startsWith("help ")) {
-                Logger.log(LogLevel.INFORMATION, "Here is a list of all available commands: help, save, shutdown, msg, pmsg");
-            } else if(input.startsWith("shutdown ")) {
+            } else if(input.startsWith("ban")) {
+                String[] args = input.split(" ");
+                String user = args[1];
+                String reason = args[2];
+                String until = args[3];
+                try {
+                    UserManager userManager = UserManager.getUser(user);
+                    userManager.ban(reason, new SimpleDateFormat("dd.MM.yyyy").parse(until));
+                    Logger.log(LogLevel.INFORMATION, "Successfully banned the user from using the bot.");
+                } catch(ParseException exception) {
+                    Logger.log(LogLevel.ERROR, "Please enter a valid date.");
+                }
+            } else if(input.startsWith("help")) {
+                Logger.log(LogLevel.INFORMATION, "Here is a list of all available commands: ban, help, save, shutdown, msg, pmsg");
+            } else if(input.startsWith("shutdown")) {
                 UserManager.unloadAll();
                 GuildManager.unloadAll();
                 Logger.log(LogLevel.INFORMATION, "Successfully saved all data in the cache.");
                 System.exit(0);
             } else if(input.startsWith("msg")) {
-
                 String[] args = input.split(" ");
                 String channel = args[1];
                 StringBuilder message = new StringBuilder();
-
                 for(int i = 2; i < args.length; i++) {
-                    if(i != 2) {
-                        message.append(" ").append(args[i]);
-                    } else {
-                        message.append(args[i]);
-                    }
+                    if(i != 2) message.append(" ").append(args[i]);
+                    else message.append(args[i]);
                 }
-
                 try {
                     Objects.requireNonNull(jda.getTextChannelById(channel)).sendMessage(message).queue();
                     Logger.log(LogLevel.INFORMATION, "The message has been sent.");
                 } catch(Exception exception) {
                     Logger.log(LogLevel.ERROR, "Could not send message to channel.");
                 }
-
-            } else if(input.startsWith("pmsg")) {
-
-                String[] args = input.split(" ");
-                String user = args[1];
-                StringBuilder message = new StringBuilder();
-
-                for(int i = 2; i < args.length; i++) {
-                    if(i != 2) {
-                        message.append(" ").append(args[i]);
-                    } else {
-                        message.append(args[i]);
-                    }
-                }
-
-                try {
-                    Objects.requireNonNull(jda.getUserById(user)).openPrivateChannel().queue((channel) -> channel.sendMessage(message.toString()).queue());
-                    Logger.log(LogLevel.INFORMATION, "The message has been sent.");
-                } catch(Exception exception) {
-                    Logger.log(LogLevel.ERROR, "Could not send message to user.");
-                }
-
             } else {
                 Logger.log(LogLevel.ERROR, "The specified command does not exist.");
             }

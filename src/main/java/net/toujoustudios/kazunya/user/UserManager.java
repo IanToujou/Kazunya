@@ -1,42 +1,32 @@
 package net.toujoustudios.kazunya.user;
 
-import net.toujoustudios.kazunya.data.UserDataManager;
+import net.toujoustudios.kazunya.data.ban.UserBan;
+import net.toujoustudios.kazunya.data.ban.UserBanManager;
+import net.toujoustudios.kazunya.log.LogLevel;
+import net.toujoustudios.kazunya.log.Logger;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * This file has been created by Ian Toujou.
- * Project: Kazunya
- * Date: 26/08/2021
- * Time: 23:33
- */
 public class UserManager {
 
     private static final HashMap<String, UserManager> users = new HashMap<>();
-    private String userId;
-    private boolean banned;
-    private double accountMoney;
-    private double walletMoney;
-    private String partner;
+    private final String id;
+    private UserBan ban;
 
-    public UserManager(String userId) {
-
-        this.userId = userId;
-        this.banned = UserDataManager.isBanned(userId);
-        this.accountMoney = UserDataManager.getAccountMoney(userId);
-        this.walletMoney = UserDataManager.getWalletMoney(userId);
-        this.partner = UserDataManager.getPartner(userId);
-
+    public UserManager(String id) {
+        this.id = id;
+        this.ban = UserBanManager.getBan(id);
+        checkBan();
     }
 
-    public static UserManager getUser(String userId) {
-
-        if(users.containsKey(userId)) return users.get(userId);
-        UserManager userManager = new UserManager(userId);
-        users.put(userId, userManager);
+    public static UserManager getUser(String id) {
+        if(users.containsKey(id)) return users.get(id);
+        UserManager userManager = new UserManager(id);
+        users.put(id, userManager);
         return userManager;
-
     }
 
     public static void saveAll() {
@@ -52,78 +42,42 @@ public class UserManager {
     }
 
     public void save() {
-        UserDataManager.setBanned(userId, banned);
-        UserDataManager.setAccountMoney(userId, accountMoney);
-        UserDataManager.setWalletMoney(userId, walletMoney);
-        if(hasPartner()) {
-            UserDataManager.setPartner(userId, partner);
-        } else {
-            UserDataManager.removePartner(userId);
-        }
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
+        checkBan();
+        if(isBanned()) UserBanManager.ban(id, ban.getReason(), ban.getUntil(), ban.getDate());
+        else UserBanManager.unban(id);
     }
 
     public boolean isBanned() {
-        return banned;
+        return (ban != null);
     }
 
-    public void setBanned(boolean banned) {
-        this.banned = banned;
+    public void ban(String reason, Date until, Date date) {
+        ban = new UserBan(reason, until, date);
     }
 
-    public double getAccountMoney() {
-        return accountMoney;
+    public void ban(String reason, Date until) {
+        ban(reason, until, new Date());
     }
 
-    public void setAccountMoney(double accountMoney) {
-        this.accountMoney = accountMoney;
+    public void ban(String reason) {
+        Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.DAY_OF_MONTH, 30);
+        ban(reason, calendar.getTime());
     }
 
-    public void addAccountMoney(double amount) {
-        setAccountMoney(getAccountMoney() + amount);
+    public void ban() {
+        ban("No Reason");
     }
 
-    public void removeAccountMoney(double amount) {
-        setAccountMoney(getAccountMoney() - amount);
+    public void unban() {
+        ban = null;
     }
 
-    public double getWalletMoney() {
-        return walletMoney;
-    }
-
-    public void setWalletMoney(double walletMoney) {
-        this.walletMoney = walletMoney;
-    }
-
-    public void addWalletMoney(double amount) {
-        setWalletMoney(getWalletMoney() + amount);
-    }
-
-    public void removeWalletMoney(double amount) {
-        setWalletMoney(getWalletMoney() - amount);
-    }
-
-    public String getPartner() {
-        return partner;
-    }
-
-    public void setPartner(String partnerId) {
-        this.partner = partnerId;
-    }
-
-    public boolean hasPartner() {
-        return partner != null;
-    }
-
-    public void removePartner() {
-        this.partner = null;
+    public void checkBan() {
+        if(!isBanned()) return;
+        if(new Date().after(ban.getUntil())) ban = null;
     }
 
 }

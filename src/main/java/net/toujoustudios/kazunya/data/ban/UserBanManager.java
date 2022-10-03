@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Date;
 
-public class DataUserBanManager {
+public class UserBanManager {
 
     public static void ban(String id, String reason, Date until, Date date) {
-        DatabaseManager.executeUpdate("INSERT INTO user_bans (id, reason, until, date) VALUES ('" + id + "', '" + reason + "', '" + until + "', '" + date + "') ON DUPLICATE KEY UPDATE reason='" + reason + "', until='" + until + "', date='" + date + "';");
+        DatabaseManager.executeUpdate("INSERT INTO user_bans (id, reason, until, date) VALUES ('" + id + "', '" + reason + "', '" + new java.sql.Date(until.getTime()) + "', '" + new java.sql.Date(date.getTime()) + "') ON DUPLICATE KEY UPDATE reason='" + reason + "', until='" + until + "', date='" + date + "';");
     }
 
     public static void ban(String id, String reason, Date until) {
@@ -43,6 +43,10 @@ public class DataUserBanManager {
             exception.printStackTrace();
         }
         return null;
+    }
+
+    public static boolean isBanned(String id) {
+        return (getBan(id) != null);
     }
 
 }

@@ -56,6 +56,7 @@ public class CommandManager {
         this.addCommand(new KillCommand());
         this.addCommand(new FuckCommand());
         this.addCommand(new BonkCommand());
+        this.addCommand(new NomCommand());
 
         //Register economy commands
         this.addCommand(new MarketInfoCommand());

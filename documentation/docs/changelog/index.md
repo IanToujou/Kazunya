@@ -14,7 +14,7 @@ Changes listed in the changelog are divided into categories.
 | Symbol | Category | Description
 |:-:|:-|:-|
 | ✨ | **NEW FEATURE** | *A new major or minor feature has been added.*
-| 💥 | **BREAKING CHANGES** | *A large feature has been added that will change the bot or some functionality.*
+| 💥 | **BIG CHANGES** | *A large feature has been added that will change the bot or some functionality.*
 | 🔥 | **REMOVAL** | *A feature has been removed.*
 | 🐛 | **BUGFIX** | *A bug has been fixed.*
 | 🚑 | **HOTFIX** | *A critical bug has been fixed as fast as possible.*
@@ -28,6 +28,8 @@ Changes listed in the changelog are divided into categories.
 ### **Release v1.2.0 (**`01.10.2022`**)**
 
 - `[💥]` Completely reworked the database.
+- `[💥]` Added a new skill system.
+- `[✨]` Added the /nom command.
 
 ### **Release v1.1.0 (**`01.10.2022`**)**
 

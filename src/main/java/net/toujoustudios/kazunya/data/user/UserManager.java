@@ -6,6 +6,9 @@ import net.toujoustudios.kazunya.data.money.UserMoneyManager;
 import net.toujoustudios.kazunya.data.relation.UserRelation;
 import net.toujoustudios.kazunya.data.relation.UserRelationManager;
 import net.toujoustudios.kazunya.data.relation.UserRelationType;
+import net.toujoustudios.kazunya.data.skill.SkillType;
+import net.toujoustudios.kazunya.data.skill.UserSkill;
+import net.toujoustudios.kazunya.data.skill.UserSkillManager;
 
 import java.util.*;
 
@@ -17,6 +20,7 @@ public class UserManager {
     private double bankMoney;
     private double walletMoney;
     private ArrayList<UserRelation> relations;
+    private ArrayList<UserSkill> skills;
 
     public UserManager(String id) {
         this.id = id;
@@ -24,6 +28,7 @@ public class UserManager {
         this.bankMoney = UserMoneyManager.getBankMoney(id);
         this.walletMoney = UserMoneyManager.getWalletMoney(id);
         this.relations = UserRelationManager.getRelations(id);
+        this.skills = UserSkillManager.getSkills(id);
         checkBan();
     }
 
@@ -56,6 +61,7 @@ public class UserManager {
         relations.forEach(all -> {
             UserRelationManager.setRelation(id, all.getTarget(), all.getType(), all.getDate());
         });
+        UserSkillManager.setSkills(id, skills);
     }
 
     public boolean isBanned() {
@@ -140,9 +146,7 @@ public class UserManager {
 
     public ArrayList<UserRelation> getRelationsOfType(UserRelationType type) {
         ArrayList<UserRelation> relationsOfType = new ArrayList<>();
-        for(UserRelation all : relations) {
-            if(all.getType() == type) relationsOfType.add(all);
-        }
+        for(UserRelation all : relations) if(all.getType() == type) relationsOfType.add(all);
         return relationsOfType;
     }
 
@@ -156,6 +160,35 @@ public class UserManager {
 
     public void addRelation(UserRelation relation) {
         if(!relations.contains(relation)) relations.add(relation);
+    }
+
+    public ArrayList<UserSkill> getSkills() {
+        return skills;
+    }
+
+    public UserSkill getSkill(SkillType skillType) {
+        for(UserSkill all : skills) if(all.getSkillType() == skillType) return all;
+        UserSkill skill = new UserSkill(skillType, 0);
+        skills.add(skill);
+        return skill;
+    }
+
+    public int getSkillExperience(SkillType skillType) {
+        return getSkill(skillType).getExperience();
+    }
+
+    public void setSkills(ArrayList<UserSkill> skills) {
+        this.skills = skills;
+    }
+
+    public void setSkill(UserSkill skill) {
+        if(getSkillExperience(skill.getSkillType()) > 0) skills.remove(getSkill(skill.getSkillType()));
+        skills.add(skill);
+    }
+
+    public void setSkill(SkillType skillType, int experience) {
+        if(getSkillExperience(skillType) > 0) skills.remove(getSkill(skillType));
+        skills.add(new UserSkill(skillType, experience));
     }
 
 }

@@ -8,12 +8,12 @@ import net.toujoustudios.kazunya.command.CommandManager;
 import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.database.DatabaseManager;
 import net.toujoustudios.kazunya.database.DatabaseTimer;
-import net.toujoustudios.kazunya.guild.GuildManager;
+import net.toujoustudios.kazunya.data.guild.GuildManager;
 import net.toujoustudios.kazunya.listener.SlashCommandListener;
 import net.toujoustudios.kazunya.loader.Loader;
 import net.toujoustudios.kazunya.log.LogLevel;
 import net.toujoustudios.kazunya.log.Logger;
-import net.toujoustudios.kazunya.user.UserManager;
+import net.toujoustudios.kazunya.data.user.UserManager;
 
 import javax.security.auth.login.LoginException;
 import java.text.ParseException;

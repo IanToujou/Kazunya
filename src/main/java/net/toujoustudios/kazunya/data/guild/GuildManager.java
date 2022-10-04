@@ -1,4 +1,4 @@
-package net.toujoustudios.kazunya.guild;
+package net.toujoustudios.kazunya.data.guild;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -10,7 +10,7 @@ import net.toujoustudios.kazunya.command.ICommand;
 import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
-import net.toujoustudios.kazunya.user.UserManager;
+import net.toujoustudios.kazunya.data.user.UserManager;
 import net.toujoustudios.kazunya.util.ColorUtil;
 
 import java.util.ArrayList;
@@ -51,13 +51,13 @@ public class TransferCommand implements ICommand {
             return;
         }
 
-        if(memberManager.getAccountMoney() < amount) {
+        if(memberManager.getBankMoney() < amount) {
             ErrorEmbed.sendError(context, ErrorType.ACTION_NOT_ENOUGH_BANK_MONEY);
             return;
         }
 
-        memberManager.removeAccountMoney(amount);
-        targetManager.addAccountMoney(amount);
+        memberManager.removeBankMoney(amount);
+        targetManager.addBankMoney(amount);
 
         embedBuilder.setTitle("**:credit_card: Bank Transfer**");
         embedBuilder.setDescription(":white_check_mark: Transfer successful!\nYou successfully transferred `" + amount + currency + "` to " + target.getAsMention() + ".");

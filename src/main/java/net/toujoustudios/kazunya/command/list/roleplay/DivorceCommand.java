@@ -14,7 +14,7 @@ import net.toujoustudios.kazunya.data.relation.UserRelationType;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
 import net.toujoustudios.kazunya.main.Main;
-import net.toujoustudios.kazunya.user.UserManager;
+import net.toujoustudios.kazunya.data.user.UserManager;
 import net.toujoustudios.kazunya.util.ColorUtil;
 
 import java.util.ArrayList;

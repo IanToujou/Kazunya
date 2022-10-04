@@ -6,7 +6,7 @@ import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.command.ICommand;
 import net.toujoustudios.kazunya.config.Config;
-import net.toujoustudios.kazunya.user.UserManager;
+import net.toujoustudios.kazunya.data.user.UserManager;
 import net.toujoustudios.kazunya.util.ColorUtil;
 
 import java.util.Collections;

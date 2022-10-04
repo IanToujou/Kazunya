@@ -7,7 +7,7 @@ import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.command.ICommand;
 import net.toujoustudios.kazunya.config.Config;
-import net.toujoustudios.kazunya.user.UserManager;
+import net.toujoustudios.kazunya.data.user.UserManager;
 import net.toujoustudios.kazunya.util.ColorUtil;
 
 import java.util.Collections;
@@ -28,7 +28,7 @@ public class BankCommand implements ICommand {
         Member member = context.getMember();
         UserManager memberManager = UserManager.getUser(member.getId());
         String currency = config.getString("format.char.currency");
-        double accountMoney = memberManager.getAccountMoney();
+        double accountMoney = memberManager.getBankMoney();
 
         String ibanBegin = "NYA" + member.getId().substring(0, 2);
         String processId = member.getId().substring(2, 18);

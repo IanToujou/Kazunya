@@ -34,7 +34,7 @@ public class UserMoneyManager {
         try {
             ResultSet resultSet = DatabaseManager.executeQuery("SELECT wallet FROM user_money WHERE id='" + userId + "';");
             if(resultSet != null && resultSet.next()) {
-                double money = resultSet.getDouble("wallet_money");
+                double money = resultSet.getDouble("wallet");
                 return (double) Math.round(money * 100) / 100;
             }
         } catch(SQLException exception) {

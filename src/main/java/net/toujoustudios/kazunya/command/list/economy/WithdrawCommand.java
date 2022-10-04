@@ -9,7 +9,7 @@ import net.toujoustudios.kazunya.command.ICommand;
 import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
-import net.toujoustudios.kazunya.user.UserManager;
+import net.toujoustudios.kazunya.data.user.UserManager;
 import net.toujoustudios.kazunya.util.ColorUtil;
 
 import java.util.ArrayList;
@@ -39,13 +39,13 @@ public class WithdrawCommand implements ICommand {
             return;
         }
 
-        if(memberManager.getAccountMoney() < amount) {
+        if(memberManager.getBankMoney() < amount) {
             ErrorEmbed.sendError(context, ErrorType.ACTION_NOT_ENOUGH_BANK_MONEY);
             return;
         }
 
         memberManager.addWalletMoney(amount);
-        memberManager.removeAccountMoney(amount);
+        memberManager.removeBankMoney(amount);
 
         embedBuilder.setTitle("**:moneybag: Bank Withdrawal**");
         embedBuilder.setDescription("You successfully withdrew `" + amount + currency + "` from your bank account.");

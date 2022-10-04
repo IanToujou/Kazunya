@@ -1,6 +1,5 @@
-package net.toujoustudios.kazunya.user;
+package net.toujoustudios.kazunya.data.user;
 
-import net.dv8tion.jda.api.entities.User;
 import net.toujoustudios.kazunya.data.ban.UserBan;
 import net.toujoustudios.kazunya.data.ban.UserBanManager;
 import net.toujoustudios.kazunya.data.money.UserMoneyManager;

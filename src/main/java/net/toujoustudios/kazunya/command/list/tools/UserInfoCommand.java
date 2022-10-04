@@ -10,7 +10,8 @@ import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.command.ICommand;
 import net.toujoustudios.kazunya.config.Config;
-import net.toujoustudios.kazunya.user.UserManager;
+import net.toujoustudios.kazunya.data.relation.UserRelationType;
+import net.toujoustudios.kazunya.data.user.UserManager;
 import net.toujoustudios.kazunya.util.ColorUtil;
 
 import java.time.format.DateTimeFormatter;
@@ -62,9 +63,9 @@ public class UserInfoCommand implements ICommand {
         StringBuilder relationshipBuilder = new StringBuilder();
 
         String partner = "`None`";
-        if(targetManager.hasPartner()) {
+        if(targetManager.getRelationsOfType(UserRelationType.MARRIED).size() > 0) {
 
-            String partnerId = targetManager.getPartner();
+            String partnerId = targetManager.getRelationsOfType(UserRelationType.MARRIED).get(0).getTarget();
 
             if(context.getGuild().getMemberById(partnerId) != null) {
                 partner = context.getGuild().getMemberById(partnerId).getAsMention();

@@ -39,7 +39,7 @@ public class UserRelationManager {
         try {
             ResultSet resultSet = DatabaseManager.executeQuery("SELECT * FROM user_relations WHERE id='" + id + "';");
             while(resultSet != null && resultSet.next())
-                relations.add(new UserRelation(resultSet.getString("target"), UserRelationType.valueOf(resultSet.getString("type").toLowerCase()), resultSet.getDate("date")));
+                relations.add(new UserRelation(resultSet.getString("target"), UserRelationType.valueOf(resultSet.getString("type")), resultSet.getDate("date")));
         } catch(SQLException exception) {
             exception.printStackTrace();
         }

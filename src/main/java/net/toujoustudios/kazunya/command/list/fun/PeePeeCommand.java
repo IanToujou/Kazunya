@@ -46,6 +46,11 @@ public class PeePeeCommand implements ICommand {
         if(memberId.equals("453998477232570368")) size = 500;
         String pp = "8" + "=".repeat(Math.max(0, size)) + "D";
 
+        if(memberId.equals("691683441250533506")) {
+            pp = "8=========MDMA========D";
+            size = 29;
+        }
+
         String comment;
 
         if(size <= 1) {

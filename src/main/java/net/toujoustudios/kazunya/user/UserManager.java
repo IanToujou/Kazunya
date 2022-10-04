@@ -6,6 +6,7 @@ import net.toujoustudios.kazunya.data.ban.UserBanManager;
 import net.toujoustudios.kazunya.data.money.UserMoneyManager;
 import net.toujoustudios.kazunya.data.relation.UserRelation;
 import net.toujoustudios.kazunya.data.relation.UserRelationManager;
+import net.toujoustudios.kazunya.data.relation.UserRelationType;
 
 import java.util.*;
 
@@ -127,8 +128,35 @@ public class UserManager {
         return relations;
     }
 
+    public UserRelation getRelation(String target) {
+        for(UserRelation all : relations) {
+            if(all.getTarget().equals(target)) return all;
+        }
+        return null;
+    }
+
+    public boolean hasRelation(String target) {
+        return getRelation(target) != null;
+    }
+
+    public ArrayList<UserRelation> getRelationsOfType(UserRelationType type) {
+        ArrayList<UserRelation> relationsOfType = new ArrayList<>();
+        for(UserRelation all : relations) {
+            if(all.getType() == type) relationsOfType.add(all);
+        }
+        return relationsOfType;
+    }
+
     public void setRelations(ArrayList<UserRelation> relations) {
         this.relations = relations;
+    }
+
+    public void removeRelation(UserRelation relation) {
+        relations.remove(relation);
+    }
+
+    public void addRelation(UserRelation relation) {
+        if(!relations.contains(relation)) relations.add(relation);
     }
 
 }

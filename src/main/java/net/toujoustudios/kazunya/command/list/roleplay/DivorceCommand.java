@@ -9,6 +9,8 @@ import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.command.ICommand;
 import net.toujoustudios.kazunya.config.Config;
+import net.toujoustudios.kazunya.data.relation.UserRelation;
+import net.toujoustudios.kazunya.data.relation.UserRelationType;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
 import net.toujoustudios.kazunya.main.Main;
@@ -42,28 +44,25 @@ public class DivorceCommand implements ICommand {
 
         UserManager memberManager = UserManager.getUser(member.getId());
 
-        if(!memberManager.hasPartner()) {
+        if(memberManager.getRelationsOfType(UserRelationType.MARRIED).size() < 1) {
             ErrorEmbed.sendError(context, ErrorType.ACTION_NO_PARTNER);
             return;
         }
 
+        UserRelation memberRelation = memberManager.getRelationsOfType(UserRelationType.MARRIED).get(0);
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
 
         if(list.contains(member.getId())) {
-
-            User target = Main.getBot().getJDA().getUserById(memberManager.getPartner());
+            User target = Main.getBot().getJDA().getUserById(memberRelation.getTarget());
             embedBuilder.setTitle("**:broken_heart: Divorce**");
-            if(target != null) {
-                embedBuilder.setDescription("You and `" + target.getName() + "` are now divorced.");
-            } else {
-                embedBuilder.setDescription("You and `your partner` are now divorced.");
-            }
-            UserManager targetManager = UserManager.getUser(memberManager.getPartner());
-            targetManager.removePartner();
-            memberManager.removePartner();
+            if(target != null) embedBuilder.setDescription("You and `" + target.getName() + "` are now divorced.");
+            else embedBuilder.setDescription("You and `your partner` are now divorced.");
+            UserManager targetManager = UserManager.getUser(memberRelation.getTarget());
+            UserRelation targetRelation = targetManager.getRelationsOfType(UserRelationType.MARRIED).get(0);
+            memberManager.removeRelation(memberRelation);
+            targetManager.removeRelation(targetRelation);
             context.getEvent().replyEmbeds(embedBuilder.build()).setEphemeral(true).queue();
             return;
-
         }
 
         embedBuilder.setTitle("**:broken_heart: Divorce: Confirm**");

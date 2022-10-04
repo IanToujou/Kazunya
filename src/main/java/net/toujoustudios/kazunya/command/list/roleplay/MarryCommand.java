@@ -9,12 +9,15 @@ import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.command.ICommand;
 import net.toujoustudios.kazunya.config.Config;
+import net.toujoustudios.kazunya.data.relation.UserRelation;
+import net.toujoustudios.kazunya.data.relation.UserRelationType;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
 import net.toujoustudios.kazunya.user.UserManager;
 import net.toujoustudios.kazunya.util.ColorUtil;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -64,12 +67,12 @@ public class MarryCommand implements ICommand {
         UserManager memberManager = UserManager.getUser(member.getId());
         UserManager targetManager = UserManager.getUser(target.getId());
 
-        if(memberManager.hasPartner()) {
+        if(memberManager.getRelationsOfType(UserRelationType.MARRIED).size() > 0) {
             ErrorEmbed.sendError(context, ErrorType.ACTION_ALREADY_MARRIED_SELF);
             return;
         }
 
-        if(targetManager.hasPartner()) {
+        if(targetManager.getRelationsOfType(UserRelationType.MARRIED).size() > 0) {
             ErrorEmbed.sendError(context, ErrorType.ACTION_ALREADY_MARRIED_TARGET);
             return;
         }
@@ -82,8 +85,14 @@ public class MarryCommand implements ICommand {
 
                 requests.remove(targetId);
                 requests.remove(memberId);
-                memberManager.setPartner(targetId);
-                targetManager.setPartner(memberId);
+
+                Date date = new Date();
+
+                UserRelation memberRelation = new UserRelation(targetId, UserRelationType.MARRIED, date);
+                UserRelation targetRelation = new UserRelation(memberId, UserRelationType.MARRIED, date);
+
+                memberManager.addRelation(memberRelation);
+                targetManager.addRelation(targetRelation);
 
                 embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
                 embedBuilder.setTitle(":ring: **Marriage**");

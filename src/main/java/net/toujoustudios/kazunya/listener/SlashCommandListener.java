@@ -2,10 +2,10 @@ package net.toujoustudios.kazunya.listener;
 
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.toujoustudios.kazunya.data.user.UserManager;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
 import net.toujoustudios.kazunya.main.Main;
-import net.toujoustudios.kazunya.data.user.UserManager;
 import org.jetbrains.annotations.NotNull;
 
 /**

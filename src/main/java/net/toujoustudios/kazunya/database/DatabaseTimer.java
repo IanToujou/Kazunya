@@ -1,9 +1,9 @@
 package net.toujoustudios.kazunya.database;
 
 import net.toujoustudios.kazunya.data.guild.GuildManager;
+import net.toujoustudios.kazunya.data.user.UserManager;
 import net.toujoustudios.kazunya.log.LogLevel;
 import net.toujoustudios.kazunya.log.Logger;
-import net.toujoustudios.kazunya.data.user.UserManager;
 
 import java.util.TimerTask;
 

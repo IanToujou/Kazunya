@@ -1,6 +1,5 @@
 package net.toujoustudios.kazunya.data.relation;
 
-import net.toujoustudios.kazunya.data.ban.UserBan;
 import net.toujoustudios.kazunya.database.DatabaseManager;
 
 import java.sql.ResultSet;

@@ -9,12 +9,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * This file has been created by Ian Toujou.
- * Project: Kazunya
- * Date: 26/08/2021
- * Time: 23:04
- */
+
 public class Config {
 
     private static final HashMap<String, Config> files = new HashMap<>();

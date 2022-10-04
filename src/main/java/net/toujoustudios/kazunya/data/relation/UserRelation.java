@@ -7,7 +7,9 @@ import lombok.Setter;
 
 import java.util.Date;
 
-@AllArgsConstructor @Getter @Setter
+@AllArgsConstructor
+@Getter
+@Setter
 public class UserRelation {
 
     private String target;

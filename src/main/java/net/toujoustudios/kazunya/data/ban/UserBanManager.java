@@ -10,7 +10,8 @@ import java.util.Date;
 public class UserBanManager {
 
     public static void ban(String id, String reason, Date until, Date date) {
-        DatabaseManager.executeUpdate("INSERT INTO user_bans (id, reason, until, date) VALUES ('" + id + "', '" + reason + "', '" + new java.sql.Date(until.getTime()) + "', '" + new java.sql.Date(date.getTime()) + "') ON DUPLICATE KEY UPDATE reason='" + reason + "', until='" + until + "', date='" + date + "';");
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+        DatabaseManager.executeUpdate("INSERT INTO user_bans (id, reason, until, date) VALUES ('" + id + "', '" + reason + "', '" + sqlDate + "', '" + new java.sql.Date(date.getTime()) + "') ON DUPLICATE KEY UPDATE reason='" + reason + "', until='" + until + "', date='" + sqlDate + "';");
     }
 
     public static void ban(String id, String reason, Date until) {

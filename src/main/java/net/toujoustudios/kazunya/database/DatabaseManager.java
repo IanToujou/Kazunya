@@ -86,7 +86,6 @@ public class DatabaseManager {
         executeUpdate("CREATE TABLE IF NOT EXISTS jobs (`id` VARCHAR(256) NOT NULL, `name` VARCHAR(256) NULL DEFAULT NULL, `description` VARCHAR(256) NULL DEFAULT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;");
         executeUpdate("CREATE TABLE IF NOT EXISTS job_positions (`id` VARCHAR(256) NOT NULL, `name` VARCHAR(256) NULL DEFAULT NULL, `job` VARCHAR(256) NULL DEFAULT NULL, `grade` INT NOT NULL DEFAULT '0', `salary` INT NOT NULL DEFAULT '0', `required_skills` VARCHAR(256) NULL DEFAULT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;");
         executeUpdate("CREATE TABLE IF NOT EXISTS skills (`id` VARCHAR(256) NOT NULL, `name` VARCHAR(256) NULL DEFAULT NULL, `max_level` INT NOT NULL DEFAULT '0', `base_xp` INT NOT NULL DEFAULT '0', PRIMARY KEY (`id`)) ENGINE = InnoDB;");
-        executeUpdate("CREATE TABLE IF NOT EXISTS relations (`id` VARCHAR(256) NOT NULL, `name` VARCHAR(256) NULL DEFAULT NULL, `max_users` INT NOT NULL DEFAULT '0', PRIMARY KEY (`id`)) ENGINE = InnoDB;");
     }
 
 }

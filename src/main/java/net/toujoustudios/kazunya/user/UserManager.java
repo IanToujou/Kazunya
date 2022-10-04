@@ -1,24 +1,29 @@
 package net.toujoustudios.kazunya.user;
 
+import net.dv8tion.jda.api.entities.User;
 import net.toujoustudios.kazunya.data.ban.UserBan;
 import net.toujoustudios.kazunya.data.ban.UserBanManager;
-import net.toujoustudios.kazunya.log.LogLevel;
-import net.toujoustudios.kazunya.log.Logger;
+import net.toujoustudios.kazunya.data.money.UserMoneyManager;
+import net.toujoustudios.kazunya.data.relation.UserRelation;
+import net.toujoustudios.kazunya.data.relation.UserRelationManager;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class UserManager {
 
     private static final HashMap<String, UserManager> users = new HashMap<>();
     private final String id;
     private UserBan ban;
+    private double bankMoney;
+    private double walletMoney;
+    private ArrayList<UserRelation> relations;
 
     public UserManager(String id) {
         this.id = id;
         this.ban = UserBanManager.getBan(id);
+        this.bankMoney = UserMoneyManager.getBankMoney(id);
+        this.walletMoney = UserMoneyManager.getWalletMoney(id);
+        this.relations = UserRelationManager.getRelations(id);
         checkBan();
     }
 
@@ -45,6 +50,12 @@ public class UserManager {
         checkBan();
         if(isBanned()) UserBanManager.ban(id, ban.getReason(), ban.getUntil(), ban.getDate());
         else UserBanManager.unban(id);
+        UserMoneyManager.setBankMoney(id, bankMoney);
+        UserMoneyManager.setWalletMoney(id, walletMoney);
+        UserRelationManager.deleteRelations(id);
+        relations.forEach(all -> {
+            UserRelationManager.setRelation(id, all.getTarget(), all.getType(), all.getDate());
+        });
     }
 
     public boolean isBanned() {
@@ -78,6 +89,46 @@ public class UserManager {
     public void checkBan() {
         if(!isBanned()) return;
         if(new Date().after(ban.getUntil())) ban = null;
+    }
+
+    public double getBankMoney() {
+        return bankMoney;
+    }
+
+    public void addBankMoney(double amount) {
+        this.bankMoney += amount;
+    }
+
+    public void removeBankMoney(double amount) {
+        this.bankMoney -= amount;
+    }
+
+    public void setBankMoney(double bankMoney) {
+        this.bankMoney = bankMoney;
+    }
+
+    public double getWalletMoney() {
+        return walletMoney;
+    }
+
+    public void setWalletMoney(double walletMoney) {
+        this.walletMoney = walletMoney;
+    }
+
+    public void addWalletMoney(double amount) {
+        this.walletMoney += amount;
+    }
+
+    public void removeWalletMoney(double amount) {
+        this.walletMoney -= amount;
+    }
+
+    public ArrayList<UserRelation> getRelations() {
+        return relations;
+    }
+
+    public void setRelations(ArrayList<UserRelation> relations) {
+        this.relations = relations;
     }
 
 }

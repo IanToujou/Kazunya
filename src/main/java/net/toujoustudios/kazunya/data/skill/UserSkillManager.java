@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class UserSkillManager {
 
     public static void setSkill(String id, UserSkill skill) {
-        DatabaseManager.executeUpdate("INSERT INTO user_skills (id, skill, xp) VALUES ('" + id + "', '" + skill.getSkillType().toString() + "', '" + skill.getExperience() + "') ON DUPLICATE KEY UPDATE skill='" + skill.getSkillType().toString() + "', xp='" + skill.getExperience() + "';");
+        DatabaseManager.executeUpdate("INSERT INTO user_skills (id, skill, experience) VALUES ('" + id + "', '" + skill.getSkillType().toString() + "', '" + skill.getExperience() + "');");
     }
 
     public static void deleteSkill(String id, SkillType skill) {
@@ -33,9 +33,8 @@ public class UserSkillManager {
     }
 
     public static void setSkills(String id, ArrayList<UserSkill> skills) {
-        skills.forEach(all -> {
-            setSkill(id, all);
-        });
+        deleteSkills(id);
+        for(UserSkill all : skills) setSkill(id, all);
     }
 
 }

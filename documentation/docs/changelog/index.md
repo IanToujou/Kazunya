@@ -30,6 +30,7 @@ Changes listed in the changelog are divided into categories.
 - `[💥]` Completely reworked the database.
 - `[💥]` Added a new skill system.
 - `[✨]` Added the /nom command.
+- `[🔥]` Removed old music system.
 
 ### **Release v1.1.0 (**`01.10.2022`**)**
 

@@ -80,7 +80,7 @@ public class DatabaseManager {
         executeUpdate("CREATE TABLE IF NOT EXISTS user_relations (`id` VARCHAR(256) NOT NULL, `target` VARCHAR(256) NOT NULL, `type` VARCHAR(256) NOT NULL, `date` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;");
         executeUpdate("CREATE TABLE IF NOT EXISTS user_money (`id` VARCHAR(256) NOT NULL, `bank` INT NOT NULL DEFAULT '0', `wallet` INT NOT NULL DEFAULT '0', PRIMARY KEY (`id`)) ENGINE = InnoDB;");
         executeUpdate("CREATE TABLE IF NOT EXISTS user_jobs (`id` VARCHAR(256) NOT NULL, `job` VARCHAR(256) NULL DEFAULT NULL, `position` VARCHAR(256) NULL DEFAULT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;");
-        executeUpdate("CREATE TABLE IF NOT EXISTS user_skills (`id` VARCHAR(256) NOT NULL, `skill` VARCHAR(256) NULL DEFAULT NULL, `experience` INT NOT NULL DEFAULT '0', PRIMARY KEY (`id`)) ENGINE = InnoDB;");
+        executeUpdate("CREATE TABLE IF NOT EXISTS user_skills (`id` VARCHAR(256) NOT NULL, `skill` VARCHAR(256) NULL DEFAULT NULL, `experience` INT NOT NULL DEFAULT '0') ENGINE = InnoDB;");
         executeUpdate("CREATE TABLE IF NOT EXISTS user_settings (`id` VARCHAR(256) NOT NULL, `nsfw_enabled` BOOLEAN NOT NULL DEFAULT FALSE, `gif_gender` VARCHAR(256) NULL DEFAULT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;");
     }
 

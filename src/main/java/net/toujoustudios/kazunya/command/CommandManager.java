@@ -3,6 +3,7 @@ package net.toujoustudios.kazunya.command;
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
+import net.dv8tion.jda.api.interactions.commands.build.SubcommandData;
 import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
 import net.toujoustudios.kazunya.command.list.economy.*;
 import net.toujoustudios.kazunya.command.list.fun.PeePeeCommand;
@@ -57,6 +58,7 @@ public class CommandManager {
         this.addCommand(new FuckCommand());
         this.addCommand(new BonkCommand());
         this.addCommand(new NomCommand());
+        this.addCommand(new FriendCommand());
 
         //Register economy commands
         this.addCommand(new MarketInfoCommand());
@@ -83,7 +85,6 @@ public class CommandManager {
         commands.add(command);
     }
 
-    @SuppressWarnings("unused")
     public void registerCommands() {
 
         Logger.log(LogLevel.INFORMATION, "Registering commands. This may take a while...");

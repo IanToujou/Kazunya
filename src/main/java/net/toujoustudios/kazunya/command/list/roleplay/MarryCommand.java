@@ -44,11 +44,6 @@ public class MarryCommand implements ICommand {
         Member member = context.getMember();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
-        if(args.size() < 1) {
-            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_SYNTAX);
-            return;
-        }
-
         Member target = args.get(0).getAsMember();
         assert target != null;
         String memberId = member.getId();

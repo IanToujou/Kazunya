@@ -30,14 +30,6 @@ public class UserManager {
         this.relations = UserRelationManager.getRelations(id);
         this.skills = UserSkillManager.getSkills(id);
         checkBan();
-
-        //TEST
-        setSkill(SkillType.ACTING, 20);
-        setSkill(SkillType.CARPENTRY, 5);
-
-        setSkill(SkillType.CARPENTRY, 10);
-        setSkill(SkillType.WRITING, 0);
-
     }
 
     public static UserManager getUser(String id) {
@@ -60,10 +52,6 @@ public class UserManager {
     }
 
     public void save() {
-        //TEST
-        skills.forEach(all -> {
-            System.out.println(all.getSkillType().toString() + " | LVL " + all.getExperience());
-        });
         checkBan();
         if(isBanned()) UserBanManager.ban(id, ban.getReason(), ban.getUntil(), ban.getDate());
         else UserBanManager.unban(id);

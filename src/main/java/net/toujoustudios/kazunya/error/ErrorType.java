@@ -34,6 +34,8 @@ public enum ErrorType {
     ACTION_NO_PARTNER("2003", "You don't have any partner."),
     ACTION_NOT_ENOUGH_WALLET_MONEY("2004", "You don't have enough money in your wallet for this action."),
     ACTION_NOT_ENOUGH_BANK_MONEY("2005", "You don't have enough money in your bank account for this action."),
+    ACTION_INVALID_FRIEND_REQUEST("2006", "The request is invalid. Please consider sending a new one."),
+    ACTION_INVALID_USER("2007", "That action is not meant to be performed by you."),
 
     AUDIO_UNABLE_TO_LOAD("3001", "The audio couldn't be loaded due to an unexpected error."),
     AUDIO_USER_NOT_IN_CHANNEL("3002", "You are not in a voice channel right now."),

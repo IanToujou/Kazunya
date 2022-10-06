@@ -5,6 +5,7 @@ import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.toujoustudios.kazunya.command.CommandManager;
+import net.toujoustudios.kazunya.command.list.roleplay.FriendCommand;
 import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.data.guild.GuildManager;
 import net.toujoustudios.kazunya.data.user.UserManager;
@@ -40,9 +41,15 @@ public class Kazunya {
         builder.setBulkDeleteSplittingEnabled(false);
         builder.setActivity(Activity.streaming("/help - Running " + config.getString("general.name") + " " + config.getString("general.version"), "https://twitch.tv/iantoujou"));
 
+        //Enable gateway intents.
         builder.enableIntents(GatewayIntent.GUILD_MEMBERS);
         builder.enableIntents(GatewayIntent.GUILD_PRESENCES);
+
+        //Add event listeners for general events.
         builder.addEventListeners(new SlashCommandListener());
+
+        //Add event listeners for command buttons.
+        builder.addEventListeners(new FriendCommand());
 
     }
 

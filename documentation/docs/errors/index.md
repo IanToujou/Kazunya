@@ -65,6 +65,8 @@ Error codes are used in a variety of situations when an error comes up. You can 
 `2003` | You don’t have any partner. | You are single and do not have any partner at the moment.
 `2004` | You don't have enough money in your wallet for this action. | You have insufficient funds in your wallet to perform this operation. You can use the `/withdraw` command to withdraw money from your bank account.
 `2005` | You don't have enough money in your bank account. | You have insufficient funds in your bank account to perform this operation. You can use the `/deposit` command to deposit money into your bak account.
+`2006` | The request is invalid. Please consider sending a new one. | The request someone send is not valid anymore due to limitations. Please send a new one or renew the request.
+`2007` | That action is not meant to be performed by you. | You cannot perform that action because it is meant for another user. This is in most cases a request, like a friend request.
 
 ### **Audio (**`3001-4000`**)**
 

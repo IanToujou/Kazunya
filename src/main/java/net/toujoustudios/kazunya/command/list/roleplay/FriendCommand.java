@@ -19,6 +19,7 @@ import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
 import net.toujoustudios.kazunya.util.ColorUtil;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class FriendCommand extends ListenerAdapter implements ICommand {
@@ -82,13 +83,14 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
             } else {
                 embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
                 embedBuilder.setTitle(":green_heart: **Friend Request**");
-                embedBuilder.setThumbnail(config.getString("assets.img.icon_friends"));
+                embedBuilder.setThumbnail(config.getString("assets.img.icon_friend"));
+                embedBuilder.setAuthor(member.getUser().getName() + "#" + member.getUser().getDiscriminator(), null, member.getEffectiveAvatarUrl());
                 embedBuilder.setDescription(member.getAsMention() + " send you a friend request, " + target.getAsMention() + "!");
                 context.getEvent()
                         .replyEmbeds(embedBuilder.build())
                         .addActionRow(
-                                Button.success("cmd_friend_accept-" + member.getId(), "Accept ✅"),
-                                Button.danger("cmd_friend_decline-" + member.getId(), "Decline ⛔"))
+                                Button.success("cmd_friend_accept-" + member.getId(), "Accept"),
+                                Button.danger("cmd_friend_decline-" + member.getId(), "Decline"))
                         .queue();
             }
 
@@ -109,19 +111,22 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
     public void onButtonClick(ButtonClickEvent event) {
 
         String id = event.getComponentId();
+        EmbedBuilder embedBuilder = new EmbedBuilder();
+
         if(!id.startsWith("cmd_friend_")) return;
         if(id.startsWith("cmd_friend_accept-")) {
 
             Member member = event.getMember();
             Member target = event.getGuild().getMemberById(id.split("-")[1]);
+
             if(target == null) {
                 event.replyEmbeds(ErrorEmbed.buildError(ErrorType.COMMAND_INVALID_USER_NOT_FOUND)).setEphemeral(true).queue();
                 return;
             }
 
-            EmbedBuilder embedBuilder = new EmbedBuilder();
             UserManager memberManager = UserManager.getUser(member.getId());
             UserManager targetManager = UserManager.getUser(target.getId());
+
             if(requests.containsKey(target.getId())) {
                 if(requests.get(target.getId()).equals(member.getId())) {
 
@@ -129,17 +134,19 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
                     requests.remove(member.getId());
 
                     Date date = new Date();
+                    String dateString = new SimpleDateFormat("dd.MM.yy, HH:mm").format(new Date());
                     UserRelation memberRelation = new UserRelation(target.getId(), UserRelationType.FRIENDS, date);
                     UserRelation targetRelation = new UserRelation(member.getId(), UserRelationType.FRIENDS, date);
 
                     memberManager.addRelation(memberRelation);
                     targetManager.addRelation(targetRelation);
-
                     embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
                     embedBuilder.setTitle(":green_heart: **New Friend**");
-                    embedBuilder.setThumbnail(config.getString("assets.img.icon_friends"));
+                    embedBuilder.setThumbnail(config.getString("assets.img.icon_friend"));
                     embedBuilder.setDescription(member.getAsMention() + " and " + target.getAsMention() + " are now friends!");
-                    event.editComponents().setEmbeds(embedBuilder.build()).queue();
+                    embedBuilder.setAuthor(member.getUser().getName() + "#" + member.getUser().getDiscriminator(), null, member.getEffectiveAvatarUrl());
+                    event.editComponents().setContent(target.getAsMention()).setEmbeds(embedBuilder.build()).queue();
+
                 } else event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_USER)).setEphemeral(true).queue();
             } else event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_USER)).setEphemeral(true).queue();
         }

@@ -158,6 +158,11 @@ public class UserManager {
         relations.remove(relation);
     }
 
+    public void removeRelationWith(String target) {
+        if(getRelation(target) == null) return;
+        removeRelation(getRelation(target));
+    }
+
     public void addRelation(UserRelation relation) {
         if(!relations.contains(relation)) relations.add(relation);
     }

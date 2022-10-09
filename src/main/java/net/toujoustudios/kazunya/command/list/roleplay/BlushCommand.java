@@ -13,12 +13,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-/**
- * This file has been created by Ian Toujou.
- * Project: Kazunya
- * Date: 22/09/2021
- * Time: 06:41
- */
 public class BlushCommand implements ICommand {
 
     private final Config config;

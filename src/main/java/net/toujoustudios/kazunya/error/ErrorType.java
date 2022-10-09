@@ -1,14 +1,17 @@
 package net.toujoustudios.kazunya.error;
 
 /**
- * This file has been created by Ian Toujou.
- * Project: Kazunya
- * Date: 03/02/2022
- * Time: 23:25
+ * Error types that are used in this software. The errors are divided into multiple categories, with
+ * error codes and descriptions to build readable error messages.
+ *
+ * @author Ian Toujou
+ * @version 1.2.0
+ * @since 1.0.0
  */
 @SuppressWarnings("unused")
 public enum ErrorType {
 
+    // General errors that don't fall into any other category.
     GENERAL_UNKNOWN("0001", "An unknown error occurred."),
     GENERAL_DISABLED("0002", "This bot function has been temporarily disabled."),
     GENERAL_BANNED("0003", "You have been banned from using the bot."),
@@ -17,6 +20,7 @@ public enum ErrorType {
     GENERAL_PERMISSION("0006", "You do not have the permission to perform this action."),
     GENERAL_NSFW("0007", "This can only be performed in a NSFW channel."),
 
+    // Command related or syntax related errors.
     COMMAND_INVALID_SYNTAX("1001", "The command syntax is not correct."),
     COMMAND_INVALID_SEARCH("1002", "The given search has no results."),
     COMMAND_INVALID_USER_NOT_FOUND("1003", "The given user is invalid."),
@@ -29,17 +33,25 @@ public enum ErrorType {
     COMMAND_INVALID_URL("1010", "The given link is invalid. Please provide a valid link."),
     COMMAND_INVALID_RANGE("1011", "The specified number is not in the given range. Please read the documentation to see the correct range."),
 
-    ACTION_ALREADY_MARRIED_SELF("2001", "You are already married."),
-    ACTION_ALREADY_MARRIED_TARGET("2002", "The specified person is already married. Sorry about that."),
-    ACTION_NO_PARTNER("2003", "You don't have any partner."),
-    ACTION_NOT_ENOUGH_WALLET_MONEY("2004", "You don't have enough money in your wallet for this action."),
-    ACTION_NOT_ENOUGH_BANK_MONEY("2005", "You don't have enough money in your bank account for this action."),
-    ACTION_INVALID_FRIEND_REQUEST("2006", "The request is invalid. Please consider sending a new one."),
-    ACTION_INVALID_USER("2007", "That action is not meant to be performed by you."),
+    // More advanced command errors when trying to perform a specific action.
+    ACTION_INVALID_USER("2001", "That action is not meant to be performed by you."),
+    ACTION_NOT_ENOUGH_WALLET_MONEY("2002", "You don't have enough money in your wallet for this action."),
+    ACTION_NOT_ENOUGH_BANK_MONEY("2003", "You don't have enough money in your bank account for this action."),
+    ACTION_ALREADY_FRIENDS("2004", "You are already friends with that person."),
+    ACTION_ALREADY_MARRIED("2005", "You are already married to that person."),
+    ACTION_NOT_FRIENDS("2006", "You are not friends with that person."),
+    ACTION_NOT_MARRIED("2007", "You are not married to anyone."),
+    ACTION_INVALID_FRIEND_REQUEST("2008", "The friend request is invalid. Please send a new one."),
+    ACTION_INVALID_MARRY_REQUEST("2009", "The proposal is invalid. Please send a new one."),
+    ACTION_MAX_MARRIED("2010", "You already have the maximum number of married partners."),
+    ACTION_MAX_FRIENDS("2011", "You already have the maximum number of friends."),
+    ACTION_RELATION_TOO_HIGH("2012", "Your relationship with the other person is too strong."),
 
+    // Audio errors that only occur when failing to send an audio stream.
     AUDIO_UNABLE_TO_LOAD("3001", "The audio couldn't be loaded due to an unexpected error."),
     AUDIO_USER_NOT_IN_CHANNEL("3002", "You are not in a voice channel right now."),
 
+    // Discord permission based errors if the permissions are not configured properly.
     PERMISSION_VIEW_CHANNELS("4001", "I don't have the permission to view channels."),
     PERMISSION_MANAGE_CHANNELS("4002", "I don't have the permission to manage channels."),
     PERMISSION_MANAGE_ROLES("4003", "I don't have the permission to manage roles."),

@@ -60,13 +60,18 @@ Error codes are used in a variety of situations when an error comes up. You can 
 
 | Code | <div style="width:180px">Description</div> | Help
 |:-:|:-|:-
-`2001` | You are already married. | You already have a partner, and you can’t marry two persons at the same time.
-`2002` | The specified person is already married. Sorry about that. | Your desired partner already has a partner. You can only marry people who don’t have any partner.
-`2003` | You don’t have any partner. | You are single and do not have any partner at the moment.
-`2004` | You don't have enough money in your wallet for this action. | You have insufficient funds in your wallet to perform this operation. You can use the `/withdraw` command to withdraw money from your bank account.
-`2005` | You don't have enough money in your bank account. | You have insufficient funds in your bank account to perform this operation. You can use the `/deposit` command to deposit money into your bak account.
-`2006` | The request is invalid. Please consider sending a new one. | The request someone send is not valid anymore due to limitations. Please send a new one or renew the request.
-`2007` | That action is not meant to be performed by you. | You cannot perform that action because it is meant for another user. This is in most cases a request, like a friend request.
+`2001` | That action is not meant to be performed by you. | The action it meant to be executed by another user.
+`2002` | You don't have enough money in your wallet for this action. | You simply don't have enough money in your wallet. Skill issue.
+`2003` | You don't have enough money in your bank account for this action. | You simply don't have enough money in your bank account. Skill issue again.
+`2004` | You are already friends with that person. | You already have a friendship with that person. If you want more, consider marriage or family commands.
+`2005` | You are already married to that person. | You are already married to the person. If you want more... Wait, there are no other options.
+`2006` | You are not friends with that person. | You don't have a friendship with that person.
+`2007` | You are not married to anyone. | You are not married to anyone.
+`2008` | The friend request is invalid. Please send a new one. | The friend request timed out or was removed from the memory. Please ask for a new one or send one yourself.
+`2009` | The proposal is invalid. Please send a new one. | The marriage request timed out or was removed from the memory. Please ask for a new one or send one yourself.
+`2010` | You already have the maximum number of married partners. | You reached the maximum amount of partners.
+`2011` | You already have the maximum number of friends. | You reached the maximum amount of friends.
+`2012` | Your relationship with the other person is too strong. | The relationship you have with the specified person is too strong. Please consider using other methods, like breaking up or divorcing. Depending on your relationship.
 
 ### **Audio (**`3001-4000`**)**
 

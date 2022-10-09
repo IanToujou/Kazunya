@@ -19,8 +19,10 @@ import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
 import net.toujoustudios.kazunya.util.ColorUtil;
 
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 public class FriendCommand extends ListenerAdapter implements ICommand {
 
@@ -56,47 +58,45 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
 
         if(action.equalsIgnoreCase("add")) {
 
-            requests.putIfAbsent(member.getId(), target.getId());
-
-            if(requests.containsKey(target.getId())) {
-
-                if(requests.get(target.getId()).equals(member.getId())) {
-
-                    requests.remove(target.getId());
-                    requests.remove(member.getId());
-
-                    Date date = new Date();
-                    UserRelation memberRelation = new UserRelation(target.getId(), UserRelationType.FRIENDS, date);
-                    UserRelation targetRelation = new UserRelation(member.getId(), UserRelationType.FRIENDS, date);
-
-                    memberManager.addRelation(memberRelation);
-                    targetManager.addRelation(targetRelation);
-
-                    embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
-                    embedBuilder.setTitle(":green_heart: **New Friend**");
-                    embedBuilder.setThumbnail(config.getString("assets.img.icon_friends"));
-                    embedBuilder.setDescription(member.getAsMention() + " and " + target.getAsMention() + " are now friends!");
-                    context.getEvent().replyEmbeds(embedBuilder.build()).queue();
-
-                }
-
-            } else {
-                embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
-                embedBuilder.setTitle(":green_heart: **Friend Request**");
-                embedBuilder.setThumbnail(config.getString("assets.img.icon_friend"));
-                embedBuilder.setAuthor(member.getUser().getName() + "#" + member.getUser().getDiscriminator(), null, member.getEffectiveAvatarUrl());
-                embedBuilder.setDescription(member.getAsMention() + " send you a friend request, " + target.getAsMention() + "!");
-                context.getEvent()
-                        .replyEmbeds(embedBuilder.build())
-                        .addActionRow(
-                                Button.success("cmd_friend_accept-" + member.getId(), "Accept"),
-                                Button.danger("cmd_friend_decline-" + member.getId(), "Decline"))
-                        .queue();
+            if(memberManager.getRelation(target.getId()) != null) {
+                ErrorEmbed.sendError(context, ErrorType.ACTION_ALREADY_FRIENDS);
+                return;
             }
+
+            requests.putIfAbsent(member.getId(), target.getId());
+            embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
+            embedBuilder.setTitle(":green_heart: **Friend Request**");
+            embedBuilder.setThumbnail(config.getString("assets.img.icon_friend"));
+            embedBuilder.setAuthor(member.getUser().getName() + "#" + member.getUser().getDiscriminator(), null, member.getEffectiveAvatarUrl());
+            embedBuilder.setDescription(member.getAsMention() + " sent you a friend request, " + target.getAsMention() + "!");
+            context.getEvent()
+                    .replyEmbeds(embedBuilder.build())
+                    .addActionRow(
+                            Button.success("cmd_friend_accept-" + member.getId(), "Accept"),
+                            Button.danger("cmd_friend_decline-" + member.getId(), "Decline"))
+                    .queue();
 
         } else if(action.equalsIgnoreCase("remove")) {
 
-            ErrorEmbed.sendError(context, ErrorType.GENERAL_UNFINISHED);
+            if(memberManager.getRelation(target.getId()) == null) {
+                ErrorEmbed.sendError(context, ErrorType.ACTION_NOT_FRIENDS);
+                return;
+            }
+
+            if(memberManager.getRelation(target.getId()).getType().getValue() > UserRelationType.FRIENDS.getValue()) {
+                ErrorEmbed.sendError(context, ErrorType.ACTION_RELATION_TOO_HIGH);
+                return;
+            }
+
+            memberManager.removeRelationWith(target.getId());
+            targetManager.removeRelationWith(member.getId());
+
+            embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
+            embedBuilder.setTitle(":broken_heart: **Friend Removed**");
+            embedBuilder.setAuthor(member.getUser().getName() + "#" + member.getUser().getDiscriminator(), null, member.getEffectiveAvatarUrl());
+            embedBuilder.setDescription("You removed " + target.getAsMention() + " from your friends...");
+
+            context.getEvent().replyEmbeds(embedBuilder.build()).setEphemeral(true).queue();
 
         } else if(action.equalsIgnoreCase("status")) {
 
@@ -134,7 +134,6 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
                     requests.remove(member.getId());
 
                     Date date = new Date();
-                    String dateString = new SimpleDateFormat("dd.MM.yy, HH:mm").format(new Date());
                     UserRelation memberRelation = new UserRelation(target.getId(), UserRelationType.FRIENDS, date);
                     UserRelation targetRelation = new UserRelation(member.getId(), UserRelationType.FRIENDS, date);
 
@@ -145,9 +144,11 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
                     embedBuilder.setThumbnail(config.getString("assets.img.icon_friend"));
                     embedBuilder.setDescription(member.getAsMention() + " and " + target.getAsMention() + " are now friends!");
                     embedBuilder.setAuthor(member.getUser().getName() + "#" + member.getUser().getDiscriminator(), null, member.getEffectiveAvatarUrl());
-                    event.editComponents().setContent(target.getAsMention()).setEmbeds(embedBuilder.build()).queue();
+                    event.getChannel().sendMessage(target.getAsMention()).setEmbeds(embedBuilder.build()).queue();
+                    event.getMessage().delete().queue();
 
-                } else event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_USER)).setEphemeral(true).queue();
+                } else
+                    event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_USER)).setEphemeral(true).queue();
             } else event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_USER)).setEphemeral(true).queue();
         }
     }

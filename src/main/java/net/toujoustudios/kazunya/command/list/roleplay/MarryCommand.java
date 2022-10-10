@@ -62,13 +62,13 @@ public class MarryCommand implements ICommand {
         UserManager memberManager = UserManager.getUser(member.getId());
         UserManager targetManager = UserManager.getUser(target.getId());
 
-        if(memberManager.getRelationsOfType(UserRelationType.MARRIED).size() > 0) {
-            ErrorEmbed.sendError(context, ErrorType.ACTION_ALREADY_MARRIED_SELF);
+        if(memberManager.getRelationsOfType(UserRelationType.MARRIED).size() > UserRelationType.MARRIED.getMaxUsers()) {
+            ErrorEmbed.sendError(context, ErrorType.ACTION_ALREADY_MARRIED);
             return;
         }
 
-        if(targetManager.getRelationsOfType(UserRelationType.MARRIED).size() > 0) {
-            ErrorEmbed.sendError(context, ErrorType.ACTION_ALREADY_MARRIED_TARGET);
+        if(targetManager.getRelationsOfType(UserRelationType.MARRIED).size() > UserRelationType.MARRIED.getMaxUsers()) {
+            ErrorEmbed.sendError(context, ErrorType.ACTION_ALREADY_MARRIED);
             return;
         }
 

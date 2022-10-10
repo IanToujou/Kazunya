@@ -7,6 +7,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
+import net.dv8tion.jda.api.interactions.commands.build.SubcommandData;
 import net.dv8tion.jda.api.interactions.components.Button;
 import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
@@ -19,10 +20,7 @@ import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
 import net.toujoustudios.kazunya.util.ColorUtil;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class FriendCommand extends ListenerAdapter implements ICommand {
 
@@ -37,26 +35,26 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
     public void handle(CommandContext context) {
 
         List<OptionMapping> args = context.getArgs();
-        Member member = context.getMember();
-        Member target = args.get(1).getAsMember();
-        String action = args.get(0).getAsString();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
-        assert target != null;
-        if(target.getUser().isBot()) {
-            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_BOT);
-            return;
-        }
+        if(context.getEvent().getSubcommandName().equals("add")) {
 
-        if(target.getId().equals(member.getId())) {
-            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_SELF);
-            return;
-        }
+            Member member = context.getMember();
+            Member target = args.get(0).getAsMember();
 
-        UserManager memberManager = UserManager.getUser(member.getId());
-        UserManager targetManager = UserManager.getUser(target.getId());
+            assert target != null;
+            if(target.getUser().isBot()) {
+                ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_BOT);
+                return;
+            }
 
-        if(action.equalsIgnoreCase("add")) {
+            UserManager memberManager = UserManager.getUser(member.getId());
+            UserManager targetManager = UserManager.getUser(target.getId());
+
+            if(target.getId().equals(member.getId())) {
+                ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_SELF);
+                return;
+            }
 
             if(memberManager.getRelation(target.getId()) != null) {
                 ErrorEmbed.sendError(context, ErrorType.ACTION_ALREADY_FRIENDS);
@@ -76,7 +74,24 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
                             Button.danger("cmd_friend_decline-" + member.getId(), "Decline"))
                     .queue();
 
-        } else if(action.equalsIgnoreCase("remove")) {
+        } else if(context.getEvent().getSubcommandName().equals("remove")) {
+
+            Member member = context.getMember();
+            Member target = args.get(0).getAsMember();
+
+            assert target != null;
+            if(target.getUser().isBot()) {
+                ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_BOT);
+                return;
+            }
+
+            UserManager memberManager = UserManager.getUser(member.getId());
+            UserManager targetManager = UserManager.getUser(target.getId());
+
+            if(target.getId().equals(member.getId())) {
+                ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_SELF);
+                return;
+            }
 
             if(memberManager.getRelation(target.getId()) == null) {
                 ErrorEmbed.sendError(context, ErrorType.ACTION_NOT_FRIENDS);
@@ -95,31 +110,33 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
             embedBuilder.setTitle(":broken_heart: **Friend Removed**");
             embedBuilder.setAuthor(member.getUser().getName() + "#" + member.getUser().getDiscriminator(), null, member.getEffectiveAvatarUrl());
             embedBuilder.setDescription("You removed " + target.getAsMention() + " from your friends...");
-
             context.getEvent().replyEmbeds(embedBuilder.build()).setEphemeral(true).queue();
 
-        } else if(action.equalsIgnoreCase("list")) {
-        
+        } else if(context.getEvent().getSubcommandName().equals("list")) {
+
+            Member member = context.getMember();
+            UserManager memberManager = UserManager.getUser(member.getId());
+
             ArrayList<UserRelation> relations = memberManager.getRelations();
             ArrayList<UserRelation> friends = new ArrayList<>();
-            
+
             for(UserRelation all : relations) {
                 if(all.getType() == UserRelationType.FRIENDS) friends.add(all);
             }
-            
+
             StringBuilder stringBuilder = new StringBuilder();
-            for(UserRelation all : relations) {
-                if(event.getGuild().getMemberById(all.getTarget()) != null) {
-                    stringBuilder.append("\n" + event.getGuild().getMemberById(all.getTarget()).getAsMention());
-                }
-            }    
+            for(UserRelation all : friends) {
+                if(context.getGuild().getMemberById(all.getTarget()) != null)
+                    stringBuilder.append("\n").append(context.getGuild().getMemberById(all.getTarget()).getAsMention());
+            }
 
             embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
             embedBuilder.setTitle(":green_heart: **Friend List**");
             embedBuilder.setAuthor(member.getUser().getName() + "#" + member.getUser().getDiscriminator(), null, member.getEffectiveAvatarUrl());
-            embedBuilder.setDescription("Your current friends are:" + stringBuilder.toString());
+            embedBuilder.setDescription("Your current friends are:" + stringBuilder);
+            context.getEvent().replyEmbeds(embedBuilder.build()).queue();
 
-        } else ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_SYNTAX);
+        }
 
     }
 
@@ -187,15 +204,25 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
 
     @Override
     public List<OptionData> getOptions() {
-        List<OptionData> optionData = new ArrayList<>();
-        optionData.add(new OptionData(OptionType.STRING, "action", "The action to perform on the friend. This can be either add, remove or status.", true));
-        optionData.add(new OptionData(OptionType.USER, "user", "The person you want to perform the action on.", true));
-        return optionData;
+        return Collections.emptyList();
     }
 
     @Override
     public CommandCategory getCategory() {
         return CommandCategory.ROLEPLAY;
+    }
+
+    @Override
+    public List<SubcommandData> getSubcommandData() {
+        ArrayList<SubcommandData> data = new ArrayList<>();
+        data.add(new SubcommandData("add", getEmoji() + " Add someone to your friend list.")
+                .addOptions(new OptionData(OptionType.USER, "user", "The person you want to perform the action on."))
+        );
+        data.add(new SubcommandData("remove", getEmoji() + " Remove someone from your friend list.")
+                .addOptions(new OptionData(OptionType.USER, "user", "The person you want to perform the action on."))
+        );
+        data.add(new SubcommandData("list", getEmoji() + " List all your friends."));
+        return data;
     }
 
 }

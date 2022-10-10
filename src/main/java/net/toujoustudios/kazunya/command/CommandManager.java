@@ -3,6 +3,7 @@ package net.toujoustudios.kazunya.command;
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
+import net.dv8tion.jda.api.interactions.commands.build.SubcommandData;
 import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
 import net.toujoustudios.kazunya.command.list.economy.*;
 import net.toujoustudios.kazunya.command.list.fun.PeePeeCommand;
@@ -92,7 +93,13 @@ public class CommandManager {
 
         for(ICommand command : this.commands) {
             Logger.log(LogLevel.DEBUG, "Started registration of the following commands: /" + command.getName());
-            CommandData data = new CommandData(command.getName(), command.getEmoji() + " " + command.getDescription()).addOptions(command.getOptions());
+            CommandData data = new CommandData(command.getName(), command.getEmoji() + " " + command.getDescription());
+            if(command.getSubcommandData().size() > 0) {
+                for(SubcommandData all : command.getSubcommandData()) {
+                    data.addSubcommands(all);
+                    Logger.log(LogLevel.DEBUG, "Started registration of the following subcommand: /" + data.getName() + " " + all.getName());
+                }
+            } else data.addOptions(command.getOptions());
             commands.add(data);
         }
 

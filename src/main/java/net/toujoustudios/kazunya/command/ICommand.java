@@ -1,7 +1,9 @@
 package net.toujoustudios.kazunya.command;
 
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
+import net.dv8tion.jda.api.interactions.commands.build.SubcommandData;
 
+import java.util.Collections;
 import java.util.List;
 
 public interface ICommand {
@@ -18,11 +20,13 @@ public interface ICommand {
 
     CommandCategory getCategory();
 
-    default String getSyntax() {
+    default List<SubcommandData> getSubcommandData() {
+        return Collections.emptyList();
+    }
 
+    default String getSyntax() {
         StringBuilder builder = new StringBuilder();
         builder.append(getName());
-
         for(OptionData data : getOptions()) {
             builder.append(" ");
             if(data.isRequired()) {
@@ -35,9 +39,7 @@ public interface ICommand {
                 builder.append(">]");
             }
         }
-
         return builder.toString();
-
     }
 
 }

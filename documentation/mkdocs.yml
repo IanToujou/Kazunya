@@ -25,6 +25,7 @@ nav:
           - '/tickle': 'commands/roleplay/tickle.md'
           - '/bonk': 'commands/roleplay/bonk.md'
           - '/nom': 'commands/roleplay/nom.md'
+          - '/friend': 'commands/roleplay/friend.md'
       - 'Fun':
           - '/pp': 'commands/fun/pp.md'
           - '/roll': 'commands/fun/roll.md'

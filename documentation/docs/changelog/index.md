@@ -29,7 +29,9 @@ Changes listed in the changelog are divided into categories.
 
 - `[💥]` Completely reworked the database.
 - `[💥]` Added a new skill system.
+- `[💥]` Added subcommands.
 - `[✨]` Added the /nom command.
+- `[✨]` Added a friend system and a /friend command.
 - `[🔥]` Removed old music system.
 
 ### **Release v1.1.0 (**`01.10.2022`**)**
@@ -46,4 +48,4 @@ Changes listed in the changelog are divided into categories.
 
 ### **Release v1.0.0 (**`19.08.2022`**)**
 
-- `[📝]` Initial release: *The bot is now fully functional.*
+- `[📝]` Initial release.

@@ -98,9 +98,26 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
 
             context.getEvent().replyEmbeds(embedBuilder.build()).setEphemeral(true).queue();
 
-        } else if(action.equalsIgnoreCase("status")) {
+        } else if(action.equalsIgnoreCase("list")) {
+        
+            ArrayList<UserRelation> relations = memberManager.getRelations();
+            ArrayList<UserRelation> friends = new ArrayList<>();
+            
+            for(UserRelation all : relations) {
+                if(all.getType() == UserRelationType.FRIENDS) friends.add(all);
+            }
+            
+            StringBuilder stringBuilder = new StringBuilder();
+            for(UserRelation all : relations) {
+                if(event.getGuild().getMemberById(all.getTarget()) != null) {
+                    stringBuilder.append("\n" + event.getGuild().getMemberById(all.getTarget()).getAsMention());
+                }
+            }    
 
-            ErrorEmbed.sendError(context, ErrorType.GENERAL_UNFINISHED);
+            embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
+            embedBuilder.setTitle(":green_heart: **Friend List**");
+            embedBuilder.setAuthor(member.getUser().getName() + "#" + member.getUser().getDiscriminator(), null, member.getEffectiveAvatarUrl());
+            embedBuilder.setDescription("Your current friends are:" + stringBuilder.toString());
 
         } else ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_SYNTAX);
 

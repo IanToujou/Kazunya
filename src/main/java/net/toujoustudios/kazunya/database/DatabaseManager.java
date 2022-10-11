@@ -76,6 +76,7 @@ public class DatabaseManager {
         //Ensure that the bot has been loaded.
         Loader.ensureLoad();
         //Create user related databases.
+        executeUpdate("CREATE TABLE IF NOT EXISTS user_accounts (`id` VARCHAR(256) NOT NULL, `name` VARCHAR(256) NOT NULL, `avatar` VARCHAR(512) NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;");
         executeUpdate("CREATE TABLE IF NOT EXISTS user_bans (`id` VARCHAR(256) NOT NULL, `reason` VARCHAR(256) NOT NULL, `until` DATETIME NULL DEFAULT NULL, `date` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;");
         executeUpdate("CREATE TABLE IF NOT EXISTS user_relations (`id` VARCHAR(256) NOT NULL, `target` VARCHAR(256) NOT NULL, `type` VARCHAR(256) NOT NULL, `date` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;");
         executeUpdate("CREATE TABLE IF NOT EXISTS user_money (`id` VARCHAR(256) NOT NULL, `bank` INT NOT NULL DEFAULT '0', `wallet` INT NOT NULL DEFAULT '0', PRIMARY KEY (`id`)) ENGINE = InnoDB;");

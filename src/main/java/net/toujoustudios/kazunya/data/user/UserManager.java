@@ -9,6 +9,7 @@ import net.toujoustudios.kazunya.data.relation.UserRelationType;
 import net.toujoustudios.kazunya.data.skill.SkillType;
 import net.toujoustudios.kazunya.data.skill.UserSkill;
 import net.toujoustudios.kazunya.data.skill.UserSkillManager;
+import net.toujoustudios.kazunya.main.Main;
 
 import java.util.*;
 
@@ -16,6 +17,7 @@ public class UserManager {
 
     private static final HashMap<String, UserManager> users = new HashMap<>();
     private final String id;
+    private UserAccount account;
     private UserBan ban;
     private double bankMoney;
     private double walletMoney;
@@ -24,6 +26,7 @@ public class UserManager {
 
     public UserManager(String id) {
         this.id = id;
+        this.account = UserAccountManager.getAccount(id);
         this.ban = UserBanManager.getBan(id);
         this.bankMoney = UserMoneyManager.getBankMoney(id);
         this.walletMoney = UserMoneyManager.getWalletMoney(id);
@@ -52,6 +55,7 @@ public class UserManager {
     }
 
     public void save() {
+        if(account != null) UserAccountManager.setAccount(id, account);
         checkBan();
         if(isBanned()) UserBanManager.ban(id, ban.getReason(), ban.getUntil(), ban.getDate());
         else UserBanManager.unban(id);
@@ -62,6 +66,22 @@ public class UserManager {
             UserRelationManager.setRelation(id, all.getTarget(), all.getType(), all.getDate());
         });
         UserSkillManager.setSkills(id, skills);
+    }
+
+    public UserAccount getAccount() {
+        return account;
+    }
+
+    public void setAccount(UserAccount account) {
+        this.account = account;
+    }
+
+    public String getName() {
+        return account.getName();
+    }
+
+    public String getAvatar() {
+        return account.getAvatar();
     }
 
     public boolean isBanned() {

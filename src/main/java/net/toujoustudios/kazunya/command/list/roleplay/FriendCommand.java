@@ -67,8 +67,8 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
             embedBuilder.setThumbnail(config.getString("assets.img.icon_friend"));
             embedBuilder.setAuthor(member.getUser().getName() + "#" + member.getUser().getDiscriminator(), null, member.getEffectiveAvatarUrl());
             embedBuilder.setDescription(member.getAsMention() + " sent you a friend request, " + target.getAsMention() + "!");
-            context.getEvent()
-                    .replyEmbeds(embedBuilder.build())
+            context.getEvent().reply(target.getAsMention())
+                    .addEmbeds(embedBuilder.build())
                     .addActionRow(
                             Button.success("cmd_friend_accept-" + member.getId(), "Accept"),
                             Button.danger("cmd_friend_decline-" + member.getId(), "Decline"))
@@ -125,15 +125,20 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
             }
 
             StringBuilder stringBuilder = new StringBuilder();
+            int hiddenFriends = 0;
             for(UserRelation all : friends) {
-                if(context.getGuild().getMemberById(all.getTarget()) != null)
-                    stringBuilder.append("\n").append(context.getGuild().getMemberById(all.getTarget()).getAsMention());
+                UserManager friendManager = UserManager.getUser(all.getTarget());
+                if(friendManager.getAccount() != null) {
+                    stringBuilder.append("\n").append("`").append(friendManager.getAccount().getName()).append("`");
+                } else hiddenFriends++;
             }
+
+            if(hiddenFriends > 0) stringBuilder.append("\n").append("You have `").append(hiddenFriends).append("` more friends that are hidden.");
 
             embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
             embedBuilder.setTitle(":green_heart: **Friend List**");
             embedBuilder.setAuthor(member.getUser().getName() + "#" + member.getUser().getDiscriminator(), null, member.getEffectiveAvatarUrl());
-            embedBuilder.setDescription("Your current friends are:" + stringBuilder);
+            embedBuilder.setDescription("Your current friends are: " + stringBuilder);
             context.getEvent().replyEmbeds(embedBuilder.build()).queue();
 
         }

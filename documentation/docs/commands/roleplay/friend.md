@@ -9,6 +9,8 @@
 
 The friend command is used to manage your friend list on Kazunya. The friend system will be used in the future to send game invites and to use certain interactions.
 
+You can only have a maximum of 20 friends at the same time, excluding other relationships. Friends are valid everywhere on Discord. Servers don't have seperate systems because it is intented to work across servers.
+
 <p align="center"><img src="https://media.tenor.com/OQJmvVwLZ5YAAAAi/tkthao219-bubududu.gif"></p>
 
 ## **Syntax**

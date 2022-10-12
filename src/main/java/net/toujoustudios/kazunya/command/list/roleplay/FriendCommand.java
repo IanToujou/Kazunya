@@ -129,11 +129,11 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
             for(UserRelation all : friends) {
                 UserManager friendManager = UserManager.getUser(all.getTarget());
                 if(friendManager.getAccount() != null) {
-                    stringBuilder.append("\n").append("`").append(friendManager.getAccount().getName()).append("`");
+                    stringBuilder.append("\n").append("• `").append(friendManager.getAccount().getName()).append("`");
                 } else hiddenFriends++;
             }
 
-            if(hiddenFriends > 0) stringBuilder.append("\n").append("You have `").append(hiddenFriends).append("` more friends that are hidden.");
+            if(hiddenFriends > 0) stringBuilder.append("\n\n").append("*You have ").append(hiddenFriends).append(" more friends that are hidden.*");
 
             embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
             embedBuilder.setTitle(":green_heart: **Friend List**");

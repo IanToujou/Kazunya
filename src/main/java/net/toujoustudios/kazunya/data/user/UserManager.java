@@ -9,7 +9,6 @@ import net.toujoustudios.kazunya.data.relation.UserRelationType;
 import net.toujoustudios.kazunya.data.skill.SkillType;
 import net.toujoustudios.kazunya.data.skill.UserSkill;
 import net.toujoustudios.kazunya.data.skill.UserSkillManager;
-import net.toujoustudios.kazunya.main.Main;
 
 import java.util.*;
 

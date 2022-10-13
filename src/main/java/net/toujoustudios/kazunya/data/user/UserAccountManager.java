@@ -1,7 +1,6 @@
 package net.toujoustudios.kazunya.data.user;
 
 import net.toujoustudios.kazunya.database.DatabaseManager;
-import net.toujoustudios.kazunya.main.Main;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

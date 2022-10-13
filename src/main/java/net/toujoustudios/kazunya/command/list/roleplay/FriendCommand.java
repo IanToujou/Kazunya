@@ -49,7 +49,6 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
             }
 
             UserManager memberManager = UserManager.getUser(member.getId());
-            UserManager targetManager = UserManager.getUser(target.getId());
 
             if(target.getId().equals(member.getId())) {
                 ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_SELF);
@@ -135,7 +134,8 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
                 } else hiddenFriends++;
             }
 
-            if(hiddenFriends > 0) stringBuilder.append("\n\n").append("*You have ").append(hiddenFriends).append(" more friends that are hidden.*");
+            if(hiddenFriends > 0)
+                stringBuilder.append("\n\n").append("*You have ").append(hiddenFriends).append(" more friends that are hidden.*");
 
             embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
             embedBuilder.setTitle(":green_heart: **Friend List**");
@@ -191,7 +191,8 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
 
                 } else
                     event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_FRIEND_REQUEST)).setEphemeral(true).queue();
-            } else event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_FRIEND_REQUEST)).setEphemeral(true).queue();
+            } else
+                event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_FRIEND_REQUEST)).setEphemeral(true).queue();
 
         } else if(id.startsWith("cmd_friend_decline-")) {
 
@@ -218,7 +219,8 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
 
                 } else
                     event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_FRIEND_REQUEST)).setEphemeral(true).queue();
-            } else event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_FRIEND_REQUEST)).setEphemeral(true).queue();
+            } else
+                event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_FRIEND_REQUEST)).setEphemeral(true).queue();
 
         }
     }

@@ -135,7 +135,8 @@ public class PartnerCommand extends ListenerAdapter implements ICommand {
                 } else hiddenPartners++;
             }
 
-            if(hiddenPartners > 0) stringBuilder.append("\n\n").append("*You have ").append(hiddenPartners).append(" hidden partners.*");
+            if(hiddenPartners > 0)
+                stringBuilder.append("\n\n").append("*You have ").append(hiddenPartners).append(" hidden partners.*");
 
             embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
             embedBuilder.setTitle(":heart: **Partner List**");
@@ -193,7 +194,8 @@ public class PartnerCommand extends ListenerAdapter implements ICommand {
 
                 } else
                     event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_PARTNER_REQUEST)).setEphemeral(true).queue();
-            } else event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_PARTNER_REQUEST)).setEphemeral(true).queue();
+            } else
+                event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_PARTNER_REQUEST)).setEphemeral(true).queue();
         } else if(id.startsWith("cmd_partner_decline-")) {
 
             Member member = event.getMember();
@@ -219,7 +221,8 @@ public class PartnerCommand extends ListenerAdapter implements ICommand {
 
                 } else
                     event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_PARTNER_REQUEST)).setEphemeral(true).queue();
-            } else event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_PARTNER_REQUEST)).setEphemeral(true).queue();
+            } else
+                event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_PARTNER_REQUEST)).setEphemeral(true).queue();
 
         }
     }

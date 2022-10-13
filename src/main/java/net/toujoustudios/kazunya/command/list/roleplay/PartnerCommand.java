@@ -55,7 +55,17 @@ public class PartnerCommand extends ListenerAdapter implements ICommand {
                 return;
             }
 
-            if(memberManager.getRelation(target.getId()) != null) {
+            if(memberManager.getRelation(target.getId()) == null) {
+                ErrorEmbed.sendError(context, ErrorType.ACTION_RELATION_TOO_LOW);
+                return;
+            }
+
+            if(memberManager.getRelation(target.getId()).getType().getValue() < UserRelationType.FRIENDS.getValue()) {
+                ErrorEmbed.sendError(context, ErrorType.ACTION_RELATION_TOO_LOW);
+                return;
+            }
+
+            if(memberManager.getRelation(target.getId()).getType().getValue() >= UserRelationType.COUPLE.getValue()) {
                 ErrorEmbed.sendError(context, ErrorType.ACTION_ALREADY_PARTNERS);
                 return;
             }

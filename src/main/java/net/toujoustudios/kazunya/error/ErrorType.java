@@ -50,6 +50,7 @@ public enum ErrorType {
     ACTION_MAX_PARTNERS("2014", "You already have the maximum amount of partners."),
     ACTION_MAX_MARRIED("2015", "You already have the maximum amount of married partners."),
     ACTION_RELATION_TOO_HIGH("2016", "Your relationship with the other person is too strong."),
+    ACTION_RELATION_TOO_LOW("2017", "Your relationship with the other person is not strong enough."),
 
     // Audio errors that only occur when failing to send an audio stream.
     AUDIO_UNABLE_TO_LOAD("3001", "The audio couldn't be loaded due to an unexpected error."),

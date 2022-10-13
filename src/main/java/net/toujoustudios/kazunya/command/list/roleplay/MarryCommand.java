@@ -2,9 +2,12 @@ package net.toujoustudios.kazunya.command.list.roleplay;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.events.interaction.ButtonClickEvent;
+import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
+import net.dv8tion.jda.api.interactions.components.Button;
 import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.command.ICommand;
@@ -28,7 +31,7 @@ import java.util.List;
  * @see net.toujoustudios.kazunya.command.list.roleplay.DivorceCommand
  * @since 1.0.0
  */
-public class MarryCommand implements ICommand {
+public class MarryCommand extends ListenerAdapter implements ICommand {
 
     private final Config config;
     private final HashMap<String, String> requests = new HashMap<>();
@@ -46,8 +49,6 @@ public class MarryCommand implements ICommand {
 
         Member target = args.get(0).getAsMember();
         assert target != null;
-        String memberId = member.getId();
-        String targetId = target.getId();
 
         if(target.getUser().isBot()) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_BOT);
@@ -60,58 +61,116 @@ public class MarryCommand implements ICommand {
         }
 
         UserManager memberManager = UserManager.getUser(member.getId());
-        UserManager targetManager = UserManager.getUser(target.getId());
 
         if(memberManager.getRelationsOfType(UserRelationType.MARRIED).size() > UserRelationType.MARRIED.getMaxUsers()) {
-            ErrorEmbed.sendError(context, ErrorType.ACTION_ALREADY_MARRIED);
+            ErrorEmbed.sendError(context, ErrorType.ACTION_MAX_MARRIED);
             return;
         }
 
-        if(targetManager.getRelationsOfType(UserRelationType.MARRIED).size() > UserRelationType.MARRIED.getMaxUsers()) {
-            ErrorEmbed.sendError(context, ErrorType.ACTION_ALREADY_MARRIED);
-            return;
+        if(memberManager.getRelation(target.getId()) != null) {
+            if(memberManager.getRelation(target.getId()).getType().getValue() < UserRelationType.COUPLE.getValue()) {
+                ErrorEmbed.sendError(context, ErrorType.ACTION_RELATION_TOO_LOW);
+                return;
+            }
         }
 
-        requests.putIfAbsent(memberId, targetId);
-
-        if(requests.containsKey(targetId)) {
-
-            if(requests.get(target.getId()).equals(member.getId())) {
-
-                requests.remove(targetId);
-                requests.remove(memberId);
-
-                Date date = new Date();
-
-                UserRelation memberRelation = new UserRelation(targetId, UserRelationType.MARRIED, date);
-                UserRelation targetRelation = new UserRelation(memberId, UserRelationType.MARRIED, date);
-
-                memberManager.addRelation(memberRelation);
-                targetManager.addRelation(targetRelation);
-
-                embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
-                embedBuilder.setTitle(":ring: **Marriage**");
-                embedBuilder.setDescription(member.getAsMention() + " and " + target.getAsMention() + " are now happily married!");
-                context.getEvent().replyEmbeds(embedBuilder.build()).queue();
-
+        if(memberManager.getRelation(target.getId()) != null) {
+            if(memberManager.getRelation(target.getId()).getType().getValue() >= UserRelationType.MARRIED.getValue()) {
+                ErrorEmbed.sendError(context, ErrorType.ACTION_ALREADY_PARTNERS);
+                return;
             }
-
-        } else {
-
-            String message = "Do you want to marry me?";
-            if(args.size() > 1) {
-                message = args.get(1).getAsString();
-            }
-
-            embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
-            embedBuilder.setTitle(":ring: **Proposal**");
-            embedBuilder.setDescription(member.getAsMention() + " wants to marry you, " + target.getAsMention() + "!\n" + member.getEffectiveName() + ": `" + message + "`");
-            embedBuilder.addField(":white_check_mark: Accept:", "To accept the proposal, please type `/marry @" + member.getEffectiveName() + "`", false);
-            embedBuilder.addField(":octagonal_sign: Decline:", "To decline the proposal, simply ignore it. But that would be sad.", false);
-            context.getEvent().replyEmbeds(embedBuilder.build()).queue();
-
         }
 
+        requests.putIfAbsent(member.getId(), target.getId());
+
+        embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
+        embedBuilder.setTitle(":ring: **Proposal**");
+        embedBuilder.setThumbnail(config.getString("assets.img.icon_marry_request"));
+        embedBuilder.setAuthor(member.getUser().getName() + "#" + member.getUser().getDiscriminator(), null, member.getEffectiveAvatarUrl());
+        embedBuilder.setDescription(member.getAsMention() + " is proposing to you, " + target.getAsMention() + "!\nWhat will you do?~");
+        context.getEvent().reply(target.getAsMention())
+                .addEmbeds(embedBuilder.build())
+                .addActionRow(
+                        Button.success("cmd_marry_accept-" + member.getId(), "Accept"),
+                        Button.danger("cmd_marry_decline-" + member.getId(), "Decline"))
+                .queue();
+
+    }
+
+    @Override
+    @SuppressWarnings("all")
+    public void onButtonClick(ButtonClickEvent event) {
+
+        String id = event.getComponentId();
+        EmbedBuilder embedBuilder = new EmbedBuilder();
+
+        if(!id.startsWith("cmd_marry_")) return;
+        if(id.startsWith("cmd_marry_accept-")) {
+
+            Member member = event.getMember();
+            Member target = event.getGuild().getMemberById(id.split("-")[1]);
+
+            if(target == null) {
+                event.replyEmbeds(ErrorEmbed.buildError(ErrorType.COMMAND_INVALID_USER_NOT_FOUND)).setEphemeral(true).queue();
+                return;
+            }
+
+            UserManager memberManager = UserManager.getUser(member.getId());
+            UserManager targetManager = UserManager.getUser(target.getId());
+
+            if(requests.containsKey(target.getId())) {
+                if(requests.get(target.getId()).equals(member.getId())) {
+
+                    requests.remove(target.getId());
+                    requests.remove(member.getId());
+
+                    Date date = new Date();
+                    UserRelation memberRelation = new UserRelation(target.getId(), UserRelationType.MARRIED, date);
+                    UserRelation targetRelation = new UserRelation(member.getId(), UserRelationType.MARRIED, date);
+
+                    memberManager.addRelation(memberRelation);
+                    targetManager.addRelation(targetRelation);
+                    embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
+                    embedBuilder.setTitle(":ring: **Marriage**");
+                    embedBuilder.setThumbnail(config.getString("assets.img.icon_marry"));
+                    embedBuilder.setDescription(member.getAsMention() + " and " + target.getAsMention() + " are now happily married!");
+                    embedBuilder.setAuthor(member.getUser().getName() + "#" + member.getUser().getDiscriminator(), null, member.getEffectiveAvatarUrl());
+                    event.getChannel().sendMessage(target.getAsMention()).setEmbeds(embedBuilder.build()).queue();
+                    event.getMessage().delete().queue();
+
+                } else
+                    event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_MARRY_REQUEST)).setEphemeral(true).queue();
+            } else
+                event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_MARRY_REQUEST)).setEphemeral(true).queue();
+        } else if(id.startsWith("cmd_marry_decline-")) {
+
+            Member member = event.getMember();
+            Member target = event.getGuild().getMemberById(id.split("-")[1]);
+
+            if(target == null) {
+                event.replyEmbeds(ErrorEmbed.buildError(ErrorType.COMMAND_INVALID_USER_NOT_FOUND)).setEphemeral(true).queue();
+                return;
+            }
+
+            if(requests.containsKey(target.getId())) {
+                if(requests.get(target.getId()).equals(member.getId())) {
+
+                    requests.remove(target.getId());
+                    requests.remove(member.getId());
+
+                    embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
+                    embedBuilder.setTitle(":no_entry: **Request Rejected**");
+                    embedBuilder.setDescription(member.getAsMention() + " rejected your proposal. Maybe they need more time...");
+                    embedBuilder.setAuthor(member.getUser().getName() + "#" + member.getUser().getDiscriminator(), null, member.getEffectiveAvatarUrl());
+                    event.getChannel().sendMessage(target.getAsMention()).setEmbeds(embedBuilder.build()).queue();
+                    event.getMessage().delete().queue();
+
+                } else
+                    event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_MARRY_REQUEST)).setEphemeral(true).queue();
+            } else
+                event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_MARRY_REQUEST)).setEphemeral(true).queue();
+
+        }
     }
 
     @Override
@@ -133,7 +192,6 @@ public class MarryCommand implements ICommand {
     public List<OptionData> getOptions() {
         List<OptionData> optionData = new ArrayList<>();
         optionData.add(new OptionData(OptionType.USER, "user", "The person you want to marry.", true));
-        optionData.add(new OptionData(OptionType.STRING, "message", "The proposal message."));
         return optionData;
     }
 

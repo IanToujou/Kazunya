@@ -56,8 +56,10 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
             }
 
             if(memberManager.getRelation(target.getId()) != null) {
-                ErrorEmbed.sendError(context, ErrorType.ACTION_ALREADY_FRIENDS);
-                return;
+                if(memberManager.getRelation(target.getId()).getType().getValue() >= UserRelationType.FRIENDS.getValue()) {
+                    ErrorEmbed.sendError(context, ErrorType.ACTION_ALREADY_FRIENDS);
+                    return;
+                }
             }
 
             requests.putIfAbsent(member.getId(), target.getId());

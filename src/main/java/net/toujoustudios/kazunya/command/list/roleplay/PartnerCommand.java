@@ -49,7 +49,6 @@ public class PartnerCommand extends ListenerAdapter implements ICommand {
             }
 
             UserManager memberManager = UserManager.getUser(member.getId());
-            UserManager targetManager = UserManager.getUser(target.getId());
 
             if(target.getId().equals(member.getId())) {
                 ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_SELF);

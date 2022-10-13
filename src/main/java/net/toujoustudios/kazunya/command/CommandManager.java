@@ -59,6 +59,7 @@ public class CommandManager {
         this.addCommand(new BonkCommand());
         this.addCommand(new NomCommand());
         this.addCommand(new FriendCommand());
+        this.addCommand(new PartnerCommand());
 
         //Register economy commands
         this.addCommand(new MarketInfoCommand());

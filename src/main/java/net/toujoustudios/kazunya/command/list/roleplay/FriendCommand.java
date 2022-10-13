@@ -64,7 +64,7 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
             requests.putIfAbsent(member.getId(), target.getId());
             embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
             embedBuilder.setTitle(":green_heart: **Friend Request**");
-            embedBuilder.setThumbnail(config.getString("assets.img.icon_friend"));
+            embedBuilder.setThumbnail(config.getString("assets.img.icon_friend_request"));
             embedBuilder.setAuthor(member.getUser().getName() + "#" + member.getUser().getDiscriminator(), null, member.getEffectiveAvatarUrl());
             embedBuilder.setDescription(member.getAsMention() + " sent you a friend request, " + target.getAsMention() + "!");
             context.getEvent().reply(target.getAsMention())
@@ -126,9 +126,11 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
 
             StringBuilder stringBuilder = new StringBuilder();
             int hiddenFriends = 0;
+            boolean hasFriends = false;
             for(UserRelation all : friends) {
                 UserManager friendManager = UserManager.getUser(all.getTarget());
                 if(friendManager.getAccount() != null) {
+                    hasFriends = true;
                     stringBuilder.append("\n").append("• `").append(friendManager.getAccount().getName()).append("`");
                 } else hiddenFriends++;
             }
@@ -138,7 +140,8 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
             embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
             embedBuilder.setTitle(":green_heart: **Friend List**");
             embedBuilder.setAuthor(member.getUser().getName() + "#" + member.getUser().getDiscriminator(), null, member.getEffectiveAvatarUrl());
-            embedBuilder.setDescription("Your current friends are: " + stringBuilder);
+            if(hasFriends) embedBuilder.setDescription("Your current friends are: " + stringBuilder);
+            else embedBuilder.setDescription("*You don't have any friends.*");
             context.getEvent().replyEmbeds(embedBuilder.build()).queue();
 
         }
@@ -187,8 +190,36 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
                     event.getMessage().delete().queue();
 
                 } else
-                    event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_USER)).setEphemeral(true).queue();
-            } else event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_USER)).setEphemeral(true).queue();
+                    event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_FRIEND_REQUEST)).setEphemeral(true).queue();
+            } else event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_FRIEND_REQUEST)).setEphemeral(true).queue();
+
+        } else if(id.startsWith("cmd_friend_decline-")) {
+
+            Member member = event.getMember();
+            Member target = event.getGuild().getMemberById(id.split("-")[1]);
+
+            if(target == null) {
+                event.replyEmbeds(ErrorEmbed.buildError(ErrorType.COMMAND_INVALID_USER_NOT_FOUND)).setEphemeral(true).queue();
+                return;
+            }
+
+            if(requests.containsKey(target.getId())) {
+                if(requests.get(target.getId()).equals(member.getId())) {
+
+                    requests.remove(target.getId());
+                    requests.remove(member.getId());
+
+                    embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
+                    embedBuilder.setTitle(":no_entry: **Request Rejected**");
+                    embedBuilder.setDescription(member.getAsMention() + " rejected your friend request.");
+                    embedBuilder.setAuthor(member.getUser().getName() + "#" + member.getUser().getDiscriminator(), null, member.getEffectiveAvatarUrl());
+                    event.getChannel().sendMessage(target.getAsMention()).setEmbeds(embedBuilder.build()).queue();
+                    event.getMessage().delete().queue();
+
+                } else
+                    event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_FRIEND_REQUEST)).setEphemeral(true).queue();
+            } else event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_FRIEND_REQUEST)).setEphemeral(true).queue();
+
         }
     }
 

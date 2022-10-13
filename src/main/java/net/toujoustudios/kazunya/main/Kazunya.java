@@ -6,6 +6,7 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.toujoustudios.kazunya.command.CommandManager;
 import net.toujoustudios.kazunya.command.list.roleplay.FriendCommand;
+import net.toujoustudios.kazunya.command.list.roleplay.PartnerCommand;
 import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.data.guild.GuildManager;
 import net.toujoustudios.kazunya.data.user.UserManager;
@@ -50,6 +51,7 @@ public class Kazunya {
 
         //Add event listeners for command buttons.
         builder.addEventListeners(new FriendCommand());
+        builder.addEventListeners(new PartnerCommand());
 
     }
 

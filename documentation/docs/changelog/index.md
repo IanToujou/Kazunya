@@ -28,11 +28,12 @@ Changes listed in the changelog are divided into categories.
 ### **Release v1.2.0 (**`01.10.2022`**)**
 
 - `[💥]` Completely reworked the database.
-- `[💥]` Added a new skill system.
-- `[💥]` Added subcommands.
-- `[✨]` Added the /nom command.
-- `[✨]` Added a friend system and a /friend command.
+- `[💥]` Subcommands are now available.
+- `[💥]` Added new relationship system.
+- `[✨]` Added /nom command.
+- `[✨]` Added /nom command to nom people.
 - `[🔥]` Removed old music system.
+- `[🐛]` Fixed broken or invisible GIFs.
 
 ### **Release v1.1.0 (**`01.10.2022`**)**
 

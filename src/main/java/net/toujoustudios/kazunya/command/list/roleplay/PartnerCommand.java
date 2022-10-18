@@ -135,13 +135,11 @@ public class PartnerCommand extends ListenerAdapter implements ICommand {
 
             StringBuilder stringBuilder = new StringBuilder();
             int hiddenPartners = 0;
-            boolean hasPartner = false;
             for(UserRelation all : partners) {
                 UserManager partnerManager = UserManager.getUser(all.getTarget());
-                if(partnerManager.getAccount() != null) {
-                    hasPartner = true;
+                if(partnerManager.getAccount() != null)
                     stringBuilder.append("\n").append("• `").append(partnerManager.getAccount().getName()).append("`");
-                } else hiddenPartners++;
+                else hiddenPartners++;
             }
 
             if(hiddenPartners > 0)
@@ -151,7 +149,7 @@ public class PartnerCommand extends ListenerAdapter implements ICommand {
             embedBuilder.setTitle(":heart: **Partner List**");
             embedBuilder.setAuthor(member.getUser().getName() + "#" + member.getUser().getDiscriminator(), null, member.getEffectiveAvatarUrl());
 
-            if(hasPartner) embedBuilder.setDescription("Your current partners are: " + stringBuilder);
+            if(partners.size() > 0) embedBuilder.setDescription("Your current partners are: " + stringBuilder);
             else embedBuilder.setDescription("*You don't have any partners.*");
 
             context.getEvent().replyEmbeds(embedBuilder.build()).queue();

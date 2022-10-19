@@ -10,7 +10,6 @@ import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.command.ICommand;
 import net.toujoustudios.kazunya.config.Config;
-import net.toujoustudios.kazunya.data.relation.UserRelationType;
 import net.toujoustudios.kazunya.data.user.UserManager;
 import net.toujoustudios.kazunya.util.ColorUtil;
 
@@ -18,11 +17,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
- * This file has been created by Ian Toujou.
- * Project: Kazunya
- * Date: 27/10/2021
- * Time: 23:56
+ * A command to get basic information from Discord about a specific user.
+ *
+ * @since 1.0.0
+ * @author Ian Toujou
+ * @version 1.2.0
  */
 public class UserInfoCommand implements ICommand {
 
@@ -33,7 +34,6 @@ public class UserInfoCommand implements ICommand {
     }
 
     @Override
-    @SuppressWarnings("all")
     public void handle(CommandContext context) {
 
         List<OptionMapping> args = context.getArgs();
@@ -42,16 +42,16 @@ public class UserInfoCommand implements ICommand {
         Member target = args.get(0).getAsMember();
         if(target == null) return;
         User targetUser = target.getUser();
-        UserManager targetManager = UserManager.getUser(targetUser.getId());
+        UserManager targetManager = UserManager.getUser(target);
 
         embedBuilder.setTitle("**:zap: User Information**");
         embedBuilder.setThumbnail(targetUser.getEffectiveAvatarUrl());
 
         StringBuilder generalBuilder = new StringBuilder();
-        generalBuilder.append("Username: `" + targetUser.getAsTag() + "`\n");
-        generalBuilder.append("Display Name: `" + target.getEffectiveName() + "`\n");
-        generalBuilder.append("User ID: `" + target.getId() + "`\n");
-        generalBuilder.append("Bot Account: `" + (targetUser.isBot() ? "Yes" : "No") + "`");
+        generalBuilder.append("Username: `").append(targetUser.getAsTag()).append("`\n");
+        generalBuilder.append("Display Name: `").append(target.getEffectiveName()).append("`\n");
+        generalBuilder.append("User ID: `").append(target.getId()).append("`\n");
+        generalBuilder.append("Bot Account: `").append(targetUser.isBot() ? "Yes" : "No").append("`");
 
         StringBuilder datesBuilder = new StringBuilder();
         datesBuilder.append("Account Created: `" + targetUser.getTimeCreated().format(DateTimeFormatter.RFC_1123_DATE_TIME) + "`\n");
@@ -59,28 +59,6 @@ public class UserInfoCommand implements ICommand {
 
         embedBuilder.addField(":information_source: General Information:", generalBuilder.toString(), false);
         embedBuilder.addField(":calendar: Dates:", datesBuilder.toString(), false);
-
-        StringBuilder relationshipBuilder = new StringBuilder();
-
-        String partner = "`None`";
-        if(targetManager.getRelationsOfType(UserRelationType.MARRIED).size() > 0) {
-
-            String partnerId = targetManager.getRelationsOfType(UserRelationType.MARRIED).get(0).getTarget();
-
-            if(context.getGuild().getMemberById(partnerId) != null) {
-                partner = context.getGuild().getMemberById(partnerId).getAsMention();
-            } else {
-                if(context.getJDA().getUserById(partnerId) != null) {
-                    partner = "`" + context.getJDA().getUserById(partnerId).getName() + "`";
-                } else {
-                    partner = "`Invalid`";
-                }
-            }
-
-        }
-
-        relationshipBuilder.append("Partner: " + partner);
-        embedBuilder.addField(":heart: Relationships:", relationshipBuilder.toString(), false);
 
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
         context.getEvent().replyEmbeds(embedBuilder.build()).queue();

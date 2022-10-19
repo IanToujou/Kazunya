@@ -37,7 +37,7 @@ public class PartnerCommand extends ListenerAdapter implements ICommand {
         List<OptionMapping> args = context.getArgs();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
-        if(context.getEvent().getSubcommandName().equals("add")) {
+        if(Objects.equals(context.getEvent().getSubcommandName(), "add")) {
 
             Member member = context.getMember();
             Member target = args.get(0).getAsMember();
@@ -48,7 +48,8 @@ public class PartnerCommand extends ListenerAdapter implements ICommand {
                 return;
             }
 
-            UserManager memberManager = UserManager.getUser(member.getId());
+            UserManager memberManager = UserManager.getUser(member);
+            UserManager.createAccount(target);
 
             if(target.getId().equals(member.getId())) {
                 ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_SELF);
@@ -83,7 +84,7 @@ public class PartnerCommand extends ListenerAdapter implements ICommand {
                             Button.danger("cmd_partner_decline-" + member.getId(), "Decline"))
                     .queue();
 
-        } else if(context.getEvent().getSubcommandName().equals("remove")) {
+        } else if(Objects.equals(context.getEvent().getSubcommandName(), "remove")) {
 
             Member member = context.getMember();
             Member target = args.get(0).getAsMember();
@@ -94,8 +95,8 @@ public class PartnerCommand extends ListenerAdapter implements ICommand {
                 return;
             }
 
-            UserManager memberManager = UserManager.getUser(member.getId());
-            UserManager targetManager = UserManager.getUser(target.getId());
+            UserManager memberManager = UserManager.getUser(member);
+            UserManager targetManager = UserManager.getUser(target);
 
             if(target.getId().equals(member.getId())) {
                 ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_SELF);
@@ -121,10 +122,10 @@ public class PartnerCommand extends ListenerAdapter implements ICommand {
             embedBuilder.setDescription("You broke up with " + target.getAsMention() + "...");
             context.getEvent().replyEmbeds(embedBuilder.build()).setEphemeral(true).queue();
 
-        } else if(context.getEvent().getSubcommandName().equals("list")) {
+        } else if(Objects.equals(context.getEvent().getSubcommandName(), "list")) {
 
             Member member = context.getMember();
-            UserManager memberManager = UserManager.getUser(member.getId());
+            UserManager memberManager = UserManager.getUser(member);
 
             ArrayList<UserRelation> relations = memberManager.getRelations();
             ArrayList<UserRelation> partners = new ArrayList<>();
@@ -176,8 +177,8 @@ public class PartnerCommand extends ListenerAdapter implements ICommand {
                 return;
             }
 
-            UserManager memberManager = UserManager.getUser(member.getId());
-            UserManager targetManager = UserManager.getUser(target.getId());
+            UserManager memberManager = UserManager.getUser(member);
+            UserManager targetManager = UserManager.getUser(target);
 
             if(requests.containsKey(target.getId())) {
                 if(requests.get(target.getId()).equals(member.getId())) {

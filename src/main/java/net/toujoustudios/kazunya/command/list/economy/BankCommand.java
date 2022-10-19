@@ -26,7 +26,7 @@ public class BankCommand implements ICommand {
 
         EmbedBuilder embedBuilder = new EmbedBuilder();
         Member member = context.getMember();
-        UserManager memberManager = UserManager.getUser(member.getId());
+        UserManager memberManager = UserManager.getUser(member);
         String currency = config.getString("format.char.currency");
         double accountMoney = memberManager.getBankMoney();
 

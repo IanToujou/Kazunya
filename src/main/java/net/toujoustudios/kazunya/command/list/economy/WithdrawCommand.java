@@ -29,7 +29,7 @@ public class WithdrawCommand implements ICommand {
         EmbedBuilder embedBuilder = new EmbedBuilder();
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
 
-        UserManager memberManager = UserManager.getUser(context.getMember().getId());
+        UserManager memberManager = UserManager.getUser(context.getMember());
 
         double amount = context.getArgs().get(0).getAsDouble();
         String currency = config.getString("format.char.currency");

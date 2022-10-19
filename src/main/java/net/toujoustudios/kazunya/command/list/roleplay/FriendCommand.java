@@ -48,7 +48,8 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
                 return;
             }
 
-            UserManager memberManager = UserManager.getUser(member.getId());
+            UserManager memberManager = UserManager.getUser(member);
+            UserManager.createAccount(target);
 
             if(target.getId().equals(member.getId())) {
                 ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_SELF);
@@ -86,8 +87,8 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
                 return;
             }
 
-            UserManager memberManager = UserManager.getUser(member.getId());
-            UserManager targetManager = UserManager.getUser(target.getId());
+            UserManager memberManager = UserManager.getUser(member);
+            UserManager targetManager = UserManager.getUser(target);
 
             if(target.getId().equals(member.getId())) {
                 ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_SELF);
@@ -116,7 +117,7 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
         } else if(context.getEvent().getSubcommandName().equals("list")) {
 
             Member member = context.getMember();
-            UserManager memberManager = UserManager.getUser(member.getId());
+            UserManager memberManager = UserManager.getUser(member);
 
             ArrayList<UserRelation> relations = memberManager.getRelations();
             ArrayList<UserRelation> friends = new ArrayList<>();
@@ -166,8 +167,8 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
                 return;
             }
 
-            UserManager memberManager = UserManager.getUser(member.getId());
-            UserManager targetManager = UserManager.getUser(target.getId());
+            UserManager memberManager = UserManager.getUser(member);
+            UserManager targetManager = UserManager.getUser(target);
 
             if(requests.containsKey(target.getId())) {
                 if(requests.get(target.getId()).equals(member.getId())) {

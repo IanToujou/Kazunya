@@ -97,7 +97,7 @@ public class CommandManager {
             CommandData data = new CommandData(command.getName(), command.getEmoji() + " " + command.getDescription());
             if(command.getSubcommandData().size() > 0) {
                 for(int i = 1; i <= command.getSubcommandData().size(); i++) {
-                    SubcommandData subcommandData = command.getSubcommandData().get(i-1);
+                    SubcommandData subcommandData = command.getSubcommandData().get(i - 1);
                     if(i == command.getSubcommandData().size())
                         Logger.log(LogLevel.DEBUG, "└── /" + data.getName() + " " + subcommandData.getName());
                     else

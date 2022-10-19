@@ -60,7 +60,8 @@ public class MarryCommand extends ListenerAdapter implements ICommand {
             return;
         }
 
-        UserManager memberManager = UserManager.getUser(member.getId());
+        UserManager memberManager = UserManager.getUser(member);
+        UserManager.createAccount(target);
 
         if(memberManager.getRelationsOfType(UserRelationType.MARRIED).size() > UserRelationType.MARRIED.getMaxUsers()) {
             ErrorEmbed.sendError(context, ErrorType.ACTION_MAX_MARRIED);
@@ -115,8 +116,8 @@ public class MarryCommand extends ListenerAdapter implements ICommand {
                 return;
             }
 
-            UserManager memberManager = UserManager.getUser(member.getId());
-            UserManager targetManager = UserManager.getUser(target.getId());
+            UserManager memberManager = UserManager.getUser(member);
+            UserManager targetManager = UserManager.getUser(target);
 
             if(requests.containsKey(target.getId())) {
                 if(requests.get(target.getId()).equals(member.getId())) {

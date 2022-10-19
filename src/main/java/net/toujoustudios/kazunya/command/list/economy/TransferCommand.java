@@ -31,7 +31,7 @@ public class TransferCommand implements ICommand {
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
 
         Member member = context.getMember();
-        UserManager memberManager = UserManager.getUser(member.getId());
+        UserManager memberManager = UserManager.getUser(member);
 
         Member target = context.getArgs().get(0).getAsMember();
         assert target != null;
@@ -41,7 +41,7 @@ public class TransferCommand implements ICommand {
             return;
         }
 
-        UserManager targetManager = UserManager.getUser(target.getId());
+        UserManager targetManager = UserManager.getUser(target);
 
         double amount = context.getArgs().get(1).getAsDouble();
         String currency = config.getString("format.char.currency");

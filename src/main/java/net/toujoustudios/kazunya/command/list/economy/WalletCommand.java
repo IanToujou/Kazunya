@@ -24,7 +24,7 @@ public class WalletCommand implements ICommand {
     public void handle(CommandContext context) {
 
         EmbedBuilder embedBuilder = new EmbedBuilder();
-        UserManager memberManager = UserManager.getUser(context.getMember().getId());
+        UserManager memberManager = UserManager.getUser(context.getMember());
         String currency = config.getString("format.char.currency");
         double amount = memberManager.getWalletMoney();
 

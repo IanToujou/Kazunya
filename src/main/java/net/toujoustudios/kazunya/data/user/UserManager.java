@@ -1,5 +1,6 @@
 package net.toujoustudios.kazunya.data.user;
 
+import lombok.Getter;
 import net.dv8tion.jda.api.entities.Member;
 import net.toujoustudios.kazunya.data.ban.UserBan;
 import net.toujoustudios.kazunya.data.ban.UserBanManager;
@@ -35,6 +36,14 @@ public class UserManager {
         checkBan();
     }
 
+    /**
+     * Returns an existing or a new user manager for any user, if the ID is specified.
+     * No account will be created for the user, because of Discord's API limitations.
+     *
+     * @param id The discord ID of the user you want to get the user manager from.
+     * @return The user manager of the given user.
+     * @since 1.0.0
+     */
     public static UserManager getUser(String id) {
         if(users.containsKey(id)) return users.get(id);
         UserManager userManager = new UserManager(id);
@@ -42,11 +51,29 @@ public class UserManager {
         return userManager;
     }
 
+    /**
+     * Returns an existing or a new user manager for a member on a guild. Because the
+     * user is an existing member, the user account will automatically be created or
+     * updated.
+     *
+     * @param member The member of a guild you want to get the user manager from.
+     * @return The user manager of the given member.
+     * @since 1.2.0
+     */
     public static UserManager getUser(Member member) {
         String id = member.getId();
         UserManager userManager = getUser(id);
         userManager.setAccount(new UserAccount(member.getUser().getName(), member.getUser().getDiscriminator(), member.getUser().getEffectiveAvatarUrl()));
         return userManager;
+    }
+
+    /**
+     * Creates an account for a given member without returning a user manager.
+     *
+     * @param member The member to create an account for.
+     */
+    public static void createAccount(Member member) {
+        getUser(member);
     }
 
     public static void saveAll() {

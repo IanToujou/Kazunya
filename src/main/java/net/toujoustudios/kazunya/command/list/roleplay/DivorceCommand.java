@@ -42,7 +42,7 @@ public class DivorceCommand implements ICommand {
             return;
         }
 
-        UserManager memberManager = UserManager.getUser(member.getId());
+        UserManager memberManager = UserManager.getUser(member);
 
         if(memberManager.getRelationsOfType(UserRelationType.MARRIED).size() < 1) {
             ErrorEmbed.sendError(context, ErrorType.ACTION_NOT_MARRIED);

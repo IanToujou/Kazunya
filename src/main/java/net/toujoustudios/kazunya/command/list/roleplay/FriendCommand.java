@@ -127,22 +127,20 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
 
             StringBuilder stringBuilder = new StringBuilder();
             int hiddenFriends = 0;
-            boolean hasFriends = false;
             for(UserRelation all : friends) {
                 UserManager friendManager = UserManager.getUser(all.getTarget());
-                if(friendManager.getAccount() != null) {
-                    hasFriends = true;
+                if(friendManager.getAccount() != null)
                     stringBuilder.append("\n").append("• `").append(friendManager.getAccount().getName()).append("`");
-                } else hiddenFriends++;
+                else hiddenFriends++;
             }
 
             if(hiddenFriends > 0)
-                stringBuilder.append("\n\n").append("*You have ").append(hiddenFriends).append(" more friends that are hidden.*");
+                stringBuilder.append("\n\n").append("*You have ").append(hiddenFriends).append(" hidden friends.*");
 
             embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
             embedBuilder.setTitle(":green_heart: **Friend List**");
             embedBuilder.setAuthor(member.getUser().getName() + "#" + member.getUser().getDiscriminator(), null, member.getEffectiveAvatarUrl());
-            if(hasFriends) embedBuilder.setDescription("Your current friends are: " + stringBuilder);
+            if(friends.size() > 0) embedBuilder.setDescription("Your current friends are: " + stringBuilder);
             else embedBuilder.setDescription("*You don't have any friends.*");
             context.getEvent().replyEmbeds(embedBuilder.build()).queue();
 

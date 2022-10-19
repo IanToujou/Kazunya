@@ -34,7 +34,7 @@ import java.util.List;
 public class MarryCommand extends ListenerAdapter implements ICommand {
 
     private final Config config;
-    private final HashMap<String, String> requests = new HashMap<>();
+    private final static HashMap<String, String> requests = new HashMap<>();
 
     public MarryCommand() {
         config = Config.getDefault();
@@ -63,7 +63,7 @@ public class MarryCommand extends ListenerAdapter implements ICommand {
         UserManager memberManager = UserManager.getUser(member);
         UserManager.createAccount(target);
 
-        if(memberManager.getRelationsOfType(UserRelationType.MARRIED).size() > UserRelationType.MARRIED.getMaxUsers()) {
+        if(memberManager.getRelationsOfType(UserRelationType.MARRIED).size() >= UserRelationType.MARRIED.getMaxUsers()) {
             ErrorEmbed.sendError(context, ErrorType.ACTION_MAX_MARRIED);
             return;
         }

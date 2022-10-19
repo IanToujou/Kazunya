@@ -71,6 +71,11 @@ public class PartnerCommand extends ListenerAdapter implements ICommand {
                 return;
             }
 
+            if(memberManager.getRelationsOfType(UserRelationType.COUPLE).size() >= UserRelationType.COUPLE.getMaxUsers()) {
+                ErrorEmbed.sendError(context, ErrorType.ACTION_MAX_PARTNERS);
+                return;
+            }
+
             requests.putIfAbsent(member.getId(), target.getId());
             embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
             embedBuilder.setTitle(":sparkling_heart: **Partner Request**");

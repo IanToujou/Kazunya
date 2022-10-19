@@ -37,7 +37,7 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
         List<OptionMapping> args = context.getArgs();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
-        if(context.getEvent().getSubcommandName().equals("add")) {
+        if(Objects.equals(context.getEvent().getSubcommandName(), "add")) {
 
             Member member = context.getMember();
             Member target = args.get(0).getAsMember();
@@ -63,6 +63,11 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
                 }
             }
 
+            if(memberManager.getRelationsOfType(UserRelationType.FRIENDS).size() >= UserRelationType.FRIENDS.getMaxUsers()) {
+                ErrorEmbed.sendError(context, ErrorType.ACTION_MAX_FRIENDS);
+                return;
+            }
+
             requests.putIfAbsent(member.getId(), target.getId());
             embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
             embedBuilder.setTitle(":green_heart: **Friend Request**");
@@ -76,7 +81,7 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
                             Button.danger("cmd_friend_decline-" + member.getId(), "Decline"))
                     .queue();
 
-        } else if(context.getEvent().getSubcommandName().equals("remove")) {
+        } else if(Objects.equals(context.getEvent().getSubcommandName(), "remove")) {
 
             Member member = context.getMember();
             Member target = args.get(0).getAsMember();
@@ -114,7 +119,7 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
             embedBuilder.setDescription("You removed " + target.getAsMention() + " from your friends...");
             context.getEvent().replyEmbeds(embedBuilder.build()).setEphemeral(true).queue();
 
-        } else if(context.getEvent().getSubcommandName().equals("list")) {
+        } else if(Objects.equals(context.getEvent().getSubcommandName(), "list")) {
 
             Member member = context.getMember();
             UserManager memberManager = UserManager.getUser(member);

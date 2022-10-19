@@ -36,7 +36,7 @@ public class SlashCommandListener extends ListenerAdapter {
         }
 
         Main.getBot().getCommandManager().handle(event);
-        Logger.log(LogLevel.SILENT, event.getUser().getName() + "#" + event.getUser().getDiscriminator() + " executed the following command: /" + event.getCommandString());
+        Logger.log(LogLevel.SILENT, event.getUser().getName() + "#" + event.getUser().getDiscriminator() + " executed the following command: " + event.getCommandString());
 
     }
 

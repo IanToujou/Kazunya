@@ -10,6 +10,11 @@ import lombok.Setter;
 public class UserAccount {
 
     private String name;
+    private String discriminator;
     private String avatar;
+
+    public String getFullName() {
+        return name + "#" + discriminator;
+    }
 
 }

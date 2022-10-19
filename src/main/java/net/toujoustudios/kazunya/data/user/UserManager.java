@@ -45,7 +45,7 @@ public class UserManager {
     public static UserManager getUser(Member member) {
         String id = member.getId();
         UserManager userManager = getUser(id);
-        userManager.setAccount(new UserAccount(member.getUser().getName(), member.getUser().getEffectiveAvatarUrl()));
+        userManager.setAccount(new UserAccount(member.getUser().getName(), member.getUser().getDiscriminator(), member.getUser().getEffectiveAvatarUrl()));
         return userManager;
     }
 

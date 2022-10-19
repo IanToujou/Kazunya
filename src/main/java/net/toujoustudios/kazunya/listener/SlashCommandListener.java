@@ -20,7 +20,7 @@ public class SlashCommandListener extends ListenerAdapter {
         UserManager userManager = UserManager.getUser(event.getUser().getId());
 
         if(userManager.getAccount() == null) {
-            userManager.setAccount(new UserAccount(event.getUser().getName(), event.getUser().getEffectiveAvatarUrl()));
+            userManager.setAccount(new UserAccount(event.getUser().getName(), event.getUser().getDiscriminator(), event.getUser().getEffectiveAvatarUrl()));
         }
 
         if(userManager.isBanned()) {

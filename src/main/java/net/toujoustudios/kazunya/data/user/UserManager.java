@@ -1,5 +1,6 @@
 package net.toujoustudios.kazunya.data.user;
 
+import net.dv8tion.jda.api.entities.Member;
 import net.toujoustudios.kazunya.data.ban.UserBan;
 import net.toujoustudios.kazunya.data.ban.UserBanManager;
 import net.toujoustudios.kazunya.data.money.UserMoneyManager;
@@ -38,6 +39,13 @@ public class UserManager {
         if(users.containsKey(id)) return users.get(id);
         UserManager userManager = new UserManager(id);
         users.put(id, userManager);
+        return userManager;
+    }
+
+    public static UserManager getUser(Member member) {
+        String id = member.getId();
+        UserManager userManager = getUser(id);
+        userManager.setAccount(new UserAccount(member.getUser().getName(), member.getUser().getEffectiveAvatarUrl()));
         return userManager;
     }
 

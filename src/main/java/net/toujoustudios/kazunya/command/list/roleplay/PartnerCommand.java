@@ -243,7 +243,7 @@ public class PartnerCommand extends ListenerAdapter implements ICommand {
 
     @Override
     public String getDescription() {
-        return "Manage your partners.";
+        return "Manage your partner list.";
     }
 
     @Override

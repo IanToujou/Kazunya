@@ -57,7 +57,8 @@ Some commands have additional tags that can define whether a command can be used
 | 🟢 | <a href="/commands/roleplay/tickle/">`/tickle`</a> | Tickle someone else to make them laugh. | None | `v1.0.0`
 | 🟢 | <a href="/commands/roleplay/bonk/">`/bonk`</a> | Bonk someone because horny is bad. | None | `v1.1.0`
 | 🟢 | <a href="/commands/roleplay/nom/">`/nom`</a> | Nom or bite someone else. | None | `v1.2.0`
-| 🟢 | <a href="/commands/roleplay/friend/">`/friend`</a> | Add and manage your friend list. | None | `v1.2.0`
+| 🟢 | <a href="/commands/roleplay/friend/">`/friend`</a> | Manage your friend list. | None | `v1.2.0`
+| 🟢 | <a href="/commands/roleplay/friend/">`/partner`</a> | Manage your partner list. | None | `v1.2.0`
 
 ### **Fun**
 

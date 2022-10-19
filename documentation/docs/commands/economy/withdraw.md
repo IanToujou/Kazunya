@@ -2,11 +2,6 @@
 
 ## **Description**
 
-??? Changelog Abstract
-    Released in version `1.1.0`.
-
-    No changes have been made since the first release.
-
 The withdraw command is used to withdraw money from your bank account and put it in your wallet.
 
 ## **Syntax**
@@ -21,13 +16,3 @@ The withdraw command is used to withdraw money from your bank account and put it
     Withdraw 500€ from your bank account.
 
         /withdraw 500
-
-## **Error Messages**
-
-An overview of all error messages can be found under the <a href=„/errors/„>Errors</a> section.
-
-??? 1011 Error
-    The specified number is not in the given range. Please read the documentation to see the correct range.
-    
-??? 2005 Error
-    You don't have enough money in your bank account for this action.

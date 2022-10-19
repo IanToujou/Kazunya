@@ -2,11 +2,6 @@
 
 ## **Description**
 
-??? Changelog Abstract
-    Released in version `1.0.0`.
-
-    No changes have been made since the first release.
-
 The kill command is used to kill other users on the server. Kazunya will return a random Anime kill GIF and select a random death message. There is a chance that the kill will fail, in which case Kazunya will return a random fail message.
 
 <p align="center"><img src="https://c.tenor.com/FJmJM5jRVp4AAAAd/wasted-anime.gif"></p>
@@ -64,10 +59,3 @@ These messages will display when a kill failed.
     Kill another user on the server, in this case, Kazunya.
 
         /kill @Kazunya
-
-## **Error Messages**
-
-An overview of all error messages can be found under the <a href="/errors/">Errors</a> section.
-
-??? 1005 Error
-    You cannot do this to yourself. Please mention another user.

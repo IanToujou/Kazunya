@@ -2,14 +2,9 @@
 
 ## **Description**
 
-??? Changelog Abstract
-    Released in version `1.2.0`.
-
-    No changes have been made since the first release.
-
 The friend command is used to manage your friend list on Kazunya. The friend system will be used in the future to send game invites and to use certain interactions.
 
-You can only have a maximum of 20 friends at the same time, excluding other relationships. Friends are valid everywhere on Discord. Servers don't have seperate systems because it is intented to work across servers.
+You can only have a maximum of `20` friends at the same time, excluding other relationships. Friends are valid everywhere on Discord. Servers don't have seperate systems because it is intented to work across servers.
 
 <p align="center"><img src="https://media.tenor.com/OQJmvVwLZ5YAAAAi/tkthao219-bubududu.gif"></p>
 
@@ -37,22 +32,3 @@ You can only have a maximum of 20 friends at the same time, excluding other rela
     List all your current friends.
 
         /friend list
-
-## **Error Messages**
-
-An overview of all error messages can be found under the <a href="/errors/">Errors</a> section.
-
-??? 1004 Error
-    The given user is a bot. You can only mention other real users.
-    
-??? 1005 Error
-    You cannot do that to yourself. Please specify another user.
-    
-??? 2004 Error
-    You are already friends with that person.
-    
-??? 2006 Error
-    You are not friends with that person.
-    
-??? 2012 Error
-    Your relationship with the other person is too strong.

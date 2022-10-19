@@ -43,9 +43,3 @@ Kazunya will also give a comment depending on the length of the pp.
     See the pp of another user you provide, in this case, Kazunya.
 
         /pp @Kazunya
-
-## **Error Messages**
-
-An overview of all error messages can be found under the <a href="/errors/">Errors</a> section.
-
-*There are no errors that are directly associated with this feature.*

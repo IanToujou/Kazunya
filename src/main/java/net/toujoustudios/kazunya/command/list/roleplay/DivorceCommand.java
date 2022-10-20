@@ -67,7 +67,7 @@ public class DivorceCommand implements ICommand {
 
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
         embedBuilder.setTitle("**:broken_heart: Divorce**");
-        embedBuilder.setDescription("You and `" + target.getAsMention() + "` are now divorced...");
+        embedBuilder.setDescription("You and " + target.getAsMention() + " are now divorced...");
         context.getEvent().reply(target.getAsMention()).addEmbeds(embedBuilder.build()).setEphemeral(true).queue();
 
     }

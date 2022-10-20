@@ -2,6 +2,7 @@ package net.toujoustudios.kazunya.command.list.roleplay;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.interaction.ButtonClickEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
@@ -18,9 +19,13 @@ import net.toujoustudios.kazunya.data.relation.UserRelationType;
 import net.toujoustudios.kazunya.data.user.UserManager;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
+import net.toujoustudios.kazunya.log.LogLevel;
+import net.toujoustudios.kazunya.log.Logger;
+import net.toujoustudios.kazunya.main.Main;
 import net.toujoustudios.kazunya.util.ColorUtil;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class FriendCommand extends ListenerAdapter implements ICommand {
 
@@ -77,9 +82,10 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
             context.getEvent().reply(target.getAsMention())
                     .addEmbeds(embedBuilder.build())
                     .addActionRow(
-                            Button.success("cmd_friend_accept-" + member.getId(), "Accept"),
-                            Button.danger("cmd_friend_decline-" + member.getId(), "Decline"))
+                            Button.success("friend_a-" + member.getId(), "Accept"),
+                            Button.danger("friend_d-" + member.getId(), "Decline"))
                     .queue();
+            Logger.log(LogLevel.DEBUG, "Creating buttons for target user " + member.getId());
 
         } else if(Objects.equals(context.getEvent().getSubcommandName(), "remove")) {
 
@@ -161,72 +167,74 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
         String id = event.getComponentId();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
-        if(!id.startsWith("cmd_friend_")) return;
-        if(id.startsWith("cmd_friend_accept-")) {
+        if(!id.startsWith("friend_")) return;
+        if(id.startsWith("friend_a-")) {
 
             Member member = event.getMember();
-            Member target = event.getGuild().getMemberById(id.split("-")[1]);
+            Main.getBot().getJDA().retrieveUserById(id.split("-")[1]).queue(target -> {
 
-            if(target == null) {
-                event.replyEmbeds(ErrorEmbed.buildError(ErrorType.COMMAND_INVALID_USER_NOT_FOUND)).setEphemeral(true).queue();
-                return;
-            }
+                if(target == null) {
+                    event.replyEmbeds(ErrorEmbed.buildError(ErrorType.COMMAND_INVALID_USER_NOT_FOUND)).setEphemeral(true).queue();
+                    return;
+                }
 
-            UserManager memberManager = UserManager.getUser(member);
-            UserManager targetManager = UserManager.getUser(target);
+                UserManager memberManager = UserManager.getUser(member);
+                UserManager targetManager = UserManager.getUser(target.getId());
 
-            if(requests.containsKey(target.getId())) {
-                if(requests.get(target.getId()).equals(member.getId())) {
+                if(requests.containsKey(target.getId())) {
+                    if(requests.get(target.getId()).equals(member.getId())) {
 
-                    requests.remove(target.getId());
-                    requests.remove(member.getId());
+                        requests.remove(target.getId());
+                        requests.remove(member.getId());
 
-                    Date date = new Date();
-                    UserRelation memberRelation = new UserRelation(target.getId(), UserRelationType.FRIENDS, date);
-                    UserRelation targetRelation = new UserRelation(member.getId(), UserRelationType.FRIENDS, date);
+                        Date date = new Date();
+                        UserRelation memberRelation = new UserRelation(target.getId(), UserRelationType.FRIENDS, date);
+                        UserRelation targetRelation = new UserRelation(member.getId(), UserRelationType.FRIENDS, date);
 
-                    memberManager.addRelation(memberRelation);
-                    targetManager.addRelation(targetRelation);
-                    embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
-                    embedBuilder.setTitle(":green_heart: **New Friend**");
-                    embedBuilder.setThumbnail(config.getString("assets.img.icon_friend"));
-                    embedBuilder.setDescription(member.getAsMention() + " and " + target.getAsMention() + " are now friends!");
-                    embedBuilder.setAuthor(member.getUser().getName() + "#" + member.getUser().getDiscriminator(), null, member.getEffectiveAvatarUrl());
-                    event.getChannel().sendMessage(target.getAsMention()).setEmbeds(embedBuilder.build()).queue();
-                    event.getMessage().delete().queue();
+                        memberManager.addRelation(memberRelation);
+                        targetManager.addRelation(targetRelation);
+                        embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
+                        embedBuilder.setTitle(":green_heart: **New Friend**");
+                        embedBuilder.setThumbnail(config.getString("assets.img.icon_friend"));
+                        embedBuilder.setDescription(member.getAsMention() + " and " + target.getAsMention() + " are now friends!");
+                        embedBuilder.setAuthor(member.getUser().getName() + "#" + member.getUser().getDiscriminator(), null, member.getEffectiveAvatarUrl());
+                        event.getChannel().sendMessage(target.getAsMention()).setEmbeds(embedBuilder.build()).queue();
+                        event.getMessage().delete().queue();
 
+                    } else
+                        event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_USER)).setEphemeral(true).queue();
                 } else
                     event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_FRIEND_REQUEST)).setEphemeral(true).queue();
-            } else
-                event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_FRIEND_REQUEST)).setEphemeral(true).queue();
+            });
 
-        } else if(id.startsWith("cmd_friend_decline-")) {
+        } else if(id.startsWith("friend_d-")) {
 
             Member member = event.getMember();
-            Member target = event.getGuild().getMemberById(id.split("-")[1]);
+            Main.getBot().getJDA().retrieveUserById(id.split("-")[1]).queue(target -> {
 
-            if(target == null) {
-                event.replyEmbeds(ErrorEmbed.buildError(ErrorType.COMMAND_INVALID_USER_NOT_FOUND)).setEphemeral(true).queue();
-                return;
-            }
+                if(target == null) {
+                    event.replyEmbeds(ErrorEmbed.buildError(ErrorType.COMMAND_INVALID_USER_NOT_FOUND)).setEphemeral(true).queue();
+                    return;
+                }
 
-            if(requests.containsKey(target.getId())) {
-                if(requests.get(target.getId()).equals(member.getId())) {
+                if(requests.containsKey(target.getId())) {
+                    if(requests.get(target.getId()).equals(member.getId())) {
 
-                    requests.remove(target.getId());
-                    requests.remove(member.getId());
+                        requests.remove(target.getId());
+                        requests.remove(member.getId());
 
-                    embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
-                    embedBuilder.setTitle(":no_entry: **Request Rejected**");
-                    embedBuilder.setDescription(member.getAsMention() + " rejected your friend request.");
-                    embedBuilder.setAuthor(member.getUser().getName() + "#" + member.getUser().getDiscriminator(), null, member.getEffectiveAvatarUrl());
-                    event.getChannel().sendMessage(target.getAsMention()).setEmbeds(embedBuilder.build()).queue();
-                    event.getMessage().delete().queue();
+                        embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
+                        embedBuilder.setTitle(":no_entry: **Request Rejected**");
+                        embedBuilder.setDescription(member.getAsMention() + " rejected your friend request.");
+                        embedBuilder.setAuthor(member.getUser().getName() + "#" + member.getUser().getDiscriminator(), null, member.getEffectiveAvatarUrl());
+                        event.getChannel().sendMessage(target.getAsMention()).setEmbeds(embedBuilder.build()).queue();
+                        event.getMessage().delete().queue();
 
+                    } else
+                        event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_USER)).setEphemeral(true).queue();
                 } else
                     event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_FRIEND_REQUEST)).setEphemeral(true).queue();
-            } else
-                event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_FRIEND_REQUEST)).setEphemeral(true).queue();
+            });
 
         }
     }

@@ -2,6 +2,7 @@ package net.toujoustudios.kazunya.command.list.roleplay;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.interaction.ButtonClickEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
@@ -18,9 +19,11 @@ import net.toujoustudios.kazunya.data.relation.UserRelationType;
 import net.toujoustudios.kazunya.data.user.UserManager;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
+import net.toujoustudios.kazunya.main.Main;
 import net.toujoustudios.kazunya.util.ColorUtil;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class PartnerCommand extends ListenerAdapter implements ICommand {
 
@@ -85,8 +88,8 @@ public class PartnerCommand extends ListenerAdapter implements ICommand {
             context.getEvent().reply(target.getAsMention())
                     .addEmbeds(embedBuilder.build())
                     .addActionRow(
-                            Button.success("cmd_partner_accept-" + member.getId(), "Accept"),
-                            Button.danger("cmd_partner_decline-" + member.getId(), "Decline"))
+                            Button.success("partner_a-" + member.getId(), "Accept"),
+                            Button.danger("partner_d-" + member.getId(), "Decline"))
                     .queue();
 
         } else if(Objects.equals(context.getEvent().getSubcommandName(), "remove")) {
@@ -171,71 +174,76 @@ public class PartnerCommand extends ListenerAdapter implements ICommand {
         String id = event.getComponentId();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
-        if(!id.startsWith("cmd_partner_")) return;
-        if(id.startsWith("cmd_partner_accept-")) {
+        if(!id.startsWith("partner_")) return;
+        if(id.startsWith("partner_a-")) {
 
             Member member = event.getMember();
-            Member target = event.getGuild().getMemberById(id.split("-")[1]);
+            Main.getBot().getJDA().retrieveUserById(id.split("-")[1]).queue(target -> {
 
-            if(target == null) {
-                event.replyEmbeds(ErrorEmbed.buildError(ErrorType.COMMAND_INVALID_USER_NOT_FOUND)).setEphemeral(true).queue();
-                return;
-            }
+                if(target == null) {
+                    event.replyEmbeds(ErrorEmbed.buildError(ErrorType.COMMAND_INVALID_USER_NOT_FOUND)).setEphemeral(true).queue();
+                    return;
+                }
 
-            UserManager memberManager = UserManager.getUser(member);
-            UserManager targetManager = UserManager.getUser(target);
+                UserManager memberManager = UserManager.getUser(member);
+                UserManager targetManager = UserManager.getUser(target.getId());
 
-            if(requests.containsKey(target.getId())) {
-                if(requests.get(target.getId()).equals(member.getId())) {
+                if(requests.containsKey(target.getId())) {
+                    if(requests.get(target.getId()).equals(member.getId())) {
 
-                    requests.remove(target.getId());
-                    requests.remove(member.getId());
+                        requests.remove(target.getId());
+                        requests.remove(member.getId());
 
-                    Date date = new Date();
-                    UserRelation memberRelation = new UserRelation(target.getId(), UserRelationType.COUPLE, date);
-                    UserRelation targetRelation = new UserRelation(member.getId(), UserRelationType.COUPLE, date);
+                        Date date = new Date();
+                        UserRelation memberRelation = new UserRelation(target.getId(), UserRelationType.COUPLE, date);
+                        UserRelation targetRelation = new UserRelation(member.getId(), UserRelationType.COUPLE, date);
 
-                    memberManager.addRelation(memberRelation);
-                    targetManager.addRelation(targetRelation);
-                    embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
-                    embedBuilder.setTitle(":sparkling_heart: **New Partner**");
-                    embedBuilder.setThumbnail(config.getString("assets.img.icon_partner"));
-                    embedBuilder.setDescription(member.getAsMention() + " and " + target.getAsMention() + " are now a couple!");
-                    embedBuilder.setAuthor(member.getUser().getName() + "#" + member.getUser().getDiscriminator(), null, member.getEffectiveAvatarUrl());
-                    event.getChannel().sendMessage(target.getAsMention()).setEmbeds(embedBuilder.build()).queue();
-                    event.getMessage().delete().queue();
+                        memberManager.addRelation(memberRelation);
+                        targetManager.addRelation(targetRelation);
+                        embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
+                        embedBuilder.setTitle(":sparkling_heart: **New Partner**");
+                        embedBuilder.setThumbnail(config.getString("assets.img.icon_partner"));
+                        embedBuilder.setDescription(member.getAsMention() + " and " + target.getAsMention() + " are now a couple!");
+                        embedBuilder.setAuthor(member.getUser().getName() + "#" + member.getUser().getDiscriminator(), null, member.getEffectiveAvatarUrl());
+                        event.getChannel().sendMessage(target.getAsMention()).setEmbeds(embedBuilder.build()).queue();
+                        event.getMessage().delete().queue();
 
+                    } else
+                        event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_USER)).setEphemeral(true).queue();
                 } else
                     event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_PARTNER_REQUEST)).setEphemeral(true).queue();
-            } else
-                event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_PARTNER_REQUEST)).setEphemeral(true).queue();
-        } else if(id.startsWith("cmd_partner_decline-")) {
+
+            });
+
+        } else if(id.startsWith("partner_d-")) {
 
             Member member = event.getMember();
-            Member target = event.getGuild().getMemberById(id.split("-")[1]);
+            Main.getBot().getJDA().retrieveUserById(id.split("-")[1]).queue(target -> {
 
-            if(target == null) {
-                event.replyEmbeds(ErrorEmbed.buildError(ErrorType.COMMAND_INVALID_USER_NOT_FOUND)).setEphemeral(true).queue();
-                return;
-            }
+                if(target == null) {
+                    event.replyEmbeds(ErrorEmbed.buildError(ErrorType.COMMAND_INVALID_USER_NOT_FOUND)).setEphemeral(true).queue();
+                    return;
+                }
 
-            if(requests.containsKey(target.getId())) {
-                if(requests.get(target.getId()).equals(member.getId())) {
+                if(requests.containsKey(target.getId())) {
+                    if(requests.get(target.getId()).equals(member.getId())) {
 
-                    requests.remove(target.getId());
-                    requests.remove(member.getId());
+                        requests.remove(target.getId());
+                        requests.remove(member.getId());
 
-                    embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
-                    embedBuilder.setTitle(":no_entry: **Request Rejected**");
-                    embedBuilder.setDescription(member.getAsMention() + " rejected your partner request. That hurts...");
-                    embedBuilder.setAuthor(member.getUser().getName() + "#" + member.getUser().getDiscriminator(), null, member.getEffectiveAvatarUrl());
-                    event.getChannel().sendMessage(target.getAsMention()).setEmbeds(embedBuilder.build()).queue();
-                    event.getMessage().delete().queue();
+                        embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
+                        embedBuilder.setTitle(":no_entry: **Request Rejected**");
+                        embedBuilder.setDescription(member.getAsMention() + " rejected your partner request. That hurts...");
+                        embedBuilder.setAuthor(member.getUser().getName() + "#" + member.getUser().getDiscriminator(), null, member.getEffectiveAvatarUrl());
+                        event.getChannel().sendMessage(target.getAsMention()).setEmbeds(embedBuilder.build()).queue();
+                        event.getMessage().delete().queue();
 
+                    } else
+                        event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_USER)).setEphemeral(true).queue();
                 } else
                     event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_PARTNER_REQUEST)).setEphemeral(true).queue();
-            } else
-                event.replyEmbeds(ErrorEmbed.buildError(ErrorType.ACTION_INVALID_PARTNER_REQUEST)).setEphemeral(true).queue();
+
+            });
 
         }
     }

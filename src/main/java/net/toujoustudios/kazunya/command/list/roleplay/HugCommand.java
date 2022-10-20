@@ -52,7 +52,7 @@ public class HugCommand implements ICommand {
         embedBuilder.setDescription(member.getAsMention() + " hugs " + target.getAsMention() + "! :3");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
-        context.getEvent().replyEmbeds(embedBuilder.build()).queue();
+        context.getEvent().reply(target.getAsMention()).addEmbeds(embedBuilder.build()).queue();
 
     }
 

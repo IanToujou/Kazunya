@@ -4,6 +4,7 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
+import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
@@ -23,7 +24,6 @@ import java.util.List;
 
 public class DivorceCommand implements ICommand {
 
-    private final ArrayList<String> list = new ArrayList<>();
     private final Config config;
 
     public DivorceCommand() {
@@ -36,39 +36,39 @@ public class DivorceCommand implements ICommand {
         Member member = context.getMember();
         List<OptionMapping> args = context.getArgs();
         EmbedBuilder embedBuilder = new EmbedBuilder();
+        Member target = args.get(0).getAsMember();
 
-        if(args.size() > 1) {
-            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_SYNTAX);
+        assert target != null;
+        if(target.getId().equals(member.getId())) {
+            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_SELF);
             return;
         }
 
         UserManager memberManager = UserManager.getUser(member);
+        UserManager targetManager = UserManager.getUser(target);
 
         if(memberManager.getRelationsOfType(UserRelationType.MARRIED).size() < 1) {
             ErrorEmbed.sendError(context, ErrorType.ACTION_NOT_MARRIED);
             return;
         }
 
-        UserRelation memberRelation = memberManager.getRelationsOfType(UserRelationType.MARRIED).get(0);
-        embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
-
-        if(list.contains(member.getId())) {
-            User target = Main.getBot().getJDA().getUserById(memberRelation.getTarget());
-            embedBuilder.setTitle("**:broken_heart: Divorce**");
-            if(target != null) embedBuilder.setDescription("You and `" + target.getName() + "` are now divorced.");
-            else embedBuilder.setDescription("You and `your partner` are now divorced.");
-            UserManager targetManager = UserManager.getUser(memberRelation.getTarget());
-            UserRelation targetRelation = targetManager.getRelationsOfType(UserRelationType.MARRIED).get(0);
-            memberManager.removeRelation(memberRelation);
-            targetManager.removeRelation(targetRelation);
-            context.getEvent().replyEmbeds(embedBuilder.build()).setEphemeral(true).queue();
+        if(memberManager.getRelation(target.getId()) == null) {
+            ErrorEmbed.sendError(context, ErrorType.ACTION_NOT_PARTNERS);
             return;
         }
 
-        embedBuilder.setTitle("**:broken_heart: Divorce: Confirm**");
-        embedBuilder.setDescription("Do you really want to divorce?\nPlease type `/divorce` again to confirm this action.");
-        list.add(member.getId());
-        context.getEvent().replyEmbeds(embedBuilder.build()).setEphemeral(true).queue();
+        if(memberManager.getRelation(target.getId()).getType() != UserRelationType.MARRIED) {
+            ErrorEmbed.sendError(context, ErrorType.ACTION_NOT_MARRIED);
+            return;
+        }
+
+        memberManager.removeRelationWith(target.getId());
+        targetManager.removeRelationWith(member.getId());
+
+        embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
+        embedBuilder.setTitle("**:broken_heart: Divorce**");
+        embedBuilder.setDescription("You and `" + target.getAsMention() + "` are now divorced...");
+        context.getEvent().reply(target.getAsMention()).addEmbeds(embedBuilder.build()).setEphemeral(true).queue();
 
     }
 
@@ -89,7 +89,9 @@ public class DivorceCommand implements ICommand {
 
     @Override
     public List<OptionData> getOptions() {
-        return Collections.emptyList();
+        List<OptionData> optionData = new ArrayList<>();
+        optionData.add(new OptionData(OptionType.USER, "user", "The person you want to divorce.", true));
+        return optionData;
     }
 
     @Override

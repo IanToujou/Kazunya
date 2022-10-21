@@ -10,7 +10,7 @@ The bonk command is used to bonk other users on the server. Kazunya will return 
 
     /bonk [@user]
 
-`@user` *(<span style="color:aqua">@Mention</span>)* | The user you want to bonk.
+- `@user` - The user you want to perform the action on.
 
 ## **Examples**
 

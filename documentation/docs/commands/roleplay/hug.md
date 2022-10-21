@@ -10,7 +10,7 @@ The hug command is used to hug other users on the server. Kazunya will return a 
 
     /hug [@user]
 
-`@user` *(<span style="color:aqua">@Mention</span>)* | The user you want to hug.
+- `@user` - The user you want to perform the action on.
 
 ## **Examples**
 

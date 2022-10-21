@@ -10,7 +10,7 @@ The pat command is used to give someone else a headpat. Kazunya will return a ra
 
     /cuddle [@user]
 
-`@user` *(<span style="color:aqua">@Mention</span>)* | The user you want to pat.
+- `@user` - The user you want to perform the action on.
 
 ## **Examples**
 

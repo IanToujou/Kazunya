@@ -10,7 +10,7 @@ The cuddle command is used to cuddle other users on the server. Kazunya will ret
 
     /cuddle [@user]
 
-`@user` *(<span style="color:aqua">@Mention</span>)* | The user you want to cuddle.
+- `@user` - The user you want to perform the action on.
 
 ## **Examples**
 

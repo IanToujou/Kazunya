@@ -10,7 +10,7 @@ The nom command is used to bite other users on the server. Kazunya will return a
 
     /nom [@user]
 
-`@user` *(<span style="color:aqua">@Mention</span>)* | The user you want to bite.
+- `@user` - The user you want to perform the action on.
 
 ## **Examples**
 

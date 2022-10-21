@@ -10,7 +10,7 @@ The kiss command is used to kiss other users on the server. Kazunya will return 
 
     /kiss [@user]
 
-`@user` *(<span style="color:aqua">@Mention</span>)* | The user you want to kiss.
+- `@user` - The user you want to perform the action on.
 
 ## **Examples**
 

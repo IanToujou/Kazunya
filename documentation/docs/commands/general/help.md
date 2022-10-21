@@ -8,7 +8,7 @@ The help command is used to display a list of commands and their descriptions. I
 
     /help ([command])
 
-- `command` *(<span style="color:yellow">String</span>)* | A specific command you want to look up.
+- `command` - A specific command you want to look up.
 
 ## **Examples**
 

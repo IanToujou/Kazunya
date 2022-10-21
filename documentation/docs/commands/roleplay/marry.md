@@ -12,7 +12,7 @@ Being married does not grant any special abilities to the users at the moment. H
 
     /marry [@user]
 
-- `@user` *(<span style="color:aqua">@Mention</span>)* | The user you want to marry.
+- `@user` - The user you want to perform the action on.
 
 ## **Examples**
 

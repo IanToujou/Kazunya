@@ -8,7 +8,7 @@ The avatar command is used to get the Discord avatar of a user. The size of the 
 
     /avatar [@user]
 
-- `@user` *(<span style="color:aqua">@Mention</span>)* | The user whose avatar you want to get.
+- `@user` - The user you want to perform the action on.
 
 ## **Examples**
 

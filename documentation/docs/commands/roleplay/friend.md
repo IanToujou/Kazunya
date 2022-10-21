@@ -14,7 +14,7 @@ You can only have a maximum of `20` friends at the same time, excluding other re
     /friend remove [@user]
     /friend list
 
-`@user` *(<span style="color:aqua">@Mention</span>)* | The user you want to perform the action on.
+- `@user` - The user you want to perform the action on.
 
 ## **Examples**
 

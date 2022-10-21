@@ -8,7 +8,7 @@ The userinfo command is used to get information about a user. This includes thei
 
     /userinfo [@user]
 
-- `@user` *(<span style="color:aqua">@Mention</span>)* | The user whose information you want to get.
+- `@user` - The user you want to perform the action on.
 
 ## **Examples**
 

@@ -2,7 +2,7 @@ package net.toujoustudios.kazunya.data.relation;
 
 public enum UserRelationType {
 
-    FRIENDS(20, 1), COUPLE(1, 2), FAMILY(10, 3), MARRIED(1, 4);
+    FRIENDS(20, 1), COUPLE(5, 2), FAMILY(10, 3), MARRIED(3, 4);
 
     private final int maxUsers;
     private final int value;

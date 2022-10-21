@@ -8,9 +8,9 @@ The roll command is used to roll a die. It does not use the default RPG dice syn
 
     /roll ([sides]) ([times]) ([offset])
 
-- `sides` *(<span style="color:lime">Integer</span>)* | The number of sides the dice has. (2 to 1000)
-- `times` *(<span style="color:lime">Integer</span>)* | How many times you want to roll the dice. (1 to 50)
-- `offset` *(<span style="color:lime">Integer</span>)* | The offset you want to add to the value that is rolled. This value can also be negative. (-1000 to 1000)
+- `sides` - The number of sides the dice has (2 to 1000).
+- `times` - How many times you want to roll the dice (1 to 50).
+- `offset` - The offset you want to add to the value that is rolled. This value can also be negative (-1000 to 1000).
 
 ## **Examples**
 

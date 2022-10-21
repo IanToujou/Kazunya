@@ -8,7 +8,7 @@ The deposit command is used to deposit money from your wallet to your bank accou
 
     /deposit [amount]
     
-- `amount` *(<span style="color:lime">Double</span>)* | The amount of money you want to deposit.
+- `amount` - The amount of money you want to deposit.
 
 ## **Examples**
 

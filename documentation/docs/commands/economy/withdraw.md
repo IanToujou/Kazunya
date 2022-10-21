@@ -8,7 +8,7 @@ The withdraw command is used to withdraw money from your bank account and put it
 
     /withdraw [amount]
     
-- `amount` *(<span style="color:lime">Double</span>)* | The amount of money you want to withdraw.
+- `amount` - The amount of money you want to withdraw.
 
 ## **Examples**
 

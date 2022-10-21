@@ -8,9 +8,9 @@ The divorce command is used to divorce another user you married before. This com
 
 ## **Syntax**
 
-    /divorce
+    /divorce [@user]
 
-*This command does not have any additional arguments.*
+- `@user` - The user you want to perform the action on.
 
 ## **Examples**
 

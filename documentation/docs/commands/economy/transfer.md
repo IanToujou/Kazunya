@@ -8,8 +8,8 @@ The transfer command is used to transfer money from your bank account to another
 
     /transfer [amount] [@user]
     
-- `amount` *(<span style="color:lime">Double</span>)* | The amount of money you want to transfer.
-- `@user` *(<span style="color:aqua">@Mention</span>)* | The user you want to give the money.
+- `amount` - The amount of money you want to transfer.
+- `@user` - The user you want to transfer the money to.
 
 ## **Examples**
 

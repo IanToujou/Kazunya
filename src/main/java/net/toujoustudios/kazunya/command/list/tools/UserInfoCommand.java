@@ -21,9 +21,9 @@ import java.util.List;
 /**
  * A command to get basic information from Discord about a specific user.
  *
- * @since 1.0.0
  * @author Ian Toujou
  * @version 1.2.0
+ * @since 1.0.0
  */
 public class UserInfoCommand implements ICommand {
 

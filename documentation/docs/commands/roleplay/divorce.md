@@ -17,4 +17,4 @@ The divorce command is used to divorce another user you married before. This com
 !!! Example
     Do very sad things and divorce your current partner.
 
-        /divorce
+        /divorce @Kazunya

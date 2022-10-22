@@ -2,7 +2,6 @@ package net.toujoustudios.kazunya.command.list.roleplay;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.interaction.ButtonClickEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
@@ -25,7 +24,6 @@ import net.toujoustudios.kazunya.main.Main;
 import net.toujoustudios.kazunya.util.ColorUtil;
 
 import java.util.*;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class FriendCommand extends ListenerAdapter implements ICommand {
 

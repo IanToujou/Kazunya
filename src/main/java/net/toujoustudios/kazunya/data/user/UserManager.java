@@ -1,6 +1,5 @@
 package net.toujoustudios.kazunya.data.user;
 
-import lombok.Getter;
 import net.dv8tion.jda.api.entities.Member;
 import net.toujoustudios.kazunya.data.ban.UserBan;
 import net.toujoustudios.kazunya.data.ban.UserBanManager;

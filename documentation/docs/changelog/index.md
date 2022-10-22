@@ -31,7 +31,10 @@ Changes listed in the changelog are divided into categories.
 - `[💥]` Subcommands are now available.
 - `[💥]` Added new relationship system.
 - `[✨]` Added /nom command.
-- `[✨]` Added /nom command to nom people.
+- `[✨]` Added /friend command.
+- `[✨]` Added /partner command.
+- `[✨]` Reworked /marry command.
+- `[✨]` Added /divorce command.
 - `[🔥]` Removed old music system.
 - `[🐛]` Fixed broken or invisible GIFs.
 

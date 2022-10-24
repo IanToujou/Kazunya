@@ -193,8 +193,8 @@ public class PartnerCommand extends ListenerAdapter implements ICommand {
                         requests.remove(member.getId());
 
                         Date date = new Date();
-                        UserRelation memberRelation = new UserRelation(target.getId(), UserRelationType.COUPLE, date);
-                        UserRelation targetRelation = new UserRelation(member.getId(), UserRelationType.COUPLE, date);
+                        UserRelation memberRelation = new UserRelation(UUID.randomUUID().toString(), target.getId(), UserRelationType.COUPLE, date);
+                        UserRelation targetRelation = new UserRelation(UUID.randomUUID().toString(), member.getId(), UserRelationType.COUPLE, date);
 
                         memberManager.addRelation(memberRelation);
                         targetManager.addRelation(targetRelation);

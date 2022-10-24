@@ -96,7 +96,7 @@ public class UserManager {
         UserMoneyManager.setWalletMoney(id, walletMoney);
         UserRelationManager.deleteRelations(id);
         relations.forEach(all -> {
-            UserRelationManager.setRelation(id, all.getTarget(), all.getType(), all.getDate());
+            UserRelationManager.setRelation(all.getId(), id, all.getTarget(), all.getType(), all.getDate());
         });
         UserSkillManager.setSkills(id, skills);
     }

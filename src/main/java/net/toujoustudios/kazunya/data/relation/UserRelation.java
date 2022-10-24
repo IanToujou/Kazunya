@@ -12,6 +12,7 @@ import java.util.Date;
 @Setter
 public class UserRelation {
 
+    private String id;
     private String target;
     private UserRelationType type;
     private Date date;

@@ -186,8 +186,8 @@ public class FriendCommand extends ListenerAdapter implements ICommand {
                         requests.remove(member.getId());
 
                         Date date = new Date();
-                        UserRelation memberRelation = new UserRelation(target.getId(), UserRelationType.FRIENDS, date);
-                        UserRelation targetRelation = new UserRelation(member.getId(), UserRelationType.FRIENDS, date);
+                        UserRelation memberRelation = new UserRelation(UUID.randomUUID().toString(), target.getId(), UserRelationType.FRIENDS, date);
+                        UserRelation targetRelation = new UserRelation(UUID.randomUUID().toString(), member.getId(), UserRelationType.FRIENDS, date);
 
                         memberManager.addRelation(memberRelation);
                         targetManager.addRelation(targetRelation);

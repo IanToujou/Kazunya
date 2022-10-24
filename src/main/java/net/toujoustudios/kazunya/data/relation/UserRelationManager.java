@@ -6,39 +6,45 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.UUID;
 
 public class UserRelationManager {
 
-    public static void setRelation(String id, String target, UserRelationType type, Date date) {
+    public static void setRelation(String id, String member, String target, UserRelationType type, Date date) {
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-        DatabaseManager.executeUpdate("INSERT INTO user_relations (id, target, type, date) VALUES ('" + id + "', '" + target + "', '" + type + "', '" + sqlDate + "') ON DUPLICATE KEY UPDATE target='" + target + "', type='" + type + "', date='" + sqlDate + "';");
+        DatabaseManager.executeUpdate("INSERT INTO user_relations (id, member, target, type, date) VALUES ('" + id + "', '" + member + "', '" + target + "', '" + type + "', '" + sqlDate + "') ON DUPLICATE KEY UPDATE id='" + id + "', member='" + member + "', target='" + target + "', type='" + type + "', date='" + sqlDate + "';");
     }
 
-    public static void deleteRelation(String id, String target) {
-        DatabaseManager.executeUpdate("DELETE FROM user_relations WHERE id='" + id + "' AND target='" + target + "';");
+    public static void addRelation(String member, String target, UserRelationType type, Date date) {
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+        DatabaseManager.executeUpdate("INSERT INTO user_relations (id, member, target, type, date) VALUES ('" + UUID.randomUUID() + "', '" + member + "', '" + target + "', '" + type + "', '" + sqlDate + "');");
     }
 
-    public static void deleteRelations(String id) {
-        DatabaseManager.executeUpdate("DELETE FROM user_relations WHERE id='" + id + "';");
+    public static void deleteRelation(String member, String target) {
+        DatabaseManager.executeUpdate("DELETE FROM user_relations WHERE member='" + member + "' AND target='" + target + "';");
     }
 
-    public static UserRelation getRelation(String id, String target) {
+    public static void deleteRelations(String member) {
+        DatabaseManager.executeUpdate("DELETE FROM user_relations WHERE member='" + member + "';");
+    }
+
+    public static UserRelation getRelation(String member, String target) {
         try {
-            ResultSet resultSet = DatabaseManager.executeQuery("SELECT * FROM user_relations WHERE id='" + id + "' AND target='" + target + "';");
+            ResultSet resultSet = DatabaseManager.executeQuery("SELECT * FROM user_relations WHERE member='" + member + "' AND target='" + target + "';");
             if(resultSet != null && resultSet.next())
-                return new UserRelation(resultSet.getString("target"), UserRelationType.valueOf(resultSet.getString("type").toLowerCase()), resultSet.getDate("date"));
+                return new UserRelation(resultSet.getString("id"), resultSet.getString("target"), UserRelationType.valueOf(resultSet.getString("type").toLowerCase()), resultSet.getDate("date"));
         } catch(SQLException exception) {
             exception.printStackTrace();
         }
         return null;
     }
 
-    public static ArrayList<UserRelation> getRelations(String id) {
+    public static ArrayList<UserRelation> getRelations(String member) {
         ArrayList<UserRelation> relations = new ArrayList<>();
         try {
-            ResultSet resultSet = DatabaseManager.executeQuery("SELECT * FROM user_relations WHERE id='" + id + "';");
+            ResultSet resultSet = DatabaseManager.executeQuery("SELECT * FROM user_relations WHERE member='" + member + "';");
             while(resultSet != null && resultSet.next())
-                relations.add(new UserRelation(resultSet.getString("target"), UserRelationType.valueOf(resultSet.getString("type")), resultSet.getDate("date")));
+                relations.add(new UserRelation(resultSet.getString("id"), resultSet.getString("target"), UserRelationType.valueOf(resultSet.getString("type")), resultSet.getDate("date")));
         } catch(SQLException exception) {
             exception.printStackTrace();
         }

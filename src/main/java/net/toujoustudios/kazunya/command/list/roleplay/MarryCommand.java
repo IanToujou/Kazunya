@@ -20,10 +20,7 @@ import net.toujoustudios.kazunya.error.ErrorType;
 import net.toujoustudios.kazunya.main.Main;
 import net.toujoustudios.kazunya.util.ColorUtil;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * A command to marry other people on Discord using the bot. The marriage is valid on all Discord servers. A user cannot have multiple partners in different servers, but are rather limited to one single person.
@@ -128,8 +125,8 @@ public class MarryCommand extends ListenerAdapter implements ICommand {
                         requests.remove(member.getId());
 
                         Date date = new Date();
-                        UserRelation memberRelation = new UserRelation(target.getId(), UserRelationType.MARRIED, date);
-                        UserRelation targetRelation = new UserRelation(member.getId(), UserRelationType.MARRIED, date);
+                        UserRelation memberRelation = new UserRelation(UUID.randomUUID().toString(), target.getId(), UserRelationType.MARRIED, date);
+                        UserRelation targetRelation = new UserRelation(UUID.randomUUID().toString(), member.getId(), UserRelationType.MARRIED, date);
 
                         memberManager.addRelation(memberRelation);
                         targetManager.addRelation(targetRelation);

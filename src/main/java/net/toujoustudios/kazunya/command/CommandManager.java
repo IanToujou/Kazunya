@@ -60,6 +60,7 @@ public class CommandManager {
         this.addCommand(new NomCommand());
         this.addCommand(new FriendCommand());
         this.addCommand(new PartnerCommand());
+        this.addCommand(new YeetCommand());
 
         //Register economy commands
         this.addCommand(new MarketInfoCommand());

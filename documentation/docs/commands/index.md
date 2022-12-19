@@ -59,6 +59,7 @@ Some commands have additional tags that can define whether a command can be used
 | 🟢 | <a href="/commands/roleplay/purr/">`/purr`</a> | Make yourself purr like a kitten. | None | `v1.0.0`
 | 🟢 | <a href="/commands/roleplay/smile/">`/smile`</a> | Make yourself smile and be happy. | None | `v1.0.0`
 | 🟢 | <a href="/commands/roleplay/tickle/">`/tickle`</a> | Tickle someone else to make them laugh. | None | `v1.0.0`
+| 🟢 | <a href="/commands/roleplay/yeet/">`/yeet`</a> | Yeet someone else that you dislike. | None | `v1.3.0`
 
 ### **Fun**
 

@@ -27,6 +27,7 @@ Changes listed in the changelog are divided into categories.
 
 ### **Release v1.3.0 (**`na`**)**
 
+- `[✨]` Add /slap command.
 - `[✨]` Add /yeet command.
 
 ### **Release v1.2.0 (**`01.10.2022`**)**

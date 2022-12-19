@@ -53,6 +53,7 @@ public class CommandManager {
         this.addCommand(new LaughCommand());
         this.addCommand(new LickCommand());
         this.addCommand(new PurrCommand());
+        this.addCommand(new SlapCommand());
         this.addCommand(new SmileCommand());
         this.addCommand(new KillCommand());
         this.addCommand(new FuckCommand());

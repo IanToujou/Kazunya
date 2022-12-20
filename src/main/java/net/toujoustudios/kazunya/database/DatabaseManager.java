@@ -26,7 +26,7 @@ public class DatabaseManager {
             disconnect();
         }
         try {
-            String url = "jdbc:mysql://" + config.getString("database.host") + ":" + config.getString("database.port") + "/" + config.getString("database.name") + "?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+            String url = "jdbc:mysql://" + config.getString("database.host") + ":" + config.getString("database.port") + "/" + config.getString("database.name") + "?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC";
             connection = DriverManager.getConnection(url, config.getString("database.user"), config.getString("database.password"));
             Logger.log(LogLevel.INFORMATION, "The connection to the database has been established.");
         } catch(SQLException exception) {

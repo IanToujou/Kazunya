@@ -25,8 +25,9 @@ Changes listed in the changelog are divided into categories.
 !!! Info
     The changes are listed in chronological order, with the newest versions first.
 
-### **Release v1.3.0 (**`na`**)**
+### **Release v1.2.1 (**`20.12.2022`**)**
 
+- `[🐛]` Fixed duplicate relation bug.
 - `[✨]` Add /poke command.
 - `[✨]` Add /slap command.
 - `[✨]` Add /yeet command.

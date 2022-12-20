@@ -24,6 +24,7 @@ nav:
           - '/nom': 'commands/roleplay/nom.md'
           - '/partner': 'commands/roleplay/partner.md'
           - '/pat': 'commands/roleplay/pat.md'
+          - '/poke': 'commands/roleplay/poke.md'
           - '/purr': 'commands/roleplay/purr.md'
           - '/slap': 'commands/roleplay/slap.md'
           - '/smile': 'commands/roleplay/smile.md'

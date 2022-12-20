@@ -27,6 +27,7 @@ Changes listed in the changelog are divided into categories.
 
 ### **Release v1.3.0 (**`na`**)**
 
+- `[✨]` Add /poke command.
 - `[✨]` Add /slap command.
 - `[✨]` Add /yeet command.
 

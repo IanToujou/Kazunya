@@ -10,6 +10,8 @@ import net.toujoustudios.kazunya.command.list.roleplay.MarryCommand;
 import net.toujoustudios.kazunya.command.list.roleplay.PartnerCommand;
 import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.data.guild.GuildManager;
+import net.toujoustudios.kazunya.data.relation.UserRelationManager;
+import net.toujoustudios.kazunya.data.user.UserAccountManager;
 import net.toujoustudios.kazunya.data.user.UserManager;
 import net.toujoustudios.kazunya.database.DatabaseManager;
 import net.toujoustudios.kazunya.database.DatabaseTimer;

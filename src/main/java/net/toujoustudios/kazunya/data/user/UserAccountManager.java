@@ -4,6 +4,7 @@ import net.toujoustudios.kazunya.database.DatabaseManager;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class UserAccountManager {
 
@@ -20,6 +21,18 @@ public class UserAccountManager {
             exception.printStackTrace();
         }
         return null;
+    }
+
+    public static ArrayList<UserAccount> getAllAccounts() {
+        ArrayList<UserAccount> accounts = new ArrayList<>();
+        try {
+            ResultSet resultSet = DatabaseManager.executeQuery("SELECT * FROM user_accounts;");
+            if(resultSet != null && resultSet.next())
+                accounts.add(new UserAccount(resultSet.getString("name"), resultSet.getString("discriminator"), resultSet.getString("avatar")));
+        } catch(SQLException exception) {
+            exception.printStackTrace();
+        }
+        return accounts;
     }
 
 }

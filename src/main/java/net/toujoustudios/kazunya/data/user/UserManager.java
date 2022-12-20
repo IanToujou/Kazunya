@@ -217,6 +217,7 @@ public class UserManager {
     }
 
     public void addRelation(UserRelation relation) {
+        if(hasRelation(relation.getTarget()) && getRelation(relation.getTarget()).getType() == relation.getType()) return;
         if(!relations.contains(relation)) relations.add(relation);
     }
 

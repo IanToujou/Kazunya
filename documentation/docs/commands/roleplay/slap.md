@@ -1,10 +1,10 @@
-# **Command:** `/tickle`
+# **Command:** `/slap`
 
 ## **Description**
 
 The slap command is used to slap other users on the server. Kazunya will return a random Anime slap GIF and ping the mentioned user.
 
-<p align="center"><img alt="Slap GIF" src="https://c.tenor.com/L5-ABrIwrksAAAAC/tickle-anime.gif"></p>
+<p align="center"><img alt="Slap GIF" src="https://media.tenor.com/eU5H6GbVjrcAAAAC/slap-jjk.gif"></p>
 
 ## **Syntax**
 

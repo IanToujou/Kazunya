@@ -49,6 +49,7 @@ public class CommandManager {
         this.addCommand(new CuddleCommand());
         this.addCommand(new CryCommand());
         this.addCommand(new PatCommand());
+        this.addCommand(new PokeCommand());
         this.addCommand(new TickleCommand());
         this.addCommand(new LaughCommand());
         this.addCommand(new LickCommand());

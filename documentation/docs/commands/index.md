@@ -56,6 +56,7 @@ Some commands have additional tags that can define whether a command can be used
 | 🟢 | <a href="/commands/roleplay/nom/">`/nom`</a> | Nom or bite someone else. | None | `v1.2.0`
 | 🟢 | <a href="/commands/roleplay/partner/">`/partner`</a> | Manage your partner list. | None | `v1.2.0`
 | 🟢 | <a href="/commands/roleplay/pat/">`/pat`</a> | Give someone else headpats. | None | `v1.0.0`
+| 🟢 | <a href="/commands/roleplay/poke/">`/poke`</a> | Poke someone else. | None | `v1.3.0`
 | 🟢 | <a href="/commands/roleplay/purr/">`/purr`</a> | Make yourself purr like a kitten. | None | `v1.0.0`
 | 🟢 | <a href="/commands/roleplay/slap/">`/slap`</a> | Slap someone else because they are behaving badly. | None | `v1.3.0`
 | 🟢 | <a href="/commands/roleplay/smile/">`/smile`</a> | Make yourself smile and be happy. | None | `v1.0.0`

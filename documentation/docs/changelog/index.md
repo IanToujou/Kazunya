@@ -25,6 +25,10 @@ Changes listed in the changelog are divided into categories.
 !!! Info
     The changes are listed in chronological order, with the newest versions first.
 
+### **Release v1.2.2 (**`24.12.2022`**)**
+    
+- `[⚙️]` Added documentation button to /help command.
+
 ### **Release v1.2.1 (**`20.12.2022`**)**
 
 - `[🐛]` Fixed duplicate relation bug.

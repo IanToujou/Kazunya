@@ -104,6 +104,7 @@ public class HelpCommand implements ICommand {
             }
 
             context.getEvent().replyEmbeds(embedBuilder.build())
+                    .addActionRow(Button.link(config.getString("link.help"), "Docs"))
                     .addActionRow(Button.link(config.getString("link.invite"), "Invite"))
                     .queue();
             return;

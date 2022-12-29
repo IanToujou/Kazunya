@@ -28,6 +28,7 @@ Changes listed in the changelog are divided into categories.
 ### **Release v1.2.2 (**`24.12.2022`**)**
     
 - `[⚙️]` Added documentation button to /help command.
+- `[✨️]` Added react back buttons to some commands.
 
 ### **Release v1.2.1 (**`20.12.2022`**)**
 

@@ -166,7 +166,6 @@ public class PartnerCommand extends ListenerAdapter implements ICommand {
     }
 
     @Override
-    @SuppressWarnings("all")
     public void onButtonClick(ButtonClickEvent event) {
 
         String id = event.getComponentId();

@@ -5,9 +5,7 @@ import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.toujoustudios.kazunya.command.CommandManager;
-import net.toujoustudios.kazunya.command.list.roleplay.FriendCommand;
-import net.toujoustudios.kazunya.command.list.roleplay.MarryCommand;
-import net.toujoustudios.kazunya.command.list.roleplay.PartnerCommand;
+import net.toujoustudios.kazunya.command.list.roleplay.*;
 import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.data.guild.GuildManager;
 import net.toujoustudios.kazunya.data.relation.UserRelationManager;
@@ -53,9 +51,21 @@ public class Kazunya {
         builder.addEventListeners(new SlashCommandListener());
 
         //Add event listeners for command buttons.
+        builder.addEventListeners(new BonkCommand());
+        builder.addEventListeners(new CuddleCommand());
+        builder.addEventListeners(new FuckCommand());
         builder.addEventListeners(new FriendCommand());
-        builder.addEventListeners(new PartnerCommand());
+        builder.addEventListeners(new HugCommand());
+        builder.addEventListeners(new KissCommand());
+        builder.addEventListeners(new LickCommand());
         builder.addEventListeners(new MarryCommand());
+        builder.addEventListeners(new NomCommand());
+        builder.addEventListeners(new PartnerCommand());
+        builder.addEventListeners(new PatCommand());
+        builder.addEventListeners(new PokeCommand());
+        builder.addEventListeners(new SlapCommand());
+        builder.addEventListeners(new TickleCommand());
+        builder.addEventListeners(new YeetCommand());
 
     }
 

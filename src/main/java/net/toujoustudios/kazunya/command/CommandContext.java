@@ -6,12 +6,6 @@ import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 
 import java.util.List;
 
-/**
- * This file has been created by Ian Toujou.
- * Project: Kazunya
- * Date: 26/08/2021
- * Time: 23:07
- */
 public class CommandContext implements ICommandContext {
 
     private final SlashCommandEvent event;

@@ -1,4 +1,4 @@
-package net.toujoustudios.kazunya.data.ban;
+package net.toujoustudios.kazunya.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

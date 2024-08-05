@@ -8,7 +8,7 @@ import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.command.ICommand;
 import net.toujoustudios.kazunya.config.Config;
-import net.toujoustudios.kazunya.data.user.UserManager;
+import net.toujoustudios.kazunya.model.UserManager;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
 import net.toujoustudios.kazunya.util.ColorUtil;
@@ -61,7 +61,7 @@ public class TransferCommand implements ICommand {
 
         embedBuilder.setTitle("**:credit_card: Bank Transfer**");
         embedBuilder.setDescription(":white_check_mark: Transfer successful!\nYou successfully transferred `" + amount + currency + "` to " + target.getAsMention() + ".");
-        context.getEvent().replyEmbeds(embedBuilder.build()).queue();
+        context.getInteraction().replyEmbeds(embedBuilder.build()).queue();
 
     }
 

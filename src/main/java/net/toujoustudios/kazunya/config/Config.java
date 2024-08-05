@@ -21,9 +21,7 @@ public class Config {
             InputStream inputStream = new FileInputStream(filename);
             Yaml yaml = new Yaml();
             content = yaml.load(inputStream);
-        } catch(FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        } catch(FileNotFoundException ignored) {}
 
         files.put(filename, this);
         Logger.log(LogLevel.INFORMATION, "Configuration file " + filename + " loaded.");

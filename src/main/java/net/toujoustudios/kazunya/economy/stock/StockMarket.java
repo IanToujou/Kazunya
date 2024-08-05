@@ -1,26 +1,24 @@
 package net.toujoustudios.kazunya.economy.stock;
 
+import lombok.Getter;
 import net.toujoustudios.kazunya.config.Config;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
-/**
- * This file has been created by Ian Toujou.
- * Project: Kazunya
- * Date: 04/11/2021
- * Time: 23:59
- */
 public class StockMarket {
 
     private static final HashMap<String, StockMarket> stockMarkets = new HashMap<>();
+    @Getter
     private ArrayList<Stock> stocks = new ArrayList<>();
+    @Getter
     private HashMap<Stock, Double> stockPrices = new HashMap<>();
+    @Getter
     private String id;
     private boolean legal;
     private Timer timer = new Timer();
     private TimerTask timerTask;
-    private Config config;
+    private final Config config;
 
     public StockMarket(String id, boolean legal) {
 
@@ -41,6 +39,7 @@ public class StockMarket {
         defaultMarket.addStock(Stock.getStock("BUTT"));
         defaultMarket.addStock(Stock.getStock("SUS"));
         defaultMarket.addStock(Stock.getStock("CAT"));
+        defaultMarket.addStock(Stock.getStock("42"));
 
         defaultMarket.initializeMarket();
 
@@ -56,10 +55,6 @@ public class StockMarket {
         stocks.add(stock);
     }
 
-    public String getId() {
-        return id;
-    }
-
     public void setId(String id) {
         this.id = id;
     }
@@ -72,16 +67,8 @@ public class StockMarket {
         this.legal = legal;
     }
 
-    public ArrayList<Stock> getStocks() {
-        return stocks;
-    }
-
     public void setStocks(ArrayList<Stock> stocks) {
         this.stocks = stocks;
-    }
-
-    public HashMap<Stock, Double> getStockPrices() {
-        return stockPrices;
     }
 
     public void setStockPrices(HashMap<Stock, Double> stockPrices) {

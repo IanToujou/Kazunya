@@ -37,9 +37,7 @@ public class Logger {
             BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true));
             writer.write("[" + format.format(date) + " - " + level + "] " + message + "\n");
             writer.close();
-        } catch(IOException exception) {
-            exception.printStackTrace();
-        }
+        } catch(IOException ignored) {}
 
     }
 

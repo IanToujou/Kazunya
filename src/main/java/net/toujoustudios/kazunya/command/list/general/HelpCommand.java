@@ -5,7 +5,7 @@ import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
-import net.dv8tion.jda.api.interactions.components.Button;
+import net.dv8tion.jda.api.interactions.components.buttons.Button;
 import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.command.CommandManager;
@@ -18,12 +18,6 @@ import net.toujoustudios.kazunya.util.ColorUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * This file has been created by Ian Toujou.
- * Project: Kazunya
- * Date: 26/08/2021
- * Time: 23:09
- */
 public class HelpCommand implements ICommand {
 
     private final CommandManager manager;
@@ -83,7 +77,7 @@ public class HelpCommand implements ICommand {
             embedBuilder.addField(":sparkles: Fun:", builderFun.toString(), false);
             embedBuilder.addField(":hammer: Tools:", builderTools.toString(), false);
             embedBuilder.addField(":credit_card: Economy:", builderEconomy.toString(), false);
-            if(context.getEvent().getTextChannel().isNSFW())
+            if(context.getInteraction().getChannel().asTextChannel().isNSFW())
                 embedBuilder.addField(":no_entry_sign: NSFW:", builderNSFW.toString(), false);
             if(!context.getMember().getId().equals(config.getString("user.admin")))
                 embedBuilder.addField(":tools: Administration:", builderAdministration.toString(), false);
@@ -103,7 +97,7 @@ public class HelpCommand implements ICommand {
                 embedBuilder.addField(":bookmark_tabs: Credits:", "IanToujou - Toujou Studios", false);
             }
 
-            context.getEvent().replyEmbeds(embedBuilder.build())
+            context.getInteraction().replyEmbeds(embedBuilder.build())
                     .addActionRow(Button.link(config.getString("link.help"), "Docs"))
                     .addActionRow(Button.link(config.getString("link.invite"), "Invite"))
                     .queue();
@@ -120,7 +114,7 @@ public class HelpCommand implements ICommand {
         }
 
         embedBuilder.setDescription("**Description:** " + command.getDescription() + "\n**Usage:** `/" + command.getSyntax() + "`");
-        context.getEvent().replyEmbeds(embedBuilder.build()).queue();
+        context.getInteraction().replyEmbeds(embedBuilder.build()).queue();
 
     }
 

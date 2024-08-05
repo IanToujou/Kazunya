@@ -7,7 +7,7 @@ import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.command.ICommand;
 import net.toujoustudios.kazunya.config.Config;
-import net.toujoustudios.kazunya.data.user.UserManager;
+import net.toujoustudios.kazunya.model.UserManager;
 import net.toujoustudios.kazunya.util.ColorUtil;
 
 import java.util.Collections;
@@ -45,7 +45,7 @@ public class BankCommand implements ICommand {
         embedBuilder.addField("**:credit_card: Client Information:**", "Name: `" + member.getEffectiveName() + "`", false);
         embedBuilder.addField("**:euro: Current Account:**", "IBAN: `" + iban + "`\nAmount: `" + accountMoney + currency + "`", false);
 
-        context.getEvent().replyEmbeds(embedBuilder.build()).queue();
+        context.getInteraction().replyEmbeds(embedBuilder.build()).queue();
 
     }
 

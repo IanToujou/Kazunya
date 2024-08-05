@@ -1,4 +1,4 @@
-package net.toujoustudios.kazunya.data.money;
+package net.toujoustudios.kazunya.database;
 
 import net.toujoustudios.kazunya.database.DatabaseManager;
 

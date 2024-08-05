@@ -1,5 +1,6 @@
 package net.toujoustudios.kazunya.loader;
 
+import lombok.Getter;
 import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.economy.stock.StockMarket;
 import net.toujoustudios.kazunya.log.LogLevel;
@@ -10,6 +11,7 @@ import java.util.Scanner;
 
 public class Loader {
 
+    @Getter
     private static LoaderState state;
 
     public static void startLoading() {
@@ -32,10 +34,6 @@ public class Loader {
 
     private static void postInitialize() {
         Main.getBot().start();
-    }
-
-    public static LoaderState getState() {
-        return state;
     }
 
     public static void setState(LoaderState state) {

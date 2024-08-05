@@ -1,4 +1,4 @@
-package net.toujoustudios.kazunya.data.skill;
+package net.toujoustudios.kazunya.model;
 
 public enum SkillType {
 

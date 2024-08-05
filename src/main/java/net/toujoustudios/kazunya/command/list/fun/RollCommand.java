@@ -15,12 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/**
- * This file has been created by Ian Toujou.
- * Project: Kazunya
- * Date: 30/11/2021
- * Time: 06:38
- */
 public class RollCommand implements ICommand {
 
     private final Config config;
@@ -39,12 +33,12 @@ public class RollCommand implements ICommand {
         int times = 1;
         int offset = 0;
 
-        if(context.getEvent().getOption("sides") != null)
-            sides = (int) context.getEvent().getOption("sides").getAsDouble();
-        if(context.getEvent().getOption("times") != null)
-            times = (int) context.getEvent().getOption("times").getAsDouble();
-        if(context.getEvent().getOption("offset") != null)
-            offset = (int) context.getEvent().getOption("offset").getAsDouble();
+        if(context.getInteraction().getOption("sides") != null)
+            sides = (int) context.getInteraction().getOption("sides").getAsDouble();
+        if(context.getInteraction().getOption("times") != null)
+            times = (int) context.getInteraction().getOption("times").getAsDouble();
+        if(context.getInteraction().getOption("offset") != null)
+            offset = (int) context.getInteraction().getOption("offset").getAsDouble();
 
         if(sides < 2 || sides > 1000) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_RANGE);
@@ -97,7 +91,7 @@ public class RollCommand implements ICommand {
 
         embedBuilder.setTitle("**:game_die: Dice Roll**");
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
-        context.getEvent().replyEmbeds(embedBuilder.build()).queue();
+        context.getInteraction().replyEmbeds(embedBuilder.build()).queue();
 
     }
 

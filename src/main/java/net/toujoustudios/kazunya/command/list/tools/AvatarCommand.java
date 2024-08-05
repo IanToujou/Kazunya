@@ -44,7 +44,7 @@ public class AvatarCommand implements ICommand {
         embedBuilder.setImage(targetUser.getEffectiveAvatarUrl() + "?size=4096");
 
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
-        context.getEvent().replyEmbeds(embedBuilder.build()).queue();
+        context.getInteraction().replyEmbeds(embedBuilder.build()).queue();
 
     }
 

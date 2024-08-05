@@ -1,4 +1,4 @@
-package net.toujoustudios.kazunya.data.user;
+package net.toujoustudios.kazunya.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,11 +10,6 @@ import lombok.Setter;
 public class UserAccount {
 
     private String name;
-    private String discriminator;
     private String avatar;
-
-    public String getFullName() {
-        return name + "#" + discriminator;
-    }
 
 }

@@ -1,5 +1,6 @@
-package net.toujoustudios.kazunya.data.ban;
+package net.toujoustudios.kazunya.database;
 
+import net.toujoustudios.kazunya.model.UserBan;
 import net.toujoustudios.kazunya.database.DatabaseManager;
 
 import java.sql.ResultSet;
@@ -11,7 +12,7 @@ public class UserBanManager {
 
     public static void ban(String id, String reason, Date until, Date date) {
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-        DatabaseManager.executeUpdate("INSERT INTO user_bans (id, reason, until, date) VALUES ('" + id + "', '" + reason + "', '" + sqlDate + "', '" + new java.sql.Date(date.getTime()) + "') ON DUPLICATE KEY UPDATE reason='" + reason + "', until='" + until + "', date='" + sqlDate + "';");
+        DatabaseManager.executeUpdate("INSERT INTO user_ban (id, reason, until, date) VALUES ('" + id + "', '" + reason + "', '" + sqlDate + "', '" + new java.sql.Date(date.getTime()) + "') ON DUPLICATE KEY UPDATE reason='" + reason + "', until='" + until + "', date='" + sqlDate + "';");
     }
 
     public static void ban(String id, String reason, Date until) {
@@ -32,12 +33,12 @@ public class UserBanManager {
     }
 
     public static void unban(String id) {
-        DatabaseManager.executeUpdate("DELETE FROM user_bans WHERE id='" + id + "';");
+        DatabaseManager.executeUpdate("DELETE FROM user_ban WHERE id='" + id + "';");
     }
 
     public static UserBan getBan(String id) {
         try {
-            ResultSet resultSet = DatabaseManager.executeQuery("SELECT * FROM user_bans WHERE id='" + id + "';");
+            ResultSet resultSet = DatabaseManager.executeQuery("SELECT * FROM user_ban WHERE id='" + id + "';");
             if(resultSet != null && resultSet.next())
                 return new UserBan(resultSet.getString("reason"), resultSet.getDate("until"), resultSet.getDate("date"));
         } catch(SQLException exception) {

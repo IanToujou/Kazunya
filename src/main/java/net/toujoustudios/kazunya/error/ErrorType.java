@@ -32,25 +32,12 @@ public enum ErrorType {
     COMMAND_INVALID_STOCK("1009", "The specified stock does not exist. Please use /marketinfo to get the full list of available stocks."),
     COMMAND_INVALID_URL("1010", "The given link is invalid. Please provide a valid link."),
     COMMAND_INVALID_RANGE("1011", "The specified number is not in the given range. Please read the documentation to see the correct range."),
+    COMMAND_INVALID_GENDER("1022", "The specified gender is invalid. Please use MALE, FEMALE, NONE, or OTHER."),
 
     // More advanced command errors when trying to perform a specific action.
     ACTION_INVALID_USER("2001", "That action is not meant to be performed by you."),
     ACTION_NOT_ENOUGH_WALLET_MONEY("2002", "You don't have enough money in your wallet for this action."),
     ACTION_NOT_ENOUGH_BANK_MONEY("2003", "You don't have enough money in your bank account for this action."),
-    ACTION_ALREADY_FRIENDS("2004", "You are already friends with that person."),
-    ACTION_ALREADY_PARTNERS("2005", "You are already partners with that person."),
-    ACTION_ALREADY_MARRIED("2006", "You are already married to that person."),
-    ACTION_NOT_FRIENDS("2007", "You are not friends with that person."),
-    ACTION_NOT_PARTNERS("2008", "You are not partners with that person."),
-    ACTION_NOT_MARRIED("2009", "You are not married to anyone."),
-    ACTION_INVALID_FRIEND_REQUEST("2010", "The friend request is invalid. Please send a new one."),
-    ACTION_INVALID_PARTNER_REQUEST("2011", "The partner request is invalid. Please send a new one."),
-    ACTION_INVALID_MARRY_REQUEST("2012", "The proposal is invalid. Please send a new one."),
-    ACTION_MAX_FRIENDS("2013", "You already have the maximum amount of friends."),
-    ACTION_MAX_PARTNERS("2014", "You already have the maximum amount of partners."),
-    ACTION_MAX_MARRIED("2015", "You already have the maximum amount of married partners."),
-    ACTION_RELATION_TOO_HIGH("2016", "Your relationship with the other person is too strong."),
-    ACTION_RELATION_TOO_LOW("2017", "Your relationship with the other person is not strong enough."),
 
     // Audio errors that only occur when failing to send an audio stream.
     AUDIO_UNABLE_TO_LOAD("3001", "The audio couldn't be loaded due to an unexpected error."),

@@ -10,7 +10,7 @@ import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.command.ICommand;
 import net.toujoustudios.kazunya.config.Config;
-import net.toujoustudios.kazunya.data.user.UserManager;
+import net.toujoustudios.kazunya.model.UserManager;
 import net.toujoustudios.kazunya.util.ColorUtil;
 
 import java.time.format.DateTimeFormatter;
@@ -48,7 +48,7 @@ public class UserInfoCommand implements ICommand {
         embedBuilder.setThumbnail(targetUser.getEffectiveAvatarUrl());
 
         StringBuilder generalBuilder = new StringBuilder();
-        generalBuilder.append("Username: `").append(targetUser.getAsTag()).append("`\n");
+        generalBuilder.append("Username: `").append(targetUser.getName()).append("`\n");
         generalBuilder.append("Display Name: `").append(target.getEffectiveName()).append("`\n");
         generalBuilder.append("User ID: `").append(target.getId()).append("`\n");
         generalBuilder.append("Bot Account: `").append(targetUser.isBot() ? "Yes" : "No").append("`");
@@ -61,7 +61,7 @@ public class UserInfoCommand implements ICommand {
         embedBuilder.addField(":calendar: Dates:", datesBuilder.toString(), false);
 
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
-        context.getEvent().replyEmbeds(embedBuilder.build()).queue();
+        context.getInteraction().replyEmbeds(embedBuilder.build()).queue();
 
     }
 

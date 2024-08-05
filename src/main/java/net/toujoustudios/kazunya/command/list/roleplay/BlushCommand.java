@@ -33,7 +33,7 @@ public class BlushCommand implements ICommand {
         embedBuilder.setDescription(member.getAsMention() + " is blushing! :3");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
-        context.getEvent().replyEmbeds(embedBuilder.build()).queue();
+        context.getInteraction().replyEmbeds(embedBuilder.build()).queue();
 
     }
 

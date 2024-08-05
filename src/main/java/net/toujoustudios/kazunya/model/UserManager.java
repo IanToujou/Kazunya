@@ -1,15 +1,9 @@
-package net.toujoustudios.kazunya.data.user;
+package net.toujoustudios.kazunya.model;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.dv8tion.jda.api.entities.Member;
-import net.toujoustudios.kazunya.data.ban.UserBan;
-import net.toujoustudios.kazunya.data.ban.UserBanManager;
-import net.toujoustudios.kazunya.data.money.UserMoneyManager;
-import net.toujoustudios.kazunya.data.relation.UserRelation;
-import net.toujoustudios.kazunya.data.relation.UserRelationManager;
-import net.toujoustudios.kazunya.data.relation.UserRelationType;
-import net.toujoustudios.kazunya.data.skill.SkillType;
-import net.toujoustudios.kazunya.data.skill.UserSkill;
-import net.toujoustudios.kazunya.data.skill.UserSkillManager;
+import net.toujoustudios.kazunya.database.*;
 
 import java.util.*;
 
@@ -17,12 +11,18 @@ public class UserManager {
 
     private static final HashMap<String, UserManager> users = new HashMap<>();
     private final String id;
+    @Getter
     private UserAccount account;
     private UserBan ban;
+    @Getter
     private double bankMoney;
+    @Getter
     private double walletMoney;
-    private ArrayList<UserRelation> relations;
+    @Getter
     private ArrayList<UserSkill> skills;
+    private final HashMap<String, Integer> guildExperience;
+    @Getter @Setter
+    private Gender gifGender;
 
     public UserManager(String id) {
         this.id = id;
@@ -30,8 +30,9 @@ public class UserManager {
         this.ban = UserBanManager.getBan(id);
         this.bankMoney = UserMoneyManager.getBankMoney(id);
         this.walletMoney = UserMoneyManager.getWalletMoney(id);
-        this.relations = UserRelationManager.getRelations(id);
         this.skills = UserSkillManager.getSkills(id);
+        this.guildExperience = UserExperienceManager.getAll(id);
+        this.gifGender = UserGifGenderManager.get(id);
         checkBan();
     }
 
@@ -62,7 +63,7 @@ public class UserManager {
     public static UserManager getUser(Member member) {
         String id = member.getId();
         UserManager userManager = getUser(id);
-        userManager.setAccount(new UserAccount(member.getUser().getName(), member.getUser().getDiscriminator(), member.getUser().getEffectiveAvatarUrl()));
+        userManager.setAccount(new UserAccount(member.getUser().getName(), member.getUser().getEffectiveAvatarUrl()));
         return userManager;
     }
 
@@ -76,7 +77,7 @@ public class UserManager {
     }
 
     public static void saveAll() {
-        if(users == null || users.size() == 0) return;
+        if(users == null || users.isEmpty()) return;
         for(Map.Entry<String, UserManager> entry : users.entrySet()) {
             users.get(entry.getKey()).save();
         }
@@ -94,15 +95,9 @@ public class UserManager {
         else UserBanManager.unban(id);
         UserMoneyManager.setBankMoney(id, bankMoney);
         UserMoneyManager.setWalletMoney(id, walletMoney);
-        UserRelationManager.deleteRelations(id);
-        relations.forEach(all -> {
-            UserRelationManager.setRelation(all.getId(), id, all.getTarget(), all.getType(), all.getDate());
-        });
         UserSkillManager.setSkills(id, skills);
-    }
-
-    public UserAccount getAccount() {
-        return account;
+        guildExperience.forEach(((guild, experience) -> UserExperienceManager.set(id, guild, experience)));
+        UserGifGenderManager.set(id, gifGender);
     }
 
     public void setAccount(UserAccount account) {
@@ -150,10 +145,6 @@ public class UserManager {
         if(new Date().after(ban.getUntil())) ban = null;
     }
 
-    public double getBankMoney() {
-        return bankMoney;
-    }
-
     public void addBankMoney(double amount) {
         this.bankMoney += amount;
     }
@@ -166,10 +157,6 @@ public class UserManager {
         this.bankMoney = bankMoney;
     }
 
-    public double getWalletMoney() {
-        return walletMoney;
-    }
-
     public void setWalletMoney(double walletMoney) {
         this.walletMoney = walletMoney;
     }
@@ -180,49 +167,6 @@ public class UserManager {
 
     public void removeWalletMoney(double amount) {
         this.walletMoney -= amount;
-    }
-
-    public ArrayList<UserRelation> getRelations() {
-        return relations;
-    }
-
-    public UserRelation getRelation(String target) {
-        for(UserRelation all : relations) {
-            if(all.getTarget().equals(target)) return all;
-        }
-        return null;
-    }
-
-    public boolean hasRelation(String target) {
-        return getRelation(target) != null;
-    }
-
-    public ArrayList<UserRelation> getRelationsOfType(UserRelationType type) {
-        ArrayList<UserRelation> relationsOfType = new ArrayList<>();
-        for(UserRelation all : relations) if(all.getType() == type) relationsOfType.add(all);
-        return relationsOfType;
-    }
-
-    public void setRelations(ArrayList<UserRelation> relations) {
-        this.relations = relations;
-    }
-
-    public void removeRelation(UserRelation relation) {
-        relations.remove(relation);
-    }
-
-    public void removeRelationWith(String target) {
-        if(getRelation(target) == null) return;
-        removeRelation(getRelation(target));
-    }
-
-    public void addRelation(UserRelation relation) {
-        if(hasRelation(relation.getTarget()) && getRelation(relation.getTarget()).getType() == relation.getType()) return;
-        if(!relations.contains(relation)) relations.add(relation);
-    }
-
-    public ArrayList<UserSkill> getSkills() {
-        return skills;
     }
 
     public UserSkill getSkill(SkillType skillType) {
@@ -248,6 +192,47 @@ public class UserManager {
     public void setSkill(SkillType skillType, int experience) {
         if(getSkill(skillType) != null) skills.remove(getSkill(skillType));
         skills.add(new UserSkill(skillType, experience));
+    }
+
+    public int getLevel(String guildId) {
+        int level = 0;
+        while (true) {
+            int threshold = getLevelThreshold(level);
+            if (getExperience(guildId) >= threshold) level++;
+            else break;
+        }
+        return level;
+    }
+
+    public int getExperienceSinceLastLevel(int experience) {
+        int level = 0;
+        while (true) {
+            int threshold = getLevelThreshold(level);
+            if (experience >= threshold) level++;
+            else {
+                if (level == 0) return experience;
+                else return (experience - getLevelThreshold(level - 1));
+            }
+        }
+    }
+
+    public int getLevelThreshold(int level) {
+        if (level == 0) return 20;
+        return (int) (((20 + 10 * (double) level) * ((double) level /5))+20);
+    }
+
+    public int getRelativeLevelThreshold(int level) {
+        int threshold = getLevelThreshold(level);
+        if (level == 0) return threshold;
+        return threshold - getLevelThreshold(level - 1);
+    }
+
+    public void setExperience(String guildId, int amount) {
+        guildExperience.putIfAbsent(guildId, amount);
+    }
+
+    public int getExperience(String guildId) {
+        return guildExperience.getOrDefault(guildId, 0);
     }
 
 }

@@ -1,5 +1,8 @@
-package net.toujoustudios.kazunya.data.skill;
+package net.toujoustudios.kazunya.database;
 
+import net.toujoustudios.kazunya.model.SkillType;
+import net.toujoustudios.kazunya.model.UserManager;
+import net.toujoustudios.kazunya.model.UserSkill;
 import net.toujoustudios.kazunya.database.DatabaseManager;
 
 import java.sql.ResultSet;
@@ -9,21 +12,21 @@ import java.util.ArrayList;
 public class UserSkillManager {
 
     public static void setSkill(String id, UserSkill skill) {
-        DatabaseManager.executeUpdate("INSERT INTO user_skills (id, skill, experience) VALUES ('" + id + "', '" + skill.getSkillType().toString() + "', '" + skill.getExperience() + "');");
+        DatabaseManager.executeUpdate("INSERT INTO user_skill (id, skill, experience) VALUES ('" + id + "', '" + skill.getSkillType().toString() + "', '" + skill.getExperience() + "');");
     }
 
     public static void deleteSkill(String id, SkillType skill) {
-        DatabaseManager.executeUpdate("DELETE FROM user_skills WHERE id='" + id + "' AND skill='" + skill.toString() + "';");
+        DatabaseManager.executeUpdate("DELETE FROM user_skill WHERE id='" + id + "' AND skill='" + skill.toString() + "';");
     }
 
     public static void deleteSkills(String id) {
-        DatabaseManager.executeUpdate("DELETE FROM user_skills WHERE id='" + id + "';");
+        DatabaseManager.executeUpdate("DELETE FROM user_skill WHERE id='" + id + "';");
     }
 
     public static ArrayList<UserSkill> getSkills(String id) {
         ArrayList<UserSkill> skills = new ArrayList<>();
         try {
-            ResultSet resultSet = DatabaseManager.executeQuery("SELECT * FROM user_skills WHERE id='" + id + "';");
+            ResultSet resultSet = DatabaseManager.executeQuery("SELECT * FROM user_skill WHERE id='" + id + "';");
             while(resultSet != null && resultSet.next())
                 skills.add(new UserSkill(SkillType.valueOf(resultSet.getString("skill")), resultSet.getInt("experience")));
         } catch(SQLException exception) {

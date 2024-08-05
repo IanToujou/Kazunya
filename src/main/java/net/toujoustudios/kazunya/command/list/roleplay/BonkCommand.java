@@ -2,23 +2,21 @@ package net.toujoustudios.kazunya.command.list.roleplay;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.entities.User;
-import net.dv8tion.jda.api.events.interaction.ButtonClickEvent;
+import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
-import net.dv8tion.jda.api.interactions.components.Button;
+import net.dv8tion.jda.api.interactions.components.buttons.Button;
 import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.command.ICommand;
 import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
-import net.toujoustudios.kazunya.log.LogLevel;
-import net.toujoustudios.kazunya.log.Logger;
 import net.toujoustudios.kazunya.main.Main;
 import net.toujoustudios.kazunya.util.ColorUtil;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +51,7 @@ public class BonkCommand extends ListenerAdapter implements ICommand {
         embedBuilder.setDescription(member.getAsMention() + " bonks " + target.getAsMention() + "! No Horny!");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
-        context.getEvent().reply(target.getAsMention())
+        context.getInteraction().reply(target.getAsMention())
                 .addEmbeds(embedBuilder.build())
                 .addActionRow(
                         Button.secondary("bonk-" + member.getId() + "-" + target.getId(), "🧨 Bonk Back"))
@@ -62,7 +60,7 @@ public class BonkCommand extends ListenerAdapter implements ICommand {
     }
 
     @Override
-    public void onButtonClick(ButtonClickEvent event) {
+    public void onButtonInteraction(@NotNull ButtonInteractionEvent event) {
 
         String id = event.getComponentId();
         EmbedBuilder embedBuilder = new EmbedBuilder();

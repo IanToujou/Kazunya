@@ -16,12 +16,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-/**
- * This file has been created by Ian Toujou.
- * Project: Kazunya
- * Date: 05/11/2021
- * Time: 21:29
- */
 public class LaughCommand implements ICommand {
 
     private final Config config;
@@ -37,7 +31,7 @@ public class LaughCommand implements ICommand {
         Member member = context.getMember();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
-        if(args.size() != 0) {
+        if(!args.isEmpty()) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_SYNTAX);
             return;
         }
@@ -48,7 +42,7 @@ public class LaughCommand implements ICommand {
         embedBuilder.setDescription(member.getAsMention() + " is laughing! Haha~");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
-        context.getEvent().replyEmbeds(embedBuilder.build()).queue();
+        context.getInteraction().replyEmbeds(embedBuilder.build()).queue();
 
     }
 

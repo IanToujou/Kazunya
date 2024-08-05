@@ -1,5 +1,6 @@
 package net.toujoustudios.kazunya.database;
 
+import lombok.Getter;
 import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.loader.Loader;
 import net.toujoustudios.kazunya.log.LogLevel;
@@ -10,14 +11,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- * This file has been created by Ian Toujou.
- * Project: Kazunya
- * Date: 26/08/2021
- * Time: 23:23
- */
 public class DatabaseManager {
 
+    @Getter
     private static Connection connection;
     private static final Config config = Config.getFile("database.yml");
 
@@ -28,7 +24,6 @@ public class DatabaseManager {
         try {
             String url = "jdbc:mysql://" + config.getString("database.host") + ":" + config.getString("database.port") + "/" + config.getString("database.name") + "?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC";
             connection = DriverManager.getConnection(url, config.getString("database.user"), config.getString("database.password"));
-            Logger.log(LogLevel.INFORMATION, "The connection to the database has been established.");
         } catch(SQLException exception) {
             Logger.log(LogLevel.FATAL, "Could not establish a connection to the database. Please review the error below:");
             Logger.log(LogLevel.FATAL, exception.getMessage());
@@ -40,9 +35,9 @@ public class DatabaseManager {
         if(isConnected()) {
             try {
                 connection.close();
-                Logger.log(LogLevel.INFORMATION, "The database has been disconnected.");
             } catch(Exception exception) {
-                exception.printStackTrace();
+                Logger.log(LogLevel.ERROR, "Could disconnect the database. Please review the error below:");
+                Logger.log(LogLevel.ERROR, exception.getMessage());
             }
         }
     }
@@ -68,21 +63,19 @@ public class DatabaseManager {
         }
     }
 
-    public static Connection getConnection() {
-        return connection;
-    }
-
     public static void setup() {
         //Ensure that the bot has been loaded.
         Loader.ensureLoad();
         //Create user related databases.
-        executeUpdate("CREATE TABLE IF NOT EXISTS user_accounts (`id` VARCHAR(256) NOT NULL, `name` VARCHAR(256) NOT NULL, `discriminator` VARCHAR(256) NOT NULL,`avatar` VARCHAR(512) NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;");
-        executeUpdate("CREATE TABLE IF NOT EXISTS user_bans (`id` VARCHAR(256) NOT NULL, `reason` VARCHAR(256) NOT NULL, `until` DATETIME NULL DEFAULT NULL, `date` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;");
-        executeUpdate("CREATE TABLE IF NOT EXISTS user_relations (`id` VARCHAR(256) NOT NULL,`member` VARCHAR(256) NOT NULL, `target` VARCHAR(256) NOT NULL, `type` VARCHAR(256) NOT NULL, `date` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;");
+        executeUpdate("CREATE TABLE IF NOT EXISTS user_account (`id` VARCHAR(256) NOT NULL, `name` VARCHAR(256) NOT NULL, `avatar` VARCHAR(512) NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;");
+        executeUpdate("CREATE TABLE IF NOT EXISTS user_ban (`id` VARCHAR(256) NOT NULL, `reason` VARCHAR(256) NOT NULL, `until` DATETIME NULL DEFAULT NULL, `date` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;");
         executeUpdate("CREATE TABLE IF NOT EXISTS user_money (`id` VARCHAR(256) NOT NULL, `bank` INT NOT NULL DEFAULT '0', `wallet` INT NOT NULL DEFAULT '0', PRIMARY KEY (`id`)) ENGINE = InnoDB;");
-        executeUpdate("CREATE TABLE IF NOT EXISTS user_jobs (`id` VARCHAR(256) NOT NULL, `job` VARCHAR(256) NULL DEFAULT NULL, `position` VARCHAR(256) NULL DEFAULT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;");
-        executeUpdate("CREATE TABLE IF NOT EXISTS user_skills (`id` VARCHAR(256) NOT NULL, `skill` VARCHAR(256) NULL DEFAULT NULL, `experience` INT NOT NULL DEFAULT '0') ENGINE = InnoDB;");
-        executeUpdate("CREATE TABLE IF NOT EXISTS user_settings (`id` VARCHAR(256) NOT NULL, `nsfw_enabled` BOOLEAN NOT NULL DEFAULT FALSE, `gif_gender` VARCHAR(256) NULL DEFAULT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;");
+        executeUpdate("CREATE TABLE IF NOT EXISTS user_job (`id` VARCHAR(256) NOT NULL, `job` VARCHAR(256) NULL DEFAULT NULL, `position` VARCHAR(256) NULL DEFAULT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;");
+        executeUpdate("CREATE TABLE IF NOT EXISTS user_skill (`id` VARCHAR(256) NOT NULL, `skill` VARCHAR(256) NULL DEFAULT NULL, `experience` INT NOT NULL DEFAULT '0') ENGINE = InnoDB;");
+        executeUpdate("CREATE TABLE IF NOT EXISTS user_config (`id` VARCHAR(256) NOT NULL, `nsfw_enabled` BOOLEAN NOT NULL DEFAULT FALSE, `gif_gender` VARCHAR(256) NULL DEFAULT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;");
+        //executeUpdate("CREATE TABLE IF NOT EXISTS guild_level_config (`id` VARCHAR(256) NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB");
+        executeUpdate("CREATE TABLE IF NOT EXISTS guild_level_storage (`id` INT NOT NULL AUTO_INCREMENT, `guild_id` VARCHAR(256) NOT NULL, `user_id` VARCHAR(256) NOT NULL, `experience` INT NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;");
+        executeUpdate("CREATE TABLE IF NOT EXISTS user_settings (`id` VARCHAR(256) NOT NULL, `gif_gender` VARCHAR(256) NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;");
     }
 
 }

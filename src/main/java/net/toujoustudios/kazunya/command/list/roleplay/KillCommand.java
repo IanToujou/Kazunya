@@ -91,7 +91,7 @@ public class KillCommand implements ICommand {
         embedBuilder.setDescription(messages.get(new Random().nextInt(messages.size())).replace("{Victim}", target.getAsMention()).replace("{Killer}", member.getAsMention()));
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
-        context.getEvent().reply(target.getAsMention()).addEmbeds(embedBuilder.build()).queue();
+        context.getInteraction().reply(target.getAsMention()).addEmbeds(embedBuilder.build()).queue();
 
     }
 

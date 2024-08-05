@@ -40,7 +40,7 @@ public class MarketInfoCommand implements ICommand {
 
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
 
-        if(args.size() == 0) {
+        if(args.isEmpty()) {
 
             embedBuilder.setTitle(":chart_with_upwards_trend: **Stock Market**");
             StringBuilder stringBuilder = new StringBuilder();
@@ -51,7 +51,7 @@ public class MarketInfoCommand implements ICommand {
 
             embedBuilder.setDescription(stringBuilder.toString());
             embedBuilder.setThumbnail(config.getString("assets.img.icon_stock_market"));
-            context.getEvent().replyEmbeds(embedBuilder.build()).queue();
+            context.getInteraction().replyEmbeds(embedBuilder.build()).queue();
             return;
 
         } else {
@@ -70,7 +70,7 @@ public class MarketInfoCommand implements ICommand {
                     stringBuilder.append(":chart: **Current Price:** ").append(stockMarket.getStockPrice(stock.getId())).append(config.getString("format.char.currency")).append("\n");
                     embedBuilder.setDescription(stringBuilder.toString());
                     embedBuilder.setThumbnail(config.getString("assets.img.icon_stock_single"));
-                    context.getEvent().replyEmbeds(embedBuilder.build()).queue();
+                    context.getInteraction().replyEmbeds(embedBuilder.build()).queue();
                     return;
 
                 }

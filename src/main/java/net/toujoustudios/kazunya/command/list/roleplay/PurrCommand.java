@@ -37,7 +37,7 @@ public class PurrCommand implements ICommand {
         Member member = context.getMember();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
-        if(args.size() != 0) {
+        if(!args.isEmpty()) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_SYNTAX);
             return;
         }
@@ -48,7 +48,7 @@ public class PurrCommand implements ICommand {
         embedBuilder.setDescription(member.getAsMention() + " purrs! Meow~");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
-        context.getEvent().replyEmbeds(embedBuilder.build()).queue();
+        context.getInteraction().replyEmbeds(embedBuilder.build()).queue();
 
     }
 

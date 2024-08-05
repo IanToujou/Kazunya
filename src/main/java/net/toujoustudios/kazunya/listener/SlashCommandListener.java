@@ -1,8 +1,8 @@
 package net.toujoustudios.kazunya.listener;
 
-import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
+import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import net.toujoustudios.kazunya.data.user.UserManager;
+import net.toujoustudios.kazunya.model.UserManager;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
 import net.toujoustudios.kazunya.log.LogLevel;
@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 public class SlashCommandListener extends ListenerAdapter {
 
     @Override
-    public void onSlashCommand(@NotNull SlashCommandEvent event) {
+    public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event) {
 
         if(event.getGuild() == null) {
             ErrorEmbed.sendError(event, ErrorType.GENERAL_UNKNOWN);
@@ -36,7 +36,7 @@ public class SlashCommandListener extends ListenerAdapter {
         }
 
         Main.getBot().getCommandManager().handle(event);
-        Logger.log(LogLevel.SILENT, event.getUser().getName() + "#" + event.getUser().getDiscriminator() + " executed the following command: " + event.getCommandString());
+        Logger.log(LogLevel.SILENT, event.getUser().getName() + " executed the following command: " + event.getCommandString());
 
     }
 

@@ -1,16 +1,22 @@
 package net.toujoustudios.kazunya.command;
 
-import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
+import lombok.Getter;
+import net.dv8tion.jda.api.interactions.commands.Command;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
+import net.dv8tion.jda.api.interactions.commands.SlashCommandInteraction;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
+import net.dv8tion.jda.api.interactions.commands.build.Commands;
+import net.dv8tion.jda.api.interactions.commands.build.SlashCommandData;
 import net.dv8tion.jda.api.interactions.commands.build.SubcommandData;
 import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
+import net.dv8tion.jda.api.utils.data.DataObject;
 import net.toujoustudios.kazunya.command.list.economy.*;
 import net.toujoustudios.kazunya.command.list.fun.PeePeeCommand;
 import net.toujoustudios.kazunya.command.list.fun.RollCommand;
 import net.toujoustudios.kazunya.command.list.fun.ShipCommand;
 import net.toujoustudios.kazunya.command.list.general.HelpCommand;
 import net.toujoustudios.kazunya.command.list.general.InfoCommand;
+import net.toujoustudios.kazunya.command.list.general.SettingsCommand;
 import net.toujoustudios.kazunya.command.list.roleplay.*;
 import net.toujoustudios.kazunya.command.list.tools.AvatarCommand;
 import net.toujoustudios.kazunya.command.list.tools.UserInfoCommand;
@@ -18,6 +24,7 @@ import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
 import net.toujoustudios.kazunya.log.LogLevel;
 import net.toujoustudios.kazunya.log.Logger;
+import net.toujoustudios.kazunya.main.Kazunya;
 import net.toujoustudios.kazunya.main.Main;
 
 import javax.annotation.Nullable;
@@ -30,6 +37,7 @@ import java.util.List;
  * Date: 26/08/2021
  * Time: 23:08
  */
+@Getter
 public class CommandManager {
 
     private final List<ICommand> commands = new ArrayList<>();
@@ -39,10 +47,9 @@ public class CommandManager {
         //Register general commands
         this.addCommand(new HelpCommand(this));
         this.addCommand(new InfoCommand());
+        this.addCommand(new SettingsCommand());
 
         //Register role play commands
-        this.addCommand(new MarryCommand());
-        this.addCommand(new DivorceCommand());
         this.addCommand(new BlushCommand());
         this.addCommand(new HugCommand());
         this.addCommand(new KissCommand());
@@ -57,11 +64,8 @@ public class CommandManager {
         this.addCommand(new SlapCommand());
         this.addCommand(new SmileCommand());
         this.addCommand(new KillCommand());
-        this.addCommand(new FuckCommand());
         this.addCommand(new BonkCommand());
         this.addCommand(new NomCommand());
-        this.addCommand(new FriendCommand());
-        this.addCommand(new PartnerCommand());
         this.addCommand(new YeetCommand());
 
         //Register economy commands
@@ -97,8 +101,8 @@ public class CommandManager {
 
         for(ICommand command : this.commands) {
             Logger.log(LogLevel.DEBUG, "Started registration of the following commands: /" + command.getName());
-            CommandData data = new CommandData(command.getName(), command.getEmoji() + " " + command.getDescription());
-            if(command.getSubcommandData().size() > 0) {
+            SlashCommandData data = Commands.slash(command.getName(), command.getEmoji() + " " + command.getDescription()).addSubcommands();
+            if(!command.getSubcommandData().isEmpty()) {
                 for(int i = 1; i <= command.getSubcommandData().size(); i++) {
                     SubcommandData subcommandData = command.getSubcommandData().get(i - 1);
                     if(i == command.getSubcommandData().size())
@@ -116,10 +120,6 @@ public class CommandManager {
 
     }
 
-    public List<ICommand> getCommands() {
-        return commands;
-    }
-
     @Nullable
     public ICommand getCommand(String search) {
 
@@ -133,22 +133,22 @@ public class CommandManager {
 
     }
 
-    public void handle(SlashCommandEvent event) {
+    public void handle(SlashCommandInteraction interaction) {
 
-        String invoke = event.getName();
+        String invoke = interaction.getName();
         ICommand command = this.getCommand(invoke);
 
         if(command != null) {
 
-            event.getChannel().sendTyping().queue();
+            interaction.getChannel().sendTyping().queue();
 
-            if(command.getCategory() == CommandCategory.NSFW && !event.getTextChannel().isNSFW()) {
-                ErrorEmbed.sendError(event, ErrorType.GENERAL_NSFW);
+            if(command.getCategory() == CommandCategory.NSFW && !interaction.getChannel().asTextChannel().isNSFW()) {
+                ErrorEmbed.sendError(interaction, ErrorType.GENERAL_NSFW);
                 return;
             }
 
-            List<OptionMapping> args = event.getOptions();
-            CommandContext context = new CommandContext(event, args);
+            List<OptionMapping> args = interaction.getOptions();
+            CommandContext context = new CommandContext(interaction, args);
 
             command.handle(context);
 

@@ -11,24 +11,26 @@ Here you can find all the changes that have been made to the bot since the first
 
 Changes listed in the changelog are divided into categories.
 
-| Symbol | Category | Description
-|:-:|:-|:-|
-| ✨ | **NEW FEATURE** | *A new major or minor feature has been added.*
-| 💥 | **BIG CHANGES** | *A large feature has been added that will change the bot or some functionality.*
-| 🔥 | **REMOVAL** | *A feature has been removed.*
-| 🐛 | **BUGFIX** | *A bug has been fixed.*
-| 🚑 | **HOTFIX** | *A critical bug has been fixed as fast as possible.*
-| 📝 | **OTHER** | *Changes that don't fall into any other category.*
+| Symbol | Category        | Description                                                                      |
+|:------:|:----------------|:---------------------------------------------------------------------------------|
+|   ✨    | **NEW FEATURE** | *A new major or minor feature has been added.*                                   |
+|   💥   | **BIG CHANGES** | *A large feature has been added that will change the bot or some functionality.* |
+|   🔥   | **REMOVAL**     | *A feature has been removed.*                                                    |
+|   🐛   | **BUGFIX**      | *A bug has been fixed.*                                                          |
+|   🚑   | **HOTFIX**      | *A critical bug has been fixed as fast as possible.*                             |
+|   📝   | **OTHER**       | *Changes that don't fall into any other category.*                               |
 
 ## **Changes**
 
 !!! Info
     The changes are listed in chronological order, with the newest versions first.
 
-### **Release v1.2.2 (**`24.12.2022`**)**
+### **Release v1.2.2 (**`16.06.2023`**)**
     
 - `[⚙️]` Added documentation button to /help command.
 - `[✨️]` Added react back buttons to some commands.
+- `[🔥]` Removed /fuck command.
+- `[⬆️]` Updated to java 17.
 
 ### **Release v1.2.1 (**`20.12.2022`**)**
 

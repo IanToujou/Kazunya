@@ -1,5 +1,6 @@
 package net.toujoustudios.kazunya.main;
 
+import lombok.Getter;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
@@ -7,10 +8,8 @@ import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.toujoustudios.kazunya.command.CommandManager;
 import net.toujoustudios.kazunya.command.list.roleplay.*;
 import net.toujoustudios.kazunya.config.Config;
-import net.toujoustudios.kazunya.data.guild.GuildManager;
-import net.toujoustudios.kazunya.data.relation.UserRelationManager;
-import net.toujoustudios.kazunya.data.user.UserAccountManager;
-import net.toujoustudios.kazunya.data.user.UserManager;
+import net.toujoustudios.kazunya.model.GuildManager;
+import net.toujoustudios.kazunya.model.UserManager;
 import net.toujoustudios.kazunya.database.DatabaseManager;
 import net.toujoustudios.kazunya.database.DatabaseTimer;
 import net.toujoustudios.kazunya.listener.SlashCommandListener;
@@ -18,7 +17,6 @@ import net.toujoustudios.kazunya.loader.Loader;
 import net.toujoustudios.kazunya.log.LogLevel;
 import net.toujoustudios.kazunya.log.Logger;
 
-import javax.security.auth.login.LoginException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Objects;
@@ -28,8 +26,10 @@ import java.util.Timer;
 
 public class Kazunya {
 
+    @Getter
     private JDABuilder builder;
     private JDA jda;
+    @Getter
     private CommandManager commandManager;
 
     public void build() {
@@ -49,18 +49,15 @@ public class Kazunya {
 
         //Add event listeners for general events.
         builder.addEventListeners(new SlashCommandListener());
+        //builder.addEventListeners(new MessageReceivedListener());
 
         //Add event listeners for command buttons.
         builder.addEventListeners(new BonkCommand());
         builder.addEventListeners(new CuddleCommand());
-        builder.addEventListeners(new FuckCommand());
-        builder.addEventListeners(new FriendCommand());
         builder.addEventListeners(new HugCommand());
         builder.addEventListeners(new KissCommand());
         builder.addEventListeners(new LickCommand());
-        builder.addEventListeners(new MarryCommand());
         builder.addEventListeners(new NomCommand());
-        builder.addEventListeners(new PartnerCommand());
         builder.addEventListeners(new PatCommand());
         builder.addEventListeners(new PokeCommand());
         builder.addEventListeners(new SlapCommand());
@@ -70,15 +67,10 @@ public class Kazunya {
     }
 
     public void start() {
-        try {
-            Loader.ensureLoad();
-            jda = builder.build();
-            commandManager.registerCommands();
-            startConsole();
-        } catch(LoginException exception) {
-            Logger.log(LogLevel.FATAL, "Failed to log the bot in. Please review the error below:");
-            Logger.log(LogLevel.FATAL, exception.getMessage());
-        }
+        Loader.ensureLoad();
+        jda = builder.build();
+        commandManager.registerCommands();
+        startConsole();
     }
 
     public void initializeDatabase() {
@@ -133,6 +125,20 @@ public class Kazunya {
                 } catch(Exception exception) {
                     Logger.log(LogLevel.ERROR, "Could not send message to channel.");
                 }
+            } else if(input.startsWith("pmsg")) {
+                String[] args = input.split(" ");
+                String user = args[1];
+                StringBuilder message = new StringBuilder();
+                for(int i = 2; i < args.length; i++) {
+                    if(i != 2) message.append(" ").append(args[i]);
+                    else message.append(args[i]);
+                }
+                try {
+                    Objects.requireNonNull(jda.getUserById(user)).openPrivateChannel().flatMap(channel -> channel.sendMessage(message)).queue();
+                    Logger.log(LogLevel.INFORMATION, "The message has been sent.");
+                } catch(Exception exception) {
+                    Logger.log(LogLevel.ERROR, "Could not send message to channel.");
+                }
             } else {
                 Logger.log(LogLevel.ERROR, "The specified command does not exist.");
             }
@@ -141,16 +147,8 @@ public class Kazunya {
 
     }
 
-    public JDABuilder getBuilder() {
-        return builder;
-    }
-
     public JDA getJDA() {
         return jda;
-    }
-
-    public CommandManager getCommandManager() {
-        return commandManager;
     }
 
 }

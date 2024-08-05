@@ -13,12 +13,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-/**
- * This file has been created by Ian Toujou.
- * Project: Kazunya
- * Date: 02/11/2021
- * Time: 17:36
- */
 public class CryCommand implements ICommand {
 
     private final Config config;
@@ -39,7 +33,7 @@ public class CryCommand implements ICommand {
         embedBuilder.setDescription(member.getAsMention() + " is crying! :c");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
-        context.getEvent().replyEmbeds(embedBuilder.build()).queue();
+        context.getInteraction().replyEmbeds(embedBuilder.build()).queue();
 
     }
 

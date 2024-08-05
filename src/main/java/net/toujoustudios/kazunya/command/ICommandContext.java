@@ -3,31 +3,31 @@ package net.toujoustudios.kazunya.command;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.entities.User;
-import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
+import net.dv8tion.jda.api.entities.channel.unions.MessageChannelUnion;
+import net.dv8tion.jda.api.interactions.commands.SlashCommandInteraction;
 import net.dv8tion.jda.api.sharding.ShardManager;
 
 public interface ICommandContext {
 
     Guild getGuild();
 
-    SlashCommandEvent getEvent();
+    SlashCommandInteraction getInteraction();
 
-    default MessageChannel getChannel() {
-        return this.getEvent().getChannel();
+    default MessageChannelUnion getChannel() {
+        return this.getInteraction().getChannel();
     }
 
     default User getAuthor() {
-        return this.getEvent().getUser();
+        return this.getInteraction().getUser();
     }
 
     default Member getMember() {
-        return this.getEvent().getMember();
+        return this.getInteraction().getMember();
     }
 
     default JDA getJDA() {
-        return this.getEvent().getJDA();
+        return this.getInteraction().getJDA();
     }
 
     default ShardManager getShardManager() {

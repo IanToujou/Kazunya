@@ -7,7 +7,7 @@ import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.command.ICommand;
 import net.toujoustudios.kazunya.config.Config;
-import net.toujoustudios.kazunya.data.user.UserManager;
+import net.toujoustudios.kazunya.model.UserManager;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
 import net.toujoustudios.kazunya.util.ColorUtil;
@@ -49,7 +49,7 @@ public class WithdrawCommand implements ICommand {
 
         embedBuilder.setTitle("**:moneybag: Bank Withdrawal**");
         embedBuilder.setDescription("You successfully withdrew `" + amount + currency + "` from your bank account.");
-        context.getEvent().replyEmbeds(embedBuilder.build()).queue();
+        context.getInteraction().replyEmbeds(embedBuilder.build()).queue();
 
     }
 

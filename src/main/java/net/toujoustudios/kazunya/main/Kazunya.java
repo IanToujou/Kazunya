@@ -13,6 +13,7 @@ import net.toujoustudios.kazunya.model.UserManager;
 import net.toujoustudios.kazunya.database.DatabaseManager;
 import net.toujoustudios.kazunya.database.DatabaseTimer;
 import net.toujoustudios.kazunya.listener.SlashCommandListener;
+import net.toujoustudios.kazunya.listener.MessageReceivedListener;
 import net.toujoustudios.kazunya.loader.Loader;
 import net.toujoustudios.kazunya.log.LogLevel;
 import net.toujoustudios.kazunya.log.Logger;
@@ -49,7 +50,7 @@ public class Kazunya {
 
         //Add event listeners for general events.
         builder.addEventListeners(new SlashCommandListener());
-        //builder.addEventListeners(new MessageReceivedListener());
+        builder.addEventListeners(new MessageReceivedListener());
 
         //Add event listeners for command buttons.
         builder.addEventListeners(new BonkCommand());
@@ -139,6 +140,8 @@ public class Kazunya {
                 } catch(Exception exception) {
                     Logger.log(LogLevel.ERROR, "Could not send message to channel.");
                 }
+            } else if(input.startsWith("info")) {
+                Logger.log(LogLevel.INFORMATION, "The bot is currently on " + jda.getGuilds().size() + " servers.");
             } else {
                 Logger.log(LogLevel.ERROR, "The specified command does not exist.");
             }

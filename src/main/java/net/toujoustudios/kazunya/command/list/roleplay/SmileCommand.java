@@ -14,12 +14,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-/**
- * This file has been created by Ian Toujou.
- * Project: Kazunya
- * Date: 05/11/2021
- * Time: 21:48
- */
 public class SmileCommand implements ICommand {
 
     private final Config config;

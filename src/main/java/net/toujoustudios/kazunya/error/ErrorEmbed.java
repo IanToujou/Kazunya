@@ -1,13 +1,16 @@
 package net.toujoustudios.kazunya.error;
 
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.components.actionrow.ActionRow;
+import net.dv8tion.jda.api.components.buttons.Button;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.interactions.commands.SlashCommandInteraction;
-import net.dv8tion.jda.api.interactions.components.buttons.Button;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.util.ColorUtil;
+
+import javax.swing.*;
 
 public class ErrorEmbed {
 
@@ -23,11 +26,11 @@ public class ErrorEmbed {
     }
 
     public static void sendError(CommandContext context, ErrorType type) {
-        context.getInteraction().replyEmbeds(buildError(type)).addActionRow(Button.link(config.getString("link.help"), "Help")).setEphemeral(true).queue();
+        context.getInteraction().replyEmbeds(buildError(type)).addComponents(ActionRow.of(Button.link(config.getString("link.help"), "Help"))).setEphemeral(true).queue();
     }
 
     public static void sendError(SlashCommandInteraction interaction, ErrorType type) {
-        interaction.replyEmbeds(buildError(type)).addActionRow(Button.link(config.getString("link.help"), "Help")).setEphemeral(true).queue();
+        interaction.replyEmbeds(buildError(type)).addComponents(ActionRow.of(Button.link(config.getString("link.help"), "Help"))).setEphemeral(true).queue();
     }
 
     public static void sendError(TextChannel channel, ErrorType type) {

@@ -1,8 +1,9 @@
 package net.toujoustudios.kazunya.command.list.general;
 
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.components.actionrow.ActionRow;
+import net.dv8tion.jda.api.components.buttons.Button;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
-import net.dv8tion.jda.api.interactions.components.buttons.Button;
 import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.command.ICommand;
@@ -31,7 +32,7 @@ public class InfoCommand implements ICommand {
         embedBuilder.addField(":information_source: Description:", "Kazunya is a general purpose bot that mainly focuses on roleplay and Anime!", false);
         embedBuilder.addField(":test_tube: Development:", "**GitHub:** https://github.com/IanToujou/Kazunya\n**Credits:** Made by `Toujou Studios`", false);
         embedBuilder.setThumbnail(config.getString("assets.img.icon_information"));
-        context.getInteraction().replyEmbeds(embedBuilder.build()).addActionRow(Button.link(config.getString("link.invite"), "Invite")).queue();
+        context.getInteraction().replyEmbeds(embedBuilder.build()).addComponents(ActionRow.of(Button.link(config.getString("link.invite"), "Invite"))).queue();
 
     }
 

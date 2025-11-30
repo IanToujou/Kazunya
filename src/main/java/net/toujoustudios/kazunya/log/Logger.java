@@ -18,7 +18,6 @@ import java.util.Locale;
 public class Logger {
 
     public static final Config config = Config.getDefault();
-
     public static final String ANSI_RESET = "\u001B[0m";
 
     public static void log(LogLevel level, String message) {
@@ -30,9 +29,9 @@ public class Logger {
         SimpleDateFormat fileDate = new SimpleDateFormat("dd-MM-yyyy");
         Date date = new Date();
 
-        System.out.println("[" + format.format(date) + " - " + level + "] " + level.getColor() + message + ANSI_RESET);
+        System.out.println("[" + format.format(date) + " - " + level.getColor() + level + ANSI_RESET + "] " + message + ANSI_RESET);
 
-        String filename = "logs/" + (new SimpleDateFormat("dd-MM-yyyy").format(new Date())) + ".log";
+        String filename = "logs/" + fileDate.format(new Date()) + ".log";
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true));
             writer.write("[" + format.format(date) + " - " + level + "] " + message + "\n");

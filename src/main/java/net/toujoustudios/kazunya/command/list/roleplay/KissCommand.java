@@ -1,13 +1,14 @@
 package net.toujoustudios.kazunya.command.list.roleplay;
 
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.components.actionrow.ActionRow;
+import net.dv8tion.jda.api.components.buttons.Button;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
-import net.dv8tion.jda.api.interactions.components.buttons.Button;
 import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.command.ICommand;
@@ -59,8 +60,7 @@ public class KissCommand extends ListenerAdapter implements ICommand {
         embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
         context.getInteraction().reply(target.getAsMention())
                 .addEmbeds(embedBuilder.build())
-                .addActionRow(
-                        Button.secondary("kiss-" + member.getId() + "-" + target.getId(), "😚 Kiss Back"))
+                .addComponents(ActionRow.of(Button.secondary("kiss-" + member.getId() + "-" + target.getId(), "😚 Kiss Back")))
                 .queue();
 
     }

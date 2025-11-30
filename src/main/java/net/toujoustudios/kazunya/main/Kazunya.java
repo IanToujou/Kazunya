@@ -107,7 +107,7 @@ public class Kazunya {
                 }
             } else if(input.startsWith("help")) {
                 Logger.log(LogLevel.INFORMATION, "Here is a list of all available commands: ban, help, save, shutdown, msg, pmsg");
-            } else if(input.startsWith("shutdown")) {
+            } else if(input.startsWith("stop") || input.startsWith("exit") || input.startsWith("shutdown")) {
                 UserManager.unloadAll();
                 GuildManager.unloadAll();
                 Logger.log(LogLevel.INFORMATION, "Successfully saved all data in the cache.");

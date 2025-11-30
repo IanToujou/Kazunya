@@ -1,7 +1,6 @@
 package net.toujoustudios.kazunya.command;
 
 import lombok.Getter;
-import net.dv8tion.jda.api.interactions.commands.Command;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.SlashCommandInteraction;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
@@ -9,11 +8,11 @@ import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.interactions.commands.build.SlashCommandData;
 import net.dv8tion.jda.api.interactions.commands.build.SubcommandData;
 import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
-import net.dv8tion.jda.api.utils.data.DataObject;
 import net.toujoustudios.kazunya.command.list.economy.*;
 import net.toujoustudios.kazunya.command.list.fun.PeePeeCommand;
 import net.toujoustudios.kazunya.command.list.fun.RollCommand;
 import net.toujoustudios.kazunya.command.list.fun.ShipCommand;
+import net.toujoustudios.kazunya.command.list.fun.ShipListCommand;
 import net.toujoustudios.kazunya.command.list.general.HelpCommand;
 import net.toujoustudios.kazunya.command.list.general.InfoCommand;
 import net.toujoustudios.kazunya.command.list.general.SettingsCommand;
@@ -24,7 +23,6 @@ import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
 import net.toujoustudios.kazunya.log.LogLevel;
 import net.toujoustudios.kazunya.log.Logger;
-import net.toujoustudios.kazunya.main.Kazunya;
 import net.toujoustudios.kazunya.main.Main;
 
 import javax.annotation.Nullable;
@@ -80,6 +78,7 @@ public class CommandManager {
         this.addCommand(new PeePeeCommand());
         this.addCommand(new RollCommand());
         this.addCommand(new ShipCommand());
+        this.addCommand(new ShipListCommand());
 
         //Register tool commands
         this.addCommand(new AvatarCommand());

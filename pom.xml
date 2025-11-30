@@ -25,20 +25,18 @@
             <name>m2-dv8tion</name>
             <url>https://m2.dv8tion.net/releases</url>
         </repository>
+        <repository>
+            <name>m2-chew</name>
+            <id>m2-chew</id>
+            <url>https://m2.chew.pro</url>
+        </repository>
     </repositories>
 
     <dependencies>
         <dependency>
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
-            <version>5.0.0-beta.18</version>
-        </dependency>
-        <dependency>
-            <groupId>com.jagrosh</groupId>
-            <artifactId>jda-utilities</artifactId>
-            <version>3.0.3</version>
-            <scope>compile</scope>
-            <type>pom</type>
+            <version>6.1.2</version>
         </dependency>
         <dependency>
             <groupId>com.googlecode.json-simple</groupId>

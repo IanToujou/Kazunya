@@ -43,6 +43,7 @@ public class LickCommand extends ListenerAdapter implements ICommand {
             return;
         }
 
+
         Member target = args.getFirst().getAsMember();
         assert target != null;
 

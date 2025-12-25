@@ -2,7 +2,6 @@ package net.toujoustudios.kazunya.loader;
 
 import lombok.Getter;
 import net.toujoustudios.kazunya.config.Config;
-import net.toujoustudios.kazunya.economy.stock.StockMarket;
 import net.toujoustudios.kazunya.log.LogLevel;
 import net.toujoustudios.kazunya.log.Logger;
 import net.toujoustudios.kazunya.main.Main;
@@ -28,16 +27,11 @@ public class Loader {
     }
 
     private static void initialize() {
-        StockMarket.initialize();
         Main.getBot().build();
     }
 
     private static void postInitialize() {
         Main.getBot().start();
-    }
-
-    public static void setState(LoaderState state) {
-        Loader.state = state;
     }
 
     public static void cancel() {

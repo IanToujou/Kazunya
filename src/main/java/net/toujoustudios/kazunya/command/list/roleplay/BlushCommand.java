@@ -32,33 +32,33 @@ public class BlushCommand implements ICommand {
         embedBuilder.setTitle("**:purple_heart: Blush**");
         embedBuilder.setDescription(member.getAsMention() + " is blushing! :3");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
-        embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
+        embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
         context.getInteraction().replyEmbeds(embedBuilder.build()).queue();
 
     }
 
     @Override
-    public String getName() {
+    public String name() {
         return "blush";
     }
 
     @Override
-    public String getDescription() {
+    public String description() {
         return "Make yourself blush.";
     }
 
     @Override
-    public String getEmoji() {
+    public String emoji() {
         return "😊";
     }
 
     @Override
-    public List<OptionData> getOptions() {
+    public List<OptionData> options() {
         return Collections.emptyList();
     }
 
     @Override
-    public CommandCategory getCategory() {
+    public CommandCategory category() {
         return CommandCategory.ROLEPLAY;
     }
 

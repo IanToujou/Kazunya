@@ -1,5 +1,7 @@
 package net.toujoustudios.kazunya.error;
 
+import lombok.Getter;
+
 /**
  * Error types that are used in this software. The errors are divided into multiple categories, with
  * error codes and descriptions to build readable error messages.
@@ -8,7 +10,7 @@ package net.toujoustudios.kazunya.error;
  * @version 1.2.0
  * @since 1.0.0
  */
-@SuppressWarnings("unused")
+@Getter
 public enum ErrorType {
 
     // General errors that don't fall into any other category.
@@ -20,7 +22,7 @@ public enum ErrorType {
     GENERAL_PERMISSION("0006", "You do not have the permission to perform this action."),
     GENERAL_NSFW("0007", "This can only be performed in a NSFW channel."),
 
-    // Command related or syntax related errors.
+    // Command-related or syntax-related errors.
     COMMAND_INVALID_SYNTAX("1001", "The command syntax is not correct."),
     COMMAND_INVALID_SEARCH("1002", "The given search has no results."),
     COMMAND_INVALID_USER_NOT_FOUND("1003", "The given user is invalid."),
@@ -43,7 +45,7 @@ public enum ErrorType {
     AUDIO_UNABLE_TO_LOAD("3001", "The audio couldn't be loaded due to an unexpected error."),
     AUDIO_USER_NOT_IN_CHANNEL("3002", "You are not in a voice channel right now."),
 
-    // Discord permission based errors if the permissions are not configured properly.
+    // Discord permission-based errors if the permissions are not configured properly.
     PERMISSION_VIEW_CHANNELS("4001", "I don't have the permission to view channels."),
     PERMISSION_MANAGE_CHANNELS("4002", "I don't have the permission to manage channels."),
     PERMISSION_MANAGE_ROLES("4003", "I don't have the permission to manage roles."),
@@ -91,14 +93,6 @@ public enum ErrorType {
     ErrorType(String code, String description) {
         this.code = code;
         this.description = description;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
 }

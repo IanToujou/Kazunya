@@ -1,6 +1,5 @@
 package net.toujoustudios.kazunya.command;
 
-import net.dv8tion.jda.api.interactions.commands.Command;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.dv8tion.jda.api.interactions.commands.build.SubcommandData;
 
@@ -10,25 +9,20 @@ import java.util.List;
 public interface ICommand {
 
     void handle(CommandContext context);
+    String name();
+    String description();
+    String emoji();
+    List<OptionData> options();
+    CommandCategory category();
 
-    String getName();
-
-    String getDescription();
-
-    String getEmoji();
-
-    List<OptionData> getOptions();
-
-    CommandCategory getCategory();
-
-    default List<SubcommandData> getSubcommandData() {
+    default List<SubcommandData> subCommandData() {
         return Collections.emptyList();
     }
 
-    default String getSyntax() {
+    default String syntax() {
         StringBuilder builder = new StringBuilder();
-        builder.append(getName());
-        for(OptionData data : getOptions()) {
+        builder.append(name());
+        for(OptionData data : options()) {
             builder.append(" ");
             if(data.isRequired()) {
                 builder.append("<");

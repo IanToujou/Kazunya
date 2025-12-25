@@ -10,16 +10,16 @@ import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.util.ColorUtil;
 
-import javax.swing.*;
-
 public class ErrorEmbed {
 
     static Config config = Config.getDefault();
 
+    private ErrorEmbed() {}
+
     public static MessageEmbed buildError(ErrorType type) {
         EmbedBuilder embedBuilder = new EmbedBuilder();
         embedBuilder.setTitle(":x: **Something went wrong**");
-        embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.error")));
+        embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.error")));
         embedBuilder.setThumbnail(config.getString("assets.img.icon_error"));
         embedBuilder.setDescription("Oops! An error occurred while attempting to perform this action. Please review the details below.\n\n**Error Code:** `" + type.getCode() + "`\n**Description:** " + type.getDescription());
         return embedBuilder.build();

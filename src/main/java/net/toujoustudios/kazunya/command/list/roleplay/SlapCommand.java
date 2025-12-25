@@ -33,7 +33,7 @@ public class SlapCommand extends ListenerAdapter implements ICommand {
         Member member = context.getMember();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
-        Member target = args.get(0).getAsMember();
+        Member target = args.getFirst().getAsMember();
         assert target != null;
 
         if(target.getId().equals(member.getId())) {
@@ -46,35 +46,35 @@ public class SlapCommand extends ListenerAdapter implements ICommand {
         embedBuilder.setTitle("**:raised_back_of_hand: Slap**");
         embedBuilder.setDescription(member.getAsMention() + " slaps " + target.getAsMention() + "! Ouch! >:3");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
-        embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
+        embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
         context.getInteraction().reply(target.getAsMention()).addEmbeds(embedBuilder.build()).queue();
 
     }
 
     @Override
-    public String getName() {
+    public String name() {
         return "slap";
     }
 
     @Override
-    public String getDescription() {
+    public String description() {
         return "Slap another user.";
     }
 
     @Override
-    public String getEmoji() {
+    public String emoji() {
         return "🤚";
     }
 
     @Override
-    public List<OptionData> getOptions() {
+    public List<OptionData> options() {
         List<OptionData> optionData = new ArrayList<>();
         optionData.add(new OptionData(OptionType.USER, "user", "The person you want to slap.", true));
         return optionData;
     }
 
     @Override
-    public CommandCategory getCategory() {
+    public CommandCategory category() {
         return CommandCategory.ROLEPLAY;
     }
 

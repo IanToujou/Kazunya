@@ -26,7 +26,7 @@ public class InfoCommand implements ICommand {
 
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
-        embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
+        embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
         embedBuilder.setTitle(":purple_heart: **Kazunya Information**");
         embedBuilder.setDescription("Here is all the information you need to know about the **Kazunya Bot**.");
         embedBuilder.addField(":information_source: Description:", "Kazunya is a general purpose bot that mainly focuses on roleplay and Anime!", false);
@@ -37,27 +37,27 @@ public class InfoCommand implements ICommand {
     }
 
     @Override
-    public String getName() {
+    public String name() {
         return "info";
     }
 
     @Override
-    public String getDescription() {
+    public String description() {
         return "Get general information about the bot.";
     }
 
     @Override
-    public String getEmoji() {
+    public String emoji() {
         return "💜";
     }
 
     @Override
-    public List<OptionData> getOptions() {
+    public List<OptionData> options() {
         return Collections.emptyList();
     }
 
     @Override
-    public CommandCategory getCategory() {
+    public CommandCategory category() {
         return CommandCategory.GENERAL;
     }
 

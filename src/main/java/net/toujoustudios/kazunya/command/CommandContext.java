@@ -1,22 +1,17 @@
 package net.toujoustudios.kazunya.command;
 
-import lombok.Getter;
+import lombok.Data;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.SlashCommandInteraction;
 
 import java.util.List;
 
+@Data
 public class CommandContext implements ICommandContext {
 
     private final SlashCommandInteraction interaction;
-    @Getter
     private final List<OptionMapping> args;
-
-    public CommandContext(SlashCommandInteraction interaction, List<OptionMapping> args) {
-        this.interaction = interaction;
-        this.args = args;
-    }
 
     @Override
     public Guild getGuild() {

@@ -25,19 +25,25 @@ Changes listed in the changelog are divided into categories.
 !!! Info
     The changes are listed in chronological order, with the newest versions first.
 
+### **Release v1.2.3 (**`25.12.2025`**)**
+
+- `[🔥]` Removed all economy commands.
+- `[🔥]` Removed unused code.
+- `[⬆️]` Updated to java 25.
+- `[🐛]` Fixed outdated dependencies.
+
 ### **Release v1.2.2 (**`16.06.2023`**)**
     
 - `[⚙️]` Added documentation button to /help command.
 - `[✨️]` Added react back buttons to some commands.
-- `[🔥]` Removed /fuck command.
 - `[⬆️]` Updated to java 17.
 
 ### **Release v1.2.1 (**`20.12.2022`**)**
 
-- `[🐛]` Fixed duplicate relation bug.
 - `[✨]` Add /poke command.
 - `[✨]` Add /slap command.
 - `[✨]` Add /yeet command.
+- `[🐛]` Fixed duplicate relation bug.
 
 ### **Release v1.2.0 (**`01.10.2022`**)**
 
@@ -57,7 +63,7 @@ Changes listed in the changelog are divided into categories.
 - `[💥]` Added new economy system.
 - `[✨]` Added deposit, withdraw and transfer features.
 - `[✨]` Added /bank and /wallet commands.
-- `[✨]` Added wallet & bank account money.
+- `[✨]` Added wallet and bank account money.
 - `[✨]` Added the /bonk command to bonk people.
 - `[🔥]` Removed /admin-balance command.
 - `[🔊]` Improved bot startup messages & logs.

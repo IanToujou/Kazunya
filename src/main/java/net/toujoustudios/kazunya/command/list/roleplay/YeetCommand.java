@@ -29,7 +29,7 @@ public class YeetCommand extends ListenerAdapter implements ICommand {
         Member member = context.getMember();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
-        Member target = args.get(0).getAsMember();
+        Member target = args.getFirst().getAsMember();
         assert target != null;
 
         if(target.getId().equals(member.getId())) {
@@ -42,35 +42,35 @@ public class YeetCommand extends ListenerAdapter implements ICommand {
         embedBuilder.setTitle("**:man_golfing: Yeet**");
         embedBuilder.setDescription(member.getAsMention() + " yeets " + target.getAsMention() + " away! Oh nooo~");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
-        embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
+        embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
         context.getInteraction().reply(target.getAsMention()).addEmbeds(embedBuilder.build()).queue();
 
     }
 
     @Override
-    public String getName() {
+    public String name() {
         return "yeet";
     }
 
     @Override
-    public String getDescription() {
+    public String description() {
         return "Yeet someone else on the server.";
     }
 
     @Override
-    public String getEmoji() {
+    public String emoji() {
         return "🏌️";
     }
 
     @Override
-    public List<OptionData> getOptions() {
+    public List<OptionData> options() {
         List<OptionData> optionData = new ArrayList<>();
         optionData.add(new OptionData(OptionType.USER, "user", "The person you want to yeet.", true));
         return optionData;
     }
 
     @Override
-    public CommandCategory getCategory() {
+    public CommandCategory category() {
         return CommandCategory.ROLEPLAY;
     }
 

@@ -90,28 +90,28 @@ public class RollCommand implements ICommand {
         }
 
         embedBuilder.setTitle("**:game_die: Dice Roll**");
-        embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
+        embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
         context.getInteraction().replyEmbeds(embedBuilder.build()).queue();
 
     }
 
     @Override
-    public String getName() {
+    public String name() {
         return "roll";
     }
 
     @Override
-    public String getDescription() {
+    public String description() {
         return "Roll a dice and get a random result.";
     }
 
     @Override
-    public String getEmoji() {
+    public String emoji() {
         return "🎲";
     }
 
     @Override
-    public List<OptionData> getOptions() {
+    public List<OptionData> options() {
         List<OptionData> optionData = new ArrayList<>();
         optionData.add(new OptionData(OptionType.INTEGER, "sides", "The number of sides the dice has. Default is 6.", false));
         optionData.add(new OptionData(OptionType.INTEGER, "times", "The number of times that you want to roll the dice. Default is 1.", false));
@@ -120,7 +120,7 @@ public class RollCommand implements ICommand {
     }
 
     @Override
-    public CommandCategory getCategory() {
+    public CommandCategory category() {
         return CommandCategory.FUN;
     }
 

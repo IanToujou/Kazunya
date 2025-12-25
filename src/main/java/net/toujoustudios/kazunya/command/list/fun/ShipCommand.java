@@ -16,12 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/**
- * This file has been created by Ian Toujou.
- * Project: Kazunya
- * Date: 27/10/2021
- * Time: 19:34
- */
 public class ShipCommand implements ICommand {
 
     @Override
@@ -111,22 +105,22 @@ public class ShipCommand implements ICommand {
     }
 
     @Override
-    public String getName() {
+    public String name() {
         return "ship";
     }
 
     @Override
-    public String getDescription() {
+    public String description() {
         return "Ship two users and get a compatibility score.";
     }
 
     @Override
-    public String getEmoji() {
+    public String emoji() {
         return "💞";
     }
 
     @Override
-    public List<OptionData> getOptions() {
+    public List<OptionData> options() {
         List<OptionData> optionData = new ArrayList<>();
         optionData.add(new OptionData(OptionType.USER, "first-user", "The first user you want to ship with someone else.", true));
         optionData.add(new OptionData(OptionType.USER, "second-user", "The second user you want to ship with the first user.", true));
@@ -134,7 +128,7 @@ public class ShipCommand implements ICommand {
     }
 
     @Override
-    public CommandCategory getCategory() {
+    public CommandCategory category() {
         return CommandCategory.FUN;
     }
 

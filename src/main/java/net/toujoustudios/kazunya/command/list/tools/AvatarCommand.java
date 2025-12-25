@@ -15,12 +15,6 @@ import net.toujoustudios.kazunya.util.ColorUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * This file has been created by Ian Toujou.
- * Project: Kazunya
- * Date: 28/02/2022
- * Time: 06:42
- */
 public class AvatarCommand implements ICommand {
 
     private final Config config;
@@ -35,7 +29,7 @@ public class AvatarCommand implements ICommand {
         List<OptionMapping> args = context.getArgs();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
-        Member target = args.get(0).getAsMember();
+        Member target = args.getFirst().getAsMember();
         if(target == null) return;
         User targetUser = target.getUser();
 
@@ -43,35 +37,35 @@ public class AvatarCommand implements ICommand {
         embedBuilder.setDescription("Here is " + targetUser.getAsMention() + "'s Discord avatar. It looks very cool! :3");
         embedBuilder.setImage(targetUser.getEffectiveAvatarUrl() + "?size=4096");
 
-        embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
+        embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
         context.getInteraction().replyEmbeds(embedBuilder.build()).queue();
 
     }
 
     @Override
-    public String getName() {
+    public String name() {
         return "avatar";
     }
 
     @Override
-    public String getDescription() {
+    public String description() {
         return "Displays the user's Discord avatar.";
     }
 
     @Override
-    public String getEmoji() {
+    public String emoji() {
         return "🪟";
     }
 
     @Override
-    public List<OptionData> getOptions() {
+    public List<OptionData> options() {
         List<OptionData> optionData = new ArrayList<>();
         optionData.add(new OptionData(OptionType.USER, "user", "The user you want to get the Discord avatar from.", true));
         return optionData;
     }
 
     @Override
-    public CommandCategory getCategory() {
+    public CommandCategory category() {
         return CommandCategory.TOOLS;
     }
 }

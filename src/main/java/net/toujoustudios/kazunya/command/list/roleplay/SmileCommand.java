@@ -2,7 +2,6 @@ package net.toujoustudios.kazunya.command.list.roleplay;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
@@ -25,7 +24,6 @@ public class SmileCommand implements ICommand {
     @Override
     public void handle(CommandContext context) {
 
-        List<OptionMapping> args = context.getArgs();
         Member member = context.getMember();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
@@ -34,33 +32,33 @@ public class SmileCommand implements ICommand {
         embedBuilder.setTitle("**:purple_heart: Smile**");
         embedBuilder.setDescription(member.getAsMention() + " is smiling! Yay~");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
-        embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
+        embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
         context.getInteraction().replyEmbeds(embedBuilder.build()).queue();
 
     }
 
     @Override
-    public String getName() {
+    public String name() {
         return "smile";
     }
 
     @Override
-    public String getDescription() {
+    public String description() {
         return "Make yourself smile.";
     }
 
     @Override
-    public String getEmoji() {
+    public String emoji() {
         return "😁";
     }
 
     @Override
-    public List<OptionData> getOptions() {
+    public List<OptionData> options() {
         return Collections.emptyList();
     }
 
     @Override
-    public CommandCategory getCategory() {
+    public CommandCategory category() {
         return CommandCategory.ROLEPLAY;
     }
 

@@ -10,7 +10,6 @@ import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.command.ICommand;
 import net.toujoustudios.kazunya.config.Config;
-import net.toujoustudios.kazunya.model.UserManager;
 import net.toujoustudios.kazunya.util.ColorUtil;
 
 import java.time.format.DateTimeFormatter;
@@ -39,56 +38,53 @@ public class UserInfoCommand implements ICommand {
         List<OptionMapping> args = context.getArgs();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
-        Member target = args.get(0).getAsMember();
+        Member target = args.getFirst().getAsMember();
         if(target == null) return;
         User targetUser = target.getUser();
-        UserManager targetManager = UserManager.getUser(target);
 
         embedBuilder.setTitle("**:zap: User Information**");
         embedBuilder.setThumbnail(targetUser.getEffectiveAvatarUrl());
 
-        StringBuilder generalBuilder = new StringBuilder();
-        generalBuilder.append("Username: `").append(targetUser.getName()).append("`\n");
-        generalBuilder.append("Display Name: `").append(target.getEffectiveName()).append("`\n");
-        generalBuilder.append("User ID: `").append(target.getId()).append("`\n");
-        generalBuilder.append("Bot Account: `").append(targetUser.isBot() ? "Yes" : "No").append("`");
+        String generalBuilder = "Username: `" + targetUser.getName() + "`\n" +
+                "Display Name: `" + target.getEffectiveName() + "`\n" +
+                "User ID: `" + target.getId() + "`\n" +
+                "Bot Account: `" + (targetUser.isBot() ? "Yes" : "No") + "`";
 
-        StringBuilder datesBuilder = new StringBuilder();
-        datesBuilder.append("Account Created: `" + targetUser.getTimeCreated().format(DateTimeFormatter.RFC_1123_DATE_TIME) + "`\n");
-        datesBuilder.append("Server Joined: `" + target.getTimeJoined().format(DateTimeFormatter.RFC_1123_DATE_TIME) + "`");
+        String datesBuilder = "Account Created: `" + targetUser.getTimeCreated().format(DateTimeFormatter.RFC_1123_DATE_TIME) + "`\n" +
+                "Server Joined: `" + target.getTimeJoined().format(DateTimeFormatter.RFC_1123_DATE_TIME) + "`";
 
-        embedBuilder.addField(":information_source: General Information:", generalBuilder.toString(), false);
-        embedBuilder.addField(":calendar: Dates:", datesBuilder.toString(), false);
+        embedBuilder.addField(":information_source: General Information:", generalBuilder, false);
+        embedBuilder.addField(":calendar: Dates:", datesBuilder, false);
 
-        embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
+        embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
         context.getInteraction().replyEmbeds(embedBuilder.build()).queue();
 
     }
 
     @Override
-    public String getName() {
+    public String name() {
         return "userinfo";
     }
 
     @Override
-    public String getDescription() {
+    public String description() {
         return "Displays general information about a discord user.";
     }
 
     @Override
-    public String getEmoji() {
+    public String emoji() {
         return "👤";
     }
 
     @Override
-    public List<OptionData> getOptions() {
+    public List<OptionData> options() {
         List<OptionData> optionData = new ArrayList<>();
         optionData.add(new OptionData(OptionType.USER, "user", "The user you want to get information on.", true));
         return optionData;
     }
 
     @Override
-    public CommandCategory getCategory() {
+    public CommandCategory category() {
         return CommandCategory.TOOLS;
     }
 }

@@ -36,7 +36,7 @@ public class HelpCommand implements ICommand {
         List<OptionMapping> args = context.getArgs();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
-        embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
+        embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
         embedBuilder.setTitle(":sparkles: **Kazunya Help**");
         embedBuilder.setDescription("Here is a full list of all bot commands and features.\nYou can also type `/help [<command>]` to look up a specific command and its usage.");
         embedBuilder.setThumbnail(config.getString("assets.img.icon_search"));
@@ -53,23 +53,20 @@ public class HelpCommand implements ICommand {
             StringBuilder builderAdministration = new StringBuilder();
 
             for(ICommand command : manager.getCommands()) {
-                if(command.getCategory() == CommandCategory.GENERAL) {
-                    builderGeneral.append("`/" + command.getName() + "` - " + command.getDescription() + "\n");
+                if(command.category() == CommandCategory.GENERAL) {
+                    builderGeneral.append("`/" + command.name() + "` - " + command.description() + "\n");
                 }
-                if(command.getCategory() == CommandCategory.ROLEPLAY) {
-                    builderRoleplay.append("`/" + command.getName() + "` - " + command.getDescription() + "\n");
+                if(command.category() == CommandCategory.ROLEPLAY) {
+                    builderRoleplay.append("`/" + command.name() + "` - " + command.description() + "\n");
                 }
-                if(command.getCategory() == CommandCategory.FUN) {
-                    builderFun.append("`/" + command.getName() + "` - " + command.getDescription() + "\n");
+                if(command.category() == CommandCategory.FUN) {
+                    builderFun.append("`/" + command.name() + "` - " + command.description() + "\n");
                 }
-                if(command.getCategory() == CommandCategory.TOOLS) {
-                    builderTools.append("`/" + command.getName() + "` - " + command.getDescription() + "\n");
+                if(command.category() == CommandCategory.TOOLS) {
+                    builderTools.append("`/" + command.name() + "` - " + command.description() + "\n");
                 }
-                if(command.getCategory() == CommandCategory.ECONOMY) {
-                    builderEconomy.append("`/" + command.getName() + "` - " + command.getDescription() + "\n");
-                }
-                if(command.getCategory() == CommandCategory.NSFW) {
-                    builderNSFW.append("`/" + command.getName() + "` - " + command.getDescription() + "\n");
+                if(command.category() == CommandCategory.NSFW) {
+                    builderNSFW.append("`/" + command.name() + "` - " + command.description() + "\n");
                 }
             }
 
@@ -113,35 +110,35 @@ public class HelpCommand implements ICommand {
             return;
         }
 
-        embedBuilder.setDescription("**Description:** " + command.getDescription() + "\n**Usage:** `/" + command.getSyntax() + "`");
+        embedBuilder.setDescription("**Description:** " + command.description() + "\n**Usage:** `/" + command.syntax() + "`");
         context.getInteraction().replyEmbeds(embedBuilder.build()).queue();
 
     }
 
     @Override
-    public String getName() {
+    public String name() {
         return "help";
     }
 
     @Override
-    public String getDescription() {
+    public String description() {
         return "Shows a list of all the bot commands.";
     }
 
     @Override
-    public String getEmoji() {
+    public String emoji() {
         return "💾";
     }
 
     @Override
-    public List<OptionData> getOptions() {
+    public List<OptionData> options() {
         List<OptionData> optionData = new ArrayList<>();
         optionData.add(new OptionData(OptionType.STRING, "command", "The command to get more information on.", false));
         return optionData;
     }
 
     @Override
-    public CommandCategory getCategory() {
+    public CommandCategory category() {
         return CommandCategory.GENERAL;
     }
 

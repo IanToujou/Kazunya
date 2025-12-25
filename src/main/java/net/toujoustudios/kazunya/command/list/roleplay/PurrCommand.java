@@ -16,12 +16,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-/**
- * This file has been created by Ian Toujou.
- * Project: Kazunya
- * Date: 05/11/2021
- * Time: 21:44
- */
 public class PurrCommand implements ICommand {
 
     private final Config config;
@@ -47,33 +41,33 @@ public class PurrCommand implements ICommand {
         embedBuilder.setTitle("**:purple_heart: Purr**");
         embedBuilder.setDescription(member.getAsMention() + " purrs! Meow~");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
-        embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
+        embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
         context.getInteraction().replyEmbeds(embedBuilder.build()).queue();
 
     }
 
     @Override
-    public String getName() {
+    public String name() {
         return "purr";
     }
 
     @Override
-    public String getDescription() {
+    public String description() {
         return "Make yourself purr like a cat.";
     }
 
     @Override
-    public String getEmoji() {
+    public String emoji() {
         return "😺";
     }
 
     @Override
-    public List<OptionData> getOptions() {
+    public List<OptionData> options() {
         return Collections.emptyList();
     }
 
     @Override
-    public CommandCategory getCategory() {
+    public CommandCategory category() {
         return CommandCategory.ROLEPLAY;
     }
 

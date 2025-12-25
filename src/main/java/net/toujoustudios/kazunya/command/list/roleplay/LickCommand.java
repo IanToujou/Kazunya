@@ -43,7 +43,7 @@ public class LickCommand extends ListenerAdapter implements ICommand {
             return;
         }
 
-        Member target = args.get(0).getAsMember();
+        Member target = args.getFirst().getAsMember();
         assert target != null;
 
         if(target.getId().equals(member.getId())) {
@@ -56,7 +56,7 @@ public class LickCommand extends ListenerAdapter implements ICommand {
         embedBuilder.setTitle("**:sweat_drops: Lick**");
         embedBuilder.setDescription(member.getAsMention() + " licks " + target.getAsMention() + "! :3");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
-        embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
+        embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
         context.getInteraction().reply(target.getAsMention())
                 .addEmbeds(embedBuilder.build())
                 .addComponents(ActionRow.of(Button.secondary("lick-" + member.getId() + "-" + target.getId(), "👅 Lick Back")))
@@ -90,7 +90,7 @@ public class LickCommand extends ListenerAdapter implements ICommand {
             embedBuilder.setTitle("**:sweat_drops: Lick**");
             embedBuilder.setDescription(member.getAsMention() + " licks " + target.getAsMention() + "! :3");
             embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
-            embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
+            embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
             event.reply(target.getAsMention()).addEmbeds(embedBuilder.build()).queue();
 
         });
@@ -98,29 +98,29 @@ public class LickCommand extends ListenerAdapter implements ICommand {
     }
 
     @Override
-    public String getName() {
+    public String name() {
         return "lick";
     }
 
     @Override
-    public String getDescription() {
+    public String description() {
         return "Lick another user.";
     }
 
     @Override
-    public String getEmoji() {
+    public String emoji() {
         return "👅";
     }
 
     @Override
-    public List<OptionData> getOptions() {
+    public List<OptionData> options() {
         List<OptionData> optionData = new ArrayList<>();
         optionData.add(new OptionData(OptionType.USER, "user", "The person you want to lick.", true));
         return optionData;
     }
 
     @Override
-    public CommandCategory getCategory() {
+    public CommandCategory category() {
         return CommandCategory.ROLEPLAY;
     }
 

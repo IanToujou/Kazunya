@@ -8,14 +8,12 @@ import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.interactions.commands.build.SlashCommandData;
 import net.dv8tion.jda.api.interactions.commands.build.SubcommandData;
 import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
-import net.toujoustudios.kazunya.command.list.economy.*;
 import net.toujoustudios.kazunya.command.list.fun.PeePeeCommand;
 import net.toujoustudios.kazunya.command.list.fun.RollCommand;
 import net.toujoustudios.kazunya.command.list.fun.ShipCommand;
 import net.toujoustudios.kazunya.command.list.fun.ShipListCommand;
 import net.toujoustudios.kazunya.command.list.general.HelpCommand;
 import net.toujoustudios.kazunya.command.list.general.InfoCommand;
-import net.toujoustudios.kazunya.command.list.general.SettingsCommand;
 import net.toujoustudios.kazunya.command.list.roleplay.*;
 import net.toujoustudios.kazunya.command.list.tools.AvatarCommand;
 import net.toujoustudios.kazunya.command.list.tools.UserInfoCommand;
@@ -45,7 +43,6 @@ public class CommandManager {
         //Register general commands
         this.addCommand(new HelpCommand(this));
         this.addCommand(new InfoCommand());
-        this.addCommand(new SettingsCommand());
 
         //Register role play commands
         this.addCommand(new BlushCommand());
@@ -66,14 +63,6 @@ public class CommandManager {
         this.addCommand(new NomCommand());
         this.addCommand(new YeetCommand());
 
-        //Register economy commands
-        this.addCommand(new MarketInfoCommand());
-        this.addCommand(new WalletCommand());
-        this.addCommand(new BankCommand());
-        this.addCommand(new DepositCommand());
-        this.addCommand(new WithdrawCommand());
-        this.addCommand(new TransferCommand());
-
         //Register fun commands
         this.addCommand(new PeePeeCommand());
         this.addCommand(new RollCommand());
@@ -87,7 +76,7 @@ public class CommandManager {
     }
 
     private void addCommand(ICommand command) {
-        boolean nameFound = this.commands.stream().anyMatch((it) -> it.getName().equalsIgnoreCase(command.getName()));
+        boolean nameFound = this.commands.stream().anyMatch((it) -> it.name().equalsIgnoreCase(command.name()));
         if(nameFound) throw new IllegalArgumentException("A command with this name is already present.");
         commands.add(command);
     }
@@ -99,18 +88,18 @@ public class CommandManager {
         List<CommandData> commands = new ArrayList<>();
 
         for(ICommand command : this.commands) {
-            Logger.log(LogLevel.DEBUG, "Started registration of the following commands: /" + command.getName());
-            SlashCommandData data = Commands.slash(command.getName(), command.getEmoji() + " " + command.getDescription()).addSubcommands();
-            if(!command.getSubcommandData().isEmpty()) {
-                for(int i = 1; i <= command.getSubcommandData().size(); i++) {
-                    SubcommandData subcommandData = command.getSubcommandData().get(i - 1);
-                    if(i == command.getSubcommandData().size())
+            Logger.log(LogLevel.DEBUG, "Started registration of the following commands: /" + command.name());
+            SlashCommandData data = Commands.slash(command.name(), command.emoji() + " " + command.description()).addSubcommands();
+            if(!command.subCommandData().isEmpty()) {
+                for(int i = 1; i <= command.subCommandData().size(); i++) {
+                    SubcommandData subcommandData = command.subCommandData().get(i - 1);
+                    if(i == command.subCommandData().size())
                         Logger.log(LogLevel.DEBUG, "└── /" + data.getName() + " " + subcommandData.getName());
                     else
                         Logger.log(LogLevel.DEBUG, "├── /" + data.getName() + " " + subcommandData.getName());
                     data.addSubcommands(subcommandData);
                 }
-            } else data.addOptions(command.getOptions());
+            } else data.addOptions(command.options());
             commands.add(data);
         }
 
@@ -125,7 +114,7 @@ public class CommandManager {
         String searchLower = search.toLowerCase();
 
         for(ICommand command : this.commands) {
-            if(command.getName().equals(searchLower)) return command;
+            if(command.name().equals(searchLower)) return command;
         }
 
         return null;
@@ -141,7 +130,7 @@ public class CommandManager {
 
             interaction.getChannel().sendTyping().queue();
 
-            if(command.getCategory() == CommandCategory.NSFW && !interaction.getChannel().asTextChannel().isNSFW()) {
+            if(command.category() == CommandCategory.NSFW && !interaction.getChannel().asTextChannel().isNSFW()) {
                 ErrorEmbed.sendError(interaction, ErrorType.GENERAL_NSFW);
                 return;
             }

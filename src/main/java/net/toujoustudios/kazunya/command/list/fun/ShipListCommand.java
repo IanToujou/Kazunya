@@ -13,7 +13,6 @@ import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
 import net.toujoustudios.kazunya.util.ColorUtil;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,7 +37,7 @@ public class ShipListCommand implements ICommand {
             return;
         }
 
-        Member member = args.get(0).getAsMember();
+        Member member = args.getFirst().getAsMember();
         if (member == null) return;
 
         String id = member.getId();
@@ -78,7 +77,7 @@ public class ShipListCommand implements ICommand {
                     });
 
             embedBuilder.setDescription(member.getAsMention() + "'s ship rank list is:\n" + builder);
-            embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
+            embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
             context.getInteraction().replyEmbeds(embedBuilder.build()).queue();
 
         }).onError(Throwable::printStackTrace);
@@ -86,29 +85,29 @@ public class ShipListCommand implements ICommand {
     }
 
     @Override
-    public String getName() {
+    public String name() {
         return "shiplist";
     }
 
     @Override
-    public String getDescription() {
+    public String description() {
         return "Show the most compatible ship ratings for one user.";
     }
 
     @Override
-    public String getEmoji() {
+    public String emoji() {
         return "💞";
     }
 
     @Override
-    public List<OptionData> getOptions() {
+    public List<OptionData> options() {
         List<OptionData> optionData = new ArrayList<>();
         optionData.add(new OptionData(OptionType.USER, "user", "The user you want to see the rating for.", true));
         return optionData;
     }
 
     @Override
-    public CommandCategory getCategory() {
+    public CommandCategory category() {
         return CommandCategory.FUN;
     }
 

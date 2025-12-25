@@ -14,12 +14,6 @@ import net.toujoustudios.kazunya.util.ColorUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * This file has been created by Ian Toujou.
- * Project: Kazunya
- * Date: 01/05/2022
- * Time: 23:21
- */
 public class PeePeeCommand implements ICommand {
 
     private final Config config;
@@ -36,9 +30,10 @@ public class PeePeeCommand implements ICommand {
         Member member = context.getMember();
 
         if(args.size() == 1) {
-            member = args.get(0).getAsMember();
+            member = args.getFirst().getAsMember();
         }
 
+        if (member == null) return;
         String memberId = member.getId();
         int num = Integer.parseInt(memberId.substring(memberId.length() - 2));
         int size = Math.round((float) num / 3);
@@ -49,7 +44,7 @@ public class PeePeeCommand implements ICommand {
         if(memberId.equals("1156543794594979911")) {
             pp = "8========/    /========D";
             embedBuilder.setTitle("**:french_bread: PP Size**");
-            embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
+            embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
             embedBuilder.setDescription(member.getAsMention() + " has the following PP size:\n`" + pp + "`\n" + "WHY IS THERE A HOLE IN IT???");
             context.getInteraction().replyEmbeds(embedBuilder.build()).queue();
             return;
@@ -74,7 +69,7 @@ public class PeePeeCommand implements ICommand {
         }
 
         embedBuilder.setTitle("**:eggplant: PP Size**");
-        embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
+        embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
         embedBuilder.setDescription(member.getAsMention() + " has the following PP size:\n`" + pp + "`\n" + comment);
 
         context.getInteraction().replyEmbeds(embedBuilder.build()).queue();
@@ -82,29 +77,29 @@ public class PeePeeCommand implements ICommand {
     }
 
     @Override
-    public String getName() {
+    public String name() {
         return "pp";
     }
 
     @Override
-    public String getDescription() {
+    public String description() {
         return "Shows the size of a persons pp.";
     }
 
     @Override
-    public String getEmoji() {
+    public String emoji() {
         return "🍆";
     }
 
     @Override
-    public List<OptionData> getOptions() {
+    public List<OptionData> options() {
         List<OptionData> optionData = new ArrayList<>();
         optionData.add(new OptionData(OptionType.USER, "user", "The user you want to get the pp size from.", false));
         return optionData;
     }
 
     @Override
-    public CommandCategory getCategory() {
+    public CommandCategory category() {
         return CommandCategory.FUN;
     }
 

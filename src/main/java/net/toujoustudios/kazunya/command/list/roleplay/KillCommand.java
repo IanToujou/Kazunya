@@ -17,12 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/**
- * This file has been created by Ian Toujou.
- * Project: Kazunya
- * Date: 05/11/2021
- * Time: 22:21
- */
 public class KillCommand implements ICommand {
 
     private final Config config;
@@ -38,7 +32,7 @@ public class KillCommand implements ICommand {
         Member member = context.getMember();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
-        Member target = args.get(0).getAsMember();
+        Member target = args.getFirst().getAsMember();
         assert target != null;
 
         if(target.getId().equals(member.getId())) {
@@ -90,35 +84,35 @@ public class KillCommand implements ICommand {
 
         embedBuilder.setDescription(messages.get(new Random().nextInt(messages.size())).replace("{Victim}", target.getAsMention()).replace("{Killer}", member.getAsMention()));
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
-        embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
+        embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
         context.getInteraction().reply(target.getAsMention()).addEmbeds(embedBuilder.build()).queue();
 
     }
 
     @Override
-    public String getName() {
+    public String name() {
         return "kill";
     }
 
     @Override
-    public String getDescription() {
+    public String description() {
         return "Kill someone else and commit a very bad thing.";
     }
 
     @Override
-    public String getEmoji() {
+    public String emoji() {
         return "🔫";
     }
 
     @Override
-    public List<OptionData> getOptions() {
+    public List<OptionData> options() {
         List<OptionData> optionData = new ArrayList<>();
         optionData.add(new OptionData(OptionType.USER, "user", "The person you want to kill.", true));
         return optionData;
     }
 
     @Override
-    public CommandCategory getCategory() {
+    public CommandCategory category() {
         return CommandCategory.ROLEPLAY;
     }
 

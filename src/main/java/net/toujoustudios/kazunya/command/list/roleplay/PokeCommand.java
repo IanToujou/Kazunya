@@ -38,7 +38,7 @@ public class PokeCommand extends ListenerAdapter implements ICommand {
         Member member = context.getMember();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
-        Member target = args.get(0).getAsMember();
+        Member target = args.getFirst().getAsMember();
         assert target != null;
 
         if(target.getId().equals(member.getId())) {
@@ -51,7 +51,7 @@ public class PokeCommand extends ListenerAdapter implements ICommand {
         embedBuilder.setTitle("**:point_right: Poke**");
         embedBuilder.setDescription(member.getAsMention() + " pokes " + target.getAsMention() + "!");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
-        embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
+        embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
         context.getInteraction().reply(target.getAsMention())
                 .addEmbeds(embedBuilder.build())
                 .addComponents(ActionRow.of(Button.secondary("poke-" + member.getId() + "-" + target.getId(), "👉 Poke Back")))
@@ -84,36 +84,36 @@ public class PokeCommand extends ListenerAdapter implements ICommand {
             embedBuilder.setTitle("**:point_right: Poke**");
             embedBuilder.setDescription(member.getAsMention() + " pokes " + target.getAsMention() + "!");
             embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
-            embedBuilder.setColor(ColorUtil.getFromRGBString(config.getString("format.color.default")));
+            embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
             event.reply(target.getAsMention()).addEmbeds(embedBuilder.build()).queue();
 
         });
     }
 
     @Override
-    public String getName() {
+    public String name() {
         return "poke";
     }
 
     @Override
-    public String getDescription() {
+    public String description() {
         return "Poke another user.";
     }
 
     @Override
-    public String getEmoji() {
+    public String emoji() {
         return "👉";
     }
 
     @Override
-    public List<OptionData> getOptions() {
+    public List<OptionData> options() {
         List<OptionData> optionData = new ArrayList<>();
         optionData.add(new OptionData(OptionType.USER, "user", "The person you want to poke.", true));
         return optionData;
     }
 
     @Override
-    public CommandCategory getCategory() {
+    public CommandCategory category() {
         return CommandCategory.ROLEPLAY;
     }
 

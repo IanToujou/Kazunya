@@ -21,7 +21,10 @@ public class Loader {
 
     private static void preInitialize() {
         new Config("config.yml");
+        new Config("images.yml");
         new Config("keys.yml");
+        ImageLoader.initialize();
+        MessageLoader.initialize();
     }
 
     private static void initialize() {

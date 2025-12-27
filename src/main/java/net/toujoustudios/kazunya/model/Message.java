@@ -7,7 +7,6 @@ import lombok.experimental.Accessors;
 @Accessors(fluent = true)
 public class Message {
 
-    private final String key;
     private final String type;
     private final String message;
 

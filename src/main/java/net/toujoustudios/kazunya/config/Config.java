@@ -74,11 +74,10 @@ public class Config {
             if (item instanceof Map) {
                 @SuppressWarnings("unchecked")
                 Map<String, Object> map = (Map<String, Object>) item;
-                String imageKey = (String) map.get("key");
                 String type = (String) map.get("type");
                 String url = (String) map.get("url");
-                if (imageKey != null && type != null && url != null) {
-                    result.add(new Image(imageKey, type, url));
+                if (type != null && url != null) {
+                    result.add(new Image(type, url));
                 }
             }
         }
@@ -98,11 +97,10 @@ public class Config {
             if (item instanceof Map) {
                 @SuppressWarnings("unchecked")
                 Map<String, Object> map = (Map<String, Object>) item;
-                String messageKey = (String) map.get("key");
                 String type = (String) map.get("type");
                 String url = (String) map.get("message");
-                if (messageKey != null && type != null && url != null) {
-                    result.add(new Message(messageKey, type, url));
+                if (type != null && url != null) {
+                    result.add(new Message(type, url));
                 }
             }
         }

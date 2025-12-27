@@ -46,8 +46,10 @@ Copyright &copy; 2025 Toujou Studios
 # Read more: https://zensical.org/docs/setup/navigation/
 nav = [
     {"Getting Started" = "index.md"},
+    {"Changelog" = "changelog.md"},
+    {"Errors" = "errors.md"},
     {"Features" = [
-        "features/custom-roleplay",
+        "features/roleplay.md",
     ]},
     {"Commands" = [
         {"General" = [

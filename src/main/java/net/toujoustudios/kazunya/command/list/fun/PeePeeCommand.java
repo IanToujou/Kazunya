@@ -27,7 +27,7 @@ public class PeePeeCommand implements ICommand {
 
         List<OptionMapping> args = context.getArgs();
         EmbedBuilder embedBuilder = new EmbedBuilder();
-        Member member = context.getMember();
+        Member member = context.member();
 
         if(args.size() == 1) {
             member = args.getFirst().getAsMember();
@@ -46,7 +46,7 @@ public class PeePeeCommand implements ICommand {
             embedBuilder.setTitle("**:french_bread: PP Size**");
             embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
             embedBuilder.setDescription(member.getAsMention() + " has the following PP size:\n`" + pp + "`\n" + "WHY IS THERE A HOLE IN IT???");
-            context.getInteraction().replyEmbeds(embedBuilder.build()).queue();
+            context.interaction().replyEmbeds(embedBuilder.build()).queue();
             return;
         }
 
@@ -72,7 +72,7 @@ public class PeePeeCommand implements ICommand {
         embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
         embedBuilder.setDescription(member.getAsMention() + " has the following PP size:\n`" + pp + "`\n" + comment);
 
-        context.getInteraction().replyEmbeds(embedBuilder.build()).queue();
+        context.interaction().replyEmbeds(embedBuilder.build()).queue();
 
     }
 

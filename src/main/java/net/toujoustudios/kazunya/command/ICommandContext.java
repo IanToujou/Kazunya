@@ -10,36 +10,36 @@ import net.dv8tion.jda.api.sharding.ShardManager;
 
 public interface ICommandContext {
 
-    Guild getGuild();
+    Guild guild();
 
-    SlashCommandInteraction getInteraction();
+    SlashCommandInteraction interaction();
 
-    default MessageChannelUnion getChannel() {
-        return this.getInteraction().getChannel();
+    default MessageChannelUnion channel() {
+        return this.interaction().getChannel();
     }
 
-    default User getAuthor() {
-        return this.getInteraction().getUser();
+    default User author() {
+        return this.interaction().getUser();
     }
 
-    default Member getMember() {
-        return this.getInteraction().getMember();
+    default Member member() {
+        return this.interaction().getMember();
     }
 
-    default JDA getJDA() {
-        return this.getInteraction().getJDA();
+    default JDA jda() {
+        return this.interaction().getJDA();
     }
 
-    default ShardManager getShardManager() {
-        return this.getJDA().getShardManager();
+    default ShardManager shardManager() {
+        return this.jda().getShardManager();
     }
 
-    default User getSelfUser() {
-        return this.getJDA().getSelfUser();
+    default User selfUser() {
+        return this.jda().getSelfUser();
     }
 
-    default Member getSelfMember() {
-        return this.getGuild().getSelfMember();
+    default Member selfMember() {
+        return this.guild().getSelfMember();
     }
 
 }

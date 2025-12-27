@@ -24,7 +24,7 @@ public class CryCommand implements ICommand {
     @Override
     public void handle(CommandContext context) {
 
-        Member member = context.getMember();
+        Member member = context.member();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
         List<String> images = config.getStringList("gif.command.cry");
@@ -33,7 +33,7 @@ public class CryCommand implements ICommand {
         embedBuilder.setDescription(member.getAsMention() + " is crying! :c");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
         embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
-        context.getInteraction().replyEmbeds(embedBuilder.build()).queue();
+        context.interaction().replyEmbeds(embedBuilder.build()).queue();
 
     }
 

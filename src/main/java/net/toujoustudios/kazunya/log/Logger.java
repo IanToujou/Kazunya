@@ -25,7 +25,7 @@ public class Logger {
         if(level == LogLevel.SILENT && !config.getBoolean("general.silent")) return;
         if(level == LogLevel.DEBUG && !config.getBoolean("general.debug")) return;
 
-        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss", new Locale("de", "DE"));
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
         SimpleDateFormat fileDate = new SimpleDateFormat("dd-MM-yyyy");
         Date date = new Date();
 

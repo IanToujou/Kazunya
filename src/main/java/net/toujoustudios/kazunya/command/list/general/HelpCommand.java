@@ -75,13 +75,13 @@ public class HelpCommand implements ICommand {
             embedBuilder.addField(":sparkles: Fun:", builderFun.toString(), false);
             embedBuilder.addField(":hammer: Tools:", builderTools.toString(), false);
             embedBuilder.addField(":credit_card: Economy:", builderEconomy.toString(), false);
-            if(context.getInteraction().getChannel().asTextChannel().isNSFW())
+            if(context.interaction().getChannel().asTextChannel().isNSFW())
                 embedBuilder.addField(":no_entry_sign: NSFW:", builderNSFW.toString(), false);
-            if(!context.getMember().getId().equals(config.getString("user.admin")))
+            if(!context.member().getId().equals(config.getString("user.admin")))
                 embedBuilder.addField(":tools: Administration:", builderAdministration.toString(), false);
 
             boolean isOwnerOnServer = false;
-            for(Member member : context.getGuild().getMembers()) {
+            for(Member member : context.guild().getMembers()) {
                 String id = member.getId();
                 if(id.equals(config.getString("user.admin"))) {
                     isOwnerOnServer = true;
@@ -90,12 +90,12 @@ public class HelpCommand implements ICommand {
             }
 
             if(isOwnerOnServer) {
-                embedBuilder.addField(":bookmark_tabs: Credits:", context.getGuild().getMemberById(config.getString("user.admin")).getAsMention() + " - Toujou Studios", false);
+                embedBuilder.addField(":bookmark_tabs: Credits:", context.guild().getMemberById(config.getString("user.admin")).getAsMention() + " - Toujou Studios", false);
             } else {
                 embedBuilder.addField(":bookmark_tabs: Credits:", "IanToujou - Toujou Studios", false);
             }
 
-            context.getInteraction().replyEmbeds(embedBuilder.build())
+            context.interaction().replyEmbeds(embedBuilder.build())
                     .addComponents(ActionRow.of(Button.link(config.getString("link.help"), "Docs"), Button.link(config.getString("link.invite"), "Invite")))
                     .queue();
             return;
@@ -103,7 +103,7 @@ public class HelpCommand implements ICommand {
         }
 
         String search = args.get(0).getAsString();
-        ICommand command = manager.getCommand(search);
+        ICommand command = manager.command(search);
 
         if(command == null) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_SEARCH);
@@ -111,7 +111,7 @@ public class HelpCommand implements ICommand {
         }
 
         embedBuilder.setDescription("**Description:** " + command.description() + "\n**Usage:** `/" + command.syntax() + "`");
-        context.getInteraction().replyEmbeds(embedBuilder.build()).queue();
+        context.interaction().replyEmbeds(embedBuilder.build()).queue();
 
     }
 

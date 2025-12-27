@@ -8,8 +8,6 @@ import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.toujoustudios.kazunya.command.CommandManager;
 import net.toujoustudios.kazunya.command.list.roleplay.*;
 import net.toujoustudios.kazunya.config.Config;
-import net.toujoustudios.kazunya.database.DatabaseManager;
-import net.toujoustudios.kazunya.database.DatabaseTimer;
 import net.toujoustudios.kazunya.event.SlashCommandListener;
 import net.toujoustudios.kazunya.loader.Loader;
 import net.toujoustudios.kazunya.log.LogLevel;
@@ -17,7 +15,6 @@ import net.toujoustudios.kazunya.log.Logger;
 
 import java.util.Objects;
 import java.util.Scanner;
-import java.util.Timer;
 
 @Data
 public class Kazunya {
@@ -38,7 +35,7 @@ public class Kazunya {
 
         initializeIntends();
         initializeEvents();
-        initializeCommands();
+        initializeCommandEvents();
 
     }
 
@@ -47,14 +44,6 @@ public class Kazunya {
         jda = builder.build();
         commandManager.registerCommands();
         startConsole();
-    }
-
-    public void initializeDatabase() {
-        DatabaseManager.connect();
-        DatabaseTimer databaseTimer = new DatabaseTimer();
-        Timer timer = new Timer();
-        DatabaseManager.setup();
-        timer.schedule(databaseTimer, 3600000, 3600000);
     }
 
     public void initializeIntends() {
@@ -66,7 +55,7 @@ public class Kazunya {
         builder.addEventListeners(new SlashCommandListener());
     }
 
-    public void initializeCommands() {
+    public void initializeCommandEvents() {
         builder.addEventListeners(new BonkCommand());
         builder.addEventListeners(new CuddleCommand());
         builder.addEventListeners(new HugCommand());

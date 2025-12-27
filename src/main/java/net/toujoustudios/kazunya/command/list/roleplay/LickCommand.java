@@ -35,7 +35,7 @@ public class LickCommand extends ListenerAdapter implements ICommand {
     public void handle(CommandContext context) {
 
         List<OptionMapping> args = context.getArgs();
-        Member member = context.getMember();
+        Member member = context.member();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
         if(args.isEmpty()) {
@@ -58,7 +58,7 @@ public class LickCommand extends ListenerAdapter implements ICommand {
         embedBuilder.setDescription(member.getAsMention() + " licks " + target.getAsMention() + "! :3");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
         embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
-        context.getInteraction().reply(target.getAsMention())
+        context.interaction().reply(target.getAsMention())
                 .addEmbeds(embedBuilder.build())
                 .addComponents(ActionRow.of(Button.secondary("lick-" + member.getId() + "-" + target.getId(), "👅 Lick Back")))
                 .queue();

@@ -41,41 +41,41 @@ public class CommandManager {
     public CommandManager() {
 
         //Register general commands
-        this.addCommand(new HelpCommand(this));
-        this.addCommand(new InfoCommand());
+        this.add(new HelpCommand(this));
+        this.add(new InfoCommand());
 
         //Register role play commands
-        this.addCommand(new BlushCommand());
-        this.addCommand(new HugCommand());
-        this.addCommand(new KissCommand());
-        this.addCommand(new CuddleCommand());
-        this.addCommand(new CryCommand());
-        this.addCommand(new PatCommand());
-        this.addCommand(new PokeCommand());
-        this.addCommand(new TickleCommand());
-        this.addCommand(new LaughCommand());
-        this.addCommand(new LickCommand());
-        this.addCommand(new PurrCommand());
-        this.addCommand(new SlapCommand());
-        this.addCommand(new SmileCommand());
-        this.addCommand(new KillCommand());
-        this.addCommand(new BonkCommand());
-        this.addCommand(new NomCommand());
-        this.addCommand(new YeetCommand());
+        this.add(new BlushCommand());
+        this.add(new HugCommand());
+        this.add(new KissCommand());
+        this.add(new CuddleCommand());
+        this.add(new CryCommand());
+        this.add(new PatCommand());
+        this.add(new PokeCommand());
+        this.add(new TickleCommand());
+        this.add(new LaughCommand());
+        this.add(new LickCommand());
+        this.add(new PurrCommand());
+        this.add(new SlapCommand());
+        this.add(new SmileCommand());
+        this.add(new KillCommand());
+        this.add(new BonkCommand());
+        this.add(new NomCommand());
+        this.add(new YeetCommand());
 
         //Register fun commands
-        this.addCommand(new PeePeeCommand());
-        this.addCommand(new RollCommand());
-        this.addCommand(new ShipCommand());
-        this.addCommand(new ShipListCommand());
+        this.add(new PeePeeCommand());
+        this.add(new RollCommand());
+        this.add(new ShipCommand());
+        this.add(new ShipListCommand());
 
         //Register tool commands
-        this.addCommand(new AvatarCommand());
-        this.addCommand(new UserInfoCommand());
+        this.add(new AvatarCommand());
+        this.add(new UserInfoCommand());
 
     }
 
-    private void addCommand(ICommand command) {
+    private void add(ICommand command) {
         boolean nameFound = this.commands.stream().anyMatch((it) -> it.name().equalsIgnoreCase(command.name()));
         if(nameFound) throw new IllegalArgumentException("A command with this name is already present.");
         commands.add(command);
@@ -109,27 +109,21 @@ public class CommandManager {
     }
 
     @Nullable
-    public ICommand getCommand(String search) {
-
+    public ICommand command(String search) {
         String searchLower = search.toLowerCase();
-
         for(ICommand command : this.commands) {
             if(command.name().equals(searchLower)) return command;
         }
-
         return null;
-
     }
 
     public void handle(SlashCommandInteraction interaction) {
 
         String invoke = interaction.getName();
-        ICommand command = this.getCommand(invoke);
+        ICommand command = this.command(invoke);
 
         if(command != null) {
-
             interaction.getChannel().sendTyping().queue();
-
             if(command.category() == CommandCategory.NSFW && !interaction.getChannel().asTextChannel().isNSFW()) {
                 ErrorEmbed.sendError(interaction, ErrorType.GENERAL_NSFW);
                 return;
@@ -137,9 +131,7 @@ public class CommandManager {
 
             List<OptionMapping> args = interaction.getOptions();
             CommandContext context = new CommandContext(interaction, args);
-
             command.handle(context);
-
         }
 
     }

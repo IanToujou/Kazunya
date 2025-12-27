@@ -26,7 +26,7 @@ public class ErrorEmbed {
     }
 
     public static void sendError(CommandContext context, ErrorType type) {
-        context.getInteraction().replyEmbeds(buildError(type)).addComponents(ActionRow.of(Button.link(config.getString("link.help"), "Help"))).setEphemeral(true).queue();
+        context.interaction().replyEmbeds(buildError(type)).addComponents(ActionRow.of(Button.link(config.getString("link.help"), "Help"))).setEphemeral(true).queue();
     }
 
     public static void sendError(SlashCommandInteraction interaction, ErrorType type) {

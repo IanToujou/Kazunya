@@ -26,7 +26,7 @@ public class YeetCommand extends ListenerAdapter implements ICommand {
     public void handle(CommandContext context) {
 
         List<OptionMapping> args = context.getArgs();
-        Member member = context.getMember();
+        Member member = context.member();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
         Member target = args.getFirst().getAsMember();
@@ -43,7 +43,7 @@ public class YeetCommand extends ListenerAdapter implements ICommand {
         embedBuilder.setDescription(member.getAsMention() + " yeets " + target.getAsMention() + " away! Oh nooo~");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
         embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
-        context.getInteraction().reply(target.getAsMention()).addEmbeds(embedBuilder.build()).queue();
+        context.interaction().reply(target.getAsMention()).addEmbeds(embedBuilder.build()).queue();
 
     }
 

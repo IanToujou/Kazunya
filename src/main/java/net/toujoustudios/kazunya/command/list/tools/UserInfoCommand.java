@@ -57,7 +57,7 @@ public class UserInfoCommand implements ICommand {
         embedBuilder.addField(":calendar: Dates:", datesBuilder, false);
 
         embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
-        context.getInteraction().replyEmbeds(embedBuilder.build()).queue();
+        context.interaction().replyEmbeds(embedBuilder.build()).queue();
 
     }
 

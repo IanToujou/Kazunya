@@ -33,12 +33,12 @@ public class RollCommand implements ICommand {
         int times = 1;
         int offset = 0;
 
-        if(context.getInteraction().getOption("sides") != null)
-            sides = (int) context.getInteraction().getOption("sides").getAsDouble();
-        if(context.getInteraction().getOption("times") != null)
-            times = (int) context.getInteraction().getOption("times").getAsDouble();
-        if(context.getInteraction().getOption("offset") != null)
-            offset = (int) context.getInteraction().getOption("offset").getAsDouble();
+        if(context.interaction().getOption("sides") != null)
+            sides = (int) context.interaction().getOption("sides").getAsDouble();
+        if(context.interaction().getOption("times") != null)
+            times = (int) context.interaction().getOption("times").getAsDouble();
+        if(context.interaction().getOption("offset") != null)
+            offset = (int) context.interaction().getOption("offset").getAsDouble();
 
         if(sides < 2 || sides > 1000) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_RANGE);
@@ -91,7 +91,7 @@ public class RollCommand implements ICommand {
 
         embedBuilder.setTitle("**:game_die: Dice Roll**");
         embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
-        context.getInteraction().replyEmbeds(embedBuilder.build()).queue();
+        context.interaction().replyEmbeds(embedBuilder.build()).queue();
 
     }
 

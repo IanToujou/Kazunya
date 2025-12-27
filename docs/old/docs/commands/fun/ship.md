@@ -10,16 +10,16 @@ The ship score is calculated by using the Discord ID of the users. The last two 
 
 In addition, Kazunya will give a small comment depending on the resulting score.
 
-| Score | Comment | Color
-|:-:|:-|:-:
-| `0-9` | The relationship would be truly horrible... | <span style="color:red">Red</span>
-| `10-29` | This wouldn’t work that great... | <span style="color:orange">Orange</span>
-| `30-49` | It is fine. | <span style="color:yellow">Yellow</span>
-| `50-68` | This could work nya~ | <span style="color:lime">Green</span>
-| `69` | 69? Nice. | <span style="color:lime">Green</span>
-| `70-89` | This would be a wholesome relationship! Nya~ | <span style="color:pink">Pink</span>
-| `90-99` | The two should instantly get married! Nyaaa~ | <span style="color:magenta">Magenta</span>
-| `100` | I WANT THEM TO GET MARRIED! NOW! | <span style="color:magenta">Magenta</span>
+|  Score  | Comment                                      |                   Color                    |
+|:-------:|:---------------------------------------------|:------------------------------------------:|
+|  `0-9`  | The relationship would be truly horrible...  |     <span style="color:red">Red</span>     |
+| `10-29` | This wouldn’t work that great...             |  <span style="color:orange">Orange</span>  |
+| `30-49` | It is fine.                                  |  <span style="color:yellow">Yellow</span>  |
+| `50-68` | This could work nya~                         |   <span style="color:lime">Green</span>    |
+|  `69`   | 69? Nice.                                    |   <span style="color:lime">Green</span>    |
+| `70-89` | This would be a wholesome relationship! Nya~ |    <span style="color:pink">Pink</span>    |
+| `90-99` | The two should instantly get married! Nyaaa~ | <span style="color:magenta">Magenta</span> |
+|  `100`  | I WANT THEM TO GET MARRIED! NOW!             | <span style="color:magenta">Magenta</span> |
 
 ## **Syntax**
 

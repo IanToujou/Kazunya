@@ -35,7 +35,7 @@ public class KissCommand extends ListenerAdapter implements ICommand {
     public void handle(CommandContext context) {
 
         List<OptionMapping> args = context.getArgs();
-        Member member = context.getMember();
+        Member member = context.member();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
         Member target = args.getFirst().getAsMember();
@@ -52,7 +52,7 @@ public class KissCommand extends ListenerAdapter implements ICommand {
         embedBuilder.setDescription(member.getAsMention() + " gives " + target.getAsMention() + " a kiss! Nawww~");
         embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
         embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
-        context.getInteraction().reply(target.getAsMention())
+        context.interaction().reply(target.getAsMention())
                 .addEmbeds(embedBuilder.build())
                 .addComponents(ActionRow.of(Button.secondary("kiss-" + member.getId() + "-" + target.getId(), "😚 Kiss Back")))
                 .queue();

@@ -43,7 +43,7 @@ public class ShipListCommand implements ICommand {
         String id = member.getId();
         HashMap<Member, Integer> ratings = new HashMap<>();
 
-        context.getGuild().loadMembers().onSuccess(members -> {
+        context.guild().loadMembers().onSuccess(members -> {
 
             members.forEach(m -> {
                 if (m.getId().equals(member.getId())) return;
@@ -78,7 +78,7 @@ public class ShipListCommand implements ICommand {
 
             embedBuilder.setDescription(member.getAsMention() + "'s ship rank list is:\n" + builder);
             embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
-            context.getInteraction().replyEmbeds(embedBuilder.build()).queue();
+            context.interaction().replyEmbeds(embedBuilder.build()).queue();
 
         }).onError(Throwable::printStackTrace);
 

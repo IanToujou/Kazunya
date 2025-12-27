@@ -14,12 +14,12 @@ public class CommandContext implements ICommandContext {
     private final List<OptionMapping> args;
 
     @Override
-    public Guild getGuild() {
-        return this.getInteraction().getGuild();
+    public Guild guild() {
+        return this.interaction().getGuild();
     }
 
     @Override
-    public SlashCommandInteraction getInteraction() {
+    public SlashCommandInteraction interaction() {
         return this.interaction;
     }
 

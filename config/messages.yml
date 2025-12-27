@@ -1,0 +1,20 @@
+### Interactions
+
+# Hug Interaction
+interaction.hug:
+  - { type: "casual", "message": "{member} is giving {target} a hug! :3" }
+  - { type: "casual", "message": "{member} is hugging {target}! ^w^" }
+  - { type: "casual", "message": "{member} wraps their arms around {target}!" }
+  - { type: "casual", "message": "{member} gives {target} a friendly hug! :D" }
+  - { type: "casual", "message": "{member} squeezes {target} in a warm hug!" }
+  - { type: "casual", "message": "{member} pulls {target} into a quick hug!" }
+  - { type: "romantic", "message": "{member} hugs {target} really really tight. <3" }
+  - { type: "romantic", "message": "{member} lays their arms around {target}. Aww~" }
+  - { type: "romantic", "message": "{member} embraces {target} lovingly~ :two_hearts:" }
+  - { type: "romantic", "message": "{member} holds {target} close and tight. <3" }
+  - { type: "romantic", "message": "{member} wraps {target} in a tender embrace. :sparkling_heart:" }
+  - { type: "romantic", "message": "{member} pulls {target} close and doesn't let go~ <3" }
+  - { type: "comforting", "message": "{member} hugs {target} to comfort them. Everything will be alright!" }
+  - { type: "comforting", "message": "{member} gives {target} a reassuring hug." }
+  - { type: "comforting", "message": "{member} wraps {target} in a protective hug." }
+  - { type: "comforting", "message": "{member} holds {target} gently. You're not alone!" }

@@ -1,3 +1,7 @@
+---
+icon: lucide/rocket
+---
+
 # **✨ KAZUNYA WIKI**
 
 [![Status](https://img.shields.io/badge/-Active-lime?style=for-the-badge&label=Status)](https://github.com/IanToujou/Kazunya)

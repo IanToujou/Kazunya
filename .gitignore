@@ -119,3 +119,7 @@ buildNumber.properties
 hs_err_pid*
 replay_pid*
 /.idea/dataSources.xml
+
+# Documentation
+docs/.cache
+docs/site

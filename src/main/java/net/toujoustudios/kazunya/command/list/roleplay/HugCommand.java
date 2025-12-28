@@ -19,6 +19,7 @@ import net.toujoustudios.kazunya.main.Main;
 import net.toujoustudios.kazunya.repository.ImageRepository;
 import net.toujoustudios.kazunya.repository.MessageRepository;
 import net.toujoustudios.kazunya.util.ColorUtil;
+import net.toujoustudios.kazunya.util.EmbedUtil;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -26,6 +27,11 @@ import java.util.List;
 
 public class HugCommand extends ListenerAdapter implements ICommand {
 
+    private static final List<String> VALID_MODES = List.of(
+            "casual",
+            "romantic",
+            "comforting"
+    );
     private final Config config;
 
     public HugCommand() {
@@ -37,9 +43,7 @@ public class HugCommand extends ListenerAdapter implements ICommand {
 
         List<OptionMapping> args = context.getArgs();
         Member member = context.member();
-        EmbedBuilder embedBuilder = new EmbedBuilder();
         Member target = args.getFirst().getAsMember();
-        String mode = "casual";
 
         if (target == null) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_NOT_FOUND);
@@ -51,21 +55,22 @@ public class HugCommand extends ListenerAdapter implements ICommand {
             return;
         }
 
-        if (args.size() == 2)
+        String mode = "casual";
+        if (args.size() == 2) {
+            if (!VALID_MODES.contains(args.get(1).getAsString())) {
+                ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_MODE);
+                return;
+            }
             mode = args.get(1).getAsString().toLowerCase();
+        }
 
         String image = ImageRepository.get("interaction." + name()).randomByType(mode);
         String description = MessageRepository.get("interaction." + name()).randomByType(mode)
                 .replace("{member}", member.getAsMention())
                 .replace("{target}", target.getAsMention());
 
-        embedBuilder.setTitle("**:purple_heart: Hugs**");
-        embedBuilder.setDescription(description);
-        embedBuilder.setImage(image);
-        embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
-
         context.interaction().reply(target.getAsMention())
-                .addEmbeds(embedBuilder.build())
+                .addEmbeds(EmbedUtil.build("**:purple_heart: Hugs**", description, image))
                 .addComponents(ActionRow.of(Button.secondary("hug-" + member.getId() + "-" + target.getId(), "🫂 Hug Back")))
                 .queue();
 
@@ -111,7 +116,7 @@ public class HugCommand extends ListenerAdapter implements ICommand {
 
     @Override
     public String description() {
-        return "Hug another person.";
+        return "Interact with another user by hugging them.";
     }
 
     @Override

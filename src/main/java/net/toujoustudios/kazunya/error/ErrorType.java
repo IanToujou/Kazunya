@@ -30,11 +30,9 @@ public enum ErrorType {
     COMMAND_INVALID_USER_SELF("1005", "You cannot do that to yourself. Please specify another user."),
     COMMAND_INVALID_NUMBER_INTEGER("1006", "The given number is invalid. It must be a full number."),
     COMMAND_INVALID_NUMBER_DOUBLE("1007", "The given number is invalid. It must be either a full or a decimal number."),
-    COMMAND_INVALID_OPERATION_GET_SET_ADD_REMOVE("1008", "The specified operation is invalid. You can either get, set, add or remove."),
-    COMMAND_INVALID_STOCK("1009", "The specified stock does not exist. Please use /marketinfo to get the full list of available stocks."),
-    COMMAND_INVALID_URL("1010", "The given link is invalid. Please provide a valid link."),
-    COMMAND_INVALID_RANGE("1011", "The specified number is not in the given range. Please read the documentation to see the correct range."),
-    COMMAND_INVALID_GENDER("1022", "The specified gender is invalid. Please use MALE, FEMALE, NONE, or OTHER."),
+    COMMAND_INVALID_URL("1008", "The given link is invalid. Please provide a valid link."),
+    COMMAND_INVALID_RANGE("1009", "The specified number is not in the given range. Please read the documentation to see the correct range."),
+    COMMAND_INVALID_MODE("1010", "The given mode is invalid. Please refer to the command syntax."),
 
     // More advanced command errors when trying to perform a specific action.
     ACTION_INVALID_USER("2001", "That action is not meant to be performed by you."),
@@ -85,7 +83,7 @@ public enum ErrorType {
     PERMISSION_VOICE_MOVE("4037", "I don't have the permission to move people in voice channels."),
     PERMISSION_STAGE_REQUEST("4038", "I don't have the permission to request stage access."),
     PERMISSION_MANAGE_EVENTS("4039", "I don't have the permission to manage server events."),
-    PERMISSION_ADMIN("4040", "I don't have the administrator permissions.");
+    PERMISSION_ADMIN("4040", "I don't have administrator permissions.");
 
     private final String code;
     private final String description;

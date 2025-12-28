@@ -57,7 +57,8 @@ nav = [
             {"Info" = "commands/general/info.md"},
         ]},
         {"Roleplay" = [
-            {"Hug" = "commands/roleplay/hug.md"}
+            {"Cuddle" = "commands/roleplay/cuddle.md"},
+            {"Hug" = "commands/roleplay/hug.md"},
         ]},
     ]}
 ]

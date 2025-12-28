@@ -1,6 +1,5 @@
 package net.toujoustudios.kazunya.command.list.roleplay;
 
-import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.components.actionrow.ActionRow;
 import net.dv8tion.jda.api.components.buttons.Button;
 import net.dv8tion.jda.api.entities.Member;
@@ -12,13 +11,11 @@ import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.command.ICommand;
-import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
 import net.toujoustudios.kazunya.main.Main;
 import net.toujoustudios.kazunya.repository.ImageRepository;
 import net.toujoustudios.kazunya.repository.MessageRepository;
-import net.toujoustudios.kazunya.util.ColorUtil;
 import net.toujoustudios.kazunya.util.EmbedUtil;
 import org.jetbrains.annotations.NotNull;
 
@@ -32,11 +29,6 @@ public class HugCommand extends ListenerAdapter implements ICommand {
             "romantic",
             "comforting"
     );
-    private final Config config;
-
-    public HugCommand() {
-        config = Config.getDefault();
-    }
 
     @Override
     public void handle(CommandContext context) {
@@ -80,8 +72,6 @@ public class HugCommand extends ListenerAdapter implements ICommand {
     public void onButtonInteraction(@NotNull ButtonInteractionEvent event) {
 
         String id = event.getComponentId();
-        EmbedBuilder embedBuilder = new EmbedBuilder();
-
         if(!id.startsWith("hug")) return;
         Member member = event.getMember();
 
@@ -97,13 +87,9 @@ public class HugCommand extends ListenerAdapter implements ICommand {
                 return;
             }
 
-            String image = ImageRepository.get("interaction." + name()).randomByType("casual");
-
-            embedBuilder.setTitle("**:purple_heart: Hugs**");
-            embedBuilder.setDescription(member.getAsMention() + " hugs " + target.getAsMention() + "! :3");
-            embedBuilder.setImage(image);
-            embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
-            event.reply(target.getAsMention()).addEmbeds(embedBuilder.build()).queue();
+            event.reply(target.getAsMention()).addEmbeds(
+                    EmbedUtil.build("**:purple_heart: Hugs**", member.getAsMention() + " hugs " + target.getAsMention() + " back! :3", ImageRepository.get("interaction." + name()).randomByType("casual"))
+            ).queue();
 
         });
 

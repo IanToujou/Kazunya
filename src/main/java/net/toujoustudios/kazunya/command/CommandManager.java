@@ -27,12 +27,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * This file has been created by Ian Toujou.
- * Project: Kazunya
- * Date: 26/08/2021
- * Time: 23:08
- */
 @Getter
 public class CommandManager {
 

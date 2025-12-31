@@ -49,18 +49,10 @@ public class Config {
         Object value = content.get(key);
         if (value == null) return null;
 
-        if (value instanceof List) {
-            @SuppressWarnings("unchecked")
-            List<String> list = (List<String>) value;
-            return list;
-        }
+        @SuppressWarnings("unchecked")
+        List<String> list = (List<String>) value;
+        return list;
 
-        if (value instanceof String) {
-            String[] stringArray = ((String) value).split(", ");
-            return stringArray.length > 0 ? Arrays.asList(stringArray) : null;
-        }
-
-        return null;
     }
 
     public List<Image> getImageList(String key) {
@@ -76,8 +68,22 @@ public class Config {
                 Map<String, Object> map = (Map<String, Object>) item;
                 String type = (String) map.get("type");
                 String url = (String) map.get("url");
+
+                List<Character> genders = null;
+                Object gendersObj = map.get("genders");
+                if (gendersObj instanceof List<?> gendersList) {
+                    genders = new ArrayList<>();
+                    for (Object g : gendersList) {
+                        if (g instanceof String gStr) {
+                            if (!gStr.isEmpty()) {
+                                genders.add(gStr.charAt(0));
+                            }
+                        }
+                    }
+                }
+
                 if (type != null && url != null) {
-                    result.add(new Image(type, url));
+                    result.add(new Image(type, url, genders));
                 }
             }
         }

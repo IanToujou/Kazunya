@@ -56,7 +56,7 @@ public class HugCommand extends ListenerAdapter implements ICommand {
             mode = args.get(1).getAsString().toLowerCase();
         }
 
-        String image = ImageRepository.get("interaction." + name()).randomByType(mode);
+        String image = ImageRepository.get("interaction." + name()).randomByTypeAndGenders(mode, "MF");
         String description = MessageRepository.get("interaction." + name()).randomByType(mode)
                 .replace("{member}", member.getAsMention())
                 .replace("{target}", target.getAsMention());

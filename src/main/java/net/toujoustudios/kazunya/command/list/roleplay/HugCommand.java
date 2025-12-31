@@ -25,7 +25,7 @@ import java.util.List;
 public class HugCommand extends ListenerAdapter implements ICommand {
 
     private static final List<String> VALID_MODES = List.of(
-            "casual",
+            "friendly",
             "romantic",
             "comforting"
     );
@@ -47,7 +47,7 @@ public class HugCommand extends ListenerAdapter implements ICommand {
             return;
         }
 
-        String mode = "casual";
+        String mode = "friendly";
         if (args.size() == 2) {
             if (!VALID_MODES.contains(args.get(1).getAsString())) {
                 ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_MODE);

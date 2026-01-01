@@ -16,7 +16,8 @@ public class MessageLoader {
 
         int amount = 0;
         String[] keys = {
-                "interaction.hug"
+                "interaction.hug",
+                "interaction.cuddle"
         };
 
         for (String key : keys) {

@@ -24,7 +24,7 @@ your preferences, can be found in the [Roleplay]() section.
 Parameters:
 
 - `user` | The user you want to cuddle.
-- `mode` | The type of cuddle. Can be `casual`, `romantic`.
+- `mode` | The type of cuddle. Can be `friendly`, `romantic`.
 
 Additional settings, such as GIF appearance, whitelisting, etc. can be configured on the [Personal Dashboard]().
 

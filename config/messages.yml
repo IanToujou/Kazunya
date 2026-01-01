@@ -11,10 +11,19 @@ interaction.hug:
   - { type: "romantic", "message": "{member} hugs {target} really really tight. <3" }
   - { type: "romantic", "message": "{member} lays their arms around {target}. Aww~" }
   - { type: "romantic", "message": "{member} embraces {target} lovingly~ :two_hearts:" }
-  - { type: "romantic", "message": "{member} holds {target} close and tight. <3" }
+  - { type: "romantic", "message": "{member} holds {target} close and tight. :heart:" }
   - { type: "romantic", "message": "{member} wraps {target} in a tender embrace. :sparkling_heart:" }
   - { type: "romantic", "message": "{member} pulls {target} close and doesn't let go~ <3" }
   - { type: "comforting", "message": "{member} hugs {target} to comfort them. Everything will be alright!" }
   - { type: "comforting", "message": "{member} gives {target} a reassuring hug." }
   - { type: "comforting", "message": "{member} wraps {target} in a protective hug." }
   - { type: "comforting", "message": "{member} holds {target} gently. You're not alone!" }
+
+interaction.cuddle:
+  - { type: "friendly", "message": "{member} cuddles {target}! :3" }
+  - { type: "friendly", "message": "{member} gives {target} some cuddles!" }
+  - { type: "friendly", "message": "Aww! {member} is giving {target} some cuddles~" }
+  - { type: "friendly", "message": "{member} is attacking {target} with some cuddles. :3" }
+  - { type: "romantic", "message": "{member} gives {target} lots of love, just like they deserve~ :heart:" }
+  - { type: "romantic", "message": "{member} is stealing {target} to give them lots of cuddles! :3" }
+  - { type: "romantic", "message": "{member} wants to have a romantic cuddle session with {target}~ :two_hearts:" }

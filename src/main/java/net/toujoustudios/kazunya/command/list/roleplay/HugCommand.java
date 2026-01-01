@@ -88,7 +88,7 @@ public class HugCommand extends ListenerAdapter implements ICommand {
             }
 
             event.reply(target.getAsMention()).addEmbeds(
-                    EmbedUtil.build("**:purple_heart: Hugs**", member.getAsMention() + " hugs " + target.getAsMention() + " back! :3", ImageRepository.get("interaction." + name()).randomByType("casual"))
+                    EmbedUtil.build("**:purple_heart: Hugs**", member.getAsMention() + " hugs " + target.getAsMention() + " back! :3", ImageRepository.get("interaction." + name()).randomByType("friendly"))
             ).queue();
 
         });
@@ -114,7 +114,7 @@ public class HugCommand extends ListenerAdapter implements ICommand {
     public List<OptionData> options() {
         List<OptionData> optionData = new ArrayList<>();
         optionData.add(new OptionData(OptionType.USER, "user", "The person you want to hug.", true));
-        optionData.add(new OptionData(OptionType.STRING, "mode", "Mode of the hug. Options: Casual, Romantic, Comforting", false));
+        optionData.add(new OptionData(OptionType.STRING, "mode", "Mode of the hug. Options: Friendly, Romantic, Comforting", false));
         return optionData;
     }
 

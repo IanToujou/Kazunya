@@ -1,6 +1,5 @@
 package net.toujoustudios.kazunya.command.list.roleplay;
 
-import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.components.actionrow.ActionRow;
 import net.dv8tion.jda.api.components.buttons.Button;
 import net.dv8tion.jda.api.entities.Member;
@@ -12,49 +11,58 @@ import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.command.ICommand;
-import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
 import net.toujoustudios.kazunya.main.Main;
-import net.toujoustudios.kazunya.util.ColorUtil;
+import net.toujoustudios.kazunya.repository.ImageRepository;
+import net.toujoustudios.kazunya.repository.MessageRepository;
+import net.toujoustudios.kazunya.util.EmbedUtil;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class CuddleCommand extends ListenerAdapter implements ICommand {
 
-    private final Config config;
-
-    public CuddleCommand() {
-        config = Config.getDefault();
-    }
+    private static final List<String> VALID_MODES = List.of(
+            "friendly",
+            "romantic"
+    );
 
     @Override
     public void handle(CommandContext context) {
 
         List<OptionMapping> args = context.getArgs();
         Member member = context.member();
-        EmbedBuilder embedBuilder = new EmbedBuilder();
-
         Member target = args.getFirst().getAsMember();
-        assert target != null;
+
+        if (target == null) {
+            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_NOT_FOUND);
+            return;
+        }
 
         if(target.getId().equals(member.getId())) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_SELF);
             return;
         }
 
-        List<String> images = config.getStringList("gif.command.cuddle");
+        String mode = "friendly";
+        if (args.size() == 2) {
+            if (!VALID_MODES.contains(args.get(1).getAsString())) {
+                ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_MODE);
+                return;
+            }
+            mode = args.get(1).getAsString().toLowerCase();
+        }
 
-        embedBuilder.setTitle("**:purple_heart: Cuddles**");
-        embedBuilder.setDescription(member.getAsMention() + " cuddles " + target.getAsMention() + "! :3");
-        embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
-        embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
+        String image = ImageRepository.get("interaction." + name()).randomByTypeAndGenders(mode, "MF");
+        String description = MessageRepository.get("interaction." + name()).randomByType(mode)
+                .replace("{member}", member.getAsMention())
+                .replace("{target}", target.getAsMention());
+
         context.interaction().reply(target.getAsMention())
-                .addEmbeds(embedBuilder.build())
-                .addComponents(ActionRow.of(Button.secondary("cuddle-" + member.getId() + "-" + target.getId(), "💜 Cuddle Back")))
+                .addEmbeds(EmbedUtil.build("**:two_hearts: Cuddles**", description, image))
+                .addComponents(ActionRow.of(Button.secondary("cuddle-" + member.getId() + "-" + target.getId(), "💕 Cuddle Back")))
                 .queue();
 
     }
@@ -63,8 +71,6 @@ public class CuddleCommand extends ListenerAdapter implements ICommand {
     public void onButtonInteraction(@NotNull ButtonInteractionEvent event) {
 
         String id = event.getComponentId();
-        EmbedBuilder embedBuilder = new EmbedBuilder();
-
         if(!id.startsWith("cuddle")) return;
         Member member = event.getMember();
 
@@ -80,13 +86,9 @@ public class CuddleCommand extends ListenerAdapter implements ICommand {
                 return;
             }
 
-            List<String> images = config.getStringList("gif.command.cuddle");
-
-            embedBuilder.setTitle("**:purple_heart: Cuddles**");
-            embedBuilder.setDescription(member.getAsMention() + " cuddles " + target.getAsMention() + "! :3");
-            embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
-            embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
-            event.reply(target.getAsMention()).addEmbeds(embedBuilder.build()).queue();
+            event.reply(target.getAsMention()).addEmbeds(
+                    EmbedUtil.build("**:two_hearts: Cuddles**", member.getAsMention() + " cuddles " + target.getAsMention() + " back! :3", ImageRepository.get("interaction." + name()).randomByType("friendly"))
+            ).queue();
 
         });
 
@@ -99,18 +101,19 @@ public class CuddleCommand extends ListenerAdapter implements ICommand {
 
     @Override
     public String description() {
-        return "Cuddle another person.";
+        return "Interact with another user by cuddling them.";
     }
 
     @Override
     public String emoji() {
-        return "💜";
+        return "💕";
     }
 
     @Override
     public List<OptionData> options() {
         List<OptionData> optionData = new ArrayList<>();
         optionData.add(new OptionData(OptionType.USER, "user", "The person you want to cuddle.", true));
+        optionData.add(new OptionData(OptionType.STRING, "mode", "Mode of the cuddle. Options: Friendly, Romantic", false));
         return optionData;
     }
 

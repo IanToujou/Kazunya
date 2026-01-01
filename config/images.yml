@@ -1,13 +1,18 @@
 ### Interactions
 
+# Note: BD stands for bidirectional interaction.
+# The genders field defines who interacts with whom. "F, M" means "female" interacts with "male".
+# This field is only used for the appearance in the GIF and nothing else. That is why the
+# only available options are: F (Female), M (Male) and X (Any).
+
 # Hug Interaction
 interaction.hug:
   - { type: "friendly", url: "https://c.tenor.com/PlenvFTbCcAAAAAC/tenor.gif", genders: [ 'F', 'F' ] }
-  - { type: "friendly", url: "https://c.tenor.com/xIuXbMtA38sAAAAd/tenor.gif", genders: [ 'F', 'M' ] }
+  - { type: "friendly", url: "https://c.tenor.com/xIuXbMtA38sAAAAd/tenor.gif", genders: [ 'M', 'F' ] }
   - { type: "friendly", url: "https://c.tenor.com/V8f3qPS23LgAAAAC/tenor.gif", genders: [ 'F', 'M' ] }
   - { type: "friendly", url: "https://c.tenor.com/JzxgF3aebL0AAAAC/tenor.gif", genders: [ 'F', 'F' ] }
   - { type: "friendly", url: "https://c.tenor.com/nHkiUCkS04gAAAAC/tenor.gif", genders: [ 'F', 'F' ] }
-  - { type: "friendly", url: "https://c.tenor.com/mB_y2KUsyuoAAAAC/tenor.gif", genders: [ 'F', 'M' ] }
+  - { type: "friendly", url: "https://c.tenor.com/mB_y2KUsyuoAAAAC/tenor.gif", genders: [ 'M', 'F' ] }
   - { type: "friendly", url: "https://c.tenor.com/sJATVEhZ_VMAAAAC/tenor.gif", genders: [ 'F', 'F' ] }
   - { type: "friendly", url: "https://c.tenor.com/UnpQCW40JekAAAAC/tenor.gif", genders: [ 'M', 'M' ] }
   - { type: "friendly", url: "https://c.tenor.com/sl3rfZ7mQBsAAAAC/tenor.gif", genders: [ 'F', 'M' ] }
@@ -22,23 +27,25 @@ interaction.hug:
   - { type: "friendly", url: "https://c.tenor.com/tE6Abh3A4ioAAAAC/tenor.gif", genders: [ 'F', 'F' ] }
   - { type: "friendly", url: "https://c.tenor.com/C8Rid4-TftYAAAAC/tenor.gif", genders: [ 'F', 'F' ] }
   - { type: "romantic", url: "https://c.tenor.com/J7eGDvGeP9IAAAAC/tenor.gif", genders: [ 'F', 'M' ] }
-  - { type: "romantic", url: "https://c.tenor.com/YF-rFMgHgDEAAAAC/tenor.gif", genders: [ 'F', 'M' ] }
+  - { type: "romantic", url: "https://c.tenor.com/YF-rFMgHgDEAAAAC/tenor.gif", genders: [ 'M', 'F' ] }
   - { type: "romantic", url: "https://c.tenor.com/7oCaSR-q1kkAAAAC/tenor.gif", genders: [ 'F', 'M' ] }
+  - { type: "romantic", url: "https://c.tenor.com/7oCaSR-q1kkAAAAC/tenor.gif", genders: [ 'M', 'F' ] } # BD
   - { type: "romantic", url: "https://c.tenor.com/wWFm70VeC7YAAAAC/tenor.gif", genders: [ 'F', 'M' ] }
   - { type: "romantic", url: "https://c.tenor.com/W9Z5NRFZq_UAAAAC/tenor.gif", genders: [ 'F', 'M' ] }
   - { type: "romantic", url: "https://c.tenor.com/F1VUry86n7kAAAAC/tenor.gif", genders: [ 'F', 'M' ] }
   - { type: "romantic", url: "https://c.tenor.com/M84QPR5DxaUAAAAC/tenor.gif", genders: [ 'M', 'M' ] }
   - { type: "romantic", url: "https://c.tenor.com/stLEkL3l0NAAAAAC/tenor.gif", genders: [ 'F', 'M' ] }
-  - { type: "romantic", url: "https://c.tenor.com/dIvoDyyk5LIAAAAC/tenor.gif", genders: [ 'F', 'M' ] }
+  - { type: "romantic", url: "https://c.tenor.com/dIvoDyyk5LIAAAAC/tenor.gif", genders: [ 'M', 'F' ] }
   - { type: "romantic", url: "https://c.tenor.com/2bWwi8DhDsAAAAAC/tenor.gif", genders: [ 'F', 'M' ] }
-  - { type: "romantic", url: "https://c.tenor.com/KD__SewDxK0AAAAC/tenor.gif", genders: [ 'F', 'M' ] }
-  - { type: "romantic", url: "https://c.tenor.com/mmQyXP3JvKwAAAAC/tenor.gif", genders: [ 'F', 'M' ] }
+  - { type: "romantic", url: "https://c.tenor.com/KD__SewDxK0AAAAC/tenor.gif", genders: [ 'M', 'F' ] }
+  - { type: "romantic", url: "https://c.tenor.com/mmQyXP3JvKwAAAAC/tenor.gif", genders: [ 'M', 'F' ] }
   - { type: "romantic", url: "https://c.tenor.com/I1v_9vYjxyEAAAAC/tenor.gif", genders: [ 'F', 'F' ] }
   - { type: "romantic", url: "https://c.tenor.com/A3AoVPX4pOcAAAAC/tenor.gif", genders: [ 'F', 'F' ] }
   - { type: "romantic", url: "https://c.tenor.com/PXt1JK4s4wEAAAAC/tenor.gif", genders: [ 'F', 'F' ] }
   - { type: "romantic", url: "https://c.tenor.com/OlqG0zXlNzkAAAAC/tenor.gif", genders: [ 'F', 'F' ] }
   - { type: "romantic", url: "https://c.tenor.com/jf__3ZuBC4oAAAAC/tenor.gif", genders: [ 'F', 'M' ] }
-  - { type: "romantic", url: "https://c.tenor.com/I0Z6feC5UYQAAAAC/tenor.gif", genders: [ 'F', 'M' ] }
+  - { type: "romantic", url: "https://c.tenor.com/jf__3ZuBC4oAAAAC/tenor.gif", genders: [ 'M', 'F' ] } # BD
+  - { type: "romantic", url: "https://c.tenor.com/I0Z6feC5UYQAAAAC/tenor.gif", genders: [ 'M', 'F' ] }
   - { type: "comforting", url: "https://c.tenor.com/iIkzXrd49HMAAAAC/tenor.gif", genders: [ 'F', 'F' ] }
   - { type: "comforting", url: "https://c.tenor.com/0vl21YIsGvgAAAAC/tenor.gif", genders: [ 'F', 'F' ] }
   - { type: "comforting", url: "https://c.tenor.com/7f9CqFtd4SsAAAAC/tenor.gif", genders: [ 'F', 'M' ] }
@@ -63,7 +70,7 @@ interaction.cuddle:
   - { type: "friendly", url: "https://c.tenor.com/fklZNDaU9NMAAAAC/tenor.gif", genders: [ 'F', 'F' ] }
   - { type: "friendly", url: "https://c.tenor.com/Hx1CeieJHkwAAAAC/tenor.gif", genders: [ 'F', 'F' ] }
   - { type: "friendly", url: "https://c.tenor.com/0PIj7XctFr4AAAAC/tenor.gif", genders: [ 'F', 'M' ] }
-  - { type: "friendly", url: "https://c.tenor.com/MVK93pHLpz4AAAAC/tenor.gif", genders: [ 'F', 'M' ] }
+  - { type: "friendly", url: "https://c.tenor.com/MVK93pHLpz4AAAAC/tenor.gif", genders: [ 'X', 'F' ] }
   - { type: "friendly", url: "https://c.tenor.com/RR4YJdzCJRMAAAAC/tenor.gif", genders: [ 'F', 'M' ] }
   - { type: "friendly", url: "https://c.tenor.com/lLSZDEVYiKoAAAAC/tenor.gif", genders: [ 'F', 'F' ] }
   - { type: "friendly", url: "https://c.tenor.com/gKJs4RthO74AAAAd/tenor.gif", genders: [ 'F', 'F' ] }
@@ -71,13 +78,15 @@ interaction.cuddle:
   - { type: "friendly", url: "https://c.tenor.com/arMxz72tc50AAAAd/tenor.gif", genders: [ 'F', 'F' ] }
   - { type: "friendly", url: "https://c.tenor.com/JQabphuSjAQAAAAC/tenor.gif", genders: [ 'M', 'M' ] }
   - { type: "romantic", url: "https://c.tenor.com/bLttPccI_I4AAAAC/tenor.gif", genders: [ 'F', 'M' ] }
+  - { type: "romantic", url: "https://c.tenor.com/bLttPccI_I4AAAAC/tenor.gif", genders: [ 'M', 'F' ] } # BD
   - { type: "romantic", url: "https://c.tenor.com/ptTO2paF8B0AAAAC/tenor.gif", genders: [ 'F', 'F' ] }
   - { type: "romantic", url: "https://c.tenor.com/RHJyZDF9eC4AAAAC/tenor.gif", genders: [ 'F', 'M' ] }
-  - { type: "romantic", url: "https://c.tenor.com/SAL_XAuyuJAAAAAC/tenor.gif", genders: [ 'F', 'M' ] }
+  - { type: "romantic", url: "https://c.tenor.com/SAL_XAuyuJAAAAAC/tenor.gif", genders: [ 'M', 'F' ] }
   - { type: "romantic", url: "https://c.tenor.com/XptUhNOfUXUAAAAC/tenor.gif", genders: [ 'F', 'M' ] }
   - { type: "romantic", url: "https://c.tenor.com/OISOJLlZOnYAAAAC/tenor.gif", genders: [ 'F', 'M' ] }
   - { type: "romantic", url: "https://c.tenor.com/08vDStcjoGAAAAAC/tenor.gif", genders: [ 'F', 'M' ] }
-  - { type: "romantic", url: "https://c.tenor.com/MD7_IG4CUVAAAAAC/tenor.gif", genders: [ 'F', 'X' ] }
+  - { type: "romantic", url: "https://c.tenor.com/08vDStcjoGAAAAAC/tenor.gif", genders: [ 'M', 'F' ] } # BD
+  - { type: "romantic", url: "https://c.tenor.com/MD7_IG4CUVAAAAAC/tenor.gif", genders: [ 'F', 'F' ] }
   - { type: "romantic", url: "https://c.tenor.com/-6YZcCILaccAAAAC/tenor.gif", genders: [ 'F', 'M' ] }
   - { type: "romantic", url: "https://c.tenor.com/S_RwcMaNX3sAAAAd/tenor.gif", genders: [ 'F', 'F' ] }
   - { type: "romantic", url: "https://c.tenor.com/WQp-ld-v2xoAAAAC/tenor.gif", genders: [ 'F', 'F' ] }
@@ -87,3 +96,32 @@ interaction.cuddle:
   - { type: "romantic", url: "https://c.tenor.com/0Yx0j25JyowAAAAC/tenor.gif", genders: [ 'M', 'M' ] }
   - { type: "romantic", url: "https://c.tenor.com/WZPU_VYTkcAAAAAC/tenor.gif", genders: [ 'M', 'M' ] }
   - { type: "romantic", url: "https://c.tenor.com/KMNYBuFCvfgAAAAC/tenor.gif", genders: [ 'M', 'M' ] }
+
+## Headpat Interaction
+interaction.pat:
+  - { url: "https://c.tenor.com/kIh2QZ7MhBMAAAAd/tenor.gif", genders: [ 'M', 'F' ] }
+  - { url: "https://c.tenor.com/wLqFGYigJuIAAAAd/tenor.gif", genders: [ 'F', 'M' ] }
+  - { url: "https://c.tenor.com/PkWttKcH1xMAAAAd/tenor.gif", genders: [ 'F', 'F' ] }
+  - { url: "https://c.tenor.com/8FOQORmaLNoAAAAd/tenor.gif", genders: [ 'M', 'F' ] }
+  - { url: "https://c.tenor.com/1vt_6_y0nQsAAAAd/tenor.gif", genders: [ 'F', 'X' ] }
+  - { url: "https://c.tenor.com/Dbg-7wAaiJwAAAAd/tenor.gif", genders: [ 'F', 'M' ] }
+  - { url: "https://c.tenor.com/CIF_Pa3yepwAAAAd/tenor.gif", genders: [ 'F', 'M' ] }
+  - { url: "https://c.tenor.com/fro6pl7src0AAAAd/tenor.gif", genders: [ 'X', 'F' ] }
+  - { url: "https://c.tenor.com/AhXwHCLEBkkAAAAd/tenor.gif", genders: [ 'M', 'F' ] }
+  - { url: "https://c.tenor.com/N41zKEDABuUAAAAd/tenor.gif", genders: [ 'M', 'F' ] }
+  - { url: "https://c.tenor.com/MDc4TSck5PQAAAAd/tenor.gif", genders: [ 'F', 'F' ] }
+  - { url: "https://c.tenor.com/7xrOS-GaGAIAAAAd/tenor.gif", genders: [ 'X', 'F' ] }
+  - { url: "https://c.tenor.com/f1Ppi3xBHSwAAAAd/tenor.gif", genders: [ 'X', 'F' ] }
+  - { url: "https://c.tenor.com/V8sgatjgqG0AAAAd/tenor.gif", genders: [ 'M', 'M' ] }
+  - { url: "https://c.tenor.com/Zm71HaIh7wwAAAAd/tenor.gif", genders: [ 'M', 'F' ] }
+  - { url: "https://c.tenor.com/079CvbmFPe8AAAAd/tenor.gif", genders: [ 'F', 'M' ] }
+  - { url: "https://c.tenor.com/TJfdUVQ-7MgAAAAd/tenor.gif", genders: [ 'M', 'F' ] }
+  - { url: "https://c.tenor.com/PqT70paf394AAAAd/tenor.gif", genders: [ 'X', 'F' ] }
+  - { url: "https://c.tenor.com/mecnd_qE8p8AAAAd/tenor.gif", genders: [ 'M', 'F' ] }
+  - { url: "https://c.tenor.com/rtHwrLRPlAkAAAAd/tenor.gif", genders: [ 'F', 'M' ] }
+  - { url: "https://c.tenor.com/hR_7bvEw3l0AAAAd/tenor.gif", genders: [ 'F', 'F' ] }
+  - { url: "https://c.tenor.com/G7FBQrJbq7YAAAAd/tenor.gif", genders: [ 'F', 'F' ] }
+  - { url: "https://c.tenor.com/RDfGm9ftwx0AAAAd/tenor.gif", genders: [ 'F', 'F' ] }
+  - { url: "https://c.tenor.com/5fiqlOixxrQAAAAd/tenor.gif", genders: [ 'F', 'F' ] }
+  - { url: "https://c.tenor.com/h4iOZke1ESMAAAAd/tenor.gif", genders: [ 'M', 'F' ] }
+  - { url: "https://c.tenor.com/EtYDQ2XfXAQAAAAd/tenor.gif", genders: [ 'X', 'F' ] }

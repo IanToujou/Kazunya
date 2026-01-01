@@ -82,7 +82,7 @@ public class Config {
                     }
                 }
 
-                if (type != null && url != null) {
+                if (url != null) {
                     result.add(new Image(type, url, genders));
                 }
             }
@@ -104,9 +104,9 @@ public class Config {
                 @SuppressWarnings("unchecked")
                 Map<String, Object> map = (Map<String, Object>) item;
                 String type = (String) map.get("type");
-                String url = (String) map.get("message");
-                if (type != null && url != null) {
-                    result.add(new Message(type, url));
+                String msg = (String) map.get("message");
+                if (msg != null) {
+                    result.add(new Message(type, msg));
                 }
             }
         }

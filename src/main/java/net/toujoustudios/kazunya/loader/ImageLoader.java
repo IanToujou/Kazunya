@@ -17,7 +17,8 @@ public class ImageLoader {
         int amount = 0;
         String[] keys = {
                 "interaction.hug",
-                "interaction.cuddle"
+                "interaction.cuddle",
+                "interaction.pat"
         };
 
         for (String key : keys) {

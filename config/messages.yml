@@ -24,6 +24,32 @@ interaction.cuddle:
   - { type: "friendly", "message": "{member} gives {target} some cuddles!" }
   - { type: "friendly", "message": "Aww! {member} is giving {target} some cuddles~" }
   - { type: "friendly", "message": "{member} is attacking {target} with some cuddles. :3" }
+  - { type: "friendly", "message": "{member} pulls {target} into a cozy cuddle!" }
+  - { type: "friendly", "message": "{member} snuggles up to {target}! ^w^" }
+  - { type: "friendly", "message": "{member} wraps {target} in a warm cuddle!" }
+  - { type: "friendly", "message": "{member} and {target} are having a cuddle session! :D" }
+  - { type: "friendly", "message": "{member} gives {target} the comfiest cuddles!" }
   - { type: "romantic", "message": "{member} gives {target} lots of love, just like they deserve~ :heart:" }
   - { type: "romantic", "message": "{member} is stealing {target} to give them lots of cuddles! :3" }
   - { type: "romantic", "message": "{member} wants to have a romantic cuddle session with {target}~ :two_hearts:" }
+  - { type: "romantic", "message": "{member} cuddles {target} tenderly and doesn't want to let go~ <3" }
+  - { type: "romantic", "message": "{member} holds {target} close while cuddling. So warm~ :sparkling_heart:" }
+  - { type: "romantic", "message": "{member} cuddles up to {target} lovingly~ :heart:" }
+  - { type: "romantic", "message": "{member} wraps their arms around {target} for endless cuddles. <3" }
+  - { type: "romantic", "message": "{member} snuggles {target} affectionately~ :two_hearts:" }
+  - { type: "romantic", "message": "{member} pulls {target} into their embrace for sweet cuddles~ <3" }
+
+interaction.pat:
+  - { "message": "{member} gives {target} some headpats! :3" }
+  - { "message": "{member} pats {target} on the head!" }
+  - { "message": "{member} is patting {target}'s head gently~" }
+  - { "message": "{member} reaches over and pats {target}'s head! ^w^" }
+  - { "message": "{member} gives {target} gentle headpats. Good job!" }
+  - { "message": "{member} ruffles {target}'s hair affectionately!" }
+  - { "message": "{member} pats {target} on the head softly~" }
+  - { "message": "{member} gives {target} comforting headpats!" }
+  - { "message": "{member} reaches up and pats {target}'s head! :D" }
+  - { "message": "{member} gives {target} encouraging headpats!" }
+  - { "message": "{member} gently pats {target} on the head. There there~" }
+  - { "message": "{member} gives {target} some well-deserved headpats!" }
+  - { "message": "{member} softly pats {target}'s head. You did great!" }

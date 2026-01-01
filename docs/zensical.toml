@@ -59,6 +59,7 @@ nav = [
         {"Roleplay" = [
             {"Cuddle" = "commands/roleplay/cuddle.md"},
             {"Hug" = "commands/roleplay/hug.md"},
+            {"Pat" = "commands/roleplay/pat.md"},
         ]},
     ]}
 ]

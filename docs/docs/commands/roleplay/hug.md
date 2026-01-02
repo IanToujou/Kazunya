@@ -24,7 +24,7 @@ your preferences, can be found in the [Roleplay]() section.
 Parameters:
 
 - `user` | The user you want to hug.
-- `mode` | The type of hug. Can be `friendly`, `romantic`, `comforting`.
+- `mode` | The type of hug. Can be `friendly`, `romantic`, `comforting`. Default is friendly.
 
 Additional settings, such as GIF appearance, whitelisting, etc. can be configured on the [Personal Dashboard]().
 

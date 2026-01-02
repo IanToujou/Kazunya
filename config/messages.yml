@@ -1,6 +1,5 @@
 ### Interactions
 
-# Hug Interaction
 interaction.hug:
   - { type: "friendly", "message": "{member} is giving {target} a hug! :3" }
   - { type: "friendly", "message": "{member} is hugging {target}! ^w^" }
@@ -53,3 +52,25 @@ interaction.pat:
   - { "message": "{member} gently pats {target} on the head. There there~" }
   - { "message": "{member} gives {target} some well-deserved headpats!" }
   - { "message": "{member} softly pats {target}'s head. You did great!" }
+
+interaction.kiss:
+  - { type: "cheek", "message": "{member} gives {target} a little kiss on the cheek!" }
+  - { type: "cheek", "message": "{member} plants a sweet kiss on {target}'s cheek! :3" }
+  - { type: "cheek", "message": "{member} leans in and kisses {target} on the cheek~" }
+  - { type: "cheek", "message": "{member} gives {target} a gentle peck on the cheek!" }
+  - { type: "cheek", "message": "{member} kisses {target}'s cheek softly! ^w^" }
+  - { type: "cheek", "message": "{member} surprises {target} with a kiss on the cheek!" }
+  - { type: "cheek", "message": "{member} gives {target} a friendly kiss on the cheek! :D" }
+  - { type: "mouth", "message": "{member} kisses {target} lovingly~ :heart:" }
+  - { type: "mouth", "message": "{member} gives {target} a romantic kiss! :two_hearts:" }
+  - { type: "mouth", "message": "{member} leans in and kisses {target} on the lips~ <3" }
+  - { type: "mouth", "message": "{member} pulls {target} close for a sweet kiss! :sparkling_heart:" }
+  - { type: "mouth", "message": "{member} kisses {target} tenderly~ :heart:" }
+  - { type: "mouth", "message": "{member} gives {target} a soft, loving kiss! <3" }
+  - { type: "mouth", "message": "{member} kisses {target} affectionately~ :two_hearts:" }
+  - { type: "intense", "message": "{member} kisses {target} deeply and can't seem to stop~ :heartbeat:" }
+  - { type: "intense", "message": "{member} pulls {target} into a long, meaningful kiss! :two_hearts:" }
+  - { type: "intense", "message": "{member} kisses {target} with all their love~ :sparkling_heart:" }
+  - { type: "intense", "message": "{member} holds {target} close and kisses them deeply! <3" }
+  - { type: "intense", "message": "{member} gets lost in a sweet, lingering kiss with {target}~ :heartbeat:" }
+  - { type: "intense", "message": "{member} kisses {target} deeply, pouring all their feelings into it! :two_hearts:" }

@@ -1,6 +1,5 @@
 package net.toujoustudios.kazunya.command.list.roleplay;
 
-import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.components.actionrow.ActionRow;
 import net.dv8tion.jda.api.components.buttons.Button;
 import net.dv8tion.jda.api.entities.Member;
@@ -12,48 +11,58 @@ import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.command.ICommand;
-import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
 import net.toujoustudios.kazunya.main.Main;
-import net.toujoustudios.kazunya.util.ColorUtil;
+import net.toujoustudios.kazunya.repository.ImageRepository;
+import net.toujoustudios.kazunya.repository.MessageRepository;
+import net.toujoustudios.kazunya.util.EmbedUtil;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class KissCommand extends ListenerAdapter implements ICommand {
 
-    private final Config config;
-
-    public KissCommand() {
-        config = Config.getDefault();
-    }
+    private static final List<String> VALID_MODES = List.of(
+            "cheek",
+            "mouth",
+            "intense"
+    );
 
     @Override
     public void handle(CommandContext context) {
 
         List<OptionMapping> args = context.getArgs();
         Member member = context.member();
-        EmbedBuilder embedBuilder = new EmbedBuilder();
-
         Member target = args.getFirst().getAsMember();
-        assert target != null;
+
+        if (target == null) {
+            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_NOT_FOUND);
+            return;
+        }
 
         if(target.getId().equals(member.getId())) {
             ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_SELF);
             return;
         }
 
-        List<String> images = config.getStringList("gif.command.kiss");
+        String mode = "cheek";
+        if (args.size() == 2) {
+            if (!VALID_MODES.contains(args.get(1).getAsString())) {
+                ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_MODE);
+                return;
+            }
+            mode = args.get(1).getAsString().toLowerCase();
+        }
 
-        embedBuilder.setTitle("**:heart: Kiss**");
-        embedBuilder.setDescription(member.getAsMention() + " gives " + target.getAsMention() + " a kiss! Nawww~");
-        embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
-        embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
+        String image = ImageRepository.get("interaction." + name()).randomByTypeAndGenders(mode, "MF");
+        String description = MessageRepository.get("interaction." + name()).randomByType(mode)
+                .replace("{member}", member.getAsMention())
+                .replace("{target}", target.getAsMention());
+
         context.interaction().reply(target.getAsMention())
-                .addEmbeds(embedBuilder.build())
+                .addEmbeds(EmbedUtil.build("**:heart: Kiss**", description, image))
                 .addComponents(ActionRow.of(Button.secondary("kiss-" + member.getId() + "-" + target.getId(), "😚 Kiss Back")))
                 .queue();
 
@@ -61,9 +70,8 @@ public class KissCommand extends ListenerAdapter implements ICommand {
 
     @Override
     public void onButtonInteraction(@NotNull ButtonInteractionEvent event) {
-        String id = event.getComponentId();
-        EmbedBuilder embedBuilder = new EmbedBuilder();
 
+        String id = event.getComponentId();
         if(!id.startsWith("kiss")) return;
         Member member = event.getMember();
 
@@ -79,15 +87,12 @@ public class KissCommand extends ListenerAdapter implements ICommand {
                 return;
             }
 
-            List<String> images = config.getStringList("gif.command.kiss");
-
-            embedBuilder.setTitle("**:heart: Kiss**");
-            embedBuilder.setDescription(member.getAsMention() + " gives " + target.getAsMention() + " a kiss! Nawww~");
-            embedBuilder.setImage(images.get(new Random().nextInt(images.size())));
-            embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
-            event.reply(target.getAsMention()).addEmbeds(embedBuilder.build()).queue();
+            event.reply(target.getAsMention()).addEmbeds(
+                    EmbedUtil.build("**:purple_heart: Kiss**", member.getAsMention() + " kissed " + target.getAsMention() + " back! :3", ImageRepository.get("interaction." + name()).randomByType("cheek"))
+            ).queue();
 
         });
+
     }
 
     @Override
@@ -97,7 +102,7 @@ public class KissCommand extends ListenerAdapter implements ICommand {
 
     @Override
     public String description() {
-        return "Kiss another person.";
+        return "Interact with another user by kissing them.";
     }
 
     @Override
@@ -109,6 +114,7 @@ public class KissCommand extends ListenerAdapter implements ICommand {
     public List<OptionData> options() {
         List<OptionData> optionData = new ArrayList<>();
         optionData.add(new OptionData(OptionType.USER, "user", "The person you want to kiss.", true));
+        optionData.add(new OptionData(OptionType.STRING, "mode", "Mode of the kiss. Options: Cheek, Mouth, Intense", false));
         return optionData;
     }
 

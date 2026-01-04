@@ -40,6 +40,7 @@ public class Loader {
         }
 
         Main.getBot().apiClient(new ApiClient(url, username, password));
+        Main.getBot().apiClient().authenticate();
 
         // Todo remove
         ImageLoader.initialize();

@@ -19,7 +19,7 @@ public class SlashCommandListener extends ListenerAdapter {
             return;
         }
 
-        Main.getBot().getCommandManager().handle(event);
+        Main.getBot().commandManager().handle(event);
         Logger.log(LogLevel.SILENT, event.getUser().getName() + " executed the following command: " + event.getCommandString());
 
     }

@@ -40,7 +40,11 @@ public class Loader {
         }
 
         Main.getBot().apiClient(new ApiClient(url, username, password));
-        Main.getBot().apiClient().authenticate();
+        if (!Main.getBot().apiClient().authenticate()) {
+            Logger.log(LogLevel.FATAL, "Failed to authenticate and fetch token. Are the credentials correct?");
+            cancel();
+            return;
+        }
 
         // Todo remove
         ImageLoader.initialize();

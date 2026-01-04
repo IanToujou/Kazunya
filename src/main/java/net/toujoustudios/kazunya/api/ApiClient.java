@@ -35,7 +35,7 @@ public class ApiClient {
         );
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url + "/api/v1/auth/authenticate"))
+                .uri(URI.create(url + "/authenticate"))
                 .setHeader("Authorization", "Bearer " + token)
                 .POST(HttpRequest.BodyPublishers.ofString(body))
                 .build();

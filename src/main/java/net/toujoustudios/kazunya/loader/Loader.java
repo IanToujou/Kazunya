@@ -1,6 +1,7 @@
 package net.toujoustudios.kazunya.loader;
 
 import lombok.Getter;
+import net.toujoustudios.kazunya.api.ApiClient;
 import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.log.LogLevel;
 import net.toujoustudios.kazunya.log.Logger;
@@ -27,9 +28,24 @@ public class Loader {
     }
 
     private static void initialize() {
+
+        String url = System.getenv("API_URL");
+        String username = System.getenv("API_USERNAME");
+        String password = System.getenv("API_PASSWORD");
+        if (url == null || username == null || password == null) {
+            Logger.log(LogLevel.FATAL, "Failed to establish API connection.");
+            Logger.log(LogLevel.FATAL, "Error: API_URL, API_USERNAME, API_PASSWORD must be set.");
+            cancel();
+            return;
+        }
+
+        Main.getBot().apiClient(new ApiClient(url, username, password));
+
+        // Todo remove
         ImageLoader.initialize();
         MessageLoader.initialize();
         Main.getBot().build();
+
     }
 
     private static void postInitialize() {

@@ -14,6 +14,7 @@ import net.toujoustudios.kazunya.command.list.fun.ShipCommand;
 import net.toujoustudios.kazunya.command.list.fun.ShipListCommand;
 import net.toujoustudios.kazunya.command.list.general.HelpCommand;
 import net.toujoustudios.kazunya.command.list.general.InfoCommand;
+import net.toujoustudios.kazunya.command.list.general.LinkCommand;
 import net.toujoustudios.kazunya.command.list.roleplay.*;
 import net.toujoustudios.kazunya.command.list.tools.AvatarCommand;
 import net.toujoustudios.kazunya.command.list.tools.UserInfoCommand;
@@ -37,6 +38,7 @@ public class CommandManager {
         //Register general commands
         this.add(new HelpCommand(this));
         this.add(new InfoCommand());
+        this.add(new LinkCommand());
 
         //Register role play commands
         this.add(new BlushCommand());

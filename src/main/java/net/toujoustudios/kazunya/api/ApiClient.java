@@ -35,9 +35,9 @@ public class ApiClient {
         );
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url + "/authenticate"))
-                .setHeader("Authorization", "Bearer " + token)
+                .uri(URI.create(url + "/auth/authenticate"))
                 .POST(HttpRequest.BodyPublishers.ofString(body))
+                .header("Content-Type", "application/json")
                 .build();
 
         try {
@@ -52,8 +52,7 @@ public class ApiClient {
             return false;
 
         } catch (Exception exception) {
-            Logger.log(LogLevel.FATAL, "Failed to establish API connection.");
-            Logger.log(LogLevel.FATAL, "Error: " + exception.getMessage());
+            Logger.log(LogLevel.FATAL, "Failed to fetch initial API token.");
             Loader.cancel();
             return false;
         }
@@ -63,8 +62,7 @@ public class ApiClient {
     private String sendRequest(HttpMethod method, @NotNull String endpoint, @Nullable String body) {
 
         if (token == null) {
-            Logger.log(LogLevel.ERROR, "Failed to send request to API.");
-            Logger.log(LogLevel.ERROR, "Error: Token has not been set.");
+            Logger.log(LogLevel.ERROR, "Failed to send request to API. Please set a token first.");
             return null;
         }
 

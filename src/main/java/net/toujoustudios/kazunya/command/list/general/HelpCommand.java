@@ -3,7 +3,6 @@ package net.toujoustudios.kazunya.command.list.general;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.components.actionrow.ActionRow;
 import net.dv8tion.jda.api.components.buttons.Button;
-import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
@@ -66,21 +65,7 @@ public class HelpCommand implements ICommand {
             embedBuilder.addField(":heart: Roleplay:", builderRoleplay.toString(), false);
             embedBuilder.addField(":sparkles: Fun:", builderFun.toString(), false);
             embedBuilder.addField(":hammer: Tools:", builderTools.toString(), false);
-
-            boolean isOwnerOnServer = false;
-            for(Member member : context.guild().getMembers()) {
-                String id = member.getId();
-                if(id.equals(config.getString("user.admin"))) {
-                    isOwnerOnServer = true;
-                    break;
-                }
-            }
-
-            if(isOwnerOnServer) {
-                embedBuilder.addField(":bookmark_tabs: Credits:", context.guild().getMemberById(config.getString("user.admin")).getAsMention() + " - Toujou Studios", false);
-            } else {
-                embedBuilder.addField(":bookmark_tabs: Credits:", "IanToujou - Toujou Studios", false);
-            }
+            embedBuilder.addField(":bookmark_tabs: Credits:", "IanToujou", false);
 
             context.interaction().replyEmbeds(embedBuilder.build())
                     .addComponents(ActionRow.of(Button.link(config.getString("link.help"), "Docs"), Button.link(config.getString("link.invite"), "Invite")))
@@ -89,7 +74,7 @@ public class HelpCommand implements ICommand {
 
         }
 
-        String search = args.get(0).getAsString();
+        String search = args.getFirst().getAsString();
         ICommand command = manager.command(search);
 
         if(command == null) {

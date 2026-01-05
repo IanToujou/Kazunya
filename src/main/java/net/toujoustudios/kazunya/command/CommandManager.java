@@ -87,14 +87,8 @@ public class CommandManager {
             Logger.log(LogLevel.DEBUG, "Started registration of the following commands: /" + command.name());
             SlashCommandData data = Commands.slash(command.name(), command.emoji() + " " + command.description()).addSubcommands();
             if(!command.subCommandData().isEmpty()) {
-                for(int i = 1; i <= command.subCommandData().size(); i++) {
-                    SubcommandData subcommandData = command.subCommandData().get(i - 1);
-                    if(i == command.subCommandData().size())
-                        Logger.log(LogLevel.DEBUG, "└── /" + data.getName() + " " + subcommandData.getName());
-                    else
-                        Logger.log(LogLevel.DEBUG, "├── /" + data.getName() + " " + subcommandData.getName());
-                    data.addSubcommands(subcommandData);
-                }
+                command.subCommandData().forEach(data::addSubcommands);
+                Logger.log(LogLevel.DEBUG, "Registered " + command.subCommandData().size() + " subcommands.");
             } else data.addOptions(command.options());
             commands.add(data);
         }

@@ -19,7 +19,6 @@ import java.util.Random;
 public class ShipCommand implements ICommand {
 
     @Override
-    @SuppressWarnings("all")
     public void handle(CommandContext context) {
 
         List<OptionMapping> args = context.getArgs();
@@ -35,7 +34,7 @@ public class ShipCommand implements ICommand {
 
         if(first == null || second == null) return;
 
-        int rating = 0;
+        int rating;
         String firstId = first.getId();
         String secondId = second.getId();
         int num1 = Integer.parseInt(firstId.substring(firstId.length() - 2));
@@ -54,7 +53,7 @@ public class ShipCommand implements ICommand {
 
         embedBuilder.setThumbnail(args.get(avatarNumber).getAsUser().getAvatarUrl());
 
-        String commentary = "";
+        String commentary;
 
         if(rating < 10) {
 

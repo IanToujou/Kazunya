@@ -14,6 +14,16 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
+/**
+ * The API client manages authentication for the Discord bot and makes
+ * API requests to the backend.
+ * <p>
+ * Making any kind of API request is only allowed after requesting a JWT
+ * token, using the proper authentication method.
+ *
+ * @since 1.3.0
+ * @author Toujou Studios
+ */
 @Data
 @Accessors(fluent = true)
 public class ApiClient {
@@ -26,6 +36,13 @@ public class ApiClient {
     private ObjectMapper mapper = new ObjectMapper();
     private String token;
 
+    /**
+     * Sets the JWT token for the Discord bot. This method makes a request
+     * to the authentication endpoint of the backend and uses the provided
+     * username and password to login.
+     *
+     * @return Whether authentication was successful or not.
+     */
     public boolean authenticate() {
 
         String body = String.format(
@@ -59,7 +76,18 @@ public class ApiClient {
 
     }
 
-    private String sendRequest(HttpMethod method, @NotNull String endpoint, @Nullable String body) {
+    /**
+     * Sends an arbitrary request to the backend with proper authorization headers.
+     * <p>
+     * This method is marked as private since request should be done using the separate
+     * get, post, delete and put methods.
+     *
+     * @param method The HTTP method to use.
+     * @param endpoint The endpoint after the defined API url. Must start with a slash.
+     * @param body The body to send. This may be null.
+     * @return The body of the response from the backend.
+     */
+    private HttpResponse<String> sendRequest(HttpMethod method, @NotNull String endpoint, @Nullable String body) {
 
         if (token == null) {
             Logger.log(LogLevel.ERROR, "Failed to send request to API. Please set a token first.");
@@ -83,7 +111,7 @@ public class ApiClient {
         HttpRequest request = builder.build();
 
         try {
-            return client.send(request, HttpResponse.BodyHandlers.ofString()).body();
+            return client.send(request, HttpResponse.BodyHandlers.ofString());
         } catch (Exception exception) {
             Logger.log(LogLevel.ERROR, "Failed to send request to API.");
             Logger.log(LogLevel.ERROR, "Error: " + exception.getMessage());
@@ -92,19 +120,45 @@ public class ApiClient {
 
     }
 
-    public String get(@NotNull String endpoint) {
+    /**
+     * Sends a GET request to a given endpoint.
+     *
+     * @param endpoint The endpoint after the defined API url. Must start with a slash.
+     * @return The response as HTTP response object.
+     */
+    public HttpResponse<String> get(@NotNull String endpoint) {
         return sendRequest(HttpMethod.GET, endpoint, null);
     }
 
-    public String post(@NotNull String endpoint, @Nullable String body) {
+    /**
+     * Sends a POST request to a given endpoint.
+     *
+     * @param endpoint The endpoint after the defined API url. Must start with a slash.
+     * @param body The body to send. Can be null.
+     * @return The response as HTTP response object.
+     */
+    public HttpResponse<String> post(@NotNull String endpoint, @Nullable String body) {
         return sendRequest(HttpMethod.POST, endpoint, body);
     }
 
-    public String put(@NotNull String endpoint, @Nullable String body) {
+    /**
+     * Sends a PUT request to a given endpoint.
+     *
+     * @param endpoint The endpoint after the defined API url. Must start with a slash.
+     * @param body The body to send. Can be null.
+     * @return The response as HTTP response object.
+     */
+    public HttpResponse<String> put(@NotNull String endpoint, @Nullable String body) {
         return sendRequest(HttpMethod.PUT, endpoint, body);
     }
 
-    public String delete(@NotNull String endpoint) {
+    /**
+     * Sends a DELETE request to a given endpoint.
+     *
+     * @param endpoint The endpoint after the defined API url. Must start with a slash.
+     * @return The response as HTTP response object.
+     */
+    public HttpResponse<String> delete(@NotNull String endpoint) {
         return sendRequest(HttpMethod.DELETE, endpoint, null);
     }
 

@@ -46,9 +46,6 @@ public class Loader {
             return;
         }
 
-        // Todo remove
-        ImageLoader.initialize();
-        MessageLoader.initialize();
         Main.getBot().build();
 
     }

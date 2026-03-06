@@ -79,8 +79,8 @@ public class ApiClient {
     /**
      * Sends an arbitrary request to the backend with proper authorization headers.
      * <p>
-     * This method is marked as private since request should be done using the separate
-     * get, post, delete and put methods.
+     * This method is marked as private since the request should be done using the separate
+     * get, post, delete, and put methods.
      *
      * @param method The HTTP method to use.
      * @param endpoint The endpoint after the defined API url. Must start with a slash.

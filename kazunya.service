@@ -11,6 +11,8 @@ ExecStart=/usr/bin/java -jar /opt/kazunya/Kazunya-1.2.3.jar
 Restart=on-failure
 RestartSec=5s
 
+Environment="/opt/kazunya/.env"
+
 NoNewPrivileges=true
 PrivateTmp=true
 ProtectSystem=strict

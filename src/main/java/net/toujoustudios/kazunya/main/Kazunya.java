@@ -30,10 +30,9 @@ public class Kazunya {
     public void build() {
 
         Config config = Config.getDefault();
-        Config keysConfig = Config.getFile("keys.yml");
         commandManager = new CommandManager();
 
-        builder = JDABuilder.createDefault(keysConfig.getString("keys.token"));
+        builder = JDABuilder.createDefault(System.getenv("DISCORD_BOT_TOKEN"));
         builder.setBulkDeleteSplittingEnabled(false);
         builder.setActivity(Activity.streaming("/help - Running " + config.getString("general.name") + " " + config.getString("general.version"), "https://twitch.tv/iantoujou"));
 

@@ -123,3 +123,6 @@ replay_pid*
 # Documentation
 docs/.cache
 docs/site
+
+# Environment
+.env

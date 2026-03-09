@@ -8,14 +8,13 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
+import net.toujoustudios.kazunya.api.ApiClient;
 import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.command.ICommand;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
 import net.toujoustudios.kazunya.main.Main;
-import net.toujoustudios.kazunya.repository.RoleplayInteractionRepository;
-import net.toujoustudios.kazunya.type.InteractionGender;
 import net.toujoustudios.kazunya.type.InteractionType;
 import net.toujoustudios.kazunya.util.EmbedUtil;
 import org.jetbrains.annotations.NotNull;
@@ -26,10 +25,10 @@ import java.util.List;
 public class CuddleCommand extends ListenerAdapter implements ICommand {
 
     private static final List<String> VALID_MODES = List.of("friendly", "romantic");
-    private final RoleplayInteractionRepository repository;
+    private final ApiClient apiClient;
 
     public CuddleCommand() {
-        repository = Main.getBot().cache().roleplayInteractionRepository();
+        apiClient = Main.getBot().apiClient();
     }
 
     @Override
@@ -60,8 +59,15 @@ public class CuddleCommand extends ListenerAdapter implements ICommand {
 
         InteractionType type = InteractionType.valueOf(mode.toUpperCase());
 
-        String image = repository.findRandomImageByTypeAndGender(name(), type, InteractionGender.ANY).orElseThrow();
-        String description = repository.findRandomMessageByType(name(), type).orElseThrow()
+        String image = apiClient.getRandomRoleplayImage(name(), type.name(), "ANY");
+        String description = apiClient.getRandomRoleplayMessage(name(), type.name());
+
+        if (image == null || description == null) {
+            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_NOT_FOUND);
+            return;
+        }
+
+        description = description
                 .replace("{member}", member.getAsMention())
                 .replace("{target}", target.getAsMention());
 
@@ -91,7 +97,7 @@ public class CuddleCommand extends ListenerAdapter implements ICommand {
                 return;
             }
 
-            String backImage = repository.findRandomImageByType(name(), InteractionType.FRIENDLY).orElseThrow();
+            String backImage = apiClient.getRandomRoleplayImage(name(), InteractionType.FRIENDLY.name(), "ANY");
 
             event.reply(target.getAsMention()).addEmbeds(
                     EmbedUtil.build("**:two_hearts: Cuddles**", member.getAsMention() + " cuddles " + target.getAsMention() + " back! :3", backImage)

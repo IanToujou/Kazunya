@@ -162,4 +162,53 @@ public class ApiClient {
         return sendRequest(HttpMethod.DELETE, endpoint, null);
     }
 
+    /**
+     * Fetches a random roleplay image URL from the backend.
+     *
+     * @param name The name of the roleplay interaction (e.g., "cuddle").
+     * @param type The type of interaction (FRIENDLY or ROMANTIC).
+     * @param gender The gender filter (ANY, MALE, FEMALE).
+     * @return The URL of a random image matching the criteria, or null if not found.
+     */
+    public String getRandomRoleplayImage(@NotNull String name, @NotNull String type, @NotNull String gender) {
+        try {
+            String endpoint = String.format("/roleplay-interactions?name=%s&type=%s&gender=%s", name, type, gender);
+            HttpResponse<String> response = get(endpoint);
+
+            if (response == null || response.statusCode() != 200) {
+                Logger.log(LogLevel.ERROR, "Failed to fetch roleplay image from API.");
+                return null;
+            }
+
+            return mapper.readTree(response.body()).get("image").asText();
+        } catch (Exception exception) {
+            Logger.log(LogLevel.ERROR, "Error parsing roleplay image response: " + exception.getMessage());
+            return null;
+        }
+    }
+
+    /**
+     * Fetches a random roleplay message from the backend.
+     *
+     * @param name The name of the roleplay interaction (e.g., "cuddle").
+     * @param type The type of interaction (FRIENDLY or ROMANTIC).
+     * @return The message text, or null if not found.
+     */
+    public String getRandomRoleplayMessage(@NotNull String name, @NotNull String type) {
+        try {
+            String endpoint = String.format("/roleplay-interactions?name=%s&type=%s", name, type);
+            HttpResponse<String> response = get(endpoint);
+
+            if (response == null || response.statusCode() != 200) {
+                Logger.log(LogLevel.ERROR, "Failed to fetch roleplay message from API.");
+                return null;
+            }
+
+            return mapper.readTree(response.body()).get("message").asText();
+        } catch (Exception exception) {
+            Logger.log(LogLevel.ERROR, "Error parsing roleplay message response: " + exception.getMessage());
+            return null;
+        }
+    }
+
 }

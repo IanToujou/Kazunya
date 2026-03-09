@@ -7,7 +7,6 @@ import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.toujoustudios.kazunya.api.ApiClient;
-import net.toujoustudios.kazunya.api.Cache;
 import net.toujoustudios.kazunya.command.CommandManager;
 import net.toujoustudios.kazunya.command.list.roleplay.*;
 import net.toujoustudios.kazunya.event.SlashCommandListener;
@@ -26,7 +25,6 @@ public class Kazunya {
     private JDA jda;
     private CommandManager commandManager;
     private ApiClient apiClient;
-    private Cache cache;
 
     public void build() {
 

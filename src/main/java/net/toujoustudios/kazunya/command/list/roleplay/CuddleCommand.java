@@ -1,6 +1,5 @@
 package net.toujoustudios.kazunya.command.list.roleplay;
 
-import lombok.RequiredArgsConstructor;
 import net.dv8tion.jda.api.components.actionrow.ActionRow;
 import net.dv8tion.jda.api.components.buttons.Button;
 import net.dv8tion.jda.api.entities.Member;
@@ -24,11 +23,14 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-@RequiredArgsConstructor
 public class CuddleCommand extends ListenerAdapter implements ICommand {
 
     private static final List<String> VALID_MODES = List.of("friendly", "romantic");
     private final RoleplayInteractionRepository repository;
+
+    public CuddleCommand() {
+        repository = Main.getBot().cache().roleplayInteractionRepository();
+    }
 
     @Override
     public void handle(CommandContext context) {

@@ -40,23 +40,7 @@ public class CommandManager {
         this.add(new LinkCommand());
 
         //Register role play commands
-        this.add(new BlushCommand());
-        this.add(new HugCommand());
-        this.add(new KissCommand());
         this.add(new CuddleCommand());
-        this.add(new CryCommand());
-        this.add(new PatCommand());
-        this.add(new PokeCommand());
-        this.add(new TickleCommand());
-        this.add(new LaughCommand());
-        this.add(new LickCommand());
-        this.add(new PurrCommand());
-        this.add(new SlapCommand());
-        this.add(new SmileCommand());
-        this.add(new KillCommand());
-        this.add(new BonkCommand());
-        this.add(new NomCommand());
-        this.add(new YeetCommand());
 
         //Register fun commands
         this.add(new PeePeeCommand());

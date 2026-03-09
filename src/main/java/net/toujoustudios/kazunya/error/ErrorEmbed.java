@@ -1,35 +1,34 @@
 package net.toujoustudios.kazunya.error;
 
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.components.actionrow.ActionRow;
-import net.dv8tion.jda.api.components.buttons.Button;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.interactions.commands.SlashCommandInteraction;
 import net.toujoustudios.kazunya.command.CommandContext;
+import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.util.ColorUtil;
 
 public class ErrorEmbed {
-
-    static Config config = Config.getDefault();
 
     private ErrorEmbed() {}
 
     public static MessageEmbed buildError(ErrorType type) {
         EmbedBuilder embedBuilder = new EmbedBuilder();
         embedBuilder.setTitle(":x: **Something went wrong**");
-        embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.error")));
-        embedBuilder.setThumbnail(config.getString("assets.img.icon_error"));
+        embedBuilder.setColor(ColorUtil.rgb(Config.EMBED_COLOR_ERROR));
+        // todo add icon back
         embedBuilder.setDescription("Oops! An error occurred while attempting to perform this action. Please review the details below.\n\n**Error Code:** `" + type.getCode() + "`\n**Description:** " + type.getDescription());
         return embedBuilder.build();
     }
 
     public static void sendError(CommandContext context, ErrorType type) {
-        context.interaction().replyEmbeds(buildError(type)).addComponents(ActionRow.of(Button.link(config.getString("link.help"), "Help"))).setEphemeral(true).queue();
+        //context.interaction().replyEmbeds(buildError(type)).addComponents(ActionRow.of(Button.link(config.getString("link.help"), "Help"))).setEphemeral(true).queue();
+        // todo add button
     }
 
     public static void sendError(SlashCommandInteraction interaction, ErrorType type) {
-        interaction.replyEmbeds(buildError(type)).addComponents(ActionRow.of(Button.link(config.getString("link.help"), "Help"))).setEphemeral(true).queue();
+        // interaction.replyEmbeds(buildError(type)).addComponents(ActionRow.of(Button.link(config.getString("link.help"), "Help"))).setEphemeral(true).queue();
+        // todo add button
     }
 
     public static void sendError(TextChannel channel, ErrorType type) {

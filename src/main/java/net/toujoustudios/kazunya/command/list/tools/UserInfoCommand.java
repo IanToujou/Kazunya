@@ -26,12 +26,6 @@ import java.util.List;
  */
 public class UserInfoCommand implements ICommand {
 
-    private final Config config;
-
-    public UserInfoCommand() {
-        config = Config.getDefault();
-    }
-
     @Override
     public void handle(CommandContext context) {
 
@@ -56,7 +50,7 @@ public class UserInfoCommand implements ICommand {
         embedBuilder.addField(":information_source: General Information:", generalBuilder, false);
         embedBuilder.addField(":calendar: Dates:", datesBuilder, false);
 
-        embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
+        embedBuilder.setColor(ColorUtil.rgb(Config.EMBED_COLOR_DEFAULT));
         context.interaction().replyEmbeds(embedBuilder.build()).queue();
 
     }

@@ -6,7 +6,9 @@ import lombok.experimental.Accessors;
 import net.toujoustudios.kazunya.log.LogLevel;
 import net.toujoustudios.kazunya.log.Logger;
 import net.toujoustudios.kazunya.model.RoleplayImage;
+import net.toujoustudios.kazunya.model.RoleplayInteraction;
 import net.toujoustudios.kazunya.repository.RoleplayImageRepository;
+import net.toujoustudios.kazunya.repository.RoleplayInteractionRepository;
 
 import java.net.http.HttpResponse;
 import java.util.Arrays;
@@ -20,6 +22,7 @@ public class Cache {
     private final ObjectMapper mapper;
 
     private RoleplayImageRepository roleplayImageRepository;
+    private RoleplayInteractionRepository roleplayInteractionRepository;
 
     public Cache(ApiClient apiClient) {
         this.apiClient = apiClient;
@@ -30,10 +33,33 @@ public class Cache {
         roleplayImageRepository = repository;
         Logger.log(LogLevel.INFORMATION, "Loading roleplay-images into cache.");
         loadRoleplayImages(repository);
-        Logger.log(LogLevel.INFORMATION, "Finished loading " + repository.count() + " roleplay-images into cache.");
+    }
+
+    public void register(RoleplayInteractionRepository repository) {
+        roleplayInteractionRepository = repository;
+        Logger.log(LogLevel.INFORMATION, "Loading roleplay-interactions into cache.");
+        loadRoleplayInteractions(repository);
     }
 
     private void loadRoleplayImages(RoleplayImageRepository repository) {
+        try {
+            HttpResponse<String> response = apiClient.get("/api/v1/roleplay-images");
+            if (response == null || response.statusCode() != 200) {
+                Logger.log(LogLevel.ERROR, "Failed to load roleplay-images. Status code: " +
+                        (response != null ? response.statusCode() : "null"));
+                return;
+            }
+            RoleplayImage[] result = mapper.readValue(response.body(), RoleplayImage[].class);
+            List<RoleplayImage> imageList = Arrays.asList(result);
+            repository.saveAll(imageList);
+            Logger.log(LogLevel.INFORMATION, "Loaded " + imageList.size() + " roleplay-images into cache.");
+        } catch (Exception e) {
+            Logger.log(LogLevel.ERROR, "Failed to parse roleplay-images from API response.");
+            Logger.log(LogLevel.ERROR, "Error: " + e.getMessage());
+        }
+    }
+
+    private void loadRoleplayInteractions(RoleplayInteractionRepository repository) {
         try {
             HttpResponse<String> response = apiClient.get("/api/v1/roleplay-images");
             if (response == null || response.statusCode() != 200) {
@@ -41,12 +67,12 @@ public class Cache {
                         (response != null ? response.statusCode() : "null"));
                 return;
             }
-            RoleplayImage[] images = mapper.readValue(response.body(), RoleplayImage[].class);
-            List<RoleplayImage> imageList = Arrays.asList(images);
+            RoleplayInteraction[] result = mapper.readValue(response.body(), RoleplayInteraction[].class);
+            List<RoleplayInteraction> imageList = Arrays.asList(result);
             repository.saveAll(imageList);
-            Logger.log(LogLevel.INFORMATION, "Loaded " + imageList.size() + " roleplay images into cache.");
+            Logger.log(LogLevel.INFORMATION, "Loaded " + imageList.size() + " roleplay-interactions into cache.");
         } catch (Exception e) {
-            Logger.log(LogLevel.ERROR, "Failed to parse roleplay images from API response.");
+            Logger.log(LogLevel.ERROR, "Failed to parse roleplay-interactions from API response.");
             Logger.log(LogLevel.ERROR, "Error: " + e.getMessage());
         }
     }

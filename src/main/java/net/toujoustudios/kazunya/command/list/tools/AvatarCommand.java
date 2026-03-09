@@ -17,12 +17,6 @@ import java.util.List;
 
 public class AvatarCommand implements ICommand {
 
-    private final Config config;
-
-    public AvatarCommand() {
-        config = Config.getDefault();
-    }
-
     @Override
     public void handle(CommandContext context) {
 
@@ -37,7 +31,7 @@ public class AvatarCommand implements ICommand {
         embedBuilder.setDescription("Here is " + targetUser.getAsMention() + "'s Discord avatar. It looks very cool! :3");
         embedBuilder.setImage(targetUser.getEffectiveAvatarUrl() + "?size=4096");
 
-        embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
+        embedBuilder.setColor(ColorUtil.rgb(Config.EMBED_COLOR_DEFAULT));
         context.interaction().replyEmbeds(embedBuilder.build()).queue();
 
     }

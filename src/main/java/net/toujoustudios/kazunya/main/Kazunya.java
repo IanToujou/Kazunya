@@ -59,17 +59,7 @@ public class Kazunya {
     }
 
     public void initializeCommandEvents() {
-        builder.addEventListeners(new BonkCommand());
         builder.addEventListeners(new CuddleCommand());
-        builder.addEventListeners(new HugCommand());
-        builder.addEventListeners(new KissCommand());
-        builder.addEventListeners(new LickCommand());
-        builder.addEventListeners(new NomCommand());
-        builder.addEventListeners(new PatCommand());
-        builder.addEventListeners(new PokeCommand());
-        builder.addEventListeners(new SlapCommand());
-        builder.addEventListeners(new TickleCommand());
-        builder.addEventListeners(new YeetCommand());
     }
 
     public void startConsole() {

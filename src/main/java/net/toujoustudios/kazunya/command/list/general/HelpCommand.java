@@ -1,8 +1,7 @@
 package net.toujoustudios.kazunya.command.list.general;
 
+import lombok.RequiredArgsConstructor;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.components.actionrow.ActionRow;
-import net.dv8tion.jda.api.components.buttons.Button;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
@@ -18,15 +17,10 @@ import net.toujoustudios.kazunya.util.ColorUtil;
 import java.util.ArrayList;
 import java.util.List;
 
+@RequiredArgsConstructor
 public class HelpCommand implements ICommand {
 
     private final CommandManager manager;
-    private final Config config;
-
-    public HelpCommand(CommandManager manager) {
-        this.manager = manager;
-        config = Config.getDefault();
-    }
 
     @Override
     public void handle(CommandContext context) {
@@ -34,10 +28,9 @@ public class HelpCommand implements ICommand {
         List<OptionMapping> args = context.getArgs();
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
-        embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
+        embedBuilder.setColor(ColorUtil.rgb(Config.EMBED_COLOR_DEFAULT));
         embedBuilder.setTitle(":sparkles: **Kazunya Help**");
         embedBuilder.setDescription("Here is a full list of all bot commands and features.\nYou can also type `/help [<command>]` to look up a specific command and its usage.");
-        embedBuilder.setThumbnail(config.getString("assets.img.icon_search"));
 
         if(args.isEmpty()) {
 
@@ -68,9 +61,10 @@ public class HelpCommand implements ICommand {
             embedBuilder.addField(":bookmark_tabs: Credits:", "IanToujou", false);
 
             context.interaction().replyEmbeds(embedBuilder.build())
-                    .addComponents(ActionRow.of(Button.link(config.getString("link.help"), "Docs"), Button.link(config.getString("link.invite"), "Invite")))
                     .queue();
             return;
+
+            // Todo add link back
 
         }
 

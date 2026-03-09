@@ -16,12 +16,6 @@ import java.util.List;
 
 public class PeePeeCommand implements ICommand {
 
-    private final Config config;
-
-    public PeePeeCommand() {
-        this.config = Config.getDefault();
-    }
-
     @Override
     public void handle(CommandContext context) {
 
@@ -44,7 +38,7 @@ public class PeePeeCommand implements ICommand {
         if(memberId.equals("1156543794594979911")) {
             pp = "8========/    /========D";
             embedBuilder.setTitle("**:french_bread: PP Size**");
-            embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
+            embedBuilder.setColor(ColorUtil.rgb(Config.EMBED_COLOR_DEFAULT));
             embedBuilder.setDescription(member.getAsMention() + " has the following PP size:\n`" + pp + "`\n" + "WHY IS THERE A HOLE IN IT???");
             context.interaction().replyEmbeds(embedBuilder.build()).queue();
             return;
@@ -69,7 +63,7 @@ public class PeePeeCommand implements ICommand {
         }
 
         embedBuilder.setTitle("**:eggplant: PP Size**");
-        embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
+        embedBuilder.setColor(ColorUtil.rgb(Config.EMBED_COLOR_DEFAULT));
         embedBuilder.setDescription(member.getAsMention() + " has the following PP size:\n`" + pp + "`\n" + comment);
 
         context.interaction().replyEmbeds(embedBuilder.build()).queue();

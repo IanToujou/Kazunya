@@ -7,6 +7,7 @@ import net.toujoustudios.kazunya.log.LogLevel;
 import net.toujoustudios.kazunya.log.Logger;
 import net.toujoustudios.kazunya.main.Main;
 import net.toujoustudios.kazunya.repository.RoleplayImageRepository;
+import net.toujoustudios.kazunya.repository.RoleplayInteractionRepository;
 
 import java.util.Scanner;
 
@@ -42,11 +43,10 @@ public class Loader {
     }
 
     private static void initialize() {
-
         Main.getBot().cache(new Cache(Main.getBot().apiClient()));
         Main.getBot().cache().register(new RoleplayImageRepository());
+        Main.getBot().cache().register(new RoleplayInteractionRepository());
         Main.getBot().build();
-
     }
 
     private static void postInitialize() {

@@ -8,6 +8,7 @@ import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.toujoustudios.kazunya.command.CommandCategory;
 import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.command.ICommand;
+import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
 import net.toujoustudios.kazunya.util.ColorUtil;
@@ -18,12 +19,6 @@ import java.util.List;
 import java.util.Map;
 
 public class ShipListCommand implements ICommand {
-
-    private final Config config;
-
-    public ShipListCommand() {
-        config = Config.getDefault();
-    }
 
     @Override
     public void handle(CommandContext context) {
@@ -76,7 +71,7 @@ public class ShipListCommand implements ICommand {
                     });
 
             embedBuilder.setDescription(member.getAsMention() + "'s ship rank list is:\n" + builder);
-            embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
+            embedBuilder.setColor(ColorUtil.rgb(Config.EMBED_COLOR_DEFAULT));
             context.interaction().replyEmbeds(embedBuilder.build()).queue();
 
         }).onError(Throwable::printStackTrace);

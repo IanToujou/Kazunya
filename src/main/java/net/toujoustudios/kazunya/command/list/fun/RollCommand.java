@@ -17,12 +17,6 @@ import java.util.Random;
 
 public class RollCommand implements ICommand {
 
-    private final Config config;
-
-    public RollCommand() {
-        config = Config.getDefault();
-    }
-
     @Override
     @SuppressWarnings("all")
     public void handle(CommandContext context) {
@@ -90,7 +84,7 @@ public class RollCommand implements ICommand {
         }
 
         embedBuilder.setTitle("**:game_die: Dice Roll**");
-        embedBuilder.setColor(ColorUtil.rgb(config.getString("format.color.default")));
+        embedBuilder.setColor(ColorUtil.rgb(Config.EMBED_COLOR_DEFAULT));
         context.interaction().replyEmbeds(embedBuilder.build()).queue();
 
     }

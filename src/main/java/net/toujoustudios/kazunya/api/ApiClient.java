@@ -181,7 +181,23 @@ public class ApiClient {
                 return null;
             }
 
-            return mapper.readTree(response.body()).get("image").asText();
+            var root = mapper.readTree(response.body());
+            if (!root.isArray() || root.isEmpty()) {
+                Logger.log(LogLevel.ERROR, "API response is not an array or is empty.");
+                return null;
+            }
+
+            var interaction = root.get(0);
+            var images = interaction.get("images");
+
+            if (images == null || !images.isArray() || images.isEmpty()) {
+                Logger.log(LogLevel.ERROR, "No images found in the interaction.");
+                return null;
+            }
+
+            // Select a random image from the array
+            int randomIndex = (int) (Math.random() * images.size());
+            return images.get(randomIndex).get("url").asText();
         } catch (Exception exception) {
             Logger.log(LogLevel.ERROR, "Error parsing roleplay image response: " + exception.getMessage());
             return null;

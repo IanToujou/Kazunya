@@ -43,7 +43,7 @@ public class Cache {
 
     private void loadRoleplayImages(RoleplayImageRepository repository) {
         try {
-            HttpResponse<String> response = apiClient.get("/api/v1/roleplay-images");
+            HttpResponse<String> response = apiClient.get("/roleplay-images");
             if (response == null || response.statusCode() != 200) {
                 Logger.log(LogLevel.ERROR, "Failed to load roleplay-images. Status code: " +
                         (response != null ? response.statusCode() : "null"));
@@ -61,9 +61,9 @@ public class Cache {
 
     private void loadRoleplayInteractions(RoleplayInteractionRepository repository) {
         try {
-            HttpResponse<String> response = apiClient.get("/api/v1/roleplay-images");
+            HttpResponse<String> response = apiClient.get("/roleplay-interactions");
             if (response == null || response.statusCode() != 200) {
-                Logger.log(LogLevel.ERROR, "Failed to load roleplay images. Status code: " +
+                Logger.log(LogLevel.ERROR, "Failed to load roleplay-interactions. Status code: " +
                         (response != null ? response.statusCode() : "null"));
                 return;
             }

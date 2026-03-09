@@ -200,6 +200,7 @@ public class ApiClient {
             return images.get(randomIndex).get("url").asText();
         } catch (Exception exception) {
             Logger.log(LogLevel.ERROR, "Error parsing roleplay image response: " + exception.getMessage());
+            exception.printStackTrace();
             return null;
         }
     }
@@ -221,9 +222,26 @@ public class ApiClient {
                 return null;
             }
 
-            return mapper.readTree(response.body()).get("message").asText();
+            var root = mapper.readTree(response.body());
+            if (!root.isArray() || root.isEmpty()) {
+                Logger.log(LogLevel.ERROR, "API response is not an array or is empty.");
+                return null;
+            }
+
+            var interaction = root.get(0);
+            var messages = interaction.get("messages");
+
+            if (messages == null || !messages.isArray() || messages.isEmpty()) {
+                Logger.log(LogLevel.ERROR, "No messages found in the interaction.");
+                return null;
+            }
+
+            // Select a random message from the array
+            int randomIndex = (int) (Math.random() * messages.size());
+            return messages.get(randomIndex).get("message").asText();
         } catch (Exception exception) {
             Logger.log(LogLevel.ERROR, "Error parsing roleplay message response: " + exception.getMessage());
+            exception.printStackTrace();
             return null;
         }
     }

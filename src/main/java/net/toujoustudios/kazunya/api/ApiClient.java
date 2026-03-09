@@ -173,6 +173,7 @@ public class ApiClient {
     public String getRandomRoleplayImage(@NotNull String name, @NotNull String type, @NotNull String gender) {
         try {
             String endpoint = String.format("/roleplay-interactions?name=%s&type=%s&gender=%s", name, type, gender);
+            Logger.log(LogLevel.INFORMATION, "Fetching roleplay image from API: " + endpoint);
             HttpResponse<String> response = get(endpoint);
 
             if (response == null || response.statusCode() != 200) {

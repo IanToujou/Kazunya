@@ -2,10 +2,11 @@ package net.toujoustudios.kazunya.loader;
 
 import lombok.Getter;
 import net.toujoustudios.kazunya.api.ApiClient;
-import net.toujoustudios.kazunya.config.Config;
+import net.toujoustudios.kazunya.api.Cache;
 import net.toujoustudios.kazunya.log.LogLevel;
 import net.toujoustudios.kazunya.log.Logger;
 import net.toujoustudios.kazunya.main.Main;
+import net.toujoustudios.kazunya.repository.RoleplayImageRepository;
 
 import java.util.Scanner;
 
@@ -21,13 +22,6 @@ public class Loader {
     }
 
     private static void preInitialize() {
-        new Config("config.yml");
-        new Config("images.yml");
-        new Config("messages.yml");
-        new Config("keys.yml");
-    }
-
-    private static void initialize() {
 
         String url = System.getenv("API_URL");
         String username = System.getenv("API_USERNAME");
@@ -43,9 +37,14 @@ public class Loader {
         if (!Main.getBot().apiClient().authenticate()) {
             Logger.log(LogLevel.FATAL, "Failed to authenticate and fetch token. Are the credentials correct?");
             cancel();
-            return;
         }
 
+    }
+
+    private static void initialize() {
+
+        Main.getBot().cache(new Cache(Main.getBot().apiClient()));
+        Main.getBot().cache().register(new RoleplayImageRepository());
         Main.getBot().build();
 
     }

@@ -7,9 +7,9 @@ import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.toujoustudios.kazunya.api.ApiClient;
+import net.toujoustudios.kazunya.api.Cache;
 import net.toujoustudios.kazunya.command.CommandManager;
 import net.toujoustudios.kazunya.command.list.roleplay.*;
-import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.event.SlashCommandListener;
 import net.toujoustudios.kazunya.loader.Loader;
 import net.toujoustudios.kazunya.log.LogLevel;
@@ -26,15 +26,15 @@ public class Kazunya {
     private JDA jda;
     private CommandManager commandManager;
     private ApiClient apiClient;
+    private Cache cache;
 
     public void build() {
 
-        Config config = Config.getDefault();
         commandManager = new CommandManager();
 
         builder = JDABuilder.createDefault(System.getenv("DISCORD_BOT_TOKEN"));
         builder.setBulkDeleteSplittingEnabled(false);
-        builder.setActivity(Activity.streaming("/help - Running " + config.getString("general.name") + " " + config.getString("general.version"), "https://twitch.tv/iantoujou"));
+        builder.setActivity(Activity.streaming("/help - Running Kazunya " + System.getenv("BOT_VERSION"), "https://twitch.tv/iantoujou"));
 
         initializeIntends();
         initializeEvents();

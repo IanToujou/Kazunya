@@ -7,7 +7,6 @@ import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.interactions.commands.SlashCommandInteraction;
 import net.toujoustudios.kazunya.command.CommandContext;
-import net.toujoustudios.kazunya.config.Config;
 import net.toujoustudios.kazunya.util.ColorUtil;
 
 public class ErrorEmbed {

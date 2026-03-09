@@ -21,6 +21,7 @@ public enum ErrorType {
     GENERAL_DATABASE("0005", "An error occurred with the database."),
     GENERAL_PERMISSION("0006", "You do not have the permission to perform this action."),
     GENERAL_NSFW("0007", "This can only be performed in a NSFW channel."),
+    GENERAL_API("0008", "An error occurred with the API."),
 
     // Command-related or syntax-related errors.
     COMMAND_INVALID_SYNTAX("1001", "The command syntax is not correct."),
@@ -36,8 +37,6 @@ public enum ErrorType {
 
     // More advanced command errors when trying to perform a specific action.
     ACTION_INVALID_USER("2001", "That action is not meant to be performed by you."),
-    ACTION_NOT_ENOUGH_WALLET_MONEY("2002", "You don't have enough money in your wallet for this action."),
-    ACTION_NOT_ENOUGH_BANK_MONEY("2003", "You don't have enough money in your bank account for this action."),
 
     // Audio errors that only occur when failing to send an audio stream.
     AUDIO_UNABLE_TO_LOAD("3001", "The audio couldn't be loaded due to an unexpected error."),

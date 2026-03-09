@@ -14,8 +14,6 @@ import net.toujoustudios.kazunya.command.CommandContext;
 import net.toujoustudios.kazunya.command.ICommand;
 import net.toujoustudios.kazunya.error.ErrorEmbed;
 import net.toujoustudios.kazunya.error.ErrorType;
-import net.toujoustudios.kazunya.log.LogLevel;
-import net.toujoustudios.kazunya.log.Logger;
 import net.toujoustudios.kazunya.main.Main;
 import net.toujoustudios.kazunya.type.InteractionType;
 import net.toujoustudios.kazunya.util.EmbedUtil;
@@ -60,19 +58,11 @@ public class CuddleCommand extends ListenerAdapter implements ICommand {
         }
 
         InteractionType type = InteractionType.valueOf(mode.toUpperCase());
-
-        Logger.log(LogLevel.INFORMATION, "Getting stuff");
-
         String image = apiClient.getRandomRoleplayImage(name(), type.name(), "ANY");
-
-        Logger.log(LogLevel.INFORMATION, "Image is: " + image);
-
         String description = apiClient.getRandomRoleplayMessage(name(), type.name());
 
-        Logger.log(LogLevel.INFORMATION, "description is: " + description);
-
         if (image == null || description == null) {
-            ErrorEmbed.sendError(context, ErrorType.COMMAND_INVALID_USER_NOT_FOUND);
+            ErrorEmbed.sendError(context, ErrorType.GENERAL_API);
             return;
         }
 

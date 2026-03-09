@@ -31,18 +31,7 @@ public class PeePeeCommand implements ICommand {
         String memberId = member.getId();
         int num = Integer.parseInt(memberId.substring(memberId.length() - 2));
         int size = Math.round((float) num / 3);
-        if(memberId.equals("369381378703228928")) size = 50;
-        if(memberId.equals("453998477232570368")) size = 500;
         String pp = "8" + "=".repeat(Math.max(0, size)) + "D";
-
-        if(memberId.equals("1156543794594979911")) {
-            pp = "8========/    /========D";
-            embedBuilder.setTitle("**:french_bread: PP Size**");
-            embedBuilder.setColor(ColorUtil.rgb(Config.EMBED_COLOR_DEFAULT));
-            embedBuilder.setDescription(member.getAsMention() + " has the following PP size:\n`" + pp + "`\n" + "WHY IS THERE A HOLE IN IT???");
-            context.interaction().replyEmbeds(embedBuilder.build()).queue();
-            return;
-        }
 
         String comment;
 

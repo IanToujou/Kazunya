@@ -1,6 +1,8 @@
 package net.toujoustudios.kazunya.error;
 
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.components.actionrow.ActionRow;
+import net.dv8tion.jda.api.components.buttons.Button;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.interactions.commands.SlashCommandInteraction;
@@ -16,19 +18,17 @@ public class ErrorEmbed {
         EmbedBuilder embedBuilder = new EmbedBuilder();
         embedBuilder.setTitle(":x: **Something went wrong**");
         embedBuilder.setColor(ColorUtil.rgb(Config.EMBED_COLOR_ERROR));
-        // todo add icon back
+        embedBuilder.setThumbnail(Config.IMAGE_ERROR);
         embedBuilder.setDescription("Oops! An error occurred while attempting to perform this action. Please review the details below.\n\n**Error Code:** `" + type.getCode() + "`\n**Description:** " + type.getDescription());
         return embedBuilder.build();
     }
 
     public static void sendError(CommandContext context, ErrorType type) {
-        //context.interaction().replyEmbeds(buildError(type)).addComponents(ActionRow.of(Button.link(config.getString("link.help"), "Help"))).setEphemeral(true).queue();
-        // todo add button
+        context.interaction().replyEmbeds(buildError(type)).addComponents(ActionRow.of(Button.link(Config.LINK_HELP, "Help"))).setEphemeral(true).queue();
     }
 
     public static void sendError(SlashCommandInteraction interaction, ErrorType type) {
-        // interaction.replyEmbeds(buildError(type)).addComponents(ActionRow.of(Button.link(config.getString("link.help"), "Help"))).setEphemeral(true).queue();
-        // todo add button
+        interaction.replyEmbeds(buildError(type)).addComponents(ActionRow.of(Button.link(Config.LINK_HELP, "Help"))).setEphemeral(true).queue();
     }
 
     public static void sendError(TextChannel channel, ErrorType type) {
